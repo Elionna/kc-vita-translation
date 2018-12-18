@@ -108,9 +108,6 @@ sub data {
         "獲得アイテム" => { tr => "Earned items", desc => "followed by icons and numbers which don't need translation" },
 
         "敵艦隊"             => { desc => "" },
-        "見ゅ"                => { desc => "" },
-        "見ゆ"                => { desc => "" },
-        "被弾回避率補正" => { desc => "" },
 
         # https://www.thoughtco.com/can-you-tell-me-the-old-names-of-the-months-2027868
         #this.monthFormat.MonthNames = new string[13]
@@ -261,5 +258,52 @@ sub data {
         #"ボタンで戦略コマンドを\n開き、ターンを終了せよ！",
         #"ボタンで戦略コマンド\nを開き、艦隊出撃せよ！",
         #"ボタンで\n旗艦提督室へ移動せよ！",
+
+        "旗艦提督室で\n任務達成を\r確認せよ！\n"                                                => { tr => q[eaeaeaeaeaeaeaeaeaea], },
+        #"略ポイント[-]は、任務達成及び\n海域攻略などで手に入ります。\n\n[0055aa]工" => { tr => q[eaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaea], },
+        #"0000][0055aa]戦略ポイント[-]は、任務達成及び\n海域攻略などで 手に入ります。\n\n[0055aa]工廠[-]での輸送船建造や、\r\n[0055aa]アイテム屋さん[-]でのアイテム購入で\n使用します" => { tr => q[eaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaaeaeaeaeaeaeaeaea], },
+
+        # "廃棄は □ボタンで行います" =>  the square is a special char. not sure if it belongs in the string or was a separator
+        # "解体は □ボタンで行います" =>  the square is a special char. not sure if it belongs in the string or was a separator
+
+        # "{0}(この海域への移動中:{1}) -" some kinda long string
+
+        # 戦略ポイントが不足しています
+        # 該当装備がロックされています
+
+        "被弾回避率補正" => {  ok => 'a-csharp 4556831' },
+        "攻撃命中率補正" => { },
+        "雷撃命中率補正" => {  ok => 'a-csharp 4556847' },
+        "海上護衛艦隊の対潜/対空能力:{0}" => { },
+        "海上護衛艦隊(MemId:{0})は{1}のダメージ({2})" => {ok => 'a-csharp 4604361' },
+        "海上護衛艦隊名海上護衛艦隊名" => { },
+        "[000000][0055aa]海上護衛艦隊[-]の配備について" => { },
+
+        "廃棄は □ボタンで行います" => {ok => 'a-csharp 4517038'},
+        "解体は □ボタンで行います" => {ok => 'a-csharp 4517066'},
+        "ボタンで戦略コマンドを" => {},
+        "輸送船団や海上護衛艦隊への" => {},
+        "建造日数が掛かります" => {},
+        "海域の輸送船団に海上護衛艦隊を配備することで、\r\n敵通商破壊部隊から輸送船を護ることが可能です。\n\nまた" => {},
+        "備の輸送船数:{0}(この海域への移動中:{1}) - 総数:{2}" => {},
+        "輸送船 x {0}" => {},
+        "ロック済艦娘を" => {},
+        "艦隊司令部情報" => {},
+        "艦隊切替" => {},
+        "艦隊数" => {},
+        "ボタンで戦略コマンド" => {},
+        "[000000][0055aa]輸送船[-]の配備について" => {},
+        "工廠[-]での輸送船建造や、" => {},
+        "[66ccff]全艦種出撃可能[-]です。"=>{},
+        "ボタンで戦略コマンドを\n開き、ターンを終了せよ！"=>{ok=> 'resources/resources_01107.-10 199'},
+        "迎撃戦は、[0055aa]連合艦隊[-]で出撃可能です。\n[0055aa]連合艦隊[-]は、\r\n" => {},
+        "Inspectorで設定して使用" => {},
+        "Inspector上でイベントを" => {},
+        "Inspector上でボタンに設" => {},
+        "Inspector上で使用します" => {},
+        "Inspector上で使用するメ" => {},
+        "Inspector上で設定して使" => {},
+        "Inspector上で選択して使" => {},
+        "Inspector上に設定して使" => {},
     );
 }
