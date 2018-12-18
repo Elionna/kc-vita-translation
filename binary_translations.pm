@@ -35,7 +35,7 @@ sub data {
         "ゲーム開始" => { tr => "Game Starters", desc => "title of game starter set selection screen" },
         "初期艦選択" => { tr => "Starter Ship Selection", desc => "not sure, think title of the screen after the set" },
         "チュートリアル" => { tr => "Tutorial" },
-        "チュートリアルを行いますか？" => {},
+        "チュートリアルを行いますか？" => { tr => "Would you like to do the tutorial?" },
 
         "配備輸送船数" => { tr => "Transports",    desc => "Number of deployed shipping vessels, Cargo ships in area" },
         "予想獲得資源" => { tr => "Expected Gain", desc => "Expected acquisition resources (Daily Resource Generation) Fuel, Ammo, Steel, Bauxite per map hex" },
@@ -58,7 +58,7 @@ sub data {
         "対空" => { tr => "AA",    desc => "Anti-air or Air Defense" },
         "速力" => { tr => "Speed", desc => "Try Speed instead of SPD as I would like to check table formatting." },
 
-        "火力 -10" => {},
+        "火力 -10" => { tr => "FP -10", desc => "see 火力" },
 
         #[1:06 AM] Knofbep: the damage shows up 2nd to last column
         #[1:06 AM] Knofbep: next to the heart lock
