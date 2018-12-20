@@ -271,7 +271,7 @@ sub data {
         # "{0}(この海域への移動中:{1}) -" some kinda long string - "{0} (Moving to this area: {1}_ -seems self explanatory, there is probably a trailing ) you missed
 
         # 戦略ポイントが不足しています    "Insufficient Strategy Points."                 probably the shop error when you don't have enough points to buy
-        # 該当装備がロックされています    "Corrosponding equipment has been locked."                             this is more accurate
+        # 該当装備がロックされています    "Corresponding equipment has been locked."                             this is more accurate
 
         "被弾回避率補正" => {  ok => 'a-csharp 4556831' },  #"Evasion adjustment"                literal hit avoidance rate correction
         "攻撃命中率補正" => { },                            #"Attack Hit% adjustment"            literal attack hit ratio correction
