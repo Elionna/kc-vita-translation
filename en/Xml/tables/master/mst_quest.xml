@@ -1849,8 +1849,8 @@
 	<Category>3</Category>
 	<Type>1</Type>
 	<Torigger>101</Torigger>
-	<Name>Your First "Exercise"!</Name>
-	<Details>Do the Fleet Movement Exercise</Details>
+	<Name>Your First 「Exercise」!</Name>
+	<Details>Perform the 「Fleet Movement Exercise」!</Details>
 	<Get_1>102,0,2</Get_1>
 	<Get_2>1,1,7</Get_2>
 	<Mat>30,30,0,0</Mat>
@@ -1860,8 +1860,8 @@
 	<Category>3</Category>
 	<Type>1</Type>
 	<Torigger>301</Torigger>
-	<Name>Carry Out the Shelling Exercise!</Name>
-	<Details>Do the Shelling Exercise</Details>
+	<Name>Carry out the 「Shelling Exercise」!</Name>
+	<Details>In order to improve the fighting skill of the fleet,\n perform the 「Shelling Exercise」!</Details>
 	<Get_1>102,0,3</Get_1>
 	<Mat>0,70,0,0</Mat>
 </mst_quest>
@@ -1870,8 +1870,8 @@
 	<Category>3</Category>
 	<Type>1</Type>
 	<Torigger>302</Torigger>
-	<Name>Carry Out the Torpedo Exercise!</Name>
-	<Details>Do the Torpedo Exercise</Details>
+	<Name>Carry Out the 「Torpedo Exercise」!</Name>
+	<Details>In order to improve the fighting skill of the fleet,\n perform the 「Torpedo Exercise」!</Details>
 	<Get_1>12,1,15</Get_1>
 	<Mat>80,0,0,0</Mat>
 </mst_quest>
@@ -1880,8 +1880,8 @@
 	<Category>3</Category>
 	<Type>1</Type>
 	<Torigger>302</Torigger>
-	<Name>Continue Carrying Out the \nShelling Exercise!</Name>
-	<Details>Do the Shelling Excercise 3 times</Details>
+	<Name>Continue Carrying Out the \n「Shelling Exercise」!</Name>
+	<Details>In order to improve the fighting skill of the fleet,\n do the 「Shelling Exercise」 3 more times!</Details>
 	<Get_1>12,1,63</Get_1>
 	<Mat>0,100,0,0</Mat>
 </mst_quest>
@@ -1890,8 +1890,8 @@
 	<Category>3</Category>
 	<Type>1</Type>
 	<Torigger>303,304</Torigger>
-	<Name>Carry out an Exercise to Increase \nNight Battle Proficiency!</Name>
-	<Details>Do Fleet Movement Exercise three times and \nTorpedo Exercise three times</Details>
+	<Name>Carry out 「Exercises」 to Increase \nNight Battle Proficiency!</Name>
+	<Details>Do 「Fleet Movement Exercise」 three times and \n「Torpedo Exercise」 three times!</Details>
 	<Get_1>12,1,129</Get_1>
 	<Get_2>102,0,4</Get_2>
 	<Mat>100,100,0,0</Mat>
@@ -1902,7 +1902,7 @@
 	<Type>1</Type>
 	<Torigger>611,317</Torigger>
 	<Name>Prepare for the Ceremony! \n(Part 2)</Name>
-	<Details>Do 5 battles in Rival Exercises in a month</Details>
+	<Details>Do more than 5 「Rival Exercises」 in a month, \n attempting to sort through the feelings of the ceremony!</Details>
 	<Get_1>1,2,7</Get_1>
 	<Mat>0,0,88,88</Mat>
 </mst_quest>
@@ -1912,7 +1912,7 @@
 	<Type>1</Type>
 	<Torigger>151,317</Torigger>
 	<Name>Improve Fleet discipline \nbefore maneuvers</Name>
-	<Details>Perform Opposition Training 3 times \nin a month</Details>
+	<Details>Do 「Rival Exercise」 3 times in a month!</Details>
 	<Get_1>1,2,6</Get_1>
 	<Mat>0,0,300,300</Mat>
 </mst_quest>
@@ -1921,8 +1921,8 @@
 	<Category>3</Category>
 	<Type>1</Type>
 	<Torigger>418,317</Torigger>
-	<Name>Strengthen fleet discipline</Name>
-	<Details>Continue opposition practice 4 or \nmore times times this month</Details>
+	<Name>Strengthen fleet discipline!</Name>
+	<Details>Aim for further improvement of fleet! \nContinue 「Rival Exercise」 4 or more times this month!</Details>
 	<Get_1>1,2,6</Get_1>
 	<Get_2>1,1,8</Get_2>
 	<Mat>0,300,0,0</Mat>
@@ -1933,7 +1933,7 @@
 	<Type>1</Type>
 	<Torigger>277,305</Torigger>
 	<Name>Preparing to retake the north, \nimprove fleet discipline!</Name>
-	<Details>Do fleet movement exercise 3 times.</Details>
+	<Details>In preparation for the fleet re-entry, \n do 「Fleet Movement Exercise」 3 times!</Details>
 	<Get_1>1,2,6</Get_1>
 	<Get_2>1,2,8</Get_2>
 	<Mat>300,0,0,0</Mat>
@@ -1944,7 +1944,7 @@
 	<Type>6</Type>
 	<Torigger>305</Torigger>
 	<Name>Carry Out the Shelling Exercise!</Name>
-	<Details>Carry Out the Shelling Exercise \n5 times!</Details>
+	<Details>Weekday gold! \nContinue the 「Shelling Exercise」 5 more times!</Details>
 	<Get_1>1,2,7</Get_1>
 	<Mat>0,100,0,0</Mat>
 </mst_quest>
@@ -1954,7 +1954,7 @@
 	<Type>6</Type>
 	<Torigger>310,305</Torigger>
 	<Name>Strive to Increase the Fleet's \nNight Battle Proficiency!</Name>
-	<Details>Do both Movement and Torpedo \nexercises 5 times each.</Details>
+	<Details>Improve Night Battle Proficiency! \n Do both 「Movement」 and 「Torpedo」 exercises 5 times each!</Details>
 	<Get_1>1,2,6</Get_1>
 	<Mat>100,100,0,0</Mat>
 </mst_quest>
@@ -1963,8 +1963,8 @@
 	<Category>3</Category>
 	<Type>6</Type>
 	<Torigger>310,316</Torigger>
-	<Name>Intensify the Anti-Submarine \nWarfare Excercise!</Name>
-	<Details>Do the Anti-Submarine Warfare Exercise \nthree times</Details>
+	<Name>Intensify the 「Anti-Submarine \nWarfare Exercise」!</Name>
+	<Details>Improve the fleet anti-submarine proficiency!\n Do the 「Anti-Submarine Warfare Exercise」 three more times!</Details>
 	<Get_1>1,1,7</Get_1>
 	<Get_2>103,1,1</Get_2>
 	<Mat>200,0,0,0</Mat>
@@ -1975,7 +1975,7 @@
 	<Type>6</Type>
 	<Torigger>311,319</Torigger>
 	<Name>Strive for proficiency!</Name>
-	<Details>Perform 3 comprehensive fleet \nexercises</Details>
+	<Details>Improve the overall proficiency of the fleet! \nPerform 3 「General Exercises」!</Details>
 	<Get_1>1,1,6</Get_1>
 	<Get_2>12,1,145</Get_2>
 	<Mat>0,200,0,0</Mat>
@@ -1985,8 +1985,8 @@
 	<Category>3</Category>
 	<Type>6</Type>
 	<Torigger>312</Torigger>
-	<Name>Intensify the Aerial \nBattle Exercise!</Name>
-	<Details>Do the Aerial Battle Exercise \nthree times</Details>
+	<Name>Intensify the 「Aerial \nBattle Exercise!</Name>
+	<Details>Improve fleet's aviation skill level! \nDo the 「Aerial Battle Exercise」 three more times!</Details>
 	<Get_1>1,2,6</Get_1>
 	<Get_2>12,1,145</Get_2>
 	<Mat>0,0,0,200</Mat>
@@ -1996,8 +1996,8 @@
 	<Category>3</Category>
 	<Type>6</Type>
 	<Torigger>310</Torigger>
-	<Name>Carry Out a Rival Exercise \nAmong Friends!</Name>
-	<Details>Do Rival Exercises 5 times</Details>
+	<Name>Carry Out a 「Rival Exercise」 \nAmong Friends!</Name>
+	<Details>Practice fleet exercises! \n Do 「Rival Exercises」 more than 5 times this month!</Details>
 	<Get_1>1,2,8</Get_1>
 	<Get_2>12,1,145</Get_2>
 	<Mat>200,200,200,0</Mat>
@@ -2007,8 +2007,8 @@
 	<Category>3</Category>
 	<Type>1</Type>
 	<Torigger>311</Torigger>
-	<Name>Carry Out the Anti-Submarine \nWarfare Exercise!</Name>
-	<Details>Do the Anti-Submarine Warfare \nExercise</Details>
+	<Name>Carry Out the 「Anti-Submarine \nWarfare Exercise」!</Name>
+	<Details>In order to improve proficiency of the fleet against submarines,\n perform the 「Anti-Submarine Warfare Exercise」!</Details>
 	<Get_1>12,1,44</Get_1>
 	<Get_2>102,0,5</Get_2>
 	<Mat>80,0,0,0</Mat>
@@ -2018,8 +2018,8 @@
 	<Category>3</Category>
 	<Type>1</Type>
 	<Torigger>104</Torigger>
-	<Name>Carry Out the Rival Exercise!</Name>
-	<Details>Do the Rival Exercise!</Details>
+	<Name>Carry Out the 「Rival Exercise」!</Name>
+	<Details>Carry out simulated combat exercises between fleets! \nPerform a 「Rival Exercise」!</Details>
 	<Get_1>1,1,5</Get_1>
 	<Get_2>1,1,6</Get_2>
 	<Mat>0,0,80,0</Mat>
@@ -2029,8 +2029,8 @@
 	<Category>3</Category>
 	<Type>1</Type>
 	<Torigger>316,317</Torigger>
-	<Name>Carry Out the Aerial Battle \nExercise!</Name>
-	<Details>Do the Aerial Battle Exercise!!</Details>
+	<Name>Carry Out the 「Aerial Battle \nExercise」!</Name>
+	<Details>In order to improve the aerial fighting skill of the fleet, \n perform the 「Aerial Battle Exercise」!</Details>
 	<Get_1>12,1,96</Get_1>
 	<Get_2>102,0,6</Get_2>
 	<Mat>0,0,0,80</Mat>
@@ -2040,8 +2040,8 @@
 	<Category>3</Category>
 	<Type>1</Type>
 	<Torigger>318</Torigger>
-	<Name>Carry Out the All-Rounded \nExercise!</Name>
-	<Details>Do the All-Rounded Exercise</Details>
+	<Name>Carry Out the 「General Exercise」!</Name>
+	<Details>In order to improve the overall fighting skill\n of the fleet, perform the 「General Exercise」!</Details>
 	<Get_1>12,1,36</Get_1>
 	<Get_2>1,2,7</Get_2>
 	<Mat>100,100,100,0</Mat>
