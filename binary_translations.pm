@@ -203,7 +203,7 @@ sub data {
         "任務を受託せよ！"                    => { tr => "Take Charge Of The Mission!",      desc => 'or offie or duty or task | admiral room tutorial for factory' },
         "新規に       任務を受託可能です" => { tr => "You can accept new assignments.",      desc => 'quests' },
         "任務内容確認"                          => { tr => "Task Confirmation",      desc => 'Task Content Confirmation | quests' },
-        "設定"                                      => { tr => "",      desc => 'settings' },
+        "設定"                                      => { tr => "Set",      desc => 'settings' },
         "操作ガイド"                             => { tr => "Operation Guide",      desc => 'settings' },
         "ロック"                                   => { tr => "Lock",      desc => 'ship list' },
         "ソート"                                   => { tr => "Sort",      desc => 'ship list' },
