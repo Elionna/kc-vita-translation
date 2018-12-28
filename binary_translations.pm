@@ -201,7 +201,7 @@ sub data {
           { tr => "First Deployment",      desc => 'tutorial text found via text matching, the achievements indicate this should have an exclamation mark' },
         "[E2E2E2]はじめての[12c112]建造[-]！[-]" => { tr => "First Construction",      desc => 'tutorial text found via text matching' },
         "任務を受託せよ！"                    => { tr => "Take Charge Of The Mission!",      desc => 'or offie or duty or task | admiral room tutorial for factory' },
-        "新規に       任務を受託可能です" => { tr => "You can accept new assignments.",      desc => 'quests' },
+        "新規に       任務を受託可能です" => { tr => "You can accept    new assignments.                  ",      desc => 'quests' },
         "任務内容確認"                          => { tr => "Task Confirmation",      desc => 'Task Content Confirmation | quests' },
         "設定"                                      => { tr => "Set",      desc => 'settings' },
         "操作ガイド"                             => { tr => "Operation Guide",      desc => 'settings' },
