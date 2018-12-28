@@ -2143,6 +2143,9 @@
       "Sep" : {
          "$Se|p" : 1
       },
+      "Set" : {
+         "$Se|t" : 1
+      },
       "Shelling" : {
          "$Shell|$ing" : 1
       },
@@ -2717,6 +2720,24 @@
       },
       "Yes" : {
          "$Ye|s" : 1
+      },
+      "You can accept    new assignments.                  " : {
+         "$Yo|u c|$an| |$accept|$  |$  |n|$ew| |$assign|$ments.|$     |$     |$    |$  |$  " : 1
+      },
+      "You can accept   new assignments.        " : {
+         "$You |$can |$accept|   |$new| |$assign|$ments|.        " : 1
+      },
+      "You can accept   new assignments.              " : {
+         "$Yo|u c|$an| |$accept|$  | n|$ew| |$assign|$ments.|$     |$   |$  |$  |$  " : 1
+      },
+      "You can accept   new assignments.              \t" : {
+         "$Yo|u c|$an| |$accept|$  | n|$ew| |$assign|$ments.|$     |$    |$  |$   |\t" : 1
+      },
+      "You can accept   new assignments.                  " : {
+         "$Yo|u c|$an| |$accept|$  | n|$ew| |$assign|$ments.|$     |$     |$   |$  |$   " : 1
+      },
+      "You can accept   new assignments.                    " : {
+         "$Yo|u c|$an| |$accept|$  | n|$ew| |$assign|$ments.|$     |$     |$     |$  |$   " : 1
       },
       "You can accept new assignments." : {
          "$You| c|$an| |$acc|$ep|t n|$ew| |$ass|i|$gn|m|$en|$ts|." : 1
@@ -4925,6 +4946,9 @@
       "Sep" : {
          "$S|$ep" : 1
       },
+      "Set" : {
+         "$S|$et" : 1
+      },
       "Shelling" : {
          "$Shell|$ing" : 1
       },
@@ -5445,6 +5469,24 @@
       },
       "Yes" : {
          "$Y|$es" : 1
+      },
+      "You can accept    new assignments.                  " : {
+         "$You| c|$an |$accept|$   | new |$ass|ign|$ments.|$   |$   |$   |$    |$     " : 1
+      },
+      "You can accept   new assignments.        " : {
+         "You|$ |can accept   new assignments.        " : 1
+      },
+      "You can accept   new assignments.              " : {
+         "$You| |$can |$acc|ept|$   |new |$ass|ignm|$ents|.|$   |$   |$   |$     " : 1
+      },
+      "You can accept   new assignments.              \t" : {
+         "$You| |$can |$acc|ept|$   |new |$ass|ign|$ments|.|$   |$   |$   |$     |\t" : 1
+      },
+      "You can accept   new assignments.                  " : {
+         "$You| c|$an |$accept|$   |new |$ass|ign|$ments.|$   |$   |$   |$   |$     | " : 1
+      },
+      "You can accept   new assignments.                    " : {
+         "$You| |$can |$accept|$   |new |$ass|ign|$ments.|$   |$   |$   |$    |$     |  " : 1
       },
       "You can accept new assignments." : {
          "You|$ |can|$ |accept|$ |new|$ |$a|ssignments|$." : 1
