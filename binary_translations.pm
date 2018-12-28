@@ -253,60 +253,52 @@ sub data {
         "艦が保有上限に達し建造できません" =>
           { tr => "Ship Girl storage full, can not construct any more.", desc => 'warning message when constructing ships', ok => 'a-csharp 4501084' },
 
-        #"廃棄は □ボタンで行います",                      #"Press □ to discard" 
-        #"解体は □ボタンで行います",                      #"Press □ to demolish" 
-        #"ボタンで戦略コマンドを\n開き、ターンを終了せよ！",  #"Press button to open Strategy map, and End the Turn!"
-        #"ボタンで戦略コマンド\nを開き、艦隊出撃せよ！",     #"Press button to open Strategy map, and Sortie the Fleet!"
-        #"ボタンで\n旗艦提督室へ移動せよ！",               #"Press button to move to the Admiral's Room!" - I prefer Admiral's Office, but Admiral's Room is already established in 0.4 and previous.
+        "廃棄は □ボタンで行います" => { tr => "Press □ to discard", desc => "" },
+        "解体は □ボタンで行います" => { tr => "Press □ to demolish", desc => "" },
+        "ボタンで戦略コマンドを\n開き、ターンを終了せよ！" => { tr => "Press button to open Strategy map, and End the Turn!", desc => "" },
+        "ボタンで戦略コマンド\nを開き、艦隊出撃せよ！" => { tr => "Press button to open Strategy map, and Sortie the Fleet!", desc => "" },
+        "ボタンで\n旗艦提督室へ移動せよ！" => { tr => "Press button to move to the Admiral's Room!", desc => "I prefer Admiral's Office, but Admiral's Room is already established in 0.4 and previous." },
 
-        #"旗艦提督室で\n任務達成を\r確認せよ！\n",         #"Check your Quests in the Admiral's Room!"
-        #"略ポイント[-]は、任務達成及び\n海域攻略などで手に入ります。\n\n[0055aa]工" => { tr => q[eaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaea], },
-        #"0000][0055aa]戦略ポイント[-]は、任務達成及び\n海域攻略などで 手に入ります。\n\n[0055aa]工廠[-]での輸送船建造や、\r\n[0055aa]アイテム屋さん[-]でのアイテム購入で\n使用します" => { tr => q[eaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaaeaeaeaeaeaeaeaea], },
+        "旗艦提督室で\n任務達成を\r確認せよ！\n" => { tr => "Check your Quests in the Admiral's Room!", desc => "" },
 
         # "廃棄は □ボタンで行います" =>  the square is a special char. not sure if it belongs in the string or was a separator
         #                             - There is also one for the circle, and triangle, and cross somewhere in the way the Vita works.
         # "解体は □ボタンで行います" =>  the square is a special char. not sure if it belongs in the string or was a separator
         #                             - Repeat, it is a Playstation thing. do not confuse it with ロ, which anyone who has even basic Japanese knowlege would know.
 
-        # "{0}(この海域への移動中:{1}) -" some kinda long string - "{0} (Moving to this area: {1}_ -seems self explanatory, there is probably a trailing ) you missed
+        "{0}(この海域への移動中:{1}) -" => { tr => "{0} (Moving to this area: {1}", desc => "some kinda long string - '{0} (Moving to this area: {1}_ -seems self explanatory, there is probably a trailing ) you missed" },
 
-        # 戦略ポイントが不足しています    "Insufficient Strategy Points."                 probably the shop error when you don't have enough points to buy
-        # 該当装備がロックされています    "Corresponding equipment has been locked."                             this is more accurate
+        "戦略ポイントが不足しています" => { tr => "Insufficient Strategy Points.", desc => "probably the shop error when you don't have enough points to buy", },   
+        "該当装備がロックされています" => { tr => "Corresponding equipment has been locked.", desc => "this is more accurate" },
 
-        "被弾回避率補正" => {  ok => 'a-csharp 4556831' },  #"Evasion adjustment"                literal hit avoidance rate correction
-        "攻撃命中率補正" => { },                            #"Attack Hit% adjustment"            literal attack hit ratio correction
-        "雷撃命中率補正" => {  ok => 'a-csharp 4556847' },  #"Torpedo Hit% adjustment"           literal lightning shot hit ratio correction, but lightning shot(雷撃) is torpedo
-        "海上護衛艦隊の対潜/対空能力:{0}" => { },             #"Maritime Escort Fleet ASW/AA skill: {0}      for raiding defense I think
-        "海上護衛艦隊(MemId:{0})は{1}のダメージ({2})" => {ok => 'a-csharp 4604361' }, #"Escort Fleet {0} deals {1} damage {2}"           ???
-        "海上護衛艦隊名海上護衛艦隊名" => { },                #"Maritime Escort Fleet Name Escort Fleet Name"       ???
-        "[000000][0055aa]海上護衛艦隊[-]の配備について" => { }, #"Maritime Escort Fleet about deployment"           ???
+        "被弾回避率補正" => {   tr => "Evasion adjustment", desc => "literal hit avoidance rate correction", ok => 'a-csharp 4556831' },
+        "攻撃命中率補正" => {  tr => "Attack Hit% adjustment", desc => "literal attack hit ratio correction", },
+        "雷撃命中率補正" => {   tr => "Torpedo Hit% adjustment", desc => "literal lightning shot hit ratio correction, but lightning shot(雷撃) is torpedo", ok => 'a-csharp 4556847' },
+        "海上護衛艦隊の対潜/対空能力:{0}" => {  tr => "Maritime Escort Fleet ASW/AA skill: {0}", desc => "for raiding defense I think", },
+        "海上護衛艦隊(MemId:{0})は{1}のダメージ({2})" => { tr => "Escort Fleet {0} deals {1} damage {2}", desc => "???", ok => 'a-csharp 4604361' },
+        "海上護衛艦隊名海上護衛艦隊名" => { tr => "Maritime Escort Fleet Name Escort Fleet Name", desc => "???",  },
+        "[000000][0055aa]海上護衛艦隊[-]の配備について" => { tr => "Maritime Escort Fleet about deployment", desc => "???",  }, 
 
-        "廃棄は □ボタンで行います" => {ok => 'a-csharp 4517038'}, #"Press □ to discard"       delete equipment with square
-        "解体は □ボタンで行います" => {ok => 'a-csharp 4517066'}, #"Press □ to demolish"       delete ships with square
-        "ボタンで戦略コマンドを" => {},                      #"Press button for Strategy Command"          ???  figured it out, this string is missing 2 kanji ボタンで戦略コマンドを\n開き、
-        "輸送船団や海上護衛艦隊への" => {},                   #"To the Transports and Maritime Escort Fleet"      ??? tutorial to show you where to assign transports/escort fleet?
-        "建造日数が掛かります" => {},                        # "Construction days required"              ??? tutorial about building ships? alternate "Days construction will take"
-        "海域の輸送船団に海上護衛艦隊を配備することで、\r\n敵通商破壊部隊から輸送船を護ることが可能です。\n\nまた" => {},
-       # "It is possible to protect ships from enemy raids by deploying fleets to escort transportation ships in an area."
-       # Depriciated: "By deploying an escort fleet to a transportation fleet in an area, \r\n it is possible to protect ships from an enemy raiding unit. \ N \ n"
-        "備の輸送船数:{0}(この海域への移動中:{1}) - 総数:{2}" => {}, #"Number of Transports:{0} (moving to this area: {1})  - Total number: {2} "
-        "輸送船 x {0}" => {},                             #"Transports x {0}" 
-        "ロック済艦娘を" => {},                            #"Ship Girl is locked" literal "Locked ship daughter" 
-        "艦隊司令部情報" => {},                            #"Fleet Headquarters intelligence"
-        "艦隊切替" => {},                                 #"Switch fleet"
-        "艦隊数" => {},                                   #"Fleet number"
-        "ボタンで戦略コマンド" => {},                       #"Press button for Strategy Command"
-        "[000000][0055aa]輸送船[-]の配備について" => {},    #"Transports Deployed" - My context may be off, but OC this is how I am reading it.
-        #                                                  Depriciated "About deployment of Transports" alternate "About Transport deployment"
-        "工廠[-]での輸送船建造や、" => {},                  #"Factory[-]Building a Transport ship at," alternate "Building a Transport ship at the Factory" color codes missing from string would go around Factory
-        "[66ccff]全艦種出撃可能[-]です。"=>{},              #"All classes of ships may sortie."
-        #                                                  Depriciated "All ship types can sortie." alternate with color codes "[66ccff]All ship types[-] can sortie."
-        #"のみ[66ccff]出撃可能[-]です" => {},              #"Only listed ship classes can sortie."  literal "Only sortie possible is."
-        #"は[missing color red]出撃不可[-]です" => {},     #"These ship classes unable to sortie." literal "No Sortie Is."
-        "ボタンで戦略コマンドを\n開き、ターンを終了せよ！"=>{ok=> 'resources/resources_01107.-10 199'},
-        #"Press button to open the strategy command, and end the turn!"
-        "迎撃戦は、[0055aa]連合艦隊[-]で出撃可能です。\n[0055aa]連合艦隊[-]は、\r\n" => {},
-        #"Interception, sortie is possible with an [0055aa]Allied Fleet[-].\n[0055aa]Allied Fleet[-] is, \r\n" - remind me to look at this one in game.
+        "廃棄は □ボタンで行います" => { tr => "Press □ to discard", desc => "delete equipment with square", ok => 'a-csharp 4517038'},
+        "解体は □ボタンで行います" => { tr => "Press □ to demolish", desc => "delete ships with square", ok => 'a-csharp 4517066'},
+        "ボタンで戦略コマンドを" => { tr => "Press button for Strategy Command", desc => "???  figured it out, this string is missing 2 kanji ボタンで戦略コマンドを\n開き、", },
+        "輸送船団や海上護衛艦隊への" => { tr => "To the Transports and Maritime Escort Fleet", desc => "??? tutorial to show you where to assign transports/escort fleet?", },
+        "建造日数が掛かります" => { tr => "Construction days required", desc => "??? tutorial about building ships? alternate 'Days construction will take'", },
+        "海域の輸送船団に海上護衛艦隊を配備することで、\r\n敵通商破壊部隊から輸送船を護ることが可能です。\n\nまた" => { tr => "It is possible to protect ships from enemy raids by deploying fleets to escort transportation ships in an area.", desc => "Depriciated: 'By deploying an escort fleet to a transportation fleet in an area, \r\n it is possible to protect ships from an enemy raiding unit. \ N \ n'", },
+        "備の輸送船数:{0}(この海域への移動中:{1}) - 総数:{2}" => { tr => "Number of Transports:{0} (moving to this area: {1})  - Total number: {2}", desc => "", },
+        "輸送船 x {0}" => { tr => "Transports x {0}", desc => "", },
+        "ロック済艦娘を" => { tr => "Ship Girl is locked", desc => "literal 'Locked ship daughter'", },
+        "艦隊司令部情報" => { tr => "Fleet Headquarters intelligence", desc => "", },
+        "艦隊切替" => { tr => "Switch fleet", desc => "", },
+        "艦隊数" => { tr => "Fleet number", desc => "", }, 
+        "ボタンで戦略コマンド" => { tr => "Press button for Strategy Command", desc => "", },
+        "[000000][0055aa]輸送船[-]の配備について" => { tr => "Transports Deployed", desc => "My context may be off, but OC this is how I am reading it. Depriciated 'About deployment of Transports' alternate 'About Transport deployment'", },
+        "工廠[-]での輸送船建造や、" => { tr => "Factory[-]Building a Transport ship at,", desc => "alternate 'Building a Transport ship at the Factory' color codes missing from string would go around Factory", },
+        "[66ccff]全艦種出撃可能[-]です。"=>{ tr => "All classes of ships may sortie.", desc => "Depriciated 'All ship types can sortie.' alternate with color codes '[66ccff]All ship types[-] can sortie.'", },
+        "のみ[66ccff]出撃可能[-]です" => { tr => "Only listed ship classes can sortie.", desc => "literal 'Only sortie possible is.'", },
+        "は[missing color red]出撃不可[-]です" => { tr => "These ship classes unable to sortie.", desc => "literal 'No Sortie Is.'", },
+        "ボタンで戦略コマンドを\n開き、ターンを終了せよ！"=>{ tr => "Press button to open the strategy command, and end the turn!", desc => "", ok=> 'resources/resources_01107.-10 199'},
+        "迎撃戦は、[0055aa]連合艦隊[-]で出撃可能です。\n[0055aa]連合艦隊[-]は、\r\n" => { tr => "Interception, sortie is possible with an [0055aa]Allied Fleet[-].\n[0055aa]Allied Fleet[-] is, \r\n", desc => "TODO: remind me to look at this one in game.", },
         "Inspectorで設定して使用" => {},
         "Inspector上でイベントを" => {},
         "Inspector上でボタンに設" => {},
