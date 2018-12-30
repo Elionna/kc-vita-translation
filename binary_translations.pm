@@ -1063,7 +1063,7 @@ sub data {
         "那珂" => { tr => "Naka",      desc => 'light cruiser' },
         "那珂改" => { tr => "Naka Kai",      desc => '' },
         "那珂改二" => { ok => 'resources/resources_00001.-2 5292', tr => "Naka Kai Ni",      desc => '' },
-        "配備設定を中止してもよろしいですか？" => { tr => "Confirm caneling deploment settings?",      desc => 'Are you cerian you wish to cancel deployment settings?' },
+        "配備設定を中止してもよろしいですか？" => { tr => "Confirm canceling deploment settings?",      desc => 'Are you certian you wish to cancel deployment settings?' },
         "酒匂" => { tr => "Sakawa",      desc => 'light cruiser' },
         "酒匂改" => { tr => "Sakawa Kai",      desc => '' },
         "重巡洋艦　利根改二" => { tr => "Heavy Cruiser Tone Kai Ni",      desc => '' },
