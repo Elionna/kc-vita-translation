@@ -278,7 +278,7 @@ sub data {
 
         "「はじめての建造！」 達成"    => { tr => "First Construction Get!",      desc => '', ok => 'a-csharp 4518268' },
         "「はじめての任務！」 達成"    => { tr => "First Mission Get!",      desc => '', ok => 'a-csharp 4524440' },
-        "「はじめての配備！」 達成"    => { tr => "First Equip Get!",      desc => '', ok => 'a-csharp 4567769' },
+        "「はじめての配備！」 達成"    => { tr => "First Deployment Get!",      desc => '', ok => 'a-csharp 4567769' },
         "「高速建造！」 達成"             => { tr => "Instant Build Get!",      desc => '', desc => "High speed construction | ", ok => 'a-csharp 4518296' },
         "「任務完了！」 達成"             => { tr => "Mission End Get!",      desc => 'Mission is Over', ok => 'a-csharp 4524330' },
         "「艦隊を編成！」 達成"          => { tr => "Fleet Organization Get!",      desc => '', ok => 'a-csharp 4529846' },
