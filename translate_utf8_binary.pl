@@ -66,8 +66,13 @@ sub map_tr_to_multi_chars {
     my $target_length = length encode $enc, $jp;
     my ( $tr, @failed ) = map_str_to_multi_chars( $obj->{tr}, $enc, $target_length, $used, %prepared );
     my $l_tr = length $tr;
-    return "length wanted: $target_length", @failed, "translation '$jp' ($target_length) => '$obj->{tr}' ($l_tr) doesn't match in length"
-      if $target_length != $l_tr;
+    if ( $target_length != $l_tr ) {
+        my @msg = ( "length wanted: $target_length", @failed, "translation '$jp' ($target_length) => '$obj->{tr}' ($l_tr) doesn't match in length" );
+        s/\n/\\n/g for @msg;
+        s/\r/\\r/g for @msg;
+        say join "\n", @msg;
+        return @msg;
+    }
     $obj->{tr_mapped}{$enc} = $tr;
     return;
 }
@@ -80,7 +85,9 @@ sub trim_nl {
 
 sub add_mapped {
     my ( $dictionary, $enc, $used, %mapping ) = @_;
-    return map map_tr_to_multi_chars( $_, $enc, $dictionary->{$_}, $used, %mapping ), grep length $dictionary->{$_}{tr}, sort keys $dictionary->%*;
+    return map map_tr_to_multi_chars( $_, $enc, $dictionary->{$_}, $used, %mapping ), sort { length $dictionary->{$a}{tr} <=> length $dictionary->{$b}{tr} }
+      grep length $dictionary->{$_}{tr},
+      keys $dictionary->%*;
 }
 
 sub get_hits {
@@ -184,9 +191,7 @@ sub run {
 
     my %used;
     my @too_long = map add_mapped( \%tr, $_, \%used, %mapping ), "UTF-16LE", "UTF-8";
-    s/\n/\\n/g for @too_long;
-    s/\r/\\r/g for @too_long;
-    die join "\n", @too_long, "\n" if @too_long;
+    die "\n" if @too_long;
     my @unused = grep !$used{$_}, keys %mapping;
     say "following tuples unused: @unused\nfollowing tuples used: '" . ( join "|", sort keys %used ) . "'\n" if @unused;
 
