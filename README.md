@@ -1,8 +1,11 @@
-Kantai Collection Vita Translation
-==================================
+Kantai Collection Vita Translation Kai
+======================================
 
 This is a work in progress project to produce a Kantai Collection Vita
 multilingual translation.
+
+Participants of this project are required to abide by the
+[CODE OF CONDUCT](CODE_OF_CONDUCT.md).
 
 Installing The Translation
 --------------------------
