@@ -256,7 +256,7 @@ sub data {
         # "第1艦隊旗艦" => { desc => 'map screen fleet name, the first char is gonna be a bit tricky to identify, leaving as is for now' },
         "[E2E2E2]はじめての[12c112]任務[-]！[-]" => { tr => "First Mission\x{200B}\x{200B}\x{200B}",      desc => 'admiral room tutorial for factory' },
         "[e2e2e2]はじめての[12c112]配備[-][-]" =>
-          { tr => "First Equip\x{200B}\x{200B}\x{200B}\x{200B}\x{200B}\x{200B}\x{200B}\x{200B}\x{200B}\x{200B}",      desc => 'tutorial text found via text matching, the achievements indicate this should have an exclamation mark' },
+          { tr => "First Deployment",      desc => 'tutorial text found via text matching, the achievements indicate this should have an exclamation mark' },
         "[E2E2E2]はじめての[12c112]建造[-]！[-]" => { tr => "First Construction",      desc => 'tutorial text found via text matching' },
         "任務を受託せよ！"                    => { tr => "Take Charge Of The Mission!",      desc => 'or offie or duty or task | admiral room tutorial for factory', ok => 'resources/resources_00790.-10 196' },
         "新規に       任務を受託可能です" => { tr => "You can accept new assignments.",      desc => 'quests' },
