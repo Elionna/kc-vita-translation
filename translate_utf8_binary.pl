@@ -11,10 +11,19 @@ use binary_translations;
 
 run();
 
+sub saynl {
+    my ($msg) = @_;
+    $msg ||= $_;
+    $msg =~ s/\n/\\n/g;
+    $msg =~ s/\r/\\r/g;
+    say $msg;
+}
+
 sub map_str_to_multi_chars {
     my ( $tr, $enc, $length_target, $used, %prepared ) = @_;
     my %rev_prep = reverse %prepared;
     my @glyphs   = sort { length $a <=> length $b } sort keys %prepared;
+    saynl "mapping: ($length_target) '$tr'";
     my @parts    = split /(?<=\])|(?=\[)/, $tr;
 
     my $e = sub { encode $enc, join "", @_ };
@@ -68,9 +77,7 @@ sub map_tr_to_multi_chars {
     my $l_tr = length $tr;
     if ( $target_length != $l_tr ) {
         my @msg = ( "length wanted: $target_length", @failed, "translation '$jp' ($target_length) => '$obj->{tr}' ($l_tr) doesn't match in length" );
-        s/\n/\\n/g for @msg;
-        s/\r/\\r/g for @msg;
-        say join "\n", @msg;
+        saynl for @msg;
         return @msg;
     }
     $obj->{tr_mapped}{$enc} = $tr;
@@ -140,9 +147,7 @@ sub report_near_miss {
     $msg =~ s/\x{$_}/■/g
       for 0 .. 8,
       qw( B C E F 10 11 12 13 15 17 18 19 1A 1B 1C 1D 1E 14 600 900 300 500 B00 1D00 D00 1700 800 1500 1900 F00 700 1B00 1D00 1F00 1300 1100 2000 2100 2300 2500 2700 2900 2A00 2B00 2D00 3200 321E 3428 3C3D 3D00 3E30 3F00 4300 4900 4C30 4D00 661A 7B00 7D00 FFFD   );
-    $msg =~ s/\r/\\r/g;
-    $msg =~ s/\n/\\n/g;
-    say $msg;
+    saynl $msg;
 }
 
 sub duplicate_check {
@@ -182,10 +187,8 @@ sub run {
     for my $jp ( reverse sort { $tr{$a}{width_ratio} <=> $tr{$b}{width_ratio} } sort keys %tr ) {
         next if $tr{$jp}{width_ratio} <= 1;
         my $msg = " $tr{$jp}{width_ratio} = $tr{$jp}{width} : $tr{$jp}{width_tr} -- $jp #-# $tr{$jp}{width_ratio} = $tr{$jp}{width} : $tr{$jp}{width_tr} -- $tr{$jp}{tr}";
-        $msg =~ s/\n/\\n/g;
-        $msg =~ s/\r/\\r/g;
         $msg =~ s/#-#/\n/g;
-        say $msg;
+        saynl $msg;
     }
     print "\n";
 
@@ -260,9 +263,7 @@ sub run {
     my @maybe = map sprintf( "  %-" . ( 30 - length $_ ) . "s %-30s hit x %3s, nomatch x %3s, match x %3s", $_, $tr{$_}{tr}, $hit{$_}, $unmatched{$_}, $hit{$_} - $unmatched{$_} ),
       reverse sort { length $a <=> length $b } sort keys %unmatched;
     my @nowhere = map sprintf( "  %-" . ( 30 - length $_ ) . "s $tr{$_}{tr}", $_ ), grep +( !$found{$_} and !$unmatched{$_} ), @tr_keys;
-    s/\n/\\n/g for @maybe, @nowhere;
-    s/\r/\\r/g for @maybe, @nowhere;
-    say join "\n", "", "strings not always identified confidently:", @maybe, "", "strings found nowhere:", @nowhere;
+    saynl for "", "strings not always identified confidently:", @maybe, "", "strings found nowhere:", @nowhere;
 
     say "\ndone";
     return;
