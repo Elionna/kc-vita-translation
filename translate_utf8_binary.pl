@@ -20,49 +20,83 @@ sub saynl {
 }
 
 sub map_str_to_multi_chars {
-    my ( $tr, $enc, $length_target, $used, %prepared ) = @_;
-    my %rev_prep = reverse %prepared;
-    my @glyphs   = sort { length $a <=> length $b } sort keys %prepared;
+    my ( $tr, $enc, $length_target, $used, $prepared ) = @_;
     saynl "mapping: ($length_target) '$tr'";
+    my %rev_prep = reverse $prepared->%*;
+    my @glyphs   = sort { length $a <=> length $b } sort keys $prepared->%*;
     my @parts    = split /(?<=\])|(?=\[)/, $tr;
 
     my $e = sub { encode $enc, join "", @_ };
     my $l = sub { length $e->(@_) };
     return $e->(@parts) if $l->(@parts) == $length_target;
 
-    my ( %seen, @failed, $proc, %closest );
-    $proc = sub {    # the lists made before each loop aren't faster, but easier to debug
-        my @parts          = @_;
-        my $length_current = $l->(@parts);
-        my $need_to_shrink = $length_current - $length_target;
-        my @to_process     = grep +( $parts[$_] !~ /^\[/ and not $rev_prep{ $parts[$_] } ), 0 .. $#parts;
-        for my $i (@to_process) {
-            my $part = $parts[$i];
-            my @matches = grep index( $part, $_ ) != -1, @glyphs;
-            @matches = grep length > ( ( $need_to_shrink > 25 ) ? 3 : ( $need_to_shrink > 15 ) ? 2 : 1 ), @matches if $need_to_shrink > 0;
-            for my $glyph (@matches) {
-                my ( $p1, $p2 ) = split /\Q$glyph\E/, $part, 2;
-                my @parts2 = @parts;
-                splice @parts2, $i, 1, grep length, $p1, $prepared{$glyph}, $p2;
-                my $l2   = $l->(@parts2);
-                my $diff = $l2 - $length_target;
-                return @parts2 if not $diff;
+    my @tasks = ( \@parts );
+    my @result;
 
-                my $fail = "length in encoding $enc: $l2 : " . join "|", map +( $rev_prep{$_} ? "\$$rev_prep{$_}" : $_ ), @parts2;
-                push @{ $closest{ abs $diff } }, $fail;
-                push @failed, $fail;
-                next if $seen{ $e->(@parts2) };
+    my ( %seen, @failed, %closest );
+    eval {
+        # the lists made before each loop aren't faster, but easier to debug
+        while (@tasks) {
+            my @parts = shift(@tasks)->@*;
+            $seen{ $e->(@parts) }++;
+            die "tried for too long, add more things to the font mod pairs" if 80_000 == keys %seen;
 
-                my @deeper = $proc->(@parts2);
-                $seen{ $e->(@parts2) }++;
-                die "tried for too long, add more things to the font mod pairs" if 80_000 == keys %seen;
-                return @deeper if @deeper;
+            my $l2   = $l->(@parts);
+            my $diff = $l2 - $length_target;
+            if ( not $diff ) {
+                @result = @parts;
+                last;
+            }
+
+            my $fail = "length in encoding $enc: $length_target -> $l2 : " . join "|", map +( $rev_prep{$_} ? "\$$rev_prep{$_}" : $_ ), @parts;
+            push @{ $closest{ abs $diff } }, $fail;
+            push @failed, $fail;
+
+            #if ( @failed > 100 ) {
+            #    my $closest_diff = min keys %closest;
+            #    my @closest = map "closest: $_", $closest{$closest_diff}->@* if $closest_diff;
+            #    saynl for @failed, @closest;
+            #    @failed = ();
+            #}
+
+            my $length_current = $l->(@parts);
+            my $need_to_shrink = $length_current - $length_target;
+            my @to_process     = grep +( $parts[$_] !~ /^\[/ and not $rev_prep{ $parts[$_] } ), 0 .. $#parts;
+            for my $i (@to_process) {
+                my $part = $parts[$i];
+                my @matches = grep index( $part, $_ ) != -1, @glyphs;
+                if ( $need_to_shrink > 0 ) {
+                    my $size_limit =
+                        ( $need_to_shrink > 85 ) ? 8
+                      : ( $need_to_shrink > 75 ) ? 7
+                      : ( $need_to_shrink > 65 ) ? 6
+                      : ( $need_to_shrink > 55 ) ? 5
+                      : ( $need_to_shrink > 35 ) ? 4
+                      : ( $need_to_shrink > 25 ) ? 3
+                      : ( $need_to_shrink > 15 ) ? 2
+                      :                            1;
+                    my @sorted_matches;
+                    while ($size_limit) {
+                        push @sorted_matches, grep length > $size_limit, @matches;
+                        $size_limit--;
+                    }
+                    @matches = uniq @sorted_matches;
+                    1;
+                }
+                my @next_tasks = map {
+                    my ( $p1, $p2 ) = split /\Q$_\E/, $part, 2;
+                    my @parts2 = @parts;
+                    splice @parts2, $i, 1, grep length, $p1, $prepared->{$_}, $p2;
+                    $seen{ $e->(@parts2) } ? () : \@parts2;
+                } @matches;
+                unshift @tasks, @next_tasks;
             }
         }
-        return;
     };
 
-    my @mapped = eval { $proc->(@parts) };
+    say "attempts: " . keys %seen;
+
+    my @mapped       = @result;
     my $closest_diff = min keys %closest;
     push @failed, map "closest: $_", $closest{$closest_diff}->@* if $closest_diff;
     @mapped = @parts if not @mapped;
@@ -72,8 +106,9 @@ sub map_str_to_multi_chars {
 
 sub map_tr_to_multi_chars {
     my ( $jp, $enc, $obj, $used, %prepared ) = @_;
+    $DB::single = $DB::single = 1 if $obj->{tr} eq "Fusou";
     my $target_length = length encode $enc, $jp;
-    my ( $tr, @failed ) = map_str_to_multi_chars( $obj->{tr}, $enc, $target_length, $used, %prepared );
+    my ( $tr, @failed ) = map_str_to_multi_chars( $obj->{tr}, $enc, $target_length, $used, \%prepared );
     my $l_tr = length $tr;
     if ( $target_length != $l_tr ) {
         my @msg = ( "length wanted: $target_length", @failed, "translation '$jp' ($target_length) => '$obj->{tr}' ($l_tr) doesn't match in length" );
@@ -92,9 +127,9 @@ sub trim_nl {
 
 sub add_mapped {
     my ( $dictionary, $enc, $used, %mapping ) = @_;
-    return map map_tr_to_multi_chars( $_, $enc, $dictionary->{$_}, $used, %mapping ), sort { length $dictionary->{$a}{tr} <=> length $dictionary->{$b}{tr} }
+    return map map_tr_to_multi_chars( $_, $enc, $dictionary->{$_}, $used, %mapping ), reverse sort { length $dictionary->{$a}{tr} <=> length $dictionary->{$b}{tr} }
       grep length $dictionary->{$_}{tr},
-      keys $dictionary->%*;
+      sort keys $dictionary->%*;
 }
 
 sub get_hits {
