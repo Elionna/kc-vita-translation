@@ -3,6 +3,7 @@ use strictures 2;
 use IO::All -binary;
 use List::Util qw'sum uniq min';
 use Encode qw' decode encode ';
+use JSON::MaybeXS qw' decode_json encode_json ';
 use Tk;
 use Tk::Font;
 use utf8;
@@ -20,7 +21,7 @@ sub saynl {
 }
 
 sub map_str_to_multi_chars {
-    my ( $tr, $enc, $length_target, $used, $prepared ) = @_;
+    my ( $tr, $enc, $length_target, $used, $glyphmap_cache, $prepared ) = @_;
     saynl "mapping: ($length_target) '$tr'";
     my %rev_prep = reverse $prepared->%*;
     my @glyphs   = sort { length $a <=> length $b } sort keys $prepared->%*;
@@ -29,6 +30,19 @@ sub map_str_to_multi_chars {
     my $e = sub { encode $enc, join "", @_ };
     my $l = sub { length $e->(@_) };
     return $e->(@parts) if $l->(@parts) == $length_target;
+
+    my $try = $glyphmap_cache->{$enc}{$tr};
+    if ( $try and my @maps = keys $try->%* ) {
+        for my $map (@maps) {
+            my @map_parts = split /\|/, $map;
+            my @filtered_map_parts = map +( $_ !~ /^\$(.*$)/ ? $_ : $prepared->{$1} ? $prepared->{$1} : $_ ), @map_parts;
+            next if grep /^\$/, @filtered_map_parts;
+            next if $l->(@filtered_map_parts) != $length_target;
+            say "using cached mapping";
+            $used->{ $rev_prep{$_} }++ for grep defined $rev_prep{$_}, @filtered_map_parts;
+            return $e->(@filtered_map_parts);
+        }
+    }
 
     my @tasks = ( \@parts );
     my @result;
@@ -61,7 +75,8 @@ sub map_str_to_multi_chars {
 
             my $length_current = $l->(@parts);
             my $need_to_shrink = $length_current - $length_target;
-            my @to_process     = grep +( $parts[$_] !~ /^\[/ and not $rev_prep{ $parts[$_] } ), 0 .. $#parts;
+            next if $need_to_shrink < 0 and $enc eq "UTF-16LE";
+            my @to_process = grep +( $parts[$_] !~ /^\[/ and not $rev_prep{ $parts[$_] } ), 0 .. $#parts;
             for my $i (@to_process) {
                 my $part = $parts[$i];
                 my @matches = grep index( $part, $_ ) != -1, @glyphs;
@@ -101,19 +116,24 @@ sub map_str_to_multi_chars {
     push @failed, map "closest: $_", $closest{$closest_diff}->@* if $closest_diff;
     @mapped = @parts if not @mapped;
     $used->{ $rev_prep{$_} }++ for grep defined $rev_prep{$_}, @mapped;
-    return ( $e->(@mapped), uniq @failed );
+    my $raw = join "|", map +( $rev_prep{$_} ? "\$$rev_prep{$_}" : $_ ), @mapped;
+    return ( $e->(@mapped), $raw, uniq @failed );
 }
 
 sub map_tr_to_multi_chars {
-    my ( $jp, $enc, $obj, $used, %prepared ) = @_;
+    my ( $jp, $enc, $obj, $used, $glyphmap_cache, %prepared ) = @_;
     $DB::single = $DB::single = 1 if $obj->{tr} eq "Fusou";
     my $target_length = length encode $enc, $jp;
-    my ( $tr, @failed ) = map_str_to_multi_chars( $obj->{tr}, $enc, $target_length, $used, \%prepared );
+    my ( $tr, $raw, @failed ) = map_str_to_multi_chars( $obj->{tr}, $enc, $target_length, $used, $glyphmap_cache, \%prepared );
     my $l_tr = length $tr;
     if ( $target_length != $l_tr ) {
         my @msg = ( "length wanted: $target_length", @failed, "translation '$jp' ($target_length) => '$obj->{tr}' ($l_tr) doesn't match in length" );
         saynl for @msg;
         return @msg;
+    }
+    if ($raw) {
+        $glyphmap_cache->{$enc}{ $obj->{tr} }{$raw} = 1;
+        io("glyphmap.cache")->utf8->print( JSON::MaybeXS->new( pretty => 1, canonical => 1 )->encode($glyphmap_cache) );
     }
     $obj->{tr_mapped}{$enc} = $tr;
     return;
@@ -126,8 +146,9 @@ sub trim_nl {
 }
 
 sub add_mapped {
-    my ( $dictionary, $enc, $used, %mapping ) = @_;
-    return map map_tr_to_multi_chars( $_, $enc, $dictionary->{$_}, $used, %mapping ), reverse sort { length $dictionary->{$a}{tr} <=> length $dictionary->{$b}{tr} }
+    my ( $dictionary, $enc, $used, $glyphmap_cache, %mapping ) = @_;
+    return map map_tr_to_multi_chars( $_, $enc, $dictionary->{$_}, $used, $glyphmap_cache, %mapping ),    #
+      reverse sort { length $dictionary->{$a}{tr} <=> length $dictionary->{$b}{tr} }
       grep length $dictionary->{$_}{tr},
       sort keys $dictionary->%*;
 }
@@ -235,8 +256,11 @@ sub run {
     }
     print "\n";
 
+    my $g = "glyphmap.cache";
+    my %glyphmap_cache = -e $g ? JSON::MaybeXS->new( pretty => 1 )->decode( io($g)->utf8->all )->%* : ();
+
     my %used;
-    my @too_long = map add_mapped( \%tr, $_, \%used, %mapping ), "UTF-16LE", "UTF-8";
+    my @too_long = map add_mapped( \%tr, $_, \%used, \%glyphmap_cache, %mapping ), "UTF-16LE", "UTF-8";
     my @unused = grep !$used{$_}, keys %mapping;
     say "following tuples unused: @unused\nfollowing tuples used: '" . ( join "|", sort keys %used ) . "'\n" if @unused;
     die "\n" if @too_long;
