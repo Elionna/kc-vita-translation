@@ -194,9 +194,9 @@ sub run {
 
     my %used;
     my @too_long = map add_mapped( \%tr, $_, \%used, %mapping ), "UTF-16LE", "UTF-8";
-    die "\n" if @too_long;
     my @unused = grep !$used{$_}, keys %mapping;
     say "following tuples unused: @unused\nfollowing tuples used: '" . ( join "|", sort keys %used ) . "'\n" if @unused;
+    die "\n" if @too_long;
 
     if ($do_blank) {
         for my $enc ( "UTF-16LE", "UTF-8" ) {
