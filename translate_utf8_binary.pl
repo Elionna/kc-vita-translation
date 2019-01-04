@@ -200,15 +200,23 @@ sub run {
     my $do_blank = grep /--blank/, @ARGV;
 
     say "prepping dictionary";
-    my %mapping = do {
-        my $unicode = 0xE000;
-        my @pairs = grep length $_, map split( /\|/, $_ ), map trim_nl($_), io("font_mod_character_pairs")->getlines;
-        map +( $pairs[$_] => chr( $unicode + $_ ) ), 0 .. $#pairs;
-    };
+
     duplicate_check;
     my %tr = binary_translations->data;
     $tr{$_}{tr} //= "" for grep !defined $tr{$_}{tr}, sort keys %tr;
     my @tr_keys = reverse sort { length $a <=> length $b } sort keys %tr;
+    my $tr_body = join "#", map $tr{$_}{tr}, keys %tr;
+
+    my @pairs = grep length $_, map split( /\|/, $_ ), map trim_nl($_), io("font_mod_character_pairs")->getlines;
+    @pairs = ( @pairs, map ucfirst, @pairs );
+    say "" . @pairs;
+    @pairs = grep $tr_body =~ /\Q$_\E/, @pairs;
+    say "" . @pairs;
+
+    my %mapping = do {
+        my $unicode = 0xE000;
+        map +( $pairs[$_] => chr( $unicode + $_ ) ), 0 .. $#pairs;
+    };
 
     my ( $mw, $font_name ) = ( MainWindow->new, "Ume P Gothic S4" );
     my $font = $mw->fontCreate( "test", -family => $font_name, -size => 18 );
