@@ -29,7 +29,7 @@ sub run {
     my $verbose    = grep /^-v$/, @ARGV;
 
     say "deleting candidate dir";
-    io($target_dir)->rmtree;
+    io($target_dir)->rmtree if -e $target_dir;
 
     say "prepped, copying patches";
     my @patch_files = grep $_ !~ /\.git/, io($patch_dir)->All_Files;
