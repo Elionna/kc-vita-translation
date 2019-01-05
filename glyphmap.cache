@@ -536,6 +536,9 @@
       "Confirm canceling deploment settings?" : {
          "$Confirm| c|$ance|$li|$ng| |$dep|$lo|m|$ent| s|$et|t|$in|$gs|?" : 1
       },
+      "Confirm caneling deploment settings?" : {
+         "$Confirm| c|$an|$el|$in|g |$dep|$lo|$ment| s|$et|t|$in|$gs|?" : 1
+      },
       "Confirm your mission at the Flagship Office!" : {
          "$Confirm| |$your| |$mi|$ss|$ion| |$at| t|$he| |$Flag|s|$hip| |$Office|!" : 1
       },
@@ -547,6 +550,9 @@
       },
       "Contains Withdrawing Ships" : {
          "$Cont|$ains| |$Wit|h|$dr|$aw|$in|g |$Shi|$ps" : 1
+      },
+      "ContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContent" : {
+         "$ContentContent|$ContentContent|$ContentContent|$ContentContent|$ContentContent|$ContentContent|$ContentContent|$ContentContent|$ContentContent|$ContentContent|$ContentContent|$ContentContent|$ContentContent|$ContentContent|$ContentContent|$Con|tent|$Con|tent|$Con|tent|$Cont|entContentContentContentContentContentContentContent" : 1
       },
       "Contents begin with the following." : {
          "$Cont|$ents| |$beg|$in |$wi|$th| t|$he| |$follow|$ing|." : 1
@@ -646,6 +652,9 @@
       },
       "Do Not Use" : {
          "$Do| |$Not |$Us|e" : 1
+      },
+      "Do Not Use​" : {
+         "$Do |$Not |$Us|e​" : 1
       },
       "Do not" : {
          "$Do |$not" : 1
@@ -772,6 +781,9 @@
       },
       "First Construction Get!" : {
          "$Fi|$rs|t |$Con|$st|$ru|$ct|$io|n |$Get|!" : 1
+      },
+      "First Deployment Get!" : {
+         "$Fir|$st| |$De|p|$lo|$ym|$en|t |$Ge|t!" : 1
       },
       "First Equip Get!" : {
          "First |$Eq|u|$ip| |$Ge|t!" : 1
@@ -1157,6 +1169,21 @@
       },
       "I-8 Kai" : {
          "$I-|8|$ Kai" : 1
+      },
+      "I168 Kai" : {
+         "I168|$ Kai" : 1
+      },
+      "I19 Kai" : {
+         "I19|$ Kai" : 1
+      },
+      "I401 Kai" : {
+         "I401|$ Kai" : 1
+      },
+      "I58 Kai" : {
+         "I58|$ Kai" : 1
+      },
+      "I8 Kai" : {
+         "I8|$ Kai" : 1
       },
       "If you have Instant Build materials, high speed construction is possible. Construction of a Ship Girl takes longer for larger ships, but using Instant Build can shorten that to immediate." : {
          "If you have |$Instant |$Bu|ild materials, high speed construction is possible. |$Co|nstruction of a Ship |$Gi|rl t|$ak|es longer for l|$ar|ger ships, |$bu|t using |$Instant| |$Build| |$can |s|$hort|$en| t|$hat| |$to |$imme|$diat|e." : 1
@@ -1974,6 +2001,9 @@
       "Sazanami Kai" : {
          "$Sazanami|$ Kai" : 1
       },
+      "Sea Area" : {
+         "$Sea |$Area" : 1
+      },
       "Sea Regions Captured:999" : {
          "$Sea| |$Regions| |$Captured|:999" : 1
       },
@@ -2417,17 +2447,35 @@
       "Unryuu Kai" : {
          "$Un|$ryuu|$ Kai" : 1
       },
+      "Unsupplied​" : {
+         "$Un|supplied​" : 1
+      },
       "Urakaze" : {
          "$Ura|$kaze" : 1
       },
       "Urakaze Kai" : {
          "$Ura|$kaze|$ Kai" : 1
       },
+      "Use \"Irako\"?\"​​​​​" : {
+         "Use \"|$Ir|$ak|o\"?\"​​​​​" : 1
+      },
+      "Use \"Irako\"?​​​​​​" : {
+         "Use \"|$Ira|ko\"?​​​​​​" : 1
+      },
       "Use \"Mamiya & Irako\"" : {
          "Use \"|$Ma|miya & |$Ir|$ak|o\"" : 1
       },
       "Use \"Mamiya & Irako\"?" : {
          "Use \"Mamiya & |$Ir|$ak|o\"?" : 1
+      },
+      "Use \"Mamiya\"?\"​​​​" : {
+         "Use \"|$Ma|$mi|$ya|\"?\"​​​​" : 1
+      },
+      "Use \"Mamiya\"?​​​​" : {
+         "Use \"|$Mam|iya\"?​​​​" : 1
+      },
+      "Use \"Mamiya\"​​​" : {
+         "Use \"M|$ami|ya\"​​​" : 1
       },
       "Use instant repair?" : {
          "$Us|e |$in|$st|$an|t r|$ep|$ai|r?" : 1
@@ -2470,6 +2518,9 @@
       },
       "When you are used to how a map works, you may use Battle Shortcut. By pressing the L-Shoulder button during on the Sortie Map, you can shorten battle times. However, in fleet battles with new areas, Battle Shortcut may not be used." : {
          "When you are used to how a map works, you may use |$Battle| Shortcut. By pressing the L-Shoulder |$button| during on the Sortie |$Map|, you c|$an| s|$ho|rt|$en| b|$at|t|$le| t|$im|$es|. |$Howe|$ver|, |$in |$fleet |b|$attl|$es| |$with| |$new| |$area|s, |$Battle| |$Shor|$tcut| |$may| |$not |$be| |$used|." : 1
+      },
+      "When you are used to how a map works, you may use Battle Shortcut. By pressing the L-Shoulder button during the Sortie Map, you can shorten battle times. However, in fleet battles with new areas, Battle Shortcut may not be used." : {
+         "$Wh|en you are |$used| to how a m|$ap| works, |$you |may use |$Battle| |$Shor|$tcut|. By pr|$es|sing the L-|$Shou|lder |$button| during the |$Sort|ie Map, you |$can |shorten b|$attl|e times. |$Howe|ver, in |$fleet |b|$at|tl|$es| with new |$area|s, |$Battle| |$Shor|tcut m|$ay| not |$be| used." : 1
       },
       "Where to now?" : {
          "$Wh|$ere| |$to |$now|?" : 1
@@ -2651,6 +2702,9 @@
       "{0} task completed!" : {
          "{0} t|$ask| |$co|$mpl|$eted|!" : 1
       },
+      "{0} was updated!​​" : {
+         "{0}| w|$as| updated!​​" : 1
+      },
       "{0}x{1}\nHas been lost…." : {
          "{0}x{1}\n|$Ha|s |$be|en lost…." : 1
       },
@@ -2659,6 +2713,9 @@
       },
       "※If you have too many Ship Girls, there is a chance of not getting a Ship Girl reward." : {
          "※|$If| |$you |$have| |$too| m|$any| |$Ship|$ Girl|s, |$there| |$is| a |$ch|$ance| |$of |$not |$getting| a |$Ship|$ Girl| |$reward|." : 1
+      },
+      "※If you have too many Ship Girls, there is a possibility of not getting a Ship Girl reward." : {
+         "※|$If| |$you |$have| |$to|o m|$any |$Ship|$ Girl|s, |$there| |$is| a |$possibility| |$of| |$not |$getting| a |$Sh|$ip|$ Girl |$reward|." : 1
       },
       "※You have reached your limit of Ship Girls and can not accept your reward." : {
          "※|$Yo|u |$ha|$ve| |$reached| y|$ou|r l|$im|$it| |$of| |$Shi|p|$ Girl|s |$and |$can |$not| |$accept| |$your| |$reward|." : 1
@@ -2722,11 +2779,27 @@
       "1" : {
          "$1" : 1
       },
+      "1.Chinjufu Area Conquest Data" : {
+         "1.Chinjufu|$ |Area|$ |$Conq|uest Data" : 1
+      },
       "10" : {
          "$10" : 1
       },
       "100 days of war remain." : {
          "100|$ |days|$ |of|$ |war|$ |rem|$a|$i|n|$." : 1
+      },
+      "10cm Twin High-angle Gun Mount" : {
+         "$10cm| |$Twin |$High-angle| |$Gun |Mount" : 1,
+         "10cm |$Twin |$High|-|$angle |Gun |$Moun|t" : 1
+      },
+      "12.7cm Twin Gun Mount Model B Kai 2" : {
+         "$12.7cm| |$Twin |Gun |$Mount| |$Model| B|$ Kai| 2" : 1
+      },
+      "12.7cm Twin High-angle Gun Mount (Late Model)" : {
+         "$12.7cm| |$Twin |$High|-|$angle |Gun |$Moun|t (|$Late| |$Model|)" : 1
+      },
+      "12cm Single Gun Mount" : {
+         "12cm |$Single| |$Gun |$Mount" : 1
       },
       "2" : {
          "$2" : 1
@@ -2740,11 +2813,17 @@
       "3.Early Area Conquest Data3" : {
          "3.|$Early|$ |$Area|$ |$Co|$nque|st |$Da|$ta|3" : 1
       },
+      "35.6cm Twin Gun Mount (Dazzle Camouflage)" : {
+         "$35.6cm| |$Twin |Gun |$Moun|t (|$Dazz|le |$Camou|flage)" : 1
+      },
       "4" : {
          "$4" : 1
       },
       "4.Middle Area Conquest Data1" : {
          "4.Middle|$ |Area Conquest Data1" : 1
+      },
+      "43cm Single Gun Mount" : {
+         "$43cm| |$Single |$Gun |$Mount" : 1
       },
       "5" : {
          "$5" : 1
@@ -2757,6 +2836,9 @@
       },
       "6.Strongest Data" : {
          "6.|$Stro|n|$gest|$ |$Da|ta" : 1
+      },
+      "61cm Triple Gun Mount" : {
+         "61cm |$Triple| Gun |$Mount" : 1
       },
       "7" : {
          "$7" : 1
@@ -2772,6 +2854,9 @@
       },
       "A Ship Girl gave you chocolate as a gift!" : {
          "A|$ |Ship|$ |Girl gave you chocolate as a gift!" : 1
+      },
+      "A maelstrom has appeared in front of the fleet!" : {
+         "A|$ |m|$a|elstrom|$ |has|$ |$appeared|$ |in|$ |$front|$ |of|$ |the |$fleet|!" : 1
       },
       "A new difficulty level is available." : {
          "A|$ |new|$ |difficulty|$ |level is available." : 1
@@ -2821,11 +2906,20 @@
       "Abukuma Kai Ni" : {
          "$Abu|$kuma|$ |$Kai| Ni" : 1
       },
+      "Accompanying Ship" : {
+         "Ac|$company|ing |$Ship" : 1
+      },
       "Acquired" : {
          "$A|$c|$qu|$i|$r|$e|$d" : 1
       },
       "Admiral Command" : {
          "$Admira|l|$ |$C|o|$mm|$an|d" : 1
+      },
+      "Admiral Experience" : {
+         "$Admira|l |$Expe|rien|$ce" : 1
+      },
+      "Admiral Name Admiral Name Admiral Name" : {
+         "$Admi|ral |$Name| |$Admira|l |$Name |$Admira|l |$Name" : 1
       },
       "Admiral Name Entry" : {
          "$Ad|$mira|$l |$Name |$Entry" : 1
@@ -2835,6 +2929,9 @@
       },
       "Aerial Attack" : {
          "$Aerial|$ A|tt|$ac|k" : 1
+      },
+      "After repair" : {
+         "$After |$re|$pair" : 1
       },
       "Agano" : {
          "$A|g|$a|no" : 1
@@ -2865,6 +2962,15 @@
       },
       "Akashi must be your Flagship" : {
          "Akashi|$ |must|$ |be|$ |your|$ |Fl|$a|$g|$s|$h|$i|$p" : 1
+      },
+      "Akatsuki Kai" : {
+         "$Akatsuki|$ Kai" : 1
+      },
+      "Akatsuki Kai ni" : {
+         "$Akatsuki|$ Kai| ni" : 1
+      },
+      "Akebono Kai" : {
+         "$Akebono|$ Kai" : 1
       },
       "Akigumo" : {
          "$Aki|$gumo" : 1
@@ -2906,6 +3012,7 @@
          "$Ammu|$nition" : 1
       },
       "Ammunition Required" : {
+         "$Ammu|$niti|on |$Requ|ired" : 1,
          "$Am|mu|$nition| |$Re|$quir|$ed" : 1
       },
       "Ammunition x" : {
@@ -2926,6 +3033,9 @@
       "Anti-Sub\n999" : {
          "$Anti-|$Sub|\n999" : 1
       },
+      "Anti-Sub/Anti-Air Escort Fleet Capacity" : {
+         "Anti|$-|Sub/Anti-Air|$ |Escort|$ |Fleet |$Capa|city" : 1
+      },
       "Aoba" : {
          "$A|oba" : 1
       },
@@ -2944,17 +3054,26 @@
       "Arare Kai" : {
          "$Arare|$ Kai" : 1
       },
+      "Arashi Kai" : {
+         "$Arashi|$ Kai" : 1
+      },
       "Arashio" : {
          "$Ara|$shio" : 1
       },
       "Arashio Kai" : {
          "$Ara|$shio|$ Kai" : 1
       },
+      "Are you sure you wish to return to the title screen without saving?" : {
+         "Are|$ |you|$ |sure you wish to r|$etur|n to the title screen without saving?" : 1
+      },
       "Area captured" : {
          "Area|$ |captured" : 1
       },
       "Armor" : {
          "$A|$rmor" : 1
+      },
+      "Arrived at scheduled Aerial Recon Zone. No actibe aircraft available. Cancelling reconnaissance." : {
+         "Arrived|$ |at|$ |scheduled|$ |Aerial|$ |Recon|$ |Zone.|$ |No|$ |actibe|$ |aircraft available. Cancelling reconnaissance." : 1
       },
       "Arrived at scheduled Aerial Recon Zone. No active aircraft available. Cancelling reconnaissance." : {
          "Arrived|$ |at|$ |scheduled|$ |Aerial|$ |Recon|$ |Zone.|$ |No|$ |active|$ |aircraft available. Cancelling reconnaissance." : 1
@@ -2992,6 +3111,9 @@
       "Assault" : {
          "$Ass|$ault" : 1
       },
+      "Assault (Approach + Shelling)" : {
+         "Ass|$ault| (|$Appr|$oach| + Sh|$elli|ng)" : 1
+      },
       "At Sea" : {
          "At|$ |$Se|a" : 1
       },
@@ -3000,6 +3122,9 @@
       },
       "Atago1" : {
          "$Atag|o|$1" : 1
+      },
+      "Attack hit compensation" : {
+         "$Attack| hit |$comp|ens|$atio|n" : 1
       },
       "Aug" : {
          "$A|$ug" : 1
@@ -3028,6 +3153,12 @@
       "Back to Title" : {
          "Back|$ |to|$ |$T|itl|$e" : 1
       },
+      "Backing out will result in no changes being made.\nAre you sure you wish to cancel?" : {
+         "Backing|$ |out|$ |will|$ |result|$ |in|$ |no|$ |changes|$ |being|$ |$made|.\nAre|$ |you|$ |sure|$ |you|$ |wish|$ |to|$ |cancel?" : 1
+      },
+      "Battle Command Input" : {
+         "Battle |$Comm|and |$Inpu|t" : 1
+      },
       "Battle Shortcut" : {
          "Battle|$ |$S|$h|ort|$c|$u|$t" : 1
       },
@@ -3036,6 +3167,9 @@
       },
       "Bauxite x" : {
          "$B|$a|$uxit|e|$ |x" : 1
+      },
+      "Before repair" : {
+         "$Before| re|$pair" : 1
       },
       "Can not release the dock." : {
          "Can|$ |not|$ |release|$ |the|$ |dock." : 1
@@ -3064,8 +3198,17 @@
       "Chinjufu Region" : {
          "Chinjufu|$ |$R|$e|gion" : 1
       },
+      "Chinjufu Region Strategy Data" : {
+         "Chinjufu|$ |Region Strategy |$Data" : 1
+      },
+      "ChinjufuRegionChinjufuRegionChinjufuRegion" : {
+         "$C|$h|in|$jufu|$R|egion|$C|$h|$i|njufu|$R|egion|$C|$h|$i|njufu|$R|egion" : 1
+      },
       "Chitose" : {
          "$Chi|$tose" : 1
+      },
+      "Chitose Carrier" : {
+         "$Chitose|$ |$Carrier" : 1
       },
       "Chitose Kai" : {
          "$Chi|$tose|$ Kai" : 1
@@ -3081,6 +3224,9 @@
       },
       "Chiyoda A f" : {
          "Chiyoda|$ |A f" : 1
+      },
+      "Chiyoda Carrier Kai Ni" : {
+         "$Chiyoda| |$Carr|ier|$ Kai|$ |Ni" : 1
       },
       "Chiyoda Carrier f" : {
          "$Ch|$iyod|a |$Carrier| f" : 1
@@ -3106,6 +3252,9 @@
       "Class/Name" : {
          "$C|lass/|$N|$a|me" : 1
       },
+      "Clear Status:Not Completed" : {
+         "$Clear| |$Status|:|$Not |$Comp|lete|$d" : 1
+      },
       "Coins used" : {
          "$Coin|s|$ |us|$e|$d" : 1
       },
@@ -3124,17 +3273,29 @@
       "Complete Victory!!" : {
          "$Complete| |$Vi|$cto|ry!!" : 1
       },
+      "Conducting reconnaissance with Flying Boat." : {
+         "$C|ondu|$c|ting|$ |reconn|$a|iss|$a|nce|$ |with|$ |$Flyi|ng|$ |Boat." : 1
+      },
       "Conducting reconnaissance with Scout Aircraft." : {
          "Conducting|$ |reconnaissance|$ |with|$ |Scout|$ |$A|ircraft|$." : 1
       },
       "Configuration" : {
          "$Co|$nfig|$uration" : 1
       },
+      "Confirm Equipment Change" : {
+         "$Confirm| |$Equi|p|$ment|$ |$Chan|ge" : 1
+      },
       "Confirm battle" : {
          "$Confirm| b|$at|t|$le" : 1
       },
       "Confirm canceling deploment settings?" : {
          "$Confirm|$ |c|$an|$celi|ng|$ |$de|p|$lo|m|$en|t|$ |s|$e|$t|t|$i|$n|$g|$s|?" : 1
+      },
+      "Confirm caneling deploment settings?" : {
+         "Confirm|$ |c|$a|neling|$ |$d|$e|plom|$e|nt|$ |s|$e|ttin|$g|s?" : 1
+      },
+      "Confirm your mission at the Flagship Office!" : {
+         "Confirm|$ |your|$ |mission|$ |at|$ |the |$Flag|ship Office!" : 1
       },
       "Construction" : {
          "$Construct|$ion" : 1
@@ -3145,8 +3306,17 @@
       "Contains Withdrawing Ships" : {
          "Contains|$ |Withdrawing|$ |$S|$h|$i|ps" : 1
       },
+      "ContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContent" : {
+         "$ContentContent|$Content|$Content|$Cont|ent|$Cont|ent|$Cont|ent|$Cont|ent|$Cont|ent|$Cont|ent|$Cont|ent|$Cont|ent|$Cont|ent|$Cont|ent|$Cont|ent|$Cont|ent|$Cont|ent|$Cont|ent|$Cont|ent|$Cont|ent|$Cont|ent|$Cont|ent|$Cont|entContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContentContent" : 1
+      },
       "Contents begin with the following." : {
          "Contents|$ |begin|$ |with|$ |the|$ |following." : 1
+      },
+      "Control of Ship Girl now possible. &" : {
+         "Control|$ |of|$ |Ship|$ |Girl|$ |now|$ |poss|$ible|$.|$ |&" : 1
+      },
+      "Coordinated Shelling" : {
+         "$Coordinated |$Shelling" : 1
       },
       "Costal Defense" : {
          "$Co|$stal| |$Def|$ense" : 1
@@ -3163,11 +3333,23 @@
       "Current Turn:Year0 Day17" : {
          "$Cur|$rent|$ |$Tu|rn:|$Year||$ |$D|$a|$y|$1|$7" : 1
       },
+      "Current Value" : {
+         "$Current|$ |$Value" : 1
+      },
+      "Custom Furniture Crafting" : {
+         "$Custom| |$Furn|$itur|e |$Craf|$ting" : 1
+      },
       "Cutrain" : {
          "$C|utr|$a|$in" : 1
       },
       "Days" : {
          "$D|ays" : 1
+      },
+      "Days To Repair                   d\r\n\r\n必要鋼材数\r\n\r\nFuel Required\r\n\r\n高速修復材\r" : {
+         "Days|$ |To|$ |Repair|$ |$ |                 d\r\n\r\n必要鋼材数\r\n\r\n|$Fuel| Required\r\n\r\n高速修復材\r" : 1
+      },
+      "Days To Repair                  d\r\n\r必要鋼材数\r\n\rFuel Required\r\n\r高速修復材\r" : {
+         "Days|$ |To|$ |Repair|$ |$ |                d\r\n\r必要鋼材数\r\n\r|$Fuel| Required\r\n\r高速修復材\r" : 1
       },
       "Debug Mode A" : {
          "Debug|$ |$M|o|$d|e|$ |$A" : 1
@@ -3177,6 +3359,9 @@
       },
       "Dec" : {
          "$D|$ec" : 1
+      },
+      "Decisive Battle! Shortcut not available" : {
+         "$Deci|sive Battle! |$Shor|tcut not avail|$able" : 1
       },
       "Default Battle Mode" : {
          "Default|$ |Battle Mode" : 1
@@ -3189,6 +3374,12 @@
       },
       "Development" : {
          "$Develop|$ment" : 1
+      },
+      "Development Materials" : {
+         "$Develop|$ment|$ |$Materials" : 1
+      },
+      "Development Materials x" : {
+         "$Develop|$ment| |$Mate|rials x" : 1
       },
       "Dialogue Title" : {
          "$D|i|$a|$logu|e|$ |$T|$i|$t|l|$e" : 1
@@ -3217,8 +3408,17 @@
       "Do Not Use" : {
          "Do|$ |Not|$ |$Us|e" : 1
       },
+      "Do Not Use​" : {
+         "Do|$ |Not Use​" : 1
+      },
+      "Do Not Use​​" : {
+         "$Do |$Not |Use​​" : 1
+      },
       "Do not prioritize" : {
          "$Do| |$not |pr|$iori|$tize" : 1
+      },
+      "Do not use​" : {
+         "$D|o|$ |$n|$o|$t|$ |$u|$s|$e|​" : 1
       },
       "Do you want to end your turn?" : {
          "Do|$ |you|$ |want to end your turn?" : 1
@@ -3244,20 +3444,53 @@
       "Echelon" : {
          "$E|chelon" : 1
       },
+      "Emergency Repair Goddess" : {
+         "$Emer|g|$ency| |$Re|$pair| |$Goddess" : 1
+      },
       "End of Turn" : {
          "End|$ |of|$ |Turn" : 1
+      },
+      "Enemy Search" : {
+         "$Enemy |$Search" : 1
+      },
+      "Enemy counterattack interception successful!!" : {
+         "$Enemy |$counter|at|$tack| |$intercept|ion suc|$cess|ful!!" : 1
+      },
+      "Entering Dock" : {
+         "$Entering|$ Dock" : 1
+      },
+      "Equipment Development failed. \n\nNo development materials consumed." : {
+         "$Equi|pment|$ |$D|$e|v|$e|lopment|$ |failed.|$ |\n\nNo|$ |$d|$e|v|$e|lopment|$ |m|$a|terials|$ |consumed|$." : 1
       },
       "Equipment is locked" : {
          "$E|qu|$i|pm|$e|$n|$t|$ |$i|$s|$ |l|$o|$c|k|$e|$d" : 1
       },
+      "Equipment renovation…" : {
+         "$Equipment|$ |renov|$atio|n…" : 1
+      },
+      "Equipment storage full, can not develop any more." : {
+         "Equipment|$ |storage|$ |full,|$ |can not develop |$any |more." : 1
+      },
       "Equipment storage full." : {
          "Equipment|$ |st|$o|$r|$a|$g|$e|$ |f|$u|$ll|$." : 1
+      },
+      "EquipmentNameEquipmentNameEquipmentNameEquipmentName" : {
+         "$Equi|p|$ment|$Name|$Equi|p|$ment|$Name|$Equi|p|$ment|$Name|$Equipment|$Name" : 1
+      },
+      "EquipmentNameEquipmentNameEquipmentNameEquipmentNameEquipmentName" : {
+         "$Equi|pment|$Name|$Equi|pment|$Name|$Equi|p|$ment|$Name|$Equi|p|$ment|$Name|$EquipmentName" : 1
       },
       "Escape from battle with Escorts?" : {
          "$Esca|pe|$ |$from|$ |b|$at|$tle|$ |w|$i|t|$h|$ |$E|$s|$c|$o|$r|$t|$s|?" : 1
       },
       "Escort" : {
          "$E|$s|$cort" : 1
+      },
+      "Escort Fleet Damage" : {
+         "$E|$s|$c|$o|$r|$t|$ |$F|l|$e|$e|$t|$ |$D|$a|$m|$a|$g|$e" : 1
+      },
+      "Escort Fleet Name Escort Fleet Name" : {
+         "Escort|$ |Fleet|$ |Name|$ |Escort|$ |$Flee|t Name" : 1
       },
       "Escort fleet" : {
          "Escort|$ |fl|$e|$e|t" : 1
@@ -3271,11 +3504,20 @@
       "Evade Correction" : {
          "$Evad|e|$ |$C|$orre|$c|t|$io|n" : 1
       },
+      "Execute Middle Strategy" : {
+         "$Execute| |$Middle| |$Stra|tegy" : 1
+      },
+      "Expanded and repaired!" : {
+         "Expanded|$ |and|$ |repa|$ired|$!" : 1
+      },
       "Expected Gain" : {
          "$Expe|$cted|$ |$G|$a|$in" : 1
       },
       "Expedition Name" : {
          "$Expedition| |$Na|me" : 1
+      },
+      "ExpeditionNameExpeditionNameExpeditionNameExpeditionName" : {
+         "$Expe|$dition|$Name|$Expe|$dition|$Name|$Expe|$dition|$Name|$Expe|$dition|$Name" : 1
       },
       "Ey!" : {
          "$E|$y|$!" : 1
@@ -3289,23 +3531,45 @@
       "Feb" : {
          "$Fe|$b" : 1
       },
+      "Firepower\n999" : {
+         "$Fire|$power|\n999" : 1
+      },
+      "Firepower\nTorpedo\nAnti-Air\nArmor\nLuck" : {
+         "$Fire|p|$ower|\nTor|$pedo|\n|$Anti|-Air\nA|$rmor|\n|$Luck" : 1
+      },
       "First Construction" : {
          "F|$i|rst|$ |$C|$o|$n|$s|$t|$r|$u|$c|$t|$i|$o|$n" : 1
       },
       "First Construction Get!" : {
          "First|$ |$C|onstruction|$ |$G|$e|$t|$!" : 1
       },
+      "First Deployment" : {
+         "$F|$i|$r|$st|$ |$D|$e|$p|l|$o|$y|$m|$e|$n|$t" : 1
+      },
+      "First Deployment Get!" : {
+         "$F|irst|$ |$D|$e|ploy|$m|$e|nt|$ |Get|$!" : 1
+      },
       "First Equip Get!" : {
          "$Firs|$t|$ |$E|q|$u|$i|$p|$ |$G|$e|$t|$!" : 1
       },
+      "First Equip​​​​" : {
+         "$F|$i|$r|$s|$t|$ |$E|q|$u|$i|$p|​​​​" : 1
+      },
+      "First Equip​​​​​​​​​​" : {
+         "First|$ |Equip​​​​​​​​​​" : 1
+      },
       "First Fleet" : {
-         "$First|$ |$Fl|$e|$e|$t" : 1
+         "$First|$ |$Fl|$e|$e|$t" : 1,
+         "First|$ |$Flee|t" : 1
       },
       "First Fleet(" : {
          "$First|$ |$Fl|$eet|(" : 1
       },
       "First Mission Get!" : {
          "$First|$ |$M|$i|$ss|$i|o|$n|$ |$G|$e|$t|$!" : 1
+      },
+      "First Mission​​​" : {
+         "$F|$i|$r|$s|t|$ |$M|$i|$s|$s|$i|$o|$n|​​​" : 1
       },
       "FirstFleetFirstFleetFirstFleet" : {
          "FirstFl|$e|$e|tFirstFl|$e|etFirstFleet" : 1
@@ -3316,6 +3580,12 @@
       "Fleet Class  Name                 Lv　　　  Health" : {
          "Fleet|$ |Class|$ |$ |Name|$ |$ |$ |              Lv　　　  Health" : 1
       },
+      "Fleet Course Selection Possible!" : {
+         "$Flee|t |$Cour|se |$Sele|$ctio|n |$Poss|$ible|!" : 1
+      },
+      "Fleet Headquarters Intelligence" : {
+         "$Flee|t |$Head|$quarters| Int|$elli|$gence" : 1
+      },
       "Fleet Information" : {
          "$Fl|$eet| In|$formation" : 1
       },
@@ -3324,6 +3594,9 @@
       },
       "Fleet Number" : {
          "$Fl|$eet|$ Number" : 1
+      },
+      "Fleet Number\r\nShip Girl\rNumber\nEquipment Item\rNumber\nDocked Number Total\r\nTotal Factory Dock\rNumber\nNumber of Dock Open Keys\nNumber of Furniture" : {
+         "$Flee|t Nu|$mber|\r\n|$Ship| |$Girl|\rNumber\n|$Equi|pment |$Item|\rNu|$mber|\n|$Dock|ed Nu|$mber| |$Tota|l\r\n|$Tota|l Fac|$tory| |$Dock|\rNu|$mber|\nNu|$mber| of |$Dock| Open |$Keys|\nNu|$mber| of |$Furn|iture" : 1
       },
       "Fleet Organization Get!" : {
          "Fleet|$ |Organization|$ |$G|et|$!" : 1
@@ -3391,6 +3664,9 @@
       "Fleet9" : {
          "$Flee|t|$9" : 1
       },
+      "Force edit repeated…" : {
+         "$Forc|e |$edit| |$repeat|$ed|…" : 1
+      },
       "Formation" : {
          "$Forma|$tion" : 1
       },
@@ -3424,8 +3700,29 @@
       "Furniture Coin x" : {
          "Furniture|$ |Coin|$ |x" : 1
       },
+      "Furniture Details" : {
+         "$Furniture| |$Deta|$i|ls" : 1
+      },
+      "Furniture Name Furniture Name Furniture Name" : {
+         "$Furn|$itur|e |$Name| |$Furniture| |$Name| |$Furniture| |$Name" : 1
+      },
+      "Furniture Name Furniture Name Furniture Name Furniture Name" : {
+         "$Furniture| |$Name |$Furn|$itur|e |$Name |$Furn|$itur|e |$Name |$Furniture| |$Name" : 1
+      },
+      "Furniture Store R" : {
+         "$Furniture| |$Stor|e R" : 1
+      },
+      "FurnitureDetailsFurnitureDetailsFurnitureDetailsFurnitureDetailsFurnitureDetails\nFurnitureDetailsFurnitureDetailsFurnitureDetailsFurnitureDetailsFurnitureDetails " : {
+         "$FurnitureDetails|$Furn|iture|$Details|$Furn|iture|$Detail|s|$Furn|iture|$Deta|ils|$Furn|iture|$Deta|ils\n|$Furn|$itur|e|$Deta|ils|$Furn|$itur|e|$Deta|ils|$Furn|$itur|e|$Deta|ils|$Furn|$itur|e|$Deta|ils|$Furn|$itur|e|$Deta|ils " : 1
+      },
       "Furutaka" : {
          "$Furu|$taka" : 1
+      },
+      "Furutaka Kai" : {
+         "$Furu|$taka|$ Kai" : 1
+      },
+      "Furutaka Kai Ni W" : {
+         "$Furu|$taka|$ Kai |Ni W" : 1
       },
       "Furutaka1" : {
          "$Furu|$taka|1" : 1
@@ -3448,8 +3745,17 @@
       "Go to the Flagship Office Get!" : {
          "Go|$ |to|$ |the|$ |Flagship|$ |Office|$ |Get!" : 1
       },
+      "Got Complete Set Of Kekkon Documents" : {
+         "Got|$ |$C|omplete|$ |Set|$ |Of|$ |Kekkon|$ |$D|o|$c|um|$ents" : 1
+      },
       "Great Success" : {
          "$Grea|t|$ |$S|u|$c|$ces|s" : 1
+      },
+      "Hagikaze " : {
+         "$Hagi|$kaze " : 1
+      },
+      "Hagikaze  Kai" : {
+         "$Hagi|$kaze |$ Kai" : 1
       },
       "Haguro Kai" : {
          "$Ha|$guro|$ Kai" : 1
@@ -3517,6 +3823,9 @@
       "Hayasui Kai" : {
          "$Hay|$asui|$ Kai" : 1
       },
+      "Headquarters Level" : {
+         "$Head|$quarters| |$Leve|l" : 1
+      },
       "Heavenly Cruiser" : {
          "Heavenly|$ |Cruiser" : 1
       },
@@ -3583,23 +3892,81 @@
       "I-8" : {
          "$I-|8" : 1
       },
+      "I168" : {
+         "I|$1|68" : 1
+      },
+      "I168 Kai" : {
+         "I|$1|68|$ Kai" : 1
+      },
+      "I19" : {
+         "I|$1|9" : 1
+      },
+      "I19 Kai" : {
+         "I|$1|9|$ Kai" : 1
+      },
+      "I401" : {
+         "I40|$1" : 1
+      },
+      "I401 Kai" : {
+         "I40|$1|$ Kai" : 1
+      },
+      "I58" : {
+         "I|$5|8" : 1
+      },
+      "I58 Kai" : {
+         "I|$5|8|$ Kai" : 1
+      },
+      "I8" : {
+         "I|$8" : 1
+      },
+      "I8 Kai" : {
+         "I|$8|$ Kai" : 1
+      },
       "If you have Instant Build materials, high speed construction is possible. Construction of a Ship Girl takes longer for larger ships, but using Instant Build can shorten that to immediate." : {
          "If|$ |you|$ |have|$ |Instant|$ |Build|$ |materials,|$ |high|$ |speed|$ |construction|$ |is|$ |possible.|$ |Construction|$ |of|$ |a|$ |Ship|$ |Girl|$ |takes|$ |longer|$ |for|$ |larger|$ |ships,|$ |but|$ |u|$s|$i|$n|$g|$ |$I|$n|$s|$t|$a|$n|$t|$ |$B|$u|$i|l|$d|$ |$c|$a|$n|$ |$s|$h|$o|$r|$t|$e|$n|$ |$t|$h|$a|$t|$ |$t|$o|$ |$i|$m|$m|$e|$d|$i|$a|$t|$e|$." : 1
+      },
+      "Ikazuchi Kai" : {
+         "$Ikazuchi|$ Kai" : 1
+      },
+      "Ikazuchi1" : {
+         "$Ikazuchi|1" : 1
+      },
+      "Improvement Material" : {
+         "$Impr|ove|$ment| |$Mate|rial" : 1
+      },
+      "Inazuma Kai" : {
+         "$Inazuma|$ Kai" : 1
+      },
+      "Inazuma1" : {
+         "$Inazuma|1" : 1
+      },
+      "Initial Ship" : {
+         "$Initial|$ |$Ship" : 1
       },
       "Instant" : {
          "$Ins|$tant" : 1
       },
       "Instant Build" : {
-         "$Instant |$Bu|$il|$d" : 1
+         "$Instant |$Bu|$il|$d" : 1,
+         "$I|$n|$s|$t|$a|$n|$t|$ |$B|$u|$i|l|$d" : 1
       },
       "Instant Build Get!" : {
          "Instant|$ |Build|$ |$G|$e|t|$!" : 1
+      },
+      "Instant Construction  x" : {
+         "$Instant| |$Cons|tru|$ctio|n  x" : 1
+      },
+      "Instant Construction Materials" : {
+         "$Inst|ant |$Construction| |$Material|s" : 1
       },
       "Instant Repair" : {
          "$Instant|$ |$Re|$pa|$ir" : 1
       },
       "Instant Repair x" : {
          "$Instant|$ |$Re|$pa|$ir| x" : 1
+      },
+      "Intelligence Exchange" : {
+         "$Intelli|$gence|$ |$Exchange" : 1
       },
       "Interception Fleet Score" : {
          "Interception|$ |Fleet|$ |$S|core" : 1
@@ -3645,6 +4012,9 @@
       },
       "Isuzu1" : {
          "$I|suzu|$1" : 1
+      },
+      "Item Details Item Details Item Details Item" : {
+         "Item|$ |$D|et|$a|ils|$ |Item|$ |$D|et|$a|ils|$ |Item|$ |$D|et|$a|ils|$ |$Item" : 1
       },
       "Item List" : {
          "$I|t|$e|$m|$ |$L|$i|$s|$t" : 1
@@ -3705,6 +4075,9 @@
       },
       "Kashima Kai" : {
          "$Ka|$shima|$ Kai" : 1
+      },
+      "Kasumi Kai" : {
+         "$Kasumi|$ Kai" : 1
       },
       "Katori Kai" : {
          "$Ka|$tori|$ Kai" : 1
@@ -3829,6 +4202,9 @@
       "Leave" : {
          "$L|e|$a|ve" : 1
       },
+      "Lets build something in the factory!" : {
+         "$Lets| build somet|$hing| in the fac|$tory|!" : 1
+      },
       "Level" : {
          "$L|$e|vel" : 1
       },
@@ -3880,6 +4256,9 @@
       "Materials Available" : {
          "$Material|s|$ A|v|$ai|l|$ab|$le" : 1
       },
+      "Maximum Equipment Limit Reached" : {
+         "Max|$imum|$ |$E|quipm|$e|nt|$ |Limit|$ |$R|eached" : 1
+      },
       "Maximum Ship Girl Limit Reached" : {
          "Maximum|$ |Ship|$ |Girl|$ |Limit|$ |Reached" : 1
       },
@@ -3930,6 +4309,15 @@
       },
       "Mizuho Kai" : {
          "$Mi|$zuho|$ Kai" : 1
+      },
+      "Mochizuki " : {
+         "$Mochizuki|$ " : 1
+      },
+      "Mochizuki  Kai" : {
+         "$Mochizuki|$ |$ Kai" : 1
+      },
+      "Mochizuki 1" : {
+         "$Mochizuki|$ |1" : 1
       },
       "Mogami Kai" : {
          "$Mo|$gami|$ Kai" : 1
@@ -4000,6 +4388,9 @@
       "Nagatsuki" : {
          "$Naga|t|$suki" : 1
       },
+      "Nagatsuki Kai" : {
+         "$Naga|$tsuki|$ Kai" : 1
+      },
       "Naka" : {
          "$N|aka" : 1
       },
@@ -4021,6 +4412,9 @@
       "Nenohi Kai" : {
          "$Ne|$nohi|$ Kai" : 1
       },
+      "Night Battle Start" : {
+         "$Nigh|t |$Battle| |$Star|t" : 1
+      },
       "No Instant Repair Materials Available" : {
          "No|$ |Instant Repair Materials Available" : 1
       },
@@ -4039,6 +4433,9 @@
       "Not enough Strategy Points" : {
          "Not|$ |enough|$ |Strategy|$ |$P|o|$i|$n|$t|$s" : 1
       },
+      "Not enough furniture coins" : {
+         "Not|$ |$e|nough|$ |furn|$i|tur|$e|$ |$co|ins" : 1
+      },
       "Nothing happened." : {
          "No|$thing|$ |h|$a|pp|$en|e|$d|$." : 1
       },
@@ -4053,6 +4450,15 @@
       },
       "Number of Ship Girls" : {
          "$Number of| |$Ship| |$Gi|r|$ls" : 1
+      },
+      "Number of Sorties\n\r\nNumber of Wins\n\r\nInterception of Success\n\nWin Rate\n\n\nExercise Number\n\nNumber of Counter Exercises\r\n" : {
+         "$Number| of |$Sort|ies\n\r\n|$Number| of |$Wins|\n\r\n|$Interception| of |$Success|\n\n|$Win |$Rate|\n\n\n|$Exercise|$ Number|\n\nNu|$mber| of |$Counter| |$Exercises|\r\n" : 1
+      },
+      "Number of owned fleets" : {
+         "$Number| of |$owned| |$fleet|s" : 1
+      },
+      "Number of owned fleets:999" : {
+         "Nu|$mber| of |$owned| |$fleet|s:999" : 1
       },
       "Oboro Kai" : {
          "$Oboro|$ Kai" : 1
@@ -4081,6 +4487,12 @@
       "Ooyodo Kai" : {
          "$Oo|$yodo|$ Kai" : 1
       },
+      "Operation Name Operation Name Operation Name" : {
+         "$Operation| |$Name| |$Operation| |$Name|$ |$Operation|$ |$Name" : 1
+      },
+      "Operation in this area complete." : {
+         "Oper|$atio|n|$ |in |$this| |$area| |$complete|." : 1
+      },
       "Operation:Number*Region**Strategy" : {
          "$Operation|:|$N|um|$ber|*|$R|$eg|$io|n**|$St|r|$at|$eg|y" : 1
       },
@@ -4099,6 +4511,12 @@
       "Please choose your Admiral's name. (Up to " : {
          "Please|$ |choose|$ |your|$ |Admiral's name. (Up to " : 1
       },
+      "Please enter fleet name. (Up to 12 characters)" : {
+         "Please|$ |enter|$ |fleet|$ |name.|$ |(Up|$ |to|$ |12|$ |char|$acte|rs)" : 1
+      },
+      "Please select strategy difficulty level" : {
+         "Please|$ |select|$ |str|$ateg|y difficulty level" : 1
+      },
       "Please select the formation." : {
          "Please|$ |select|$ |the|$ |formation|$." : 1
       },
@@ -4110,6 +4528,15 @@
       },
       "Plot the fleet's course.\nAdmiral, pick a course?" : {
          "$Plot|$ |$the|$ |$fleet|'s|$ |$co|u|$rs|e|$.|\n|$A|$d|m|$i|$r|$a|l,|$ |$p|$i|$c|k|$ |$a|$ |$c|$o|$u|$r|$s|$e|?" : 1
+      },
+      "Possible Resource Gain" : {
+         "$Poss|ible |$Reso|$urce| |$Gain" : 1
+      },
+      "Practice Navigation" : {
+         "$Practice| |$Navi|gation" : 1
+      },
+      "Present Location:Chinjufu Region" : {
+         "Present|$ |Location:|$Chin|jufu Region" : 1
       },
       "Preset Data\n(Please select using touch)" : {
          "Preset|$ |Data\n(Please|$ |select|$ |$u|$s|$i|$n|$g|$ |$t|$o|$u|$c|$h|)" : 1
@@ -4126,6 +4553,18 @@
       "Prinz Eugen Kai" : {
          "$Prin|z |$Eu|$gen|$ Kai" : 1
       },
+      "Proceed with using \n Emergency Repair Goddess" : {
+         "$Proceed| |$with| |$using| \n |$Emer|g|$ency| Re|$pair|$ |$G|od|$de|ss" : 1
+      },
+      "Proceed with using \n Emergency Repair Personel" : {
+         "$Proceed| |$with|$ |us|$in|$g|$ |\n |$Emer|g|$ency| Re|$pair| |$Personel" : 1
+      },
+      "Proficiency 150" : {
+         "$Profi|$ciency| 150" : 1
+      },
+      "Purchase - Wallpaper - " : {
+         "$Purc|$hase| - |$Wall|$paper| - " : 1
+      },
       "Purchase - {0} - " : {
          "$Purc|$hase| - {0} - " : 1
       },
@@ -4141,6 +4580,9 @@
       "Refurbishment" : {
          "$Re|$furb|$ishm|$ent" : 1
       },
+      "Regarding Navigation" : {
+         "Regar|$ding| |$Navi|gation" : 1
+      },
       "Regarding Transport Ship Deployment" : {
          "Regarding|$ |Transport|$ |Ship|$ |$D|$e|ploym|$e|$n|t" : 1
       },
@@ -4149,6 +4591,9 @@
       },
       "Region Sortie Get!" : {
          "Region|$ |$S|$o|$r|t|$i|$e|$ |$G|$e|$t|$!" : 1
+      },
+      "Reinforcement value" : {
+         "$Reinforcement|$ |$value" : 1
       },
       "Relevant Equipment Locked" : {
          "$Rele|$vant|$ |$E|qu|$ipm|$e|$nt|$ |$L|$o|$c|k|$e|$d" : 1
@@ -4165,6 +4610,12 @@
       "Repair consumed)" : {
          "$Repair|$ |$c|$on|$su|$m|$e|$d|)" : 1
       },
+      "Replenish all supplies" : {
+         "$Replenish|$ |$all |$supplies" : 1
+      },
+      "Required Number of Ships" : {
+         "$Requ|$ired| |$Number| of |$Ship|s" : 1
+      },
       "Resource Gain" : {
          "$Reso|$urce| |$Ga|in" : 1
       },
@@ -4173,6 +4624,12 @@
       },
       "Resources Are Low" : {
          "$Res|$ourc|es|$ |$A|$r|$e|$ |$L|$o|w" : 1
+      },
+      "Resources to be supplied" : {
+         "$Reso|$urce|s to |$be| |$supplied" : 1
+      },
+      "Resources to become Ship Girl" : {
+         "Re|$sources| |$to| |$become| |$Ship| |$Girl" : 1
       },
       "Resupply with the following?" : {
          "Resupply|$ |with|$ |the|$ |followin|$g|?" : 1
@@ -4210,8 +4667,17 @@
       "Saving Data..." : {
          "$Saving|$ |$Da|$ta|$.|$.|$." : 1
       },
+      "Sazanami Kai" : {
+         "$Sazanami|$ Kai" : 1
+      },
+      "Sea Area" : {
+         "$Sea |$Area" : 1
+      },
       "Sea Regions Captured:999" : {
          "$Sea| |$Regions| |$Ca|$ptur|$ed|:999" : 1
+      },
+      "SeaAreaNameSeaAreaNameSeaAreaNameSeaAreaNameSeaAreaName" : {
+         "Sea|$Area|$Name|Sea|$Area|$Name|Sea|$Area|$Name|Sea|$Area|$Name|Sea|$Area|$Name" : 1
       },
       "Select  Back  Choose" : {
          "Select|$ |$ |Back|$ |$ |$C|hoose" : 1
@@ -4264,14 +4730,32 @@
       "Ship Girl" : {
          "$Ship|$ Girl" : 1
       },
+      "Ship Girl Name" : {
+         "$Ship|$ Girl |$Name" : 1
+      },
       "Ship Girl Number:999" : {
          "Ship|$ |$Gi|r|$l |$Number|:999" : 1
+      },
+      "Ship Girl Relation" : {
+         "Ship |$Girl| |$Relation" : 1
+      },
+      "Ship Girl Selection" : {
+         "Ship |$Girl| |$Selection" : 1
+      },
+      "Ship Girl storage full, can not construct any more." : {
+         "Ship |$Girl| storage full, |$can |not construct |$any |more." : 1
       },
       "Ship Selection" : {
          "$Sh|ip |$Selection" : 1
       },
       "Ship is locked" : {
          "$S|$hi|p|$ |$i|$s|$ |l|$o|$c|k|$e|$d" : 1
+      },
+      "Ship to be reinforced" : {
+         "$Ship| to be |$rein|fo|$rced" : 1
+      },
+      "ShipGirlNameShipGirlNameShipGirlNameShipGirlName" : {
+         "$Ship|$Girl|$Name|$Ship|$Girl|$Name|$Ship|$Girl|$Name|$Ship|$Girl|$Name" : 1
       },
       "Ships Acquired" : {
          "$Ships|$ |$A|$c|qu|$ir|e|$d" : 1
@@ -4281,6 +4765,15 @@
       },
       "Shiranui" : {
          "$S|$hir|$anui" : 1
+      },
+      "Shiratsuyu" : {
+         "$Shira|$tsuyu" : 1
+      },
+      "Shiratsuyu Kai" : {
+         "$Shira|$tsuyu|$ Kai" : 1
+      },
+      "Shiratsuyu1" : {
+         "$Shira|$tsuyu|1" : 1
       },
       "Shirayuki" : {
          "$Shira|$yuki" : 1
@@ -4313,7 +4806,8 @@
          "Sign|$ |the|$ |official|$ |p|$a|p|$e|$r|$s|?" : 1
       },
       "Sold out" : {
-         "$Sold|$ out" : 1
+         "$Sold|$ out" : 1,
+         "$S|old|$ |out" : 1
       },
       "Sold out rewards" : {
          "$Sol|d|$ out| |$reward|s" : 1
@@ -4323,6 +4817,9 @@
       },
       "Sortie \r\n\nExercise" : {
          "$So|rt|$ie| \r\n\n|$Exercise" : 1
+      },
+      "Sortie Circumstance" : {
+         "$Sort|$ie| |$Circum|$stance" : 1
       },
       "Sortie Fleet!" : {
          "Sortie|$ |$Fl|$e|$e|$t|$!" : 1
@@ -4351,6 +4848,9 @@
       "Start with the following?" : {
          "Start|$ |with|$ |the|$ |f|$o|llow|$i|$n|$g|?" : 1
       },
+      "Starter Ship Selection" : {
+         "$Starter| |$Ship| |$Sele|$ctio|n" : 1
+      },
       "State" : {
          "$S|$tate" : 1
       },
@@ -4369,7 +4869,11 @@
       "Stop the expedition?" : {
          "Stop|$ |the|$ |expe|$d|$i|t|$i|on?" : 1
       },
+      "Strategic resources\nsubcommand" : {
+         "Strategic|$ |resources\nsu|$bcom|mand" : 1
+      },
       "Strategy" : {
+         "$Stra|$tegy" : 1,
          "$S|$trat|$egy" : 1
       },
       "Strategy Command" : {
@@ -4390,6 +4894,9 @@
       "Success" : {
          "$Suc|$cess" : 1
       },
+      "Support Fleet has arrived!" : {
+         "$S|upport|$ |Fleet|$ |has|$ |$a|rr|$ived|$!" : 1
+      },
       "Support supplies arrived. \n\n" : {
          "$Sup|$port|$ |$supplies|$ |$ar|$r|$iv|$ed|$.|$ |\n\n" : 1
       },
@@ -4405,6 +4912,9 @@
       "Switching" : {
          "$Switch|$ing" : 1
       },
+      "Synthesize Ship Materials" : {
+         "Syn|$thes|ize |$Ship| |$Mate|$rial|s" : 1
+      },
       "Taigei Kai" : {
          "$Ta|$igei|$ Kai" : 1
       },
@@ -4419,6 +4929,9 @@
       },
       "Takao" : {
          "$T|$akao" : 1
+      },
+      "Take Charge Of The Mission!" : {
+         "Take |$Char|ge|$ |Of The |$Mission|!" : 1
       },
       "Take that!" : {
          "$Take |th|$at|!" : 1
@@ -4437,6 +4950,9 @@
       },
       "Tanikaze Kai" : {
          "$Tani|$kaze|$ Kai" : 1
+      },
+      "Task Confirmation" : {
+         "$Task |$Confirmation" : 1
       },
       "Tatsuta" : {
          "$Tat|$suta" : 1
@@ -4464,6 +4980,9 @@
       },
       "The enemy deep sea ship launched a counteroffensive.\n\nOur fleet deployed to the same region\nand intercepted!\n\nLets develop an interception strategy!" : {
          "The|$ |enemy|$ |deep|$ |sea|$ |ship|$ |launched|$ |a|$ |counteroffensive.\n\nOur|$ |fleet|$ |deployed|$ |to|$ |the|$ |same|$ |region\nand|$ |intercepted!\n\nLets develop an interception strategy!" : 1
+      },
+      "The more Regions away from your base, the more days (turns) required. If you cancel a Transportation or Escort Fleet, it will also be in a round trip." : {
+         "The|$ |mor|$e|$ |$R|$e|$g|$i|ons|$ |$a|way|$ |fro|$m|$ |y|$o|ur|$ |b|$a|se,|$ |the|$ |mor|$e|$ |d|$a|ys|$ |(tu|$r|$n|s)|$ |r|$e|qu|$i|r|$e|$d|$.|$ |If|$ |you|$ |c|$a|n|$c|el|$ |a|$ |$T|r|$a|$n|sp|$o|rt|$a|t|$i|on|$ |or|$ |$E|s|$c|$or|t|$ |Fl|$e|$e|t,|$ |it|$ |w|$i|ll|$ |$a|ls|$o|$ |be|$ |in|$ |a|$ |r|$o|u|$n|$d|$ |tr|$i|p|$." : 1
       },
       "There is no dock in this region" : {
          "There|$ |is|$ |no|$ |dock|$ |in|$ |this|$ |r|$e|$g|$i|o|$n" : 1
@@ -4507,6 +5026,9 @@
       "Transition Menu" : {
          "$Trans|it|$ion|$ |$M|$en|u" : 1
       },
+      "Transport Construction" : {
+         "$Transport| |$Cons|truction" : 1
+      },
       "Transport Ship" : {
          "$Transport|$ |$Sh|$ip" : 1
       },
@@ -4516,8 +5038,14 @@
       "Transport Ship x 1" : {
          "$Transport| |$Sh|ip x 1" : 1
       },
+      "Transport Ships x {0}" : {
+         "$Transport| |$Ships|$ |x {0}" : 1
+      },
       "Transports" : {
          "$T|r|$a|$n|sp|$o|rts" : 1
+      },
+      "Trial Manufacture of FaT Type 93 Kai Torpedo" : {
+         "$Tria|l |$Manufac|$ture|$ |of FaT |$Type| 93|$ Kai|$ |Tor|$pedo" : 1
       },
       "Turn End Get!" : {
          "$Turn|$ |$E|n|$d|$ |$G|$e|$t|$!" : 1
@@ -4528,6 +5056,9 @@
       "U-511 Kai" : {
          "U-511|$ Kai" : 1
       },
+      "Uh? You want me to spin the compass?" : {
+         "Uh?|$ |You|$ |want|$ |me|$ |to|$ |spin the |$comp|ass?" : 1
+      },
       "Umikaze" : {
          "$Umi|$kaze" : 1
       },
@@ -4537,8 +5068,14 @@
       "Undeployed" : {
          "$Un|$deploy|$ed" : 1
       },
+      "Undeployed Vessels:{0}(Moving to this Region:{1}) - Total" : {
+         "$U|n|$deploy|ed|$ |$V|essels:{||}(Moving|$ |to|$ |this|$ |$R|egion:{|$1|})|$ |- Total" : 1
+      },
       "Unryuu Kai" : {
          "$Un|$ryuu|$ Kai" : 1
+      },
+      "Unsupplied​" : {
+         "$U|$n|$s|$u|$p|$p|$li|$e|$d|​" : 1
       },
       "Urakaze" : {
          "$Ura|$kaze" : 1
@@ -4546,20 +5083,44 @@
       "Urakaze Kai" : {
          "$Ura|$kaze|$ Kai" : 1
       },
+      "Use \"Irako\"?\"​​​​​" : {
+         "$U|s|$e|$ |$\"|$I|$r|$a|k|$o|$\"|?|$\"|​​​​​" : 1
+      },
+      "Use \"Irako\"?​​​​​​" : {
+         "$U|s|$e|$ |$\"|$I|$r|$a|k|$o|$\"|?​​​​​​" : 1
+      },
       "Use \"Mamiya & Irako\"" : {
          "$Us|e|$ |$\"|$M|$a|$m|$i|$y|$a|$ |&|$ |$I|$r|$a|k|$o|$\"" : 1
       },
       "Use \"Mamiya & Irako\"?" : {
          "$U|$s|$e|$ |$\"|$M|$a|$m|$i|$y|$a|$ |&|$ |$I|$r|$a|k|$o|$\"|?" : 1
       },
+      "Use \"Mamiya\"?\"​​​​" : {
+         "$U|$se|$ |$\"|$M|$a|m|$i|y|$a|$\"|?|$\"|​​​​" : 1
+      },
+      "Use \"Mamiya\"?​​​​" : {
+         "$U|s|$e|$ |$\"|$M|$a|m|$i|$y|$a|$\"|?​​​​" : 1
+      },
+      "Use \"Mamiya\"​" : {
+         "$U|$s|$e|$ |$\"|$M|$a|$m|$i|$y|$a|$\"|​" : 1
+      },
+      "Use \"Mamiya\"​​​" : {
+         "$U|s|$e|$ |$\"|$M|$a|m|$i|y|$a|$\"|​​​" : 1
+      },
       "Use instant repair?" : {
          "Use|$ |inst|$a|$n|t|$ |$r|$e|$p|$a|$i|$r|?" : 1
+      },
+      "Ushio Festival" : {
+         "$Ushio|$ |$Festival" : 1
       },
       "Ushio Kai" : {
          "$Ushio|$ Kai" : 1
       },
       "Ushio Kai Ni" : {
          "$Ushio|$ Kai| Ni" : 1
+      },
+      "Using an Instant Build Bucket, \nComplete Construction!" : {
+         "Using an Instant Build |$Buck|et, \n|$Comp|lete Construction!" : 1
       },
       "Using instant repair" : {
          "$Using|$ |$ins|t|$an|t|$ |r|$e|$p|$a|$i|$r" : 1
@@ -4579,8 +5140,14 @@
       "When you are used to how a map works, you may use Battle Shortcut. By pressing the L-Shoulder button during on the Sortie Map, you can shorten battle times. However, in fleet battles with new areas, Battle Shortcut may not be used." : {
          "When|$ |you|$ |are|$ |used|$ |to|$ |how|$ |a|$ |map|$ |works,|$ |you|$ |may|$ |use|$ |Battle|$ |Shortcut.|$ |By|$ |pressing|$ |the|$ |L-Shoulder|$ |button|$ |during|$ |on|$ |the|$ |Sortie|$ |Map,|$ |you|$ |can|$ |shorten|$ |battle|$ |times.|$ |$H|ow|$e|ver,|$ |$i|$n|$ |$fl|$e|$e|$t|$ |$b|$a|$t|$t|l|$e|$s|$ |w|$i|$t|$h|$ |$n|$e|w|$ |$a|$r|$e|$a|$s|,|$ |$B|$a|$t|$t|l|$e|$ |$S|$h|$o|$r|$t|$c|$u|$t|$ |$m|$a|$y|$ |$n|$o|$t|$ |$b|$e|$ |$u|$s|$e|$d|$." : 1
       },
+      "When you are used to how a map works, you may use Battle Shortcut. By pressing the L-Shoulder button during the Sortie Map, you can shorten battle times. However, in fleet battles with new areas, Battle Shortcut may not be used." : {
+         "$W|hen|$ |you|$ |are|$ |use|$d|$ |to|$ |how|$ |a|$ |map|$ |w|$o|$r|ks,|$ |you|$ |may|$ |use|$ |$B|$a|ttl|$e|$ |$S|$h|ort|$c|ut|$.|$ |By|$ |pr|$e|ss|$i|n|$g|$ |the|$ |L|$-|$S|$h|oul|$d|er|$ |$b|utt|$o|$n|$ |$d|ur|$i|n|$g|$ |the|$ |$S|ort|$i|$e|$ |$M|ap,|$ |you|$ |can|$ |s|$h|ort|$e|n|$ |b|$a|ttl|$e|$ |tim|$e|s|$.|$ |$H|ow|$e|v|$e|r,|$ |in|$ |fl|$e|et|$ |b|$a|ttl|$e|s|$ |wit|$h|$ |new|$ |$a|re|$a|s,|$ |$B|$a|ttl|$e|$ |$S|$h|ort|$c|ut|$ |may|$ |not|$ |be|$ |us|$e|$d|$." : 1
+      },
       "Where to now?" : {
          "$Where|$ |to|$ |$n|$ow|?" : 1
+      },
+      "Window Frame" : {
+         "$Window |$Frame" : 1
       },
       "Window Frame + Curtain" : {
          "$Window| |$Fram|e + |$Cu|$rt|$ai|n" : 1
@@ -4588,8 +5155,26 @@
       "Withdraw" : {
          "$With|$draw" : 1
       },
+      "Withdrawing Ships Included" : {
+         "$W|ithdr|$a|wing|$ |$Ship|s|$ |$I|n|$c|lu|$d|ed" : 1
+      },
+      "Would you like to do Rival Exercise?" : {
+         "Would|$ |you |$like|$ |to do R|$ival| |$Exercise|?" : 1
+      },
+      "Would you like to purchase the following items?" : {
+         "Would you like to pur|$chas|e the |$foll|owing items?" : 1
+      },
+      "Would you like to release the dock?" : {
+         "Would you like to rel|$ease| the |$dock|?" : 1
+      },
       "Would you like to save your current data?" : {
          "Would|$ |you|$ |like|$ |to|$ |save your current data?" : 1
+      },
+      "Would you like to send this fleet on an expedition?" : {
+         "$Would |$you |$like| to s|$end |$this| |$fleet |on an |$expe|$dition|?" : 1
+      },
+      "Would you like to sortie with this fleet?" : {
+         "Would |$you |$like| to s|$orti|e with |$this| fleet?" : 1
       },
       "Yahagi Kai" : {
          "$Ya|$hagi|$ Kai" : 1
@@ -4627,6 +5212,9 @@
       "You can accept new assignments." : {
          "You|$ |can|$ |accept|$ |new|$ |$a|ssignments|$." : 1
       },
+      "You do not posess an Open Key" : {
+         "You|$ |do|$ |not|$ |posess|$ |an |$Open| Key" : 1
+      },
       "Yukikaze" : {
          "$Yuki|$kaze" : 1
       },
@@ -4641,6 +5229,9 @@
       },
       "Yuubari" : {
          "$Yuu|$bari" : 1
+      },
+      "Yuubari Nai" : {
+         "$Yuubari|$ |Nai" : 1
       },
       "Yuudachi" : {
          "$Yuud|$achi" : 1
@@ -4693,6 +5284,12 @@
       "mode" : {
          "$mo|$d|$e" : 1
       },
+      "only works with.​​​​" : {
+         "o|$n|l|$y|$ |w|$o|$r|k|$s|$ |w|$i|$t|$h|$.|​​​​" : 1
+      },
+      "only works with.​​​​​​​" : {
+         "o|$n|ly|$ |w|$o|rks|$ |w|$it|$h|$.|​​​​​​​" : 1
+      },
       "page" : {
          "$p|$a|$ge" : 1
       },
@@ -4702,14 +5299,26 @@
       "return" : {
          "r|$e|tu|$r|$n" : 1
       },
+      "rickshaw" : {
+         "$ricksha|w" : 1
+      },
       "take over and begin the game" : {
          "$take|$ |$over|$ |$and|$ |$beg|in|$ |t|$he|$ |$g|$a|$m|$e" : 1
+      },
+      "unacceptable" : {
+         "$unaccept|$able" : 1
       },
       "z3 Kai" : {
          "z3|$ Kai" : 1
       },
       "{0} task completed!" : {
          "{0}|$ |task|$ |$c|ompleted|$!" : 1
+      },
+      "{0} was updated!​​" : {
+         "{0}|$ |$wa|$s|$ |$u|$p|$d|$a|$t|$e|$d|$!|​​" : 1
+      },
+      "{0}x{1}\nGained!​" : {
+         "{0}|x|{1}|\n|$G|$a|$i|$n|$e|$d|$!|​" : 1
       },
       "{0}x{1}\nHas been lost…." : {
          "{||}x{1}\nHas|$ |$b|$e|$e|$n|$ |l|$o|$s|$t|…|$." : 1
@@ -4719,6 +5328,9 @@
       },
       "※If you have too many Ship Girls, there is a chance of not getting a Ship Girl reward." : {
          "※If|$ |you|$ |have|$ |too|$ |many|$ |Ship|$ |Girls,|$ |there|$ |is|$ |a|$ |chance of not getting a Ship Girl reward." : 1
+      },
+      "※If you have too many Ship Girls, there is a possibility of not getting a Ship Girl reward." : {
+         "※If|$ |you|$ |have|$ |too|$ |many|$ |Ship|$ |Girls,|$ |there|$ |is a p|$oss|ibility|$ |$of |$not| gett|$ing| a |$Shi|p |$Gir|l |$reward|." : 1
       },
       "※You have reached your limit of Ship Girls and can not accept your reward." : {
          "※You|$ |have|$ |reached|$ |your|$ |limit|$ |of|$ |Ship|$ |Girls|$ |and|$ |can|$ |not|$ |accept|$ |your|$ |reward." : 1
@@ -4740,6 +5352,9 @@
       },
       "■Material" : {
          "■|$Mate|$rial" : 1
+      },
+      "■Number of Fleets" : {
+         "■|$Number of| |$Flee|ts" : 1
       },
       "■Ship Girl" : {
          "■|$Ship|$ Girl" : 1

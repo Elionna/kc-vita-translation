@@ -1,7 +1,7 @@
 use 5.020;
 use strictures 2;
 use IO::All -binary;
-use List::Util qw'sum uniq min';
+use List::Util qw' sum uniq min max ';
 use Encode qw' decode encode ';
 use JSON::MaybeXS qw' decode_json encode_json ';
 use Tk;
@@ -20,15 +20,55 @@ sub saynl {
     say $msg;
 }
 
+sub matches_for_part {
+    my ( $part, $need_to_shrink, $enc, @glyphs ) = @_;
+    my @matches = grep index( $part, $_ ) != -1, @glyphs;
+    return @matches if $need_to_shrink <= 0;
+    my $size_limit =
+        ( $need_to_shrink > 41 ) ? 11
+      : ( $need_to_shrink > 39 ) ? 10
+      : ( $need_to_shrink > 36 ) ? 9
+      : ( $need_to_shrink > 33 ) ? 8
+      : ( $need_to_shrink > 30 ) ? 7
+      : ( $need_to_shrink > 27 ) ? 6
+      : ( $need_to_shrink > 24 ) ? 5
+      : ( $need_to_shrink > 21 ) ? 4
+      : ( $need_to_shrink > 18 ) ? 3
+      : ( $need_to_shrink > 15 ) ? 2
+      :                            1;
+    my @sorted_matches;
+    while ($size_limit) {
+        push @sorted_matches, grep length > $size_limit, @matches;
+        $size_limit--;
+    }
+    my $min = !$need_to_shrink ? 0 : ( $enc eq "UTF-16LE" ) ? 1 : 2;
+    @sorted_matches = grep length > $min, @sorted_matches;
+    return uniq @sorted_matches;
+}
+
+sub tasks_for_matches {
+    my ( $match, $part, $prepared, $i, $e, $seen, @parts ) = @_;
+    my ( $p1, $p2 ) = split /\Q$match\E/, $part, 2;
+    my @parts2 = @parts;
+    splice @parts2, $i, 1, grep length, $p1, $prepared->{$match}, $p2;
+    my @tasks = $seen->{ $e->(@parts2) } ? () : ( \@parts2 );
+    return @tasks;
+}
+
 sub map_str_to_multi_chars {
     my ( $tr, $enc, $length_target, $used, $glyphmap_cache, $prepared ) = @_;
     saynl "mapping: ($length_target) '$tr'";
     my %rev_prep = reverse $prepared->%*;
-    my @glyphs   = sort { length $a <=> length $b } sort keys $prepared->%*;
-    my @parts    = split /(?<=\])|(?=\[)/, $tr;
+    my @glyphs = sort { length $a <=> length $b } sort keys $prepared->%*;
 
     my $e = sub { encode $enc, join "", @_ };
     my $l = sub { length $e->(@_) };
+    if ( $enc eq "UTF-16LE" and $l->($tr) < $length_target ) {
+        while ( $l->($tr) < $length_target ) {
+            $tr .= "\x{200B}";
+        }
+    }
+    my @parts = split /(?<=\])|(?=\[)|(?<=\})|(?=\{)/, $tr;
     return $e->(@parts) if $l->(@parts) == $length_target;
 
     my $try = $glyphmap_cache->{$enc}{$tr};
@@ -63,8 +103,8 @@ sub map_str_to_multi_chars {
             }
 
             my $fail = "length in encoding $enc: $length_target -> $l2 : " . join "|", map +( $rev_prep{$_} ? "\$$rev_prep{$_}" : $_ ), @parts;
-            push @{ $closest{ abs $diff } }, $fail;
-            push @failed, $fail;
+            push $closest{ abs $diff }->@*, $fail;
+            unshift @failed, $fail;
 
             #if ( @failed > 100 ) {
             #    my $closest_diff = min keys %closest;
@@ -76,34 +116,12 @@ sub map_str_to_multi_chars {
             my $length_current = $l->(@parts);
             my $need_to_shrink = $length_current - $length_target;
             next if $need_to_shrink < 0 and $enc eq "UTF-16LE";
-            my @to_process = grep +( $parts[$_] !~ /^\[/ and not $rev_prep{ $parts[$_] } ), 0 .. $#parts;
+            my @to_process = grep +( $parts[$_] !~ /^[\[\{]/ and not $rev_prep{ $parts[$_] } ), 0 .. $#parts;
+            @to_process = sort { length $parts[$a] <=> length $parts[$b] } @to_process;
             for my $i (@to_process) {
-                my $part = $parts[$i];
-                my @matches = grep index( $part, $_ ) != -1, @glyphs;
-                if ( $need_to_shrink > 0 ) {
-                    my $size_limit =
-                        ( $need_to_shrink > 85 ) ? 8
-                      : ( $need_to_shrink > 75 ) ? 7
-                      : ( $need_to_shrink > 65 ) ? 6
-                      : ( $need_to_shrink > 55 ) ? 5
-                      : ( $need_to_shrink > 35 ) ? 4
-                      : ( $need_to_shrink > 25 ) ? 3
-                      : ( $need_to_shrink > 15 ) ? 2
-                      :                            1;
-                    my @sorted_matches;
-                    while ($size_limit) {
-                        push @sorted_matches, grep length > $size_limit, @matches;
-                        $size_limit--;
-                    }
-                    @matches = uniq @sorted_matches;
-                    1;
-                }
-                my @next_tasks = map {
-                    my ( $p1, $p2 ) = split /\Q$_\E/, $part, 2;
-                    my @parts2 = @parts;
-                    splice @parts2, $i, 1, grep length, $p1, $prepared->{$_}, $p2;
-                    $seen{ $e->(@parts2) } ? () : \@parts2;
-                } @matches;
+                my $part       = $parts[$i];
+                my @matches    = matches_for_part( $part, $need_to_shrink, $enc, @glyphs );
+                my @next_tasks = map tasks_for_matches( $_, $part, $prepared, $i, $e, \%seen, @parts ), @matches;
                 unshift @tasks, @next_tasks;
             }
         }
@@ -113,11 +131,11 @@ sub map_str_to_multi_chars {
 
     my @mapped       = @result;
     my $closest_diff = min keys %closest;
-    push @failed, map "closest: $_", $closest{$closest_diff}->@* if $closest_diff;
+    unshift @failed, map "closest: $_", $closest{$closest_diff}->@* if $closest_diff;
     @mapped = @parts if not @mapped;
     $used->{ $rev_prep{$_} }++ for grep defined $rev_prep{$_}, @mapped;
     my $raw = join "|", map +( $rev_prep{$_} ? "\$$rev_prep{$_}" : $_ ), @mapped;
-    return ( $e->(@mapped), $raw, uniq @failed );
+    return ( $e->(@mapped), $raw, uniq reverse @failed );
 }
 
 sub map_tr_to_multi_chars {
@@ -202,7 +220,7 @@ sub report_near_miss {
     # need to remain: newlines: A D, jp space: 3000
     $msg =~ s/\x{$_}/■/g
       for 0 .. 8,
-      qw( B C E F 10 11 12 13 15 17 18 19 1A 1B 1C 1D 1E 14 600 900 300 500 B00 1D00 D00 1700 800 1500 1900 F00 700 1B00 1D00 1F00 1300 1100 2000 2100 2300 2500 2700 2900 2A00 2B00 2D00 3200 321E 3428 3C3D 3D00 3E30 3F00 4300 4900 4C30 4D00 661A 7B00 7D00 FFFD   );
+      qw( B C E F 10 11 12 13 15 17 18 19 1A 1B 1C 1D 1E 14 600 900 300 500 B00 C00 1D00 D00 1700 800 1500 1900 F00 700 1B00 1D00 1F00 1300 1100 2000 2100 2300 2500 2700 2900 2A00 2B00 2D00 3200 321E 3428 3C3D 3D00 3E30 3F00 4300 4900 4C30 4D00 661A 7B00 7D00 FFFD   );
     saynl $msg;
 }
 
@@ -218,7 +236,8 @@ sub run {
     $|++;
     binmode STDOUT, ":encoding(UTF-8)";
     binmode STDERR, ":encoding(UTF-8)";
-    my $do_blank = grep /--blank/, @ARGV;
+    my $do_blank     = grep /--blank/,        @ARGV;
+    my $filter_pairs = grep /--filter_pairs/, @ARGV;
 
     say "prepping dictionary";
 
@@ -226,13 +245,15 @@ sub run {
     my %tr = binary_translations->data;
     $tr{$_}{tr} //= "" for grep !defined $tr{$_}{tr}, sort keys %tr;
     my @tr_keys = reverse sort { length $a <=> length $b } sort keys %tr;
-    my $tr_body = join "#", map $tr{$_}{tr}, keys %tr;
 
     my @pairs = grep length $_, map split( /\|/, $_ ), map trim_nl($_), io("font_mod_character_pairs")->getlines;
-    @pairs = ( @pairs, map ucfirst, @pairs );
-    say "" . @pairs;
-    @pairs = grep $tr_body =~ /\Q$_\E/, @pairs;
-    say "" . @pairs;
+    if ($filter_pairs) {
+        @pairs = ( @pairs, map ucfirst, @pairs );
+        say "" . @pairs;
+        my $tr_body = join "#", map $tr{$_}{tr}, keys %tr;
+        @pairs = grep $tr_body =~ /\Q$_\E/, @pairs;
+        say "" . @pairs;
+    }
 
     my %mapping = do {
         my $unicode = 0xE000;
