@@ -1,5 +1,8 @@
 {
    "UTF-16LE" : {
+      "\n[666666](※Repair consumed)[-]" : {
+         "\n|[666666]|(※|$Re|p|$ai|r |$co|$nsum|$ed|)|[-]" : 1
+      },
       " characters can be entered.)" : {
          " |$char|$acte|$rs| |$can |$be| |$entered|.)" : 1
       },
@@ -94,6 +97,7 @@
          "$AT|K" : 1
       },
       "Abandon Voice" : {
+         "$Ab|$an|don |$Vo|ice" : 1,
          "$Ab|andon |$Vo|ice" : 1
       },
       "Abukuma" : {
@@ -142,7 +146,8 @@
          "$Ag|$an|o" : 1
       },
       "Agano Kai" : {
-         "$Ag|$ano| |$Ka|i" : 1
+         "$Ag|$ano| |$Ka|i" : 1,
+         "$Ag|$an|o|$ Kai" : 1
       },
       "Air Advantage" : {
          "$Air|$ A|$dvant|$age" : 1
@@ -192,6 +197,9 @@
       "Akigumo Kai" : {
          "$Aki|$gumo|$ Kai" : 1
       },
+      "Akitsu Maru" : {
+         "$Ak|$itsu| |$Maru" : 1
+      },
       "Akitsu Maru A" : {
          "$Aki|$tsu| |$Maru|$ A" : 1
       },
@@ -202,7 +210,8 @@
          "$Aki|$tsu|$shima" : 1
       },
       "Akitsushima Kai" : {
-         "$Aki|$tsu|$shima| |$Kai" : 1
+         "$Aki|$tsu|$shima| |$Kai" : 1,
+         "$Ak|$itsu|$shima|$ Kai" : 1
       },
       "Akizuki" : {
          "$Aki|$zuki" : 1
@@ -258,6 +267,9 @@
       "Anti-Sub/Anti-Air Escort Fleet Capacity" : {
          "$Anti-|$Sub|/|$Anti|-|$Air| |$Es|$co|$rt| |$Fl|$ee|t |$Capa|$cit|y" : 1
       },
+      "Anti-Sub/Anti-Air Escort Fleet Capacity\n" : {
+         "$Anti-|$Su|b/|$Anti-|$Air| |$Es|$co|rt |$Fleet |$Ca|p|$ac|$it|y\n" : 1
+      },
       "Aoba" : {
          "$Ao|$ba" : 1
       },
@@ -290,6 +302,9 @@
       },
       "Area captured" : {
          "$Are|a |$capt|$ured" : 1
+      },
+      "Area captured：{0}" : {
+         "$Are|a |$capt|$ured|：|{0}" : 1
       },
       "Armor" : {
          "$Ar|$mor" : 1
@@ -356,6 +371,9 @@
       },
       "Ayanami Kai" : {
          "$Aya|$nami|$ Kai" : 1
+      },
+      "Ayanami Kai Ni" : {
+         "$Aya|$nami|$ Kai |$Ni" : 1
       },
       "Ayanami Kai Ni5" : {
          "$Aya|$nami|$ Kai |$Ni|5" : 1
@@ -424,6 +442,7 @@
          "$Chi|$kuma|$ Kai" : 1
       },
       "Chikuma Kai Ni" : {
+         "$Chi|$kuma|$ Kai |$Ni" : 1,
          "$Chi|$kuma|$ Kai| |$Ni" : 1
       },
       "Chinjufu Region" : {
@@ -446,7 +465,8 @@
          "$Chitose| |$Carrier" : 1
       },
       "Chitose Kai" : {
-         "$Chi|$tose|$ Kai" : 1
+         "$Chi|$tose|$ Kai" : 1,
+         "$Ch|i|$tose|$ Kai" : 1
       },
       "Chitose Kai Ni" : {
          "$Chi|$tose|$ Kai| |$Ni" : 1
@@ -460,8 +480,14 @@
       "Chiyoda" : {
          "$Ch|$iyo|$da" : 1
       },
+      "Chiyoda A" : {
+         "$Ch|$iyo|$da|$ A" : 1
+      },
       "Chiyoda A f" : {
          "$Chi|$yoda|$ A| f" : 1
+      },
+      "Chiyoda Carrier" : {
+         "$Chi|$yoda| |$Carrier" : 1
       },
       "Chiyoda Carrier Kai Ni" : {
          "$Chiyoda| |$Carrier|$ Kai| |$Ni" : 1
@@ -470,7 +496,8 @@
          "$Chiyoda| |$Carrier| f" : 1
       },
       "Chiyoda Kai" : {
-         "$Ch|$iyo|$da| |$Kai" : 1
+         "$Ch|$iyo|$da| |$Kai" : 1,
+         "$Ch|$iyo|$da|$ Kai" : 1
       },
       "Choose" : {
          "$Ch|$oose" : 1
@@ -505,8 +532,14 @@
       "Command LV:999" : {
          "$Co|$mm|$and| |$LV|:999" : 1
       },
+      "Command LV:{0}" : {
+         "$Co|$mm|$and| |$LV|:|{0}" : 1
+      },
       "Command Menu" : {
          "$Co|mm|$an|d |$Me|$nu" : 1
+      },
+      "Commence docking?" : {
+         "$Co|$mm|$en|$ce| |$do|$ck|$in|g?" : 1
       },
       "Commense docking?" : {
          "$Co|$mm|$en|$se| |$do|$ck|$in|g?" : 1
@@ -557,6 +590,9 @@
       "Contents begin with the following." : {
          "$Cont|$ents| |$beg|$in |$wi|$th| t|$he| |$follow|$ing|." : 1
       },
+      "Control of Ship Girl now possible." : {
+         "$Cont|ro|$l |$of |$Sh|$ip|$ Girl |$no|w p|$os|s|$ible|." : 1
+      },
       "Control of Ship Girl now possible. &" : {
          "$Con|$tro|$l |$of| |$Sh|$ip|$ Girl| |$now| p|$oss|$ible|. &" : 1
       },
@@ -564,6 +600,7 @@
          "$Coordinated |$Shelling" : 1
       },
       "Costal Defense" : {
+         "$Costal| |$Def|$ense" : 1,
          "$Cos|$ta|$l |$Def|$ense" : 1
       },
       "Counterattack the enemy with the allied fleet. The battle is divided into two parts, Vanguard Fleet and Battle Fleet. In addition, it is possible to direct support to each part" : {
@@ -572,11 +609,17 @@
       "Current Location" : {
          "$Cur|$rent| |$Loca|$tion" : 1
       },
+      "Current Location：{0}" : {
+         "$Current| |$Loc|$at|$ion|：|{0}" : 1
+      },
       "Current Turn" : {
          "$Cu|$rre|$nt| |$Turn" : 1
       },
       "Current Turn:Year0 Day17" : {
          "$Cur|$re|$nt| |$Tu|$rn|:|$Ye|$ar|0 |$Da|y17" : 1
+      },
+      "Current Turn：{0}" : {
+         "$Cu|$rre|$nt| |$Turn|：|{0}" : 1
       },
       "Current Value" : {
          "$Current| |$Value" : 1
@@ -641,6 +684,9 @@
       "Difficulty level" : {
          "$Dif|$fic|$ulty| |$level" : 1
       },
+      "Difficulty level:{0}" : {
+         "$Dif|$fi|$culty| |$level|:|{0}" : 1
+      },
       "Disposal      Name　　　　　　　　　 Rarity" : {
          "$Dis|$posa|$l |     |$Nam|e　　　　　　　　　 |$Ra|$ri|$ty" : 1
       },
@@ -648,7 +694,8 @@
          "$Do |$Not |$Evac|$uate" : 1
       },
       "Do Not Persue" : {
-         "$Do |$Not |$Pe|$rs|$ue" : 1
+         "$Do |$Not |$Pe|$rs|$ue" : 1,
+         "$Do |$Not| |$Persue" : 1
       },
       "Do Not Use" : {
          "$Do| |$Not |$Us|e" : 1
@@ -751,6 +798,9 @@
       },
       "Execute Middle Strategy" : {
          "$Execute| |$Middle| |$Strategy" : 1
+      },
+      "Execute Middle Strategy：{0}" : {
+         "$Execute| |$Middle| |$Strategy|：|{0}" : 1
       },
       "Expanded and repaired!" : {
          "$Expa|$nd|$ed| |$and |$rep|$air|$ed|!" : 1
@@ -933,6 +983,12 @@
       "Furniture Coin x" : {
          "$Fur|$ni|$ture| |$Co|$in |x" : 1
       },
+      "Furniture Coin ✕ " : {
+         "$Fur|$ni|$ture| |$Co|$in |✕ " : 1
+      },
+      "Furniture Coins☓999999" : {
+         "$Furniture| |$Co|$in|s☓999999" : 1
+      },
       "Furniture Coins☓9999990" : {
          "$Furniture| |$Coi|ns☓9999990" : 1
       },
@@ -957,6 +1013,9 @@
       "Furutaka Kai" : {
          "$Furu|$taka|$ Kai" : 1
       },
+      "Furutaka Kai Ni" : {
+         "$Furu|$taka|$ Kai |$Ni" : 1
+      },
       "Furutaka Kai Ni W" : {
          "$Furu|$taka|$ Kai |$Ni |W" : 1
       },
@@ -967,12 +1026,14 @@
          "$Fu|$sou" : 1
       },
       "Fusou Festival" : {
+         "$Fuso|u |$Festival" : 1,
          "$Fus|$ou| |$Fest|$ival" : 1
       },
       "Fusou Kai" : {
          "$Fu|$sou|$ Kai" : 1
       },
       "Fusou Kai Ni" : {
+         "$Fus|$ou|$ Kai |$Ni" : 1,
          "$Fu|$sou|$ Kai| |$Ni" : 1
       },
       "Fusou1" : {
@@ -1022,6 +1083,9 @@
       },
       "Haruna Kai" : {
          "$Ha|$runa|$ Kai" : 1
+      },
+      "Haruna Kai Ni" : {
+         "$Ha|$runa|$ Kai |$Ni" : 1
       },
       "Haruna Kai Ni f" : {
          "$Ha|$runa|$ Kai |$Ni |f" : 1
@@ -1100,6 +1164,9 @@
       },
       "Hiei Kai" : {
          "$Hi|$ei|$ Kai" : 1
+      },
+      "Hiei Kai Ni" : {
+         "$Hi|$ei|$ Kai |$Ni" : 1
       },
       "Hiei Kai NiJ" : {
          "$Hiei|$ Kai| |$Ni|J" : 1
@@ -1266,6 +1333,9 @@
       "Isuzu" : {
          "$Is|$uz|u" : 1
       },
+      "Isuzu Kai" : {
+         "$Is|$uz|u|$ Kai" : 1
+      },
       "Isuzu Kai Ni" : {
          "$Is|$uzu|$ Kai| |$Ni" : 1
       },
@@ -1277,6 +1347,9 @@
       },
       "Item Details Item Details Item Details Item" : {
          "$It|em |$Detail|s |$It|$em| |$Deta|$il|s |$It|$em| |$Deta|$ils| |$Ite|m" : 1
+      },
+      "Item List" : {
+         "$It|em List" : 1
       },
       "Item Name" : {
          "$It|$em| |$Na|$me" : 1
@@ -1306,7 +1379,8 @@
          "$Ju|$nyou|$ Kai" : 1
       },
       "Junyou Kai Ni" : {
-         "$Jun|$you |$Kai| |$Ni" : 1
+         "$Jun|$you |$Kai| |$Ni" : 1,
+         "$Jun|$you|$ Kai |$Ni" : 1
       },
       "Kaga" : {
          "$Ka|$ga" : 1
@@ -1386,6 +1460,9 @@
       "Kinugasa Kai" : {
          "$Kinu|$gasa|$ Kai" : 1
       },
+      "Kinugasa Kai Ni" : {
+         "$Kinu|$gasa|$ Kai |$Ni" : 1
+      },
       "Kinugasa Kai Ni4" : {
          "$Kinu|$gasa|$ Kai |$Ni|4" : 1
       },
@@ -1397,6 +1474,9 @@
       },
       "Kirishima Kai N" : {
          "$Kiri|$shima|$ Kai |N" : 1
+      },
+      "Kirishima Kai Ni" : {
+         "$Kiri|$shima|$ Kai |$Ni" : 1
       },
       "Kisaragi Kai" : {
          "$Kisa|$ragi|$ Kai" : 1
@@ -1412,6 +1492,9 @@
       },
       "Kiso Kai" : {
          "$Ki|$so|$ Kai" : 1
+      },
+      "Kiso Kai Ni" : {
+         "$Ki|$so|$ Kai |$Ni" : 1
       },
       "Kiso Kai NiY" : {
          "$Kiso|$ Kai| |$Ni|Y" : 1
@@ -1442,6 +1525,9 @@
       },
       "Kongou Kai" : {
          "$Ko|$ngou|$ Kai" : 1
+      },
+      "Kongou Kai Ni" : {
+         "$Ko|$ngou|$ Kai |$Ni" : 1
       },
       "Kongou Kai NiJ" : {
          "$Ko|$ngou|$ Kai |$Ni|J" : 1
@@ -1562,6 +1648,9 @@
       },
       "Mikazuki" : {
          "$Mi|$ka|$zuki" : 1
+      },
+      "Mikazuki Kai" : {
+         "$Mika|$zuki| |$Kai" : 1
       },
       "Mikazuki Kai z" : {
          "$Mika|$zuki|$ Kai| z" : 1
@@ -1720,6 +1809,7 @@
          "$Ne|$nohi|$ Kai" : 1
       },
       "Night Battle Start" : {
+         "$Night |$Battle| |$Start" : 1,
          "$Night| |$Battle| |$Start" : 1
       },
       "No Instant Repair Materials Available" : {
@@ -1758,6 +1848,9 @@
       "Number of Ship Girls" : {
          "$Number |$of |$Ship|$ Girl|s" : 1
       },
+      "Number of Ship Girls：{0}" : {
+         "$Number |$of |$Ship|$ Girl|s：|{0}" : 1
+      },
       "Number of Sorties\n\r\nNumber of Wins\n\r\nInterception of Success\n\nWin Rate\n\n\nExercise Number\n\nNumber of Counter Exercises\r\n" : {
          "$Number| |$of |$Sorties|\n\r\n|$Number| |$of |$Wins|\n\r\n|$Intercept|$ion| |$of |$Success|\n\n|$Win |$Rate|\n\n\n|$Exercise|$ Number|\n\n|$Number of| |$Counter |$Exercises|\r\n" : 1
       },
@@ -1766,6 +1859,9 @@
       },
       "Number of owned fleets:999" : {
          "$Number |$of |$owned| |$fleets|:999" : 1
+      },
+      "Number of owned fleets：{0}" : {
+         "$Number of| |$owned| |$fleets|：|{0}" : 1
       },
       "Oboro Kai" : {
          "$Oboro|$ Kai" : 1
@@ -1849,6 +1945,7 @@
          "$Possible| |$Reso|$urce| |$Gain" : 1
       },
       "Practice Navigation" : {
+         "$Practice| |$Naviga|$tion" : 1,
          "$Practice| |$Navi|$gat|$ion" : 1
       },
       "Present Location:Chinjufu Region" : {
@@ -1986,6 +2083,9 @@
       "Samidare" : {
          "$Sa|$mi|$dare" : 1
       },
+      "Samidare Kai" : {
+         "$Sami|$dare| |$Kai" : 1
+      },
       "Samidare Kai C" : {
          "$Sami|$dare|$ Kai| C" : 1
       },
@@ -2021,6 +2121,9 @@
       },
       "Select item with button and operate with D-Pad" : {
          "$Select| it|$em| with |$bu|$tt|$on| |$and |$op|$er|$ate| w|$ith| D-|$Pad" : 1
+      },
+      "Selection" : {
+         "$Se|$le|$ct|$ion" : 1
       },
       "Selection " : {
          "$Se|$le|$ct|$ion| " : 1
@@ -2162,6 +2265,7 @@
          "$Sor|$tie| \r\n\n|$Exercise" : 1
       },
       "Sortie Circumstance" : {
+         "$Sortie| |$Circum|$stance" : 1,
          "$Sort|$ie| |$Circum|$stance" : 1
       },
       "Sortie Fleet" : {
@@ -2229,6 +2333,7 @@
          "$Stra|$tegy| |$Poi|$nt|s" : 1
       },
       "Strategy point limit has risen." : {
+         "$Strategy| po|$in|t l|$im|it h|$as| ris|$en|." : 1,
          "$Str|$ate|$gy| point l|$im|$it| h|$as| r|$is|$en|." : 1
       },
       "StrategyP x" : {
@@ -2244,7 +2349,8 @@
          "$Su|$pply" : 1
       },
       "Support Fleet has arrived!" : {
-         "$Sup|$port| |$Flee|t h|$as| |$arr|$ive|d!" : 1
+         "$Sup|$port| |$Flee|t h|$as| |$arr|$ive|d!" : 1,
+         "$Su|$pp|$or|t |$Fleet |$has| |$arr|$iv|$ed|!" : 1
       },
       "Support supplies arrived. \n\n" : {
          "$Supp|$ort| |$supp|$lies| |$arr|$ive|d. \n\n" : 1
@@ -2366,6 +2472,9 @@
       "Tokitsukaze" : {
          "$Tok|$itsu|$kaze" : 1
       },
+      "Tokitsukaze Kai" : {
+         "$Tok|$itsu|$kaze |$Kai" : 1
+      },
       "Tokitsukaze KaiJ" : {
          "$Tok|$itsu|$kaze|$ Kai|J" : 1
       },
@@ -2376,6 +2485,7 @@
          "$To|$ne|$ Kai" : 1
       },
       "Tone Kai Ni" : {
+         "$To|$ne|$ Kai |$Ni" : 1,
          "$To|$ne|$ Kai| |$Ni" : 1
       },
       "Torpedo" : {
@@ -2385,6 +2495,7 @@
          "$Tor|$pedo| |$Cor|$re|$cti|$on" : 1
       },
       "Torpedo Exercises now open!" : {
+         "$Torpedo| |$Ex|$er|$ci|s|$es| |$no|w |$op|$en|!" : 1,
          "$To|r|$pe|$do| |$Exe|r|$cis|$es| |$now| |$op|$en|!" : 1
       },
       "Transition Menu" : {
@@ -2547,12 +2658,15 @@
          "$Would| |$you |$like |$to |$release| |$the| |$dock|?" : 1
       },
       "Would you like to save your current data?" : {
+         "$Would |$you |$like |$to |s|$av|e |$your| |$curr|$en|t |$data|?" : 1,
          "$Would| |$you |$like |$to |s|$ave| y|$ou|r |$curr|$ent| |$data|?" : 1
       },
       "Would you like to send this fleet on an expedition?" : {
+         "$Would |$you |$like |$to |s|$end |$this |$fleet |$on |$an |$expedition|?" : 1,
          "$Would |$you |$like |$to |s|$end |$this |$fleet |$on |$an |$expe|$dition|?" : 1
       },
       "Would you like to sortie with this fleet?" : {
+         "$Would |$you |$like |$to |$sortie| |$wi|$th| |$this |$fleet|?" : 1,
          "$Would |$you |$like |$to |s|$orti|e |$with| |$this |$fleet|?" : 1
       },
       "Yahagi" : {
@@ -2663,6 +2777,9 @@
       "Zuikaku Kai Ni A" : {
          "$Zui|$kaku|$ Kai |$Ni|$ A" : 1
       },
+      "[000000] (※Repair consumed)[-]" : {
+         "[000000]| (※|$Re|p|$ai|r |$co|$nsum|$ed|)|[-]" : 1
+      },
       "[12c112]End of Turn[-]" : {
          "[12c112]|$En|d |$of |$Turn|[-]" : 1
       },
@@ -2749,6 +2866,12 @@
       }
    },
    "UTF-8" : {
+      "\tEscort Fleet Damage" : {
+         "\t|$E|$s|$c|$o|$r|$t|$ |$F|l|$e|$e|$t|$ |$D|$a|$m|$a|$g|$e" : 1
+      },
+      "\n[666666](※Repair consumed)[-]" : {
+         "\n|[666666]|(※|$R|epair|$ |$c|o|$nsum|$e|$d|)|[-]" : 1
+      },
       " characters can be entered.)" : {
          "$ |$characters|$ |c|$an| |$be| |$en|$ter|$ed|$.|)" : 1
       },
@@ -2892,6 +3015,7 @@
          "$A|$TK" : 1
       },
       "Abandon Voice" : {
+         "$A|b|$a|ndon|$ |$Vo|ice" : 1,
          "Abandon|$ |$V|oi|$c|$e" : 1
       },
       "About Escort Fleet Deployment" : {
@@ -2937,6 +3061,7 @@
          "$A|g|$a|no" : 1
       },
       "Agano Kai" : {
+         "$Ag|ano|$ |Kai" : 1,
          "Agano|$ |$K|ai" : 1
       },
       "Air Advantage" : {
@@ -2978,10 +3103,14 @@
       "Akigumo Kai" : {
          "$Aki|$gumo|$ Kai" : 1
       },
+      "Akitsu Maru" : {
+         "$Aki|tsu|$ |$Maru" : 1
+      },
       "Akitsushima" : {
          "$Ak|$itsu|$shima" : 1
       },
       "Akitsushima Kai" : {
+         "$Aki|$tsu|$shima|$ Kai" : 1,
          "$Ak|$itsu|$shima| |$Kai" : 1
       },
       "Akizuki" : {
@@ -3036,6 +3165,9 @@
       "Anti-Sub/Anti-Air Escort Fleet Capacity" : {
          "Anti|$-|Sub/Anti-Air|$ |Escort|$ |Fleet |$Capa|city" : 1
       },
+      "Anti-Sub/Anti-Air Escort Fleet Capacity\n" : {
+         "Anti|$-|$Sub|/Anti-|$Air|$ |Escort|$ |$Fle|et |$Capa|$cit|y\n" : 1
+      },
       "Aoba" : {
          "$A|oba" : 1
       },
@@ -3068,6 +3200,9 @@
       },
       "Area captured" : {
          "Area|$ |captured" : 1
+      },
+      "Area captured：{0}" : {
+         "Area|$ |captured：|{0}" : 1
       },
       "Armor" : {
          "$A|$rmor" : 1
@@ -3135,6 +3270,9 @@
       "Ayanami Kai" : {
          "$Aya|$nami|$ Kai" : 1
       },
+      "Ayanami Kai Ni" : {
+         "$Aya|n|$ami|$ Kai |Ni" : 1
+      },
       "Ayanami Kai Ni5" : {
          "$Aya|$nami|$ Kai| Ni5" : 1
       },
@@ -3193,6 +3331,7 @@
          "$Chi|$kuma|$ Kai" : 1
       },
       "Chikuma Kai Ni" : {
+         "$Chi|$kuma|$ Kai| Ni" : 1,
          "$Ch|$ikum|a|$ Kai| Ni" : 1
       },
       "Chinjufu Region" : {
@@ -3211,7 +3350,8 @@
          "$Chitose|$ |$Carrier" : 1
       },
       "Chitose Kai" : {
-         "$Chi|$tose|$ Kai" : 1
+         "$Chi|$tose|$ Kai" : 1,
+         "$Chi|$tose|$ |Kai" : 1
       },
       "Chitose Kai Ni" : {
          "$Chi|$tose|$ |$Kai| Ni" : 1
@@ -3222,8 +3362,14 @@
       "Chiyoda" : {
          "$C|hiyoda" : 1
       },
+      "Chiyoda A" : {
+         "$C|h|$iyod|a|$ |A" : 1
+      },
       "Chiyoda A f" : {
          "Chiyoda|$ |A f" : 1
+      },
+      "Chiyoda Carrier" : {
+         "$Chi|$yoda|$ |$Carrier" : 1
       },
       "Chiyoda Carrier Kai Ni" : {
          "$Chiyoda| |$Carr|ier|$ Kai|$ |Ni" : 1
@@ -3232,6 +3378,7 @@
          "$Ch|$iyod|a |$Carrier| f" : 1
       },
       "Chiyoda Kai" : {
+         "$Chi|$yoda|$ |Kai" : 1,
          "Chiyoda|$ |Kai" : 1
       },
       "Choukai" : {
@@ -3261,8 +3408,14 @@
       "Command LV:999" : {
          "$Com|$mand|$ |LV:|$9|99" : 1
       },
+      "Command LV:{0}" : {
+         "$C|om|$mand|$ |LV:|{0}" : 1
+      },
       "Command Menu" : {
          "$C|ommand|$ |$M|$e|$n|$u" : 1
+      },
+      "Commence docking?" : {
+         "$C|omm|$e|n|$c|e|$ |do|$c|k|$in|$g|?" : 1
       },
       "Commense docking?" : {
          "$Com|m|$ense|$ |$d|$o|$c|k|$i|$n|$g|?" : 1
@@ -3312,6 +3465,9 @@
       "Contents begin with the following." : {
          "Contents|$ |begin|$ |with|$ |the|$ |following." : 1
       },
+      "Control of Ship Girl now possible." : {
+         "Control|$ |of|$ |Ship|$ |Girl|$ |now|$ |possi|$b|le|$." : 1
+      },
       "Control of Ship Girl now possible. &" : {
          "Control|$ |of|$ |Ship|$ |Girl|$ |now|$ |poss|$ible|$.|$ |&" : 1
       },
@@ -3319,7 +3475,8 @@
          "$Coordinated |$Shelling" : 1
       },
       "Costal Defense" : {
-         "$Co|$stal| |$Def|$ense" : 1
+         "$Co|$stal| |$Def|$ense" : 1,
+         "Co|$stal| |$Def|$ense" : 1
       },
       "Counterattack the enemy with the allied fleet. The battle is divided into two parts, Vanguard Fleet and Battle Fleet. In addition, it is possible to direct support to each part" : {
          "Counterattack|$ |the|$ |enemy|$ |with|$ |the|$ |allied|$ |fleet.|$ |The|$ |battle|$ |is|$ |divided|$ |into|$ |two|$ |parts,|$ |Vanguard|$ |Fleet|$ |and|$ |Battle|$ |Fleet.|$ |In|$ |$a|$d|$d|$i|tion,|$ |$i|$t|$ |$i|$s|$ |$p|$o|$s|$s|$i|$b|l|$e|$ |$t|$o|$ |$d|$i|$r|$e|$c|$t|$ |$s|$u|$p|$p|$o|$r|$t|$ |$t|$o|$ |$e|$a|$c|$h|$ |$p|$a|$r|$t" : 1
@@ -3327,11 +3484,17 @@
       "Current Location" : {
          "$Cu|r|$rent| |$Loc|$atio|n" : 1
       },
+      "Current Location：{0}" : {
+         "$Cur|$rent| |$Loc|$ati|on：|{0}" : 1
+      },
       "Current Turn" : {
          "$Cur|$rent|$ |$T|$urn" : 1
       },
       "Current Turn:Year0 Day17" : {
          "$Cur|$rent|$ |$Tu|rn:|$Year||$ |$D|$a|$y|$1|$7" : 1
+      },
+      "Current Turn：{0}" : {
+         "$C|urr|$ent|$ |$Turn|：|{0}" : 1
       },
       "Current Value" : {
          "$Current|$ |$Value" : 1
@@ -3396,6 +3559,9 @@
       "Difficulty level" : {
          "$Di|$ff|i|$cult|y |$level" : 1
       },
+      "Difficulty level:{0}" : {
+         "$Dif|$fic|$ulty|$ |$lev|el:|{0}" : 1
+      },
       "Dismantle  Class  Name" : {
          "$Dis|m|$antl|e|$ |$ |$C|l|$a|$s|$s|$ |$ |$N|$a|$m|$e" : 1
       },
@@ -3404,6 +3570,9 @@
       },
       "Do Not Evacuate" : {
          "$Do |$Not |$Evac|$uate" : 1
+      },
+      "Do Not Persue" : {
+         "$Do |$Not |Persue" : 1
       },
       "Do Not Use" : {
          "Do|$ |Not|$ |$Us|e" : 1
@@ -3506,6 +3675,9 @@
       },
       "Execute Middle Strategy" : {
          "$Execute| |$Middle| |$Stra|tegy" : 1
+      },
+      "Execute Middle Strategy：{0}" : {
+         "$Exe|cute |$Middle| |$Strategy|：|{0}" : 1
       },
       "Expanded and repaired!" : {
          "Expanded|$ |and|$ |repa|$ired|$!" : 1
@@ -3700,6 +3872,9 @@
       "Furniture Coin x" : {
          "Furniture|$ |Coin|$ |x" : 1
       },
+      "Furniture Coin ✕ " : {
+         "$Fur|n|$itur|e|$ |$Coi|n ✕ " : 1
+      },
       "Furniture Details" : {
          "$Furniture| |$Deta|$i|ls" : 1
       },
@@ -3721,6 +3896,9 @@
       "Furutaka Kai" : {
          "$Furu|$taka|$ Kai" : 1
       },
+      "Furutaka Kai Ni" : {
+         "$Fur|u|$taka|$ Kai |Ni" : 1
+      },
       "Furutaka Kai Ni W" : {
          "$Furu|$taka|$ Kai |Ni W" : 1
       },
@@ -3731,7 +3909,8 @@
          "$Fu|sou" : 1
       },
       "Fusou Festival" : {
-         "$Fuso|u |$Fe|st|$ival" : 1
+         "$Fuso|u |$Fe|st|$ival" : 1,
+         "$Fus|ou |$Fest|$ival" : 1
       },
       "Fusou Kai Ni" : {
          "$Fuso|u|$ |$Kai| Ni" : 1
@@ -3771,6 +3950,9 @@
       },
       "Haruna Kai" : {
          "$Ha|$runa|$ Kai" : 1
+      },
+      "Haruna Kai Ni" : {
+         "$Haru|na |$Kai| Ni" : 1
       },
       "Haruna Kai Ni f" : {
          "$Haru|na|$ Kai| Ni f" : 1
@@ -3846,6 +4028,9 @@
       },
       "Hiei Kai" : {
          "$Hiei|$ |$Kai" : 1
+      },
+      "Hiei Kai Ni" : {
+         "$Hiei|$ |$Kai| Ni" : 1
       },
       "Hiei Kai NiJ" : {
          "$Hiei|$ |$Kai| NiJ" : 1
@@ -4004,6 +4189,9 @@
       "Isuzu" : {
          "$I|$s|uzu" : 1
       },
+      "Isuzu Kai" : {
+         "$Is|uzu|$ |Kai" : 1
+      },
       "Isuzu Kai Ni" : {
          "$Isuz|u|$ |$Kai|$ |Ni" : 1
       },
@@ -4017,6 +4205,7 @@
          "Item|$ |$D|et|$a|ils|$ |Item|$ |$D|et|$a|ils|$ |Item|$ |$D|et|$a|ils|$ |$Item" : 1
       },
       "Item List" : {
+         "$I|$t|$e|$m|$ |$L|$i|$st" : 1,
          "$I|t|$e|$m|$ |$L|$i|$s|$t" : 1
       },
       "Item Name" : {
@@ -4045,6 +4234,9 @@
       },
       "Junyou Kai" : {
          "$Ju|$nyou|$ Kai" : 1
+      },
+      "Junyou Kai Ni" : {
+         "$Jun|$you |$Kai| Ni" : 1
       },
       "Kaga" : {
          "$K|aga" : 1
@@ -4121,6 +4313,9 @@
       "Kinugasa Kai" : {
          "$Kinu|$gasa|$ Kai" : 1
       },
+      "Kinugasa Kai Ni" : {
+         "$Kinu|$gasa|$ Kai| Ni" : 1
+      },
       "Kinugasa Kai Ni4" : {
          "$Kinu|$gasa|$ Kai| Ni4" : 1
       },
@@ -4132,6 +4327,9 @@
       },
       "Kirishima Kai N" : {
          "$Kiri|$shima| |$Kai| N" : 1
+      },
+      "Kirishima Kai Ni" : {
+         "$Kiri|$shima|$ Kai| Ni" : 1
       },
       "Kisaragi Kai" : {
          "$Kisa|$ragi|$ Kai" : 1
@@ -4147,6 +4345,9 @@
       },
       "Kiso Kai" : {
          "$Kiso|$ |$Kai" : 1
+      },
+      "Kiso Kai Ni" : {
+         "$Kiso|$ |$Kai| Ni" : 1
       },
       "Kiso Kai NiY" : {
          "$Kiso|$ |$Kai| NiY" : 1
@@ -4174,6 +4375,9 @@
       },
       "Kongou Kai" : {
          "$Ko|$ngou|$ Kai" : 1
+      },
+      "Kongou Kai Ni" : {
+         "Ko|$ngou| |$Kai| Ni" : 1
       },
       "Kongou Kai NiJ" : {
          "$Ko|$ngou|$ Kai| NiJ" : 1
@@ -4413,6 +4617,7 @@
          "$Ne|$nohi|$ Kai" : 1
       },
       "Night Battle Start" : {
+         "$Nigh|t |$Battle| |$Start" : 1,
          "$Nigh|t |$Battle| |$Star|t" : 1
       },
       "No Instant Repair Materials Available" : {
@@ -4451,6 +4656,9 @@
       "Number of Ship Girls" : {
          "$Number of| |$Ship| |$Gi|r|$ls" : 1
       },
+      "Number of Ship Girls：{0}" : {
+         "$Number of| |$Shi|p |$Gir|$ls|：|{0}" : 1
+      },
       "Number of Sorties\n\r\nNumber of Wins\n\r\nInterception of Success\n\nWin Rate\n\n\nExercise Number\n\nNumber of Counter Exercises\r\n" : {
          "$Number| of |$Sort|ies\n\r\n|$Number| of |$Wins|\n\r\n|$Interception| of |$Success|\n\n|$Win |$Rate|\n\n\n|$Exercise|$ Number|\n\nNu|$mber| of |$Counter| |$Exercises|\r\n" : 1
       },
@@ -4459,6 +4667,9 @@
       },
       "Number of owned fleets:999" : {
          "Nu|$mber| of |$owned| |$fleet|s:999" : 1
+      },
+      "Number of owned fleets：{0}" : {
+         "$Number of| |$owned| |$fl|$eet|s：|{0}" : 1
       },
       "Oboro Kai" : {
          "$Oboro|$ Kai" : 1
@@ -4533,7 +4744,8 @@
          "$Poss|ible |$Reso|$urce| |$Gain" : 1
       },
       "Practice Navigation" : {
-         "$Practice| |$Navi|gation" : 1
+         "$Practice| |$Navi|gation" : 1,
+         "$Practice| |$Navi|g|$atio|n" : 1
       },
       "Present Location:Chinjufu Region" : {
          "Present|$ |Location:|$Chin|jufu Region" : 1
@@ -4688,6 +4900,9 @@
       "Select item with button and operate with D-Pad" : {
          "Select|$ |item|$ |with|$ |button|$ |and|$ |oper|$a|te|$ |w|$i|$t|$h|$ |$D|$-|$P|$a|$d" : 1
       },
+      "Selection" : {
+         "$S|ele|$c|$tion" : 1
+      },
       "Selection " : {
          "$S|$ele|$ctio|n|$ " : 1
       },
@@ -4819,7 +5034,8 @@
          "$So|rt|$ie| \r\n\n|$Exercise" : 1
       },
       "Sortie Circumstance" : {
-         "$Sort|$ie| |$Circum|$stance" : 1
+         "$Sort|$ie| |$Circum|$stance" : 1,
+         "$Sort|ie |$Circum|$stance" : 1
       },
       "Sortie Fleet!" : {
          "Sortie|$ |$Fl|$e|$e|$t|$!" : 1
@@ -4883,6 +5099,7 @@
          "$Strategy|$ |$P|$o|$in|$ts" : 1
       },
       "Strategy point limit has risen." : {
+         "$S|tr|$a|t|$e|gy|$ |po|$i|$nt|$ |l|$i|m|$i|t|$ |h|$a|s|$ |r|$i|s|$e|n|$." : 1,
          "Strategy|$ |point|$ |l|$i|m|$i|t|$ |$h|$a|$s|$ |$r|$i|$s|$e|$n|$." : 1
       },
       "StrategyP x" : {
@@ -4895,7 +5112,8 @@
          "$Suc|$cess" : 1
       },
       "Support Fleet has arrived!" : {
-         "$S|upport|$ |Fleet|$ |has|$ |$a|rr|$ived|$!" : 1
+         "$S|upport|$ |Fleet|$ |has|$ |$a|rr|$ived|$!" : 1,
+         "Support|$ |Fleet|$ |has|$ |$a|rrived|$!" : 1
       },
       "Support supplies arrived. \n\n" : {
          "$Sup|$port|$ |$supplies|$ |$ar|$r|$iv|$ed|$.|$ |\n\n" : 1
@@ -5002,6 +5220,9 @@
       "Tokitsukaze" : {
          "$Tok|$itsu|$kaze" : 1
       },
+      "Tokitsukaze Kai" : {
+         "$Tok|$itsu|$kaze |$Kai" : 1
+      },
       "Tokitsukaze KaiJ" : {
          "$Tok|$itsu|$kaze|$ Kai|J" : 1
       },
@@ -5012,6 +5233,7 @@
          "$Tone|$ |$Kai" : 1
       },
       "Tone Kai Ni" : {
+         "$Tone|$ |$Kai| Ni" : 1,
          "Tone|$ |Kai Ni" : 1
       },
       "Torpedo" : {
@@ -5021,6 +5243,7 @@
          "$Torpedo|$ |$C|$or|re|$ct|$io|n" : 1
       },
       "Torpedo Exercises now open!" : {
+         "$T|$o|r|$pedo|$ |$E|xer|$c|ises|$ |now|$ |o|$pen|!" : 1,
          "Torpedo|$ |Exercises|$ |now|$ |$o|p|$e|$n|$!" : 1
       },
       "Transition Menu" : {
@@ -5168,12 +5391,15 @@
          "Would you like to rel|$ease| the |$dock|?" : 1
       },
       "Would you like to save your current data?" : {
-         "Would|$ |you|$ |like|$ |to|$ |save your current data?" : 1
+         "Would|$ |you|$ |like|$ |to|$ |save your current data?" : 1,
+         "Would|$ |you|$ |like|$ |to|$ |s|$ave| y|$our| curr|$ent| |$data|?" : 1
       },
       "Would you like to send this fleet on an expedition?" : {
-         "$Would |$you |$like| to s|$end |$this| |$fleet |on an |$expe|$dition|?" : 1
+         "$Would |$you |$like| to s|$end |$this| |$fleet |on an |$expe|$dition|?" : 1,
+         "$Would |$you| |$like |$to |s|$end |$this |$fleet |$on |$an |$expe|$dition|?" : 1
       },
       "Would you like to sortie with this fleet?" : {
+         "$Would |$you| |$like| |$to |s|$ort|ie w|$ith| |$this| fl|$eet|?" : 1,
          "Would |$you |$like| to s|$orti|e with |$this| fleet?" : 1
       },
       "Yahagi Kai" : {
@@ -5268,6 +5494,9 @@
       },
       "Zuikaku Kai Ni A" : {
          "$Zui|$kaku|$ Kai| Ni|$ A" : 1
+      },
+      "[000000] (※Repair consumed)[-]" : {
+         "[000000]|$ |(※|$R|epair|$ |$c|o|$nsum|$e|$d|)|[-]" : 1
       },
       "[12c112]End of Turn[-]" : {
          "[12c112]|End|$ |of|$ |Turn|[-]" : 1
