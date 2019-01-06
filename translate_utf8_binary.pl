@@ -347,6 +347,7 @@ sub run {
         my $found;
         for my $enc ( ref $f_enc ? $f_enc->@* : $f_enc ) {
             for my $jp (@tr_keys) {
+                last if $enc eq "UTF-8" and $file->{filename} ne "Assembly-CSharp.dll" and decode( $enc, $content ) !~ $jp_qr;
                 next unless    #
                   my @hits = get_hits $content, $jp, $enc;
                 my %obj = $tr{$jp}->%*;
