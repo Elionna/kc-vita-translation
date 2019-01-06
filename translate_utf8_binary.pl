@@ -140,7 +140,6 @@ sub map_str_to_multi_chars {
 
 sub map_tr_to_multi_chars {
     my ( $jp, $enc, $obj, $used, $glyphmap_cache, %prepared ) = @_;
-    $DB::single = $DB::single = 1 if $obj->{tr} eq "Fusou";
     my $target_length = length encode $enc, $jp;
     my ( $tr, $raw, @failed ) = map_str_to_multi_chars( $obj->{tr}, $enc, $target_length, $used, $glyphmap_cache, \%prepared );
     my $l_tr = length $tr;
