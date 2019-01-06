@@ -209,7 +209,7 @@ sub report_near_miss {
     my $mod = $hit - ( $hit % 16 );
     my ( $offset, $extract ) = (0);
     while ( $offset < 3 ) {
-        $extract = decode $enc, substr $content, $hit - 16 + $offset, 28 + 2 * length encode $enc, $jp;
+        $extract = decode $enc, substr $content, $hit - 32 + $offset, 16 + 28 + 2 * length encode $enc, $jp;
         last if $extract =~ /\Q$jp\E/;
         $offset++;
     }
@@ -349,7 +349,7 @@ sub run {
 
     my @maybe = map sprintf( "  %-" . ( 30 - length $_ ) . "s %-30s hit x %3s, nomatch x %3s, match x %3s", $_, $tr{$_}{tr}, $hit{$_}, $unmatched{$_}, $hit{$_} - $unmatched{$_} ),
       reverse sort { length $a <=> length $b } sort keys %unmatched;
-    my @nowhere = map sprintf( "  %-" . ( 30 - length $_ ) . "s $tr{$_}{tr}", $_ ), grep +( !$found{$_} and !$unmatched{$_} ), @tr_keys;
+    my @nowhere = map sprintf( "  %-" . ( 30 - length $_ ) . "s $tr{$_}{tr}", "'$_'" ), grep +( !$found{$_} and !$unmatched{$_} ), @tr_keys;
     saynl for "", "strings not always identified confidently:", @maybe, "", "strings found nowhere:", @nowhere;
 
     say "\ndone";
