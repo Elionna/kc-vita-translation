@@ -10,6 +10,8 @@ use utf8;
 use lib '.';
 use binary_translations;
 
+my $jp_qr = qr/[\p{Hiragana}\p{Katakana}\p{Han}]/;
+
 run();
 
 sub saynl {
@@ -181,9 +183,42 @@ sub get_hits {
     return @hits;
 }
 
+sub squares_for_mojibake {
+    my ($msg) = @_;
+
+    # need to remain: newlines: A D, jp space: 3000
+    $msg =~ s/\x{$_}/■/g
+      for 0 .. 8,
+      qw( B C E F 10 11 12 13 15 17 18 19 1A 1B 1C 1D 1E 14 600 900 300 500 B00 C00 1D00 D00 1700 800 1500 1900 F00 700 70C 1B00 1D00 1F00 1300 1100 2000 2100 2300 2500 2700 2900 2A00 2B00 2D00 3100 3200 321E 3300 3428 3500 3700 3900 3B00 3C3D 3D00 3E30 3F00 4100 4300 4900 4C30 4D00 4F00 5100 6200 661A 6C00 6D6F 6E00 7000 7500 7900 7B00 7D00 8000 8580 8780 8980 9600 E00A FFFD   );
+    return $msg;
+}
+
 sub check_for_null_bracketing {    # looks at the following char as utf8 one to make scanning easier
-    my ( $content, $jp, $enc, $hit ) = @_;
-    return if $enc eq "UTF-16LE";
+    my ( $content, $jp, $enc, $hit, $file ) = @_;
+    my $translation_length = length encode $enc, $jp;
+    if ( $file->{filename} eq "Assembly-CSharp.dll" and $enc eq "UTF-16LE" ) {
+        my $length = unpack 'C', substr $content, $hit - 1, 1;
+        my $c = ord substr $content, $hit + $length - 1, 1;
+        my $sample = decode $enc, substr $content, $hit, $length;
+        return 1 if $length == $translation_length or ( !$c and $translation_length == $length - 1 );
+        my $msg = squares_for_mojibake "wanted $translation_length for '$jp', header indicated $length, $c: '$sample'";
+        saynl $msg if $length;
+        #saynl $msg if $length and !$c and $sample =~ $jp_qr and $msg !~ /■|■/;
+        return;
+    }
+    if ( $file->{filename} eq "Assembly-CSharp.dll" and $enc eq "UTF-8" ) {
+        my $length = unpack 'C', substr $content, $hit - 1, 1;
+        my $sample = decode $enc, substr $content, $hit, $length;
+        return 1 if $length == $translation_length;
+        my $msg = squares_for_mojibake "wanted $translation_length for '$jp', header indicated $length: '$sample'";
+        saynl $msg if $length;
+        #saynl $msg if $length and $sample =~ $jp_qr and $msg !~ /■|■/;
+    }
+    if ( $file->{filename} ne "Assembly-CSharp.dll" and $enc eq "UTF-8" ) {
+        my $length = unpack 'L', substr $content, $hit - 4, 4;
+        return 1 if $length and $length == $translation_length;
+        saynl squares_for_mojibake $_ for split /#-#/, sprintf "wanted      % 4s for '$jp'#-#header gave % 4s     '%s'", $translation_length, $length, decode $enc, substr $content, $hit, $length;
+    }
     my $decode_content = decode $enc, substr $content, $hit;
     my $pre = ord substr $content, $hit - 1, 1;
     my $post = ord substr $decode_content, length $jp, 1;
@@ -215,12 +250,7 @@ sub report_near_miss {
     }
     my ($ords) = map "[$_]", join "|", map uc sprintf( "%x", ord ), split //, $extract;
     my $msg = sprintf "hit '%s' %08x %08x not marked skipped or ok, please verify %s in >%s< %s", $file_hit, $mod, $hit, $jp, $extract, $ords;
-
-    # need to remain: newlines: A D, jp space: 3000
-    $msg =~ s/\x{$_}/■/g
-      for 0 .. 8,
-      qw( B C E F 10 11 12 13 15 17 18 19 1A 1B 1C 1D 1E 14 600 900 300 500 B00 C00 1D00 D00 1700 800 1500 1900 F00 700 1B00 1D00 1F00 1300 1100 2000 2100 2300 2500 2700 2900 2A00 2B00 2D00 3200 321E 3428 3C3D 3D00 3E30 3F00 4300 4900 4C30 4D00 661A 7B00 7D00 FFFD   );
-    saynl $msg;
+    saynl squares_for_mojibake $msg;
 }
 
 sub duplicate_check {
@@ -324,7 +354,7 @@ sub run {
                     my $file_hit = "$file->{fileid} $hit";
                     next if grep $file_hit eq $_, $obj{skip}->@*;
                     $hit{$jp}++;
-                    if ( !grep $file_hit eq $_, $obj{ok}->@* and !check_for_null_bracketing $content, $jp, $enc, $hit ) {
+                    if ( !grep $file_hit eq $_, $obj{ok}->@* and !check_for_null_bracketing $content, $jp, $enc, $hit, $file ) {
                         $unmatched{$jp}++;
                         report_near_miss $file_hit, $hit, $enc, $jp, $content;
                         next;
