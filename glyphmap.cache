@@ -5591,6 +5591,9 @@
       "○○○○Fleet Flagship" : {
          "○○○○|$Fl|$ee|t|$ |$Flagship" : 1
       },
+      "♪\"" : {
+         "♪|$\"" : 1
+      },
       "必要鋼材数\r\n\rFuel Required\r\nDays To Repair                  d\r\n\r\r高速修復材\r" : {
          "必要鋼材数\r\n\r|$Fuel|$ |$Required|\r\n|$Da|$ys|$ |$To|$ |$Re|p|$ai|r|$ |                 d\r\n\r\r高速修復材\r" : 1
       }
