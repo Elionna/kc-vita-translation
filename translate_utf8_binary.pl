@@ -15,21 +15,17 @@ my $jp_qr = qr/[\p{Hiragana}\p{Katakana}\p{Han}]/;
 
 run();
 
-sub saynl {
+sub filter_nl {
     my ($msg) = @_;
     $msg ||= $_;
     $msg =~ s/\n/\\n/g;
     $msg =~ s/\r/\\r/g;
-    say $msg;
+    $msg =~ s/\t/\\t/g;
+    return $msg;
 }
 
-sub printnl {
-    my ($msg) = @_;
-    $msg ||= $_;
-    $msg =~ s/\n/\\n/g;
-    $msg =~ s/\r/\\r/g;
-    print $msg;
-}
+sub saynl   { say filter_nl @_ }
+sub printnl { print filter_nl @_ }
 
 sub matches_for_part {
     my ( $part, $need_to_shrink, $enc, @glyphs ) = @_;
@@ -68,7 +64,7 @@ sub tasks_for_matches {
 
 sub map_str_to_multi_chars {
     my ( $tr, $enc, $length_target, $used, $glyphmap_cache, $prepared ) = @_;
-    print "mapping: ($length_target) '$tr' ";
+    printnl "mapping: ($length_target) '$tr' ";
     my %rev_prep = reverse $prepared->%*;
     my @glyphs = sort { length $a <=> length $b } sort keys $prepared->%*;
 
@@ -80,7 +76,10 @@ sub map_str_to_multi_chars {
         }
     }
     my @parts = split /(?<=\])|(?=\[)|(?<=\})|(?=\{)/, $tr;
-    return $e->(@parts) if $l->(@parts) == $length_target;
+    if ( $l->(@parts) == $length_target ) {
+        say "using translation";
+        return $e->(@parts);
+    }
 
     my $try = $glyphmap_cache->{$enc}{$tr};
     if ( $try and my @maps = keys $try->%* ) {
@@ -275,11 +274,15 @@ sub duplicate_check {
 sub half { my $p = shift; ( split_into 2, @_ )[$p]->@* }
 
 sub run {
+    `chcp 65001`;
     $|++;
     binmode STDOUT, ":encoding(UTF-8)";
     binmode STDERR, ":encoding(UTF-8)";
     my $do_blank     = grep /--blank/,        @ARGV;
     my $filter_pairs = grep /--filter_pairs/, @ARGV;
+    say "options:\n--blank to process all strings with blanked-out translations to find untranslated strings\n"    #
+      . "--filter_pairs to generate additional glyph pairs to find better matches\n\n";
+    sleep 1;
 
     say "prepping dictionary";
 
