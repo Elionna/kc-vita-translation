@@ -22,6 +22,14 @@ sub saynl {
     say $msg;
 }
 
+sub printnl {
+    my ($msg) = @_;
+    $msg ||= $_;
+    $msg =~ s/\n/\\n/g;
+    $msg =~ s/\r/\\r/g;
+    print $msg;
+}
+
 sub matches_for_part {
     my ( $part, $need_to_shrink, $enc, @glyphs ) = @_;
     my @matches = grep index( $part, $_ ) != -1, @glyphs;
@@ -59,7 +67,7 @@ sub tasks_for_matches {
 
 sub map_str_to_multi_chars {
     my ( $tr, $enc, $length_target, $used, $glyphmap_cache, $prepared ) = @_;
-    saynl "mapping: ($length_target) '$tr'";
+    print "mapping: ($length_target) '$tr' ";
     my %rev_prep = reverse $prepared->%*;
     my @glyphs = sort { length $a <=> length $b } sort keys $prepared->%*;
 
@@ -203,6 +211,7 @@ sub check_for_null_bracketing {    # looks at the following char as utf8 one to 
         return 1 if $length == $translation_length or ( !$c and $translation_length == $length - 1 );
         my $msg = squares_for_mojibake "wanted $translation_length for '$jp', header indicated $length, $c: '$sample'";
         saynl $msg if $length;
+
         #saynl $msg if $length and !$c and $sample =~ $jp_qr and $msg !~ /■|■/;
         return;
     }
@@ -212,6 +221,7 @@ sub check_for_null_bracketing {    # looks at the following char as utf8 one to 
         return 1 if $length == $translation_length;
         my $msg = squares_for_mojibake "wanted $translation_length for '$jp', header indicated $length: '$sample'";
         saynl $msg if $length;
+
         #saynl $msg if $length and $sample =~ $jp_qr and $msg !~ /■|■/;
     }
     if ( $file->{filename} ne "Assembly-CSharp.dll" and $enc eq "UTF-8" ) {
