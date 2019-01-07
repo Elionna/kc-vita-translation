@@ -288,6 +288,7 @@ sub run {
 
     duplicate_check;
     my %tr = binary_translations->data;
+    delete $tr{$_} for grep +( $tr{$_}{tr_tex} and !$tr{$_}{tr} ), keys %tr;
     $tr{$_}{tr} //= "" for grep !defined $tr{$_}{tr}, sort keys %tr;
     my @tr_keys = reverse sort { length $a <=> length $b } sort keys %tr;
 

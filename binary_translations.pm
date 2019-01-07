@@ -6,6 +6,17 @@ use utf8;
 
 sub data {
     return (
+        # strings that show up in textures
+        "制空権喪失" => { tr_tex => "Air Disadvantage", desc => 'Air Incapability or Air Superiority Lost' },
+        "制空権確保" => { tr_tex => "Air Secured", desc => 'Air Supremacy or Air Superiority Ensured' },
+        "対潜攻撃" => { tr_tex => "ASW", desc => 'Anti-submarine attack or Anti-submarine warfare(ASW)' },
+        "残日数り" => { tr_tex => "Days Remaining", desc => 'Left Over Number of Days | factory time cost' },
+        "突撃（接近+砲撃）" => { tr_tex => "Assault (Approach + Shelling)", desc => 'Charge, increase accuracy while decreasing evasion' },
+        "航空優勢" => { tr_tex => "Air Advantage", desc => 'Air Superiority' },
+        "航空攻撃" => { tr_tex => "Aerial Attack", desc => 'Air Strike' },
+        "護衛艦" => { tr_tex => "Escort", desc => "could use the word 'ship' in there, but too long, need font replacement" },
+
+        # strings that are as text in various files
         "選択" => { tr   => "Select", desc => "explains numpad" },
         "提督コマンド" => { tr => "Admiral Command", desc => "usually opens quick menu or changes the buttons to an alternate set, Arsenal.UIHowToArsenal" },
         "戦略へ" => { tr => "Strategy", desc => "leads to fleet strategy management screen, Arsenal.UIHowToArsenal" },
@@ -69,7 +80,6 @@ sub data {
         # 護衛艦損傷！        - Escort ship damage! #
         # 輸送船×1隻喪失！    - Transport ship x 1 lost!
         # 輸送船×13隻喪失！   - Transport ship x 13 lost!, example 2
-        "護衛艦" => { tr => "Escort",    desc => "could use the word 'ship' in there, but too long, need font replacement" },
         "輸送船" => { tr => "Transport", desc => "could use the word 'ship' in there, but too long, need font replacement" },
 
         # Expedition completion screen (these are probably art)
@@ -162,10 +172,7 @@ sub data {
 
         "接近"                    => { tr => "Approach" },
         "離脱"                    => { tr => "Escape", desc => 'Withdraw, Escape or Retreat' },
-        "航空攻撃"              => { tr => "Aerial Attack", desc => 'Air Strike' },
         "砲撃"                    => { tr => "Shelling", desc => 'Bombard could work as well. ' },
-        "対潜攻撃"              => { tr => "ASW\x{200B}", desc => 'Anti-submarine attack or Anti-submarine warfare(ASW)' },
-        "突撃（接近+砲撃）" => { tr => "Assault (Approach + Shelling)", desc => 'Charge, increase accuracy while decreasing evasion' },
         "雷撃"                    => { tr => "Torpedo", desc => 'can be opener and closer if ships have right equipment or are high-level subs' },
         "回避"                    => { tr => "Evade", desc => 'no attack, Evasion' },
         "統射" => {
@@ -173,10 +180,6 @@ sub data {
             desc => 'Tough one. It literally breaks down into Unified Archery. For now, I am going to go with Coordinated Shelling to see how it fits - Radar-coordinated Shelling'
         },
         #           ** I have updated these to reflect \resources\Textures\info6_set.tex.png ** these are final translations between 接近 and 統射
-
-        "制空権確保" => { tr => "Air Secured",      desc => 'Air Supremacy or Air Superiority Ensured' },
-        "航空優勢"    => { tr => "Air Advantage",    desc => 'Air Superiority' },
-        "制空権喪失" => { tr => "Air Disadvantage", desc => 'Air Incapability or Air Superiority Lost' },
 
         "装備数が保有上限に達し開発できません" =>
           { tr => "Equipment storage full, can not develop any more.", desc => 'warning message when constructing ships' },
@@ -202,8 +205,6 @@ sub data {
         "任務内容確認"                          => { tr => "",      desc => 'quests' },
         "設定"                                      => { tr => "Task Confirmation",      desc => 'Task Content Confirmation | settings' },
         "操作ガイド"                             => { tr => "Operation Guide",      desc => 'settings' },
-        "残り"                                      => { tr => "Remaining",      desc => 'Left Over | factory time cost' },
-        "日数"                                      => { tr => "Days",      desc => 'Number of Days | factory time cost' },
         "ロック"                                   => { tr => "Lock",      desc => 'ship list' },
         "ソート"                                   => { tr => "Sort",      desc => 'ship list' },
 
