@@ -447,7 +447,7 @@ sub data {
         "しばらくお待ち下さい。。" => { tr => "Please wait a moment..",      desc => '' },
         "その他" => { tr => "Other",      desc => 'Otherwise, in addition to, so forth, the rest' },
         "だみはらだみこだみはらだ" => {},
-        "なし" => { tr => "unacceptable",      desc => 'none, unsatisfactory' },
+        "なし" => { tr_disabled => "unacceptable", desc => 'none, unsatisfactory | TODO: letting this be inserted into all fitting spaces causes savegame list loading to never finish' },
         "のみ[66ccff]出撃可能[-]です。" => {},
         "は[FF0000]出撃不可[-]です。" => {},
         "はい" => { tr => "Yes",      desc => '' },
