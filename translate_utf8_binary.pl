@@ -7,6 +7,7 @@ use JSON::MaybeXS qw' decode_json encode_json ';
 use Tk;
 use Tk::Font;
 use utf8;
+use Array::Split 'split_into';
 use lib '.';
 use binary_translations;
 
@@ -271,6 +272,8 @@ sub duplicate_check {
     return;
 }
 
+sub half { my $p = shift; ( split_into 2, @_ )[$p]->@* }
+
 sub run {
     $|++;
     binmode STDOUT, ":encoding(UTF-8)";
@@ -335,6 +338,13 @@ sub run {
     for my $entry ( values %tr ) {
         $entry->{$_} = !defined $entry->{$_} ? [] : !ref $entry->{$_} ? [ $entry->{$_} ] : $entry->{$_} for qw( ok skip );
     }
+
+    my @bisections;
+
+    #my @bisections = qw( 1 1 1 1 1 1 );
+    #my @bisections = qw( 1 1 1 1 1 1 0 0 0 1 1 );
+    @tr_keys = half $_, @tr_keys for @bisections;
+    say "bisected with path ' @bisections ' to " . @tr_keys . " translations" . ( @tr_keys < 60 ? join "\n", "", @tr_keys : "" ) if @bisections;
 
     say "grabbing file list";
     my @list = utf8_asset_files;
