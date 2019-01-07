@@ -11,13 +11,15 @@ sub run {
     my $vita_dir = "e:/rePatch/PCSG00684/Media";
     my $cand_dir = "../kc_translation_mod_candidate/rePatch/PCSG00684";
 
+    io($vita_dir)->mkpath;
     my @vita_files = grep !/checksums/, io($vita_dir)->All_Files;
     for my $file (@vita_files) {
         my @file_parts = split /\/|\\/, $file;
         shift @file_parts for 1 .. 3;
         my $cand_file = join "/", $cand_dir, @file_parts;
         next if -e $cand_file;
-        say "file '$file' on vita doesn't exist in candidate dir, recommend delete";
+        say "file '$file' on vita doesn't exist in candidate dir, deleting";
+        unlink $file;
     }
 
     my $sums_file = "$vita_dir/checksums";
@@ -52,5 +54,11 @@ sub run {
     io($sums_file)->print( join "\n", map "$_\t$sums{$_}", sort keys %sums );
 
     say "done";
+    $|++;
+    print "\7";
+    sleep 1;
+    print "\7";
+    sleep 1;
+    print "\7";
     return;
 }
