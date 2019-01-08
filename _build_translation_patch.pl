@@ -14,7 +14,9 @@ sub run {
     say "you might want to run this to enable kanji: chcp 65001";
     say "your terminal's font will need to support kanji too (e.g. MS Gothic, MS Mincho)\n";
 
-    call "translate_utf8_binary.pl";
+    my @opt = @ARGV;
+    @ARGV = ();
+    call "translate_utf8_binary.pl @opt";
     call "modify_fonts_and_inject.pl";
     call "mod_textures.pl";
     call "copy_xml_to_modded.pl";

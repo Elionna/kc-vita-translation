@@ -8,6 +8,7 @@ use Tk;
 use Tk::Font;
 use utf8;
 use Array::Split 'split_into';
+use Getopt::Long::Descriptive;
 use lib '.';
 use binary_translations;
 
@@ -252,7 +253,7 @@ sub utf8_asset_files {
 }
 
 sub report_near_miss {
-    my ( $file_hit, $hit, $enc, $jp, $content ) = @_;
+    my ( $file_hit, $hit, $enc, $jp, $content, $is_a_hit ) = @_;
     my $mod = $hit - ( $hit % 16 );
     my ( $offset, $extract ) = (0);
     while ( $offset < 3 ) {
@@ -261,7 +262,7 @@ sub report_near_miss {
         $offset++;
     }
     my ($ords) = map "[$_]", join "|", map uc sprintf( "%x", ord ), split //, $extract;
-    my $msg = sprintf "hit '%s' %08x %08x not marked skipped or ok, please verify %s in >%s< %s", $file_hit, $mod, $hit, $jp, $extract, $ords;
+    my $msg = sprintf "hit '%s' %08x %08x" . ( $is_a_hit ? "" : " not marked skipped or ok" ) . ", please verify %s in >%s< %s", $file_hit, $mod, $hit, $jp, $extract, $ords;
     saynl squares_for_mojibake $msg;
 }
 
@@ -280,10 +281,26 @@ sub run {
     $|++;
     binmode STDOUT, ":encoding(UTF-8)";
     binmode STDERR, ":encoding(UTF-8)";
-    my $do_blank     = grep /--blank/,        @ARGV;
-    my $filter_pairs = grep /--filter_pairs/, @ARGV;
-    say "options:\n--blank to process all strings with blanked-out translations to find untranslated strings\n"    #
-      . "--filter_pairs to generate additional glyph pairs to find better matches\n\n";
+
+    my ( $opt, $usage ) = describe_options(
+        'perl %c %o',
+        [ 'do_blank|d',       "process all strings with blanked-out translations to find untranslated strings" ],
+        [ 'filter_pairs|f',   "generate additional glyph pairs to find better matches (only for testing)" ],
+        [ 'report_matches|m', "report all matches" ],
+        [
+            'bisect|b=s',
+            "help drill down to problem translations by repeatedly halving the list of translations to apply. "
+              . "expects a sequence of 0s and 1s, where the number indicates whether the top or bottom half "
+              . "of the list is to be left over after the halving step. examples: 0, 111101, 000101110",
+            { default => "" }
+        ],
+        [],
+        [ 'help', "print usage message and exit", { shortcircuit => 1 } ],
+    );
+    my ( $do_blank, $filter_pairs, $bisect, $report_matches ) = @{$opt}{qw( do_blank filter_pairs bisect report_matches )};
+
+    say $usage->text;
+    exit if $opt->help;
     sleep 1;
 
     say "prepping dictionary";
@@ -345,16 +362,17 @@ sub run {
         $entry->{$_} = !defined $entry->{$_} ? [] : !ref $entry->{$_} ? [ $entry->{$_} ] : $entry->{$_} for qw( ok skip );
     }
 
-    my @bisections;
-
-    #my @bisections = qw( 1 1 1 1 1 1 );
-    #my @bisections = qw( 1 1 1 1 1 1 0 0 0 1 1 );
+    my @bisections = split //, $bisect;
     @tr_keys = half $_, @tr_keys for @bisections;
-    say "bisected with path ' @bisections ' to " . @tr_keys . " translations" . ( @tr_keys < 60 ? join "\n", "", @tr_keys : "" ) if @bisections;
+    saynl !@bisections ? () : (    #
+        "bisected with path ' @bisections ' to " . @tr_keys . " translations",
+        "",
+        @tr_keys < 120 ? map sprintf( "% 3s: '$tr_keys[$_]' : '$tr{$tr_keys[$_]}{tr}'", $_ ), 0 .. $#tr_keys : ""
+    );
 
     say "grabbing file list";
     my @list = utf8_asset_files;
-    push @list, {    #
+    push @list, {                  #
         file      => io("../kc_original/Media/Managed/Assembly-CSharp.dll"),
         filename  => "Assembly-CSharp.dll",
         fileparts => [ split /\/|\\/, "../kc_original/Media/Managed/Assembly-CSharp.dll" ],
@@ -387,6 +405,7 @@ sub run {
                         next;
                     }
                     next if !$do_blank and !length $obj{tr};
+                    report_near_miss $file_hit, $hit, $enc, $jp, $content, "is_a_hit" if $report_matches;
                     substr( $content, $hit, length $_ ) = $_ for $obj{tr_mapped}{$enc};
                     $found++;
                     $found{$jp}++;
