@@ -26,7 +26,7 @@ sub run {
 }
 
 sub try_copy {
-    print "WARNING: This will delete all unknown files in ux0:/rePatch/PCSG00684/Media, backup if you have anything there.\nReady to copy? [y]";
+    print "WARNING: \7 This will delete all unknown files in ux0:/rePatch/PCSG00684/Media, backup if you have anything there.\nReady to copy? [y]";
     my $in .= <>;    # i have no idea why i need to do this twice
     $in .= <>;
     $in =~ s/[\r\n]//g;
