@@ -16,16 +16,18 @@ my $jp_qr = qr/[\p{Hiragana}\p{Katakana}\p{Han}]/;
 run();
 
 sub filter_nl {
-    my ($msg) = @_;
-    $msg ||= $_;
-    $msg =~ s/\n/\\n/g;
-    $msg =~ s/\r/\\r/g;
-    $msg =~ s/\t/\\t/g;
-    return $msg;
+    my (@msgs) = @_;
+    @msgs = ( $_ ? $_ : () ) if !@msgs;
+    for (@msgs) {
+        s/\n/\\n/g;
+        s/\r/\\r/g;
+        s/\t/\\t/g;
+    }
+    return @msgs;
 }
 
-sub saynl   { say filter_nl @_ }
-sub printnl { print filter_nl @_ }
+sub saynl   { say   for filter_nl @_ }
+sub printnl { print for filter_nl @_ }
 
 sub matches_for_part {
     my ( $part, $need_to_shrink, $enc, @glyphs ) = @_;
