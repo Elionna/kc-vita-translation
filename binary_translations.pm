@@ -303,7 +303,7 @@ sub data {
         "♪「" =>{ tr => qq[♪"] },
         "「" =>{ tr => qq["], desc => "Production.ProdBattleRewardItem" },
         "」を" =>{ tr => qq["\x{200B}], desc => "Production.ProdBattleRewardItem" },
-        "」" =>{ tr => qq["] },
+        "」" =>{ tr => qq["], skip => 'a-csharp 2416038' },
         "入手しました。"=>{ tr => "Acquired",      desc => "Production.ProdBattleRewardItem" },
         "」を入手しました。" =>{ tr => qq[" acquired. ],      desc => "Production.ProdBattleRewardItem" },
         " 装備の開発に失敗しました。\n\n『開発資材』は消費しませんでした。" =>{ tr => "Equipment Development failed. \n\nNo development materials consumed.", desc => "Production.ProdReceiveSlotItem" },

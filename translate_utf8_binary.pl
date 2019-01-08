@@ -204,13 +204,17 @@ sub squares_for_mojibake {
     return $msg;
 }
 
-sub check_for_null_bracketing {    # looks at the following char as utf8 one to make scanning easier
+sub check_for_null_bracketing {
     my ( $content, $jp, $enc, $hit, $file ) = @_;
     my $translation_length = length encode $enc, $jp;
     if ( $file->{filename} eq "Assembly-CSharp.dll" and $enc eq "UTF-16LE" ) {
         my $length = unpack 'C', substr $content, $hit - 1, 1;
         my $c = ord substr $content, $hit + $length - 1, 1;
         my $sample = decode $enc, substr $content, $hit, $length;
+
+        # sometimes the sizes match exactly, but sometimes the string also has a
+        # zero byte added. if the size matches exactly there is never a divider
+        # after it, just the size indicator and the next string.
         return 1 if $length == $translation_length or ( !$c and $translation_length == $length - 1 );
         my $msg = squares_for_mojibake "wanted $translation_length for '$jp', header indicated $length, $c: '$sample'";
         saynl $msg if $length;
