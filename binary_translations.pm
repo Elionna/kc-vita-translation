@@ -176,7 +176,7 @@ sub data {
         "雷撃"                    => { tr => "Torpedo", desc => 'can be opener and closer if ships have right equipment or are high-level subs' },
         "回避"                    => { tr => "Evade", desc => 'no attack, Evasion' },
         "統射" => {
-            tr   => "Coordinated Shelling",
+            tr   => "CShelling",
             desc => 'Tough one. It literally breaks down into Unified Archery. For now, I am going to go with Coordinated Shelling to see how it fits - Radar-coordinated Shelling'
         },
         #           ** I have updated these to reflect \resources\Textures\info6_set.tex.png ** these are final translations between 接近 and 統射
