@@ -414,6 +414,9 @@
       "Bismark Kai" : {
          "$Bi|smark |$Ka|i" : 1
       },
+      "CShelling" : {
+         "C|$Shelling" : 1
+      },
       "Can not release the dock." : {
          "$Can |$not |$rele|$ase| t|$he| |$doc|k." : 1
       },
@@ -2425,7 +2428,8 @@
          "$Tani|$kaze|$ Kai" : 1
       },
       "Task Confirmation" : {
-         "$Task |$Confirmation" : 1
+         "$Task |$Confirmation" : 1,
+         "$Task |$Co|n|$fi|$rmat|$ion" : 1
       },
       "Tatsuta" : {
          "$Tat|$suta" : 1
@@ -3309,6 +3313,9 @@
       "Before repair" : {
          "$Before| re|$pair" : 1
       },
+      "CShelling" : {
+         "$C|$Shelling" : 1
+      },
       "Can not release the dock." : {
          "Can|$ |not|$ |release|$ |the|$ |dock." : 1
       },
@@ -3470,6 +3477,9 @@
       },
       "Control of Ship Girl now possible. &" : {
          "Control|$ |of|$ |Ship|$ |Girl|$ |now|$ |poss|$ible|$.|$ |&" : 1
+      },
+      "Coord" : {
+         "$Co|ord" : 1
       },
       "Coordinated Shelling" : {
          "$Coordinated |$Shelling" : 1
@@ -5170,7 +5180,8 @@
          "$Tani|$kaze|$ Kai" : 1
       },
       "Task Confirmation" : {
-         "$Task |$Confirmation" : 1
+         "$Task |$Confirmation" : 1,
+         "Task|$ |$Con|fi|$rmat|$ion" : 1
       },
       "Tatsuta" : {
          "$Tat|$suta" : 1
