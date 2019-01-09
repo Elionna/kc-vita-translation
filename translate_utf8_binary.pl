@@ -281,6 +281,20 @@ sub duplicate_check {
 
 sub half { my $p = shift; ( split_into 2, @_ )[$p]->@* }
 
+sub store_file_as_modded {
+    my ( $file, $found, $content ) = @_;
+    my @file_parts = $file->{fileparts}->@*;
+    $file_parts[1] = "kc_original_unpack_modded";
+    my $target = join "/", @file_parts;
+    if ( !$found ) {
+        io($target)->unlink if -e $target;
+        return;
+    }
+    io( io->file($target)->filepath )->mkpath;
+    io($target)->print($content);
+    return;
+}
+
 sub run {
     `chcp 65001`;
     $|++;
@@ -421,15 +435,7 @@ sub run {
                 $found++;
             }
         }
-        my @file_parts = $file->{fileparts}->@*;
-        $file_parts[1] = "kc_original_unpack_modded";
-        my $target = join "/", @file_parts;
-        if ( !$found ) {
-            io($target)->unlink if -e $target;
-            next;
-        }
-        io( io->file($target)->filepath )->mkpath;
-        io($target)->print($content);
+        store_file_as_modded $file, $found, $content;
     }
 
     my @maybe = map sprintf( "  %-" . ( 30 - length $_ ) . "s %-30s hit x %3s, nomatch x %3s, match x %3s", $_, $tr{$_}{tr}, $hit{$_}, $unmatched{$_}, $hit{$_} - $unmatched{$_} ),
