@@ -11,6 +11,7 @@ use Array::Split 'split_into';
 use Getopt::Long::Descriptive;
 use lib '.';
 use binary_translations;
+use label;
 
 my $jp_qr = qr/[\p{Hiragana}\p{Katakana}\p{Han}]/;
 
@@ -295,6 +296,73 @@ sub store_file_as_modded {
     return;
 }
 
+sub handle_file_as_label {
+    my ( $report_matches, $found, $untranslated, $file, $tr_keys, %tr ) = @_;
+    my ($extension) = ( $file->{filename} =~ /\.(-[0-9]+)$/ );
+    my $pack        = $file->{fileparts}[-2];
+    my %known       = (
+        level2         => { -7  => "label" },
+        level3         => { -5  => "label" },
+        level4         => { -15 => "label" },
+        level5         => { -6  => "label" },
+        level6         => { -3  => "label" },
+        level7         => { -5  => "label" },
+        level8         => { -7  => "label" },
+        level9         => { -5  => "label" },
+        level11        => { -5  => "label" },
+        level12        => { -6  => "label" },
+        level13        => { -6  => "label" },
+        level16        => { -7  => "label" },
+        level17        => { -6  => "label" },
+        level18        => { -6  => "label" },
+        level19        => { -4  => "label" },
+        level20        => { -8  => "label" },
+        level21        => { -6  => "label" },
+        level22        => { -4  => "label" },
+        level23        => { -6  => "label" },
+        level24        => { -6  => "label" },
+        level25        => { -6  => "label" },
+        sharedassets3  => { -2  => "label" },
+        sharedassets5  => { -4  => "label" },
+        sharedassets6  => { -5  => "label" },
+        sharedassets7  => { -3  => "label" },
+        sharedassets8  => { -8  => "label" },
+        sharedassets10 => { -4  => "label" },
+        sharedassets11 => { -18 => "label" },
+        sharedassets17 => { -5  => "label" },
+        resources      => {
+            -10 => "label",
+            -2  => "skip",    # Entity_MotionList
+            -3  => "skip",    # Entity_PresetData
+            -4  => "skip",    # Entity_PresetDeck
+            -5  => "skip",    # Entity_PresetShip
+        },
+    );
+    return 1 if $extension and $extension =~ /^-[0-9]+$/ and !$known{$pack}{$extension};    # unknown asset monobehaviors very unlikely to contain text
+    return if !$extension or !$known{$pack}{$extension};                                    # other unknown stuff might contain something?
+    return 1 if $known{$pack}{$extension} eq "skip";                                        # we might wanna process these later
+
+    my $obj = $known{$pack}{$extension}->new( $file->{file} );
+    return 1 if !$obj->length;                                                              # saynl "zero length indicated in: '$file->{file}'"
+    my $text = decode "UTF-8", $obj->text;
+    return !saynl "unable to find text in: '$file->{file}'" if !length $text;
+    $found->{$text}++;
+    return !saynl "unable to find translation for: '$text' in: '$file->{file}'" unless      #
+      my $tr = $tr{$text};
+    return $untranslated->{$text}++ ? 1 : !saynl "not yet translated: '$text' in: '$file->{file}'" if not $tr->{tr};
+
+    my $new_text = encode "UTF-8", $tr->{tr};
+    my $extra    = length($new_text) % 4;
+    my $pad      = $extra ? 4 - $extra : 0;
+    $obj->Setlength( length $new_text );
+    $obj->Settext($new_text);
+    $obj->Setpad( "\0" x $pad );
+
+    store_file_as_modded $file, 1, $obj->dump;
+    saynl "binary parse result: '$text' -> '$tr->{tr}' in: '$file->{filename}'" if $report_matches;
+    return 1;
+}
+
 sub run {
     `chcp 65001`;
     $|++;
@@ -403,10 +471,12 @@ sub run {
     my %found;
     my %unmatched;
     my %hit;
+    my %untranslated;
 
     my @task_list = reverse sort { $a->[0] <=> $b->[0] }    #
       map +( [ length $_, $_, "UTF-16LE" ], [ length $_, $_, "UTF-8" ] ), @tr_keys;
     for my $file (@list) {
+        next if handle_file_as_label $report_matches, \%found, \%untranslated, $file, \@tr_keys, %tr;
         my $content = $file->{file}->all;
         my $f_enc   = $file->{enc};
         my $found;
