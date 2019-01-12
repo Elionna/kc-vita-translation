@@ -23,12 +23,13 @@ sub filter_nl {
         s/\n/\\n/g;
         s/\r/\\r/g;
         s/\t/\\t/g;
+        s/\x7/\\7/g;
     }
     return @msgs;
 }
 
-sub saynl   { say   for filter_nl @_ }
-sub printnl { print for filter_nl @_ }
+sub saynl   { say   for filter_nl @_; return }
+sub printnl { print for filter_nl @_; return }
 
 sub matches_for_part {
     my ( $part, $need_to_shrink, $enc, @glyphs ) = @_;
