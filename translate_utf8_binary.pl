@@ -390,31 +390,35 @@ sub run {
     my %unmatched;
     my %hit;
 
+    my @task_list = reverse sort { $a->[0] <=> $b->[0] }    #
+      map +( [ length $_, $_, "UTF-16LE" ], [ length $_, $_, "UTF-8" ] ), @tr_keys;
     for my $file (@list) {
         my $content = $file->{file}->all;
         my $f_enc   = $file->{enc};
         my $found;
-        for my $enc ( ref $f_enc ? $f_enc->@* : $f_enc ) {
-            for my $jp (@tr_keys) {
-                last if $enc eq "UTF-8" and $file->{filename} ne "Assembly-CSharp.dll" and decode( $enc, $content ) !~ $jp_qr;
-                next unless    #
-                  my @hits = get_hits $content, $jp, $enc;
-                my %obj = $tr{$jp}->%*;
-                for my $hit (@hits) {
-                    my $file_hit = "$file->{fileid} $hit";
-                    next if grep $file_hit eq $_, $obj{skip}->@*;
-                    $hit{$jp}++;
-                    if ( !grep $file_hit eq $_, $obj{ok}->@* and !check_for_null_bracketing $content, $jp, $enc, $hit, $file ) {
-                        $unmatched{$jp}++;
-                        report_near_miss $file_hit, $hit, $enc, $jp, $content;
-                        next;
-                    }
-                    next if !$do_blank and !length $obj{tr};
-                    report_near_miss $file_hit, $hit, $enc, $jp, $content, "is_a_hit" if $report_matches;
-                    substr( $content, $hit, length $_ ) = $_ for $obj{tr_mapped}{$enc};
-                    $found++;
-                    $found{$jp}++;
+        my %encs = map +( $_ => 1 ), ( ref $f_enc ? $f_enc->@* : $f_enc );
+        my @tasks = grep $encs{ $_->[2] }, @task_list;
+
+        for my $task (@tasks) {
+            my ( undef, $jp, $enc ) = $task->@*;
+            my %obj = $tr{$jp}->%*;
+            last if $enc eq "UTF-8" and $file->{filename} ne "Assembly-CSharp.dll" and decode( $enc, $content ) !~ $jp_qr;
+            next unless    #
+              my @hits = get_hits $content, $jp, $enc;
+            for my $hit (@hits) {
+                my $file_hit = "$file->{fileid} $hit";
+                next if grep $file_hit eq $_, $obj{skip}->@*;
+                $hit{$jp}++;
+                if ( !grep $file_hit eq $_, $obj{ok}->@* and !check_for_null_bracketing $content, $jp, $enc, $hit, $file ) {
+                    $unmatched{$jp}++;
+                    report_near_miss $file_hit, $hit, $enc, $jp, $content;
+                    next;
                 }
+                $found{$jp}++;
+                next if !$do_blank and !length $obj{tr};
+                report_near_miss $file_hit, $hit, $enc, $jp, $content, "is_a_hit" if $report_matches;
+                substr( $content, $hit, length $_ ) = $_ for $obj{tr_mapped}{$enc};
+                $found++;
             }
         }
         my @file_parts = $file->{fileparts}->@*;
