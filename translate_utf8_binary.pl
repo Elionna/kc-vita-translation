@@ -486,6 +486,7 @@ sub run {
         for my $task (@tasks) {
             my ( undef, $jp, $enc ) = $task->@*;
             my %obj = $tr{$jp}->%*;
+            next if $obj{no_tr};
             last if $enc eq "UTF-8" and $file->{filename} ne "Assembly-CSharp.dll" and decode( $enc, $content ) !~ $jp_qr;
             next unless    #
               my @hits = get_hits $content, $jp, $enc;
