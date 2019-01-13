@@ -22,7 +22,7 @@ sub run {
         $_ =~ s/\.png$// for $source_tex, $target_tex;
         die "source texture missing: '$source_tex'" if not -e $source_tex;
         $known{$target_tex}++;
-        next if -e $target_tex and _age $target_tex > _age $image ;
+        next if -e $target_tex and _age $target_tex > _age $image->name;
 
         $processed++;
         print "  " . $image->filename;
