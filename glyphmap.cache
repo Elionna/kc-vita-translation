@@ -423,6 +423,9 @@
       "Cape Kaga" : {
          "$Cape| |$Kaga" : 1
       },
+      "Carry out\nFleet composition!" : {
+         "$Ca|$rry|$ out|\n|$Fleet |$comp|$osit|$io|n!" : 1
+      },
       "Carry out Fleet composition!" : {
          "$Ca|$rry|$ out| |$Fleet| |$comp|$osit|$ion|!" : 1
       },
@@ -447,6 +450,9 @@
       "Chikuma Kai Ni" : {
          "$Chi|$kuma|$ Kai |$Ni" : 1,
          "$Chi|$kuma|$ Kai| |$Ni" : 1
+      },
+      "Chinjufu Area Strategy Data" : {
+         "$Ch|$in|$ju|$fu| |$Area| |$Strategy| |$Data" : 1
       },
       "Chinjufu Region" : {
          "$Chi|$nju|$fu| |$Region" : 1,
@@ -574,6 +580,9 @@
       },
       "Confirm caneling deploment settings?" : {
          "$Confirm| c|$an|$el|$in|g |$dep|$lo|$ment| s|$et|t|$in|$gs|?" : 1
+      },
+      "Confirm your mission at\n the Flagship Office!" : {
+         "$Confirm| |$your| |$mi|$ss|$ion| |$at|\n |$the| |$Flagship| |$Of|$fi|$ce|!" : 1
       },
       "Confirm your mission at the Flagship Office!" : {
          "$Confirm| |$your| |$mi|$ss|$ion| |$at| t|$he| |$Flag|s|$hip| |$Office|!" : 1
@@ -866,6 +875,9 @@
       "Fleet Headquarters Intelligence" : {
          "$Fleet| |$Head|$quarters| |$Intelli|$gence" : 1
       },
+      "Fleet Info" : {
+         "$Fl|$eet| |$Info" : 1
+      },
       "Fleet Information" : {
          "$Fleet |$Info|$rmat|$ion" : 1
       },
@@ -880,6 +892,9 @@
       },
       "Fleet Organization Get!" : {
          "$Fle|$et| |$Org|$an|$iz|$at|$ion| |$Get|!" : 1
+      },
+      "Fleet Select" : {
+         "$Fle|$et| |$Select" : 1
       },
       "Fleet Selection" : {
          "$Fle|$et| |$Selection" : 1
@@ -1562,6 +1577,9 @@
       "Leave" : {
          "$Le|$av|e" : 1
       },
+      "Let's build something\nin the factory!" : {
+         "$Let's| |$build| |$something|\n|$in |$the| |$factory|!" : 1
+      },
       "Lets build something in the factory!" : {
          "$Lets| |$build| |$something| |$in |$the| |$factory|!" : 1
       },
@@ -2006,7 +2024,8 @@
          "$Re|garding Transport |$Sh|ip |$De|p|$lo|$ym|$en|t" : 1
       },
       "Region" : {
-         "$Re|$gion" : 1
+         "$Re|$gion" : 1,
+         "$Re|$gi|on" : 1
       },
       "Region Selection" : {
          "$Reg|$ion| |$Selection" : 1
@@ -2607,6 +2626,9 @@
       "Ushio Kai Ni" : {
          "$Ushio|$ Kai |$Ni" : 1
       },
+      "Using an\nInstant Build Bucket,\nComplete Construction!" : {
+         "$Us|$ing| |$an|\n|$Instant |$Bu|$il|d |$Buck|$et|,\n|$Complete| |$Construction|!" : 1
+      },
       "Using an Instant Build Bucket, \nComplete Construction!" : {
          "$Using| |$an |$Instant| |$Bui|$ld| |$Buck|$et|, \n|$Complete| |$Construct|$ion|!" : 1
       },
@@ -2657,6 +2679,9 @@
       },
       "Would you like to do Rival Exercise?" : {
          "$Would |$you |$like| |$to |$do| |$Rival| |$Exercise|?" : 1
+      },
+      "Would you like to do the tutorial?" : {
+         "$Would |y|$ou| |$like |$to |$do| |$the| |$tu|$to|$rial|?" : 1
       },
       "Would you like to purchase the following items?" : {
          "$Would |$you |$like |$to |$purc|$hase| |$the| |$follow|$ing| |$item|s?" : 1
@@ -2805,6 +2830,12 @@
       "[000000] (※Repair consumed)[-]" : {
          "[000000]| (※|$Re|p|$ai|r |$co|$nsum|$ed|)|[-]" : 1
       },
+      "[000000]If you have [0055AA]Instant Build materials[-], [006400]high speed\nconstruction[-] is possible. Construction of a\nShip Girl takes longer for larger ships,\nbut using [0055AA]Instant Build[-] can shorten that to immediate.[-]" : {
+         "[000000]|$If| you h|$ave| |[0055AA]|$Instant |Build |$material|s|[-]|, |[006400]|hi|$gh| spe|$ed|\n|$construct|ion|[-]| |$is| poss|$ible|. |$Construction| of a\n|$Sh|ip|$ Girl |$take|s long|$er| |$for| l|$arge|r |$ship|s,\nbut |$using| |[0055AA]|$Instant |Build|[-]| |$can |s|$hort|en th|$at| to |$imme|$diat|e.|[-]" : 1
+      },
+      "[000000]If you have [0055AA]Instant Build materials[-], [006400]high speed\nconstruction[-] is possible. Construction of a Ship Girl takes longer for larger ships, but using Instant Build can shorten that to immediate.[-]" : {
+         "[000000]|$If| you have |[0055AA]|$Instant |$Bui|ld materi|$al|s|[-]|, |[006400]|high spe|$ed|\n|$construct|ion|[-]| is possi|$bl|e. |$Construction| of a Ship|$ Girl |$take|s long|$er| for l|$arge|r ships, |$bu|t |$using| |$Instant |$Build| |$can |s|$hort|en th|$at| to |$imme|$diat|e.|[-]" : 1
+      },
       "[12c112]End of Turn[-]" : {
          "[12c112]|$En|d |$of |$Turn|[-]" : 1
       },
@@ -2885,6 +2916,12 @@
       },
       "○○○○Fleet Flagship" : {
          "○○○○|$Fleet |$Fla|$gs|$hi|p" : 1
+      },
+      "　 Press button to open\nStrategy Command and\nSortie the Fleet!" : {
+         "　 |$Pre|$ss| |$button| |$to |o|$pen|\n|$Strategy| |$Comm|$and |$and|\n|$Sortie| |$the| |$Fleet|!" : 1
+      },
+      "　Press button to open\nStrategy Command and Sortie the Fleet!" : {
+         "　|$Pre|$ss| |$button| |$to| o|$pen|\n|$Strategy| |$Comm|$and |$and |$Sortie| t|$he| |$Fleet|!" : 1
       },
       "必要鋼材数\r\n\rFuel Required\r\nDays To Repair                  d\r\n\r\r高速修復材\r" : {
          "必要鋼材数\r\n\r|$Fu|el |$Re|$qu|$ir|$ed|\r\n|$Days| |$To| |$Rep|$air|                  d\r\n\r\r高速修復材\r" : 1
@@ -3340,6 +3377,9 @@
       "Can not release the dock." : {
          "Can|$ |not|$ |release|$ |the|$ |dock." : 1
       },
+      "Carry out\nFleet composition!" : {
+         "Carry|$ |out\nFleet composition!" : 1
+      },
       "Carry out Fleet composition!" : {
          "Carry|$ |out Fleet composition!" : 1
       },
@@ -3361,6 +3401,9 @@
       "Chikuma Kai Ni" : {
          "$Chi|$kuma|$ Kai| Ni" : 1,
          "$Ch|$ikum|a|$ Kai| Ni" : 1
+      },
+      "Chinjufu Area Strategy Data" : {
+         "$Chi|$nju|fu|$ |$Area|$ |$Str|$ate|gy |$Dat|a" : 1
       },
       "Chinjufu Region" : {
          "Chinjufu|$ |$R|$e|gion" : 1
@@ -3474,6 +3517,9 @@
       },
       "Confirm caneling deploment settings?" : {
          "Confirm|$ |c|$a|neling|$ |$d|$e|plom|$e|nt|$ |s|$e|ttin|$g|s?" : 1
+      },
+      "Confirm your mission at\n the Flagship Office!" : {
+         "Confirm|$ |your|$ |mission|$ |at\n the Flagship Office!" : 1
       },
       "Confirm your mission at the Flagship Office!" : {
          "Confirm|$ |your|$ |mission|$ |at|$ |the |$Flag|ship Office!" : 1
@@ -3725,6 +3771,9 @@
       "Ey!" : {
          "$E|$y|$!" : 1
       },
+      "FP -10" : {
+         "FP|$ |$-|10" : 1
+      },
       "Failure" : {
          "$Fai|$lure" : 1
       },
@@ -3788,6 +3837,9 @@
       },
       "Fleet Headquarters Intelligence" : {
          "$Flee|t |$Head|$quarters| Int|$elli|$gence" : 1
+      },
+      "Fleet Info" : {
+         "Fleet|$ |Info" : 1
       },
       "Fleet Information" : {
          "$Fl|$eet| In|$formation" : 1
@@ -4437,6 +4489,9 @@
       "Leave" : {
          "$L|e|$a|ve" : 1
       },
+      "Let's build something\nin the factory!" : {
+         "Let's |$build| some|$thing|\n|$in |the fa|$cto|ry!" : 1
+      },
       "Lets build something in the factory!" : {
          "$Lets| build somet|$hing| in the fac|$tory|!" : 1
       },
@@ -4828,6 +4883,9 @@
       },
       "Regarding Transport Ship Deployment" : {
          "Regarding|$ |Transport|$ |Ship|$ |$D|$e|ploym|$e|$n|t" : 1
+      },
+      "Region" : {
+         "$R|$e|$g|ion" : 1
       },
       "Region Selection" : {
          "$Re|$gi|$on |$Selection" : 1
@@ -5377,6 +5435,9 @@
       "Ushio Kai Ni" : {
          "$Ushio|$ Kai| Ni" : 1
       },
+      "Using an\nInstant Build Bucket,\nComplete Construction!" : {
+         "Using an\n|$Ins|tant |$Bui|ld |$Buck|et,\n|$Com|plete |$Con|struction!" : 1
+      },
       "Using an Instant Build Bucket, \nComplete Construction!" : {
          "Using an Instant Build |$Buck|et, \n|$Comp|lete Construction!" : 1
       },
@@ -5418,6 +5479,9 @@
       },
       "Would you like to do Rival Exercise?" : {
          "Would|$ |you |$like|$ |to do R|$ival| |$Exercise|?" : 1
+      },
+      "Would you like to do the tutorial?" : {
+         "Would|$ |you|$ |like|$ |to|$ |do the tutorial?" : 1
       },
       "Would you like to purchase the following items?" : {
          "Would you like to pur|$chas|e the |$foll|owing items?" : 1
@@ -5551,6 +5615,12 @@
       "[000000] (※Repair consumed)[-]" : {
          "[000000]|$ |(※|$R|epair|$ |$c|o|$nsum|$e|$d|)|[-]" : 1
       },
+      "[000000]If you have [0055AA]Instant Build materials[-], [006400]high speed\nconstruction[-] is possible. Construction of a\nShip Girl takes longer for larger ships,\nbut using [0055AA]Instant Build[-] can shorten that to immediate.[-]" : {
+         "[000000]|If|$ |you|$ |have |[0055AA]|$I|nst|$a|nt|$ |Build|$ |m|$a|teri|$a|ls|[-]|, |[006400]|high|$ |spee|$d|\n|$c|o|$n|stru|$c|tion|[-]|$ |is|$ |possi|$b|le|$.|$ |$C|o|$n|stru|$c|tion|$ |of|$ |a\n|$S|hip|$ |Girl|$ |takes|$ |long|$e|r|$ |for|$ |l|$a|rger|$ |s|$h|ips,\n|$b|ut|$ |using|$ |[0055AA]|$I|nst|$a|nt|$ |Build|[-]|$ |can|$ |short|$e|n|$ |that|$ |to|$ |imme|$d|i|$a|te|$.|[-]" : 1
+      },
+      "[000000]If you have [0055AA]Instant Build materials[-], [006400]high speed\nconstruction[-] is possible. Construction of a Ship Girl takes longer for larger ships, but using Instant Build can shorten that to immediate.[-]" : {
+         "[000000]|If|$ |you|$ |h|$ave| |[0055AA]|$I|nst|$a|nt|$ |$B|uild|$ |m|$a|teri|$a|ls|[-]|, |[006400]|high|$ |spee|$d|\n|$c|o|$n|stru|$c|tion|[-]|$ |is|$ |poss|$i|$b|le|$.|$ |$C|o|$n|stru|$c|tion|$ |of|$ |a|$ |Ship|$ |Girl|$ |t|$a|kes|$ |long|$e|r|$ |for|$ |l|$a|rger|$ |s|$h|ips,|$ |but|$ |usin|$g|$ |$I|nst|$a|nt|$ |$B|uild|$ |can|$ |s|$h|ort|$e|n|$ |that|$ |to|$ |$imme|$d|i|$a|te|$.|[-]" : 1
+      },
       "[12c112]End of Turn[-]" : {
          "[12c112]|End|$ |of|$ |Turn|[-]" : 1
       },
@@ -5646,6 +5716,12 @@
       },
       "♪\"" : {
          "♪|$\"" : 1
+      },
+      "　 Press button to open\nStrategy Command and\nSortie the Fleet!" : {
+         "　|$ |Press|$ |button to open\nStrategy Command and\nSortie the Fleet!" : 1
+      },
+      "　Press button to open\nStrategy Command and Sortie the Fleet!" : {
+         "　|$Pre|ss|$ |$but|ton|$ |to|$ |open\n|$Str|$ate|gy |$Com|m|$and| |$and |$Sor|tie |$the| |$Fle|et!" : 1
       },
       "必要鋼材数\r\n\rFuel Required\r\nDays To Repair                  d\r\n\r\r高速修復材\r" : {
          "必要鋼材数\r\n\r|$Fuel|$ |$Required|\r\n|$Da|$ys|$ |$To|$ |$Re|p|$ai|r|$ |                 d\r\n\r\r高速修復材\r" : 1
