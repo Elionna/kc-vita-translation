@@ -297,7 +297,7 @@ sub store_file_as_modded {
 }
 
 sub handle_file_as_label {
-    my ( $report_matches, $found, $untranslated, $file, $tr_keys, %tr ) = @_;
+    my ( $do_blank, $report_matches, $found, $untranslated, $file, $tr_keys, %tr ) = @_;
     my ($extension) = ( $file->{filename} =~ /\.(-[0-9]+)$/ );
     my $pack        = $file->{fileparts}[-2];
     my %known       = (
@@ -349,7 +349,8 @@ sub handle_file_as_label {
     $found->{$text}++;
     return !saynl "unable to find translation for: '$text' in: '$file->{file}'" unless      #
       my $tr = $tr{$text};
-    return $untranslated->{$text}++ ? 1 : !saynl "not yet translated: '$text' in: '$file->{file}'" if not $tr->{tr};
+    return $untranslated->{$text}++ ? 1 : !saynl "not yet translated: '$text' in: '$file->{file}'"
+      if not $tr->{tr} and not $do_blank;
 
     my $new_text = encode "UTF-8", $tr->{tr};
     my $extra    = length($new_text) % 4;
@@ -359,8 +360,95 @@ sub handle_file_as_label {
     $obj->Setpad( "\0" x $pad );
 
     store_file_as_modded $file, 1, $obj->dump;
-    saynl "binary parse result: '$text' -> '$tr->{tr}' in: '$file->{filename}'" if $report_matches;
+    saynl sprintf "binary parse result %-26s %10s : %-60s -> %-60s", "'$file->{filename}'", "", "'$text'", "'$tr->{tr}'" if $report_matches;
     return 1;
+}
+
+sub parse_csharp {
+    my ( $content_ref, $do_blank, $report_matches, $found, $untranslated, $file, $tr_keys, %tr ) = @_;
+
+    my $offset = 4095716;
+    for ( 1 .. 4 ) {
+        my $length = index substr( $content_ref->$*, $offset ), "\0";
+        my $text = decode "UTF-8", substr $content_ref->$*, $offset, $length;
+        try_replace_csharp( $do_blank, "UTF-8", $offset, $length, $text, $content_ref, $report_matches, $found, $untranslated, $file, $tr_keys, %tr );
+        $offset += $length + 1;
+    }
+
+    $offset = 4472589;
+    while (1) {
+        last unless    #
+          my $length = ord substr $content_ref->$*, $offset, 1;
+        $offset++;
+        if ( $length >= 128 ) {
+            $length = ( $length - 128 ) * 256 + ord substr $content_ref->$*, $offset;
+            $offset++;
+        }
+        my $bytes = substr $content_ref->$*, $offset, $length;
+        my $text = decode "UTF-16LE", $bytes;
+        try_replace_csharp( $do_blank, "UTF-16LE", $offset, $length, $text, $content_ref, $report_matches, $found, $untranslated, $file, $tr_keys, %tr );
+        $offset += $length;
+    }
+
+    $offset = 4681951;
+    while (1) {
+        last unless    #
+          my $length = ord substr $content_ref->$*, $offset, 1;
+        $offset++;
+        if ( $length >= 128 ) {
+            $length = ( $length - 128 ) * 256 + ord substr $content_ref->$*, $offset;
+            $offset++;
+        }
+        my $bytes = substr $content_ref->$*, $offset, $length;
+        my $next = $offset + $length;
+
+        if ( $bytes =~ /^\x01\x00[\x00\x01\x02]/ ) { }
+        elsif ( $bytes =~ /^\x01\x00/ ) {
+            $offset += 2;
+            while ( $offset < $next ) {
+                my $slength = ord substr $content_ref->$*, $offset, 1;
+                $offset++;
+                if ( $slength >= 128 ) {
+                    $slength = ( $slength - 128 ) * 256 + ord substr $content_ref->$*, $offset;
+                    $offset++;
+                }
+                next if !$slength or $slength > ( $next - $offset );
+                my $text = decode "UTF-8", substr $content_ref->$*, $offset, $slength;
+                if ( $text !~ /\x00/ ) {
+                    try_replace_csharp( $do_blank, "UTF-8", $offset, $slength, $text, $content_ref, $report_matches, $found, $untranslated, $file, $tr_keys, %tr );
+                }
+                $offset += $slength;
+            }
+        }
+        else {
+            my $text = decode "UTF-16LE", $bytes;
+            if ( $offset < 4699960 and $text !~ /[\x00\x02\x03\x08\x13\x1E\x81]/ ) {
+                try_replace_csharp( $do_blank, "UTF-16LE", $offset, $length, $text, $content_ref, $report_matches, $found, $untranslated, $file, $tr_keys, %tr );
+            }
+        }
+        $offset = $next;
+    }
+
+    store_file_as_modded $file, 1, $content_ref->$*;
+
+    return $content_ref->$*;
+}
+
+sub try_replace_csharp {
+    my ( $do_blank, $enc, $offset, $length, $text, $content_ref, $report_matches, $found, $untranslated, $file, $tr_keys, %tr ) = @_;
+    $found->{$text}++;
+    return $text !~ $jp_qr ? 1 : !saynl "unable to find translation for: '$text' in: '$file->{file}'" unless    #
+      my $tr = $tr{$text};
+    return $untranslated->{$text}++ ? 1 : !saynl "not yet translated: '$text' in: '$file->{file}'"
+      if not $tr->{tr} and not $do_blank;
+    my $new_text = $do_blank ? ( "\0" x $length ) : $tr->{tr_mapped}{$enc};
+    my $new_length = length $new_text;
+    $new_text .= "\0" if $enc eq "UTF-16LE" and $new_length + 1 eq $length;
+    $new_length = length $new_text;
+    die "new text doesn't match $new_length != $length" if $new_length != $length;
+    substr( $content_ref->$*, $offset, $length ) = $new_text;
+    saynl sprintf "binary parse result %-26s %10s : %-60s -> %-60s", "'$file->{filename}'", $offset, "'$text'", "'$tr->{tr}'" if $report_matches;
+    return;
 }
 
 sub run {
@@ -476,44 +564,54 @@ sub run {
     my @task_list = reverse sort { $a->[0] <=> $b->[0] }    #
       map +( [ length $_, $_, "UTF-16LE" ], [ length $_, $_, "UTF-8" ] ), @tr_keys;
     for my $file (@list) {
-        next if handle_file_as_label $report_matches, \%found, \%untranslated, $file, \@tr_keys, %tr;
-        my $content = $file->{file}->all;
-        my $f_enc   = $file->{enc};
-        my $found;
-        my %encs = map +( $_ => 1 ), ( ref $f_enc ? $f_enc->@* : $f_enc );
-        my @tasks = grep $encs{ $_->[2] }, @task_list;
-
-        for my $task (@tasks) {
-            my ( undef, $jp, $enc ) = $task->@*;
-            my %obj = $tr{$jp}->%*;
-            next if $obj{no_tr};
-            last if $enc eq "UTF-8" and $file->{filename} ne "Assembly-CSharp.dll" and decode( $enc, $content ) !~ $jp_qr;
-            next unless    #
-              my @hits = get_hits $content, $jp, $enc;
-            for my $hit (@hits) {
-                my $file_hit = "$file->{fileid} $hit";
-                next if grep $file_hit eq $_, $obj{skip}->@*;
-                $hit{$jp}++;
-                if ( !grep $file_hit eq $_, $obj{ok}->@* and !check_for_null_bracketing $content, $jp, $enc, $hit, $file ) {
-                    $unmatched{$jp}++;
-                    report_near_miss $file_hit, $hit, $enc, $jp, $content;
-                    next;
-                }
-                $found{$jp}++;
-                next if !$do_blank and !length $obj{tr};
-                report_near_miss $file_hit, $hit, $enc, $jp, $content, "is_a_hit" if $report_matches;
-                substr( $content, $hit, length $_ ) = $_ for $obj{tr_mapped}{$enc};
-                $found++;
-            }
-        }
+        next if handle_file_as_label $do_blank, $report_matches, \%found, \%untranslated, $file, \@tr_keys, %tr;
+        my $content = $file->{filename} ne "Assembly-CSharp.dll"    #
+          ? $file->{file}->all
+          : parse_csharp \( $file->{file}->all ), $do_blank, $report_matches, \%found, \%untranslated, $file, \@tr_keys, %tr;
+        my $found = $file->{filename} ne "Assembly-CSharp.dll" ? 0 : search_and_replace( $file, \$content, \%tr, $do_blank, $report_matches, \%hit, \%unmatched, \%found, @task_list );
         store_file_as_modded $file, $found, $content;
     }
 
     my @maybe = map sprintf( "  %-" . ( 30 - length $_ ) . "s %-30s hit x %3s, nomatch x %3s, match x %3s", $_, $tr{$_}{tr}, $hit{$_}, $unmatched{$_}, $hit{$_} - $unmatched{$_} ),
       reverse sort { length $a <=> length $b } sort keys %unmatched;
     my @nowhere = map sprintf( "  %-" . ( 30 - length $_ ) . "s $tr{$_}{tr}", "'$_'" ), grep +( !$found{$_} and !$unmatched{$_} ), @tr_keys;
-    saynl for "", "strings not always identified confidently:", @maybe, "", "strings found nowhere:", @nowhere;
+    saynl for " ", "strings not always identified confidently:", @maybe, " ", "strings found nowhere:", @nowhere;
 
     say "\ndone";
     return;
+}
+
+sub search_and_replace {
+    my ( $file, $content, $tr, $do_blank, $report_matches, $hits, $unmatched, $founds, @task_list ) = @_;
+
+    my $f_enc = $file->{enc};
+    my $found;
+    my %encs = map +( $_ => 1 ), ( ref $f_enc ? $f_enc->@* : $f_enc );
+    my @tasks = grep $encs{ $_->[2] }, @task_list;
+
+    for my $task (@tasks) {
+        my ( undef, $jp, $enc ) = $task->@*;
+        my %obj = $tr->{$jp}->%*;
+        next if $obj{no_tr};
+        last if $enc eq "UTF-8" and $file->{filename} ne "Assembly-CSharp.dll" and decode( $enc, $content ) !~ $jp_qr;
+        next unless    #
+          my @hits = get_hits $content, $jp, $enc;
+        for my $hit (@hits) {
+            next if $file->{filename} eq "Assembly-CSharp.dll" and $hit >= 4472590 and $hit <= 4633367;
+            my $file_hit = "$file->{fileid} $hit";
+            next if grep $file_hit eq $_, $obj{skip}->@*;
+            $hits->{$jp}++;
+            if ( !grep $file_hit eq $_, $obj{ok}->@* and !check_for_null_bracketing $content, $jp, $enc, $hit, $file ) {
+                $unmatched->{$jp}++;
+                report_near_miss $file_hit, $hit, $enc, $jp, $content;
+                next;
+            }
+            $founds->{$jp}++;
+            next if !$do_blank and !length $obj{tr};
+            report_near_miss $file_hit, $hit, $enc, $jp, $content, "is_a_hit" if $report_matches;
+            substr( $content, $hit, length $_ ) = $_ for $obj{tr_mapped}{$enc};
+            $found++;
+        }
+    }
+    return $found;
 }
