@@ -12,6 +12,16 @@ use Getopt::Long::Descriptive;
 use lib '.';
 use binary_translations;
 use label;
+use presetdata;
+use motionlist;
+use presetdeck;
+use presetship;
+
+=head1 DESCRIPTION
+
+This is a mess. I'm sorry. I was in a hurry.
+
+=cut
 
 my $jp_qr = qr/[\p{Hiragana}\p{Katakana}\p{Han}]/;
 
@@ -296,7 +306,7 @@ sub store_file_as_modded {
     return;
 }
 
-sub handle_file_as_label {
+sub handle_file_as_asset {
     my ( $do_blank, $report_matches, $found, $untranslated, $file, $tr_keys, %tr ) = @_;
     my ($extension) = ( $file->{filename} =~ /\.(-[0-9]+)$/ );
     my $pack        = $file->{fileparts}[-2];
@@ -332,36 +342,169 @@ sub handle_file_as_label {
         sharedassets17 => { -5  => "label" },
         resources      => {
             -10 => "label",
-            -2  => "skip",    # Entity_MotionList
-            -3  => "skip",    # Entity_PresetData
-            -4  => "skip",    # Entity_PresetDeck
-            -5  => "skip",    # Entity_PresetShip
+            -2  => "motionlist",    # Entity_MotionList 00001.-2 48605
+            -3  => "presetdata",    # Entity_PresetData 00001.-3 48606
+            -4  => "presetdeck",    # Entity_PresetDeck 00001.-4 48607
+            -5  => "presetship",    # Entity_PresetShip 00001.-5 48608
         },
     );
     return 1 if $extension and $extension =~ /^-[0-9]+$/ and !$known{$pack}{$extension};    # unknown asset monobehaviors very unlikely to contain text
     return if !$extension or !$known{$pack}{$extension};                                    # other unknown stuff might contain something?
-    return 1 if $known{$pack}{$extension} eq "skip";                                        # we might wanna process these later
+    my $type = $known{$pack}{$extension};
+    return 1 if $type eq "skip";                                                            # we might wanna process these later
+    return handle_file_as_label( $pack, $file, $found, $untranslated, $do_blank, $report_matches, %tr ) if $type eq "label";
+    return handle_file_as_motionlist( $pack, $file, $found, $untranslated, $do_blank, $report_matches, %tr ) if $type eq "motionlist";
+    return handle_file_as_presetdata( $pack, $file, $found, $untranslated, $do_blank, $report_matches, %tr ) if $type eq "presetdata";
+    return handle_file_as_presetdeck( $pack, $file, $found, $untranslated, $do_blank, $report_matches, %tr ) if $type eq "presetdeck";
+    return handle_file_as_presetship( $pack, $file, $found, $untranslated, $do_blank, $report_matches, %tr ) if $type eq "presetship";
+    die "unknown type $type";
+}
 
-    my $obj = $known{$pack}{$extension}->new( $file->{file} );
-    return 1 if !$obj->length;                                                              # saynl "zero length indicated in: '$file->{file}'"
+sub handle_file_as_label {
+    my ( $pack, $file, $found, $untranslated, $do_blank, $report_matches, %tr ) = @_;
+    my $obj = label->new( $file->{file} );
+    return 1 if !length $obj->text;                                                         # saynl "zero length indicated in: '$file->{file}'"
     my $text = decode "UTF-8", $obj->text;
     return !saynl "unable to find text in: '$file->{file}'" if !length $text;
     $found->{$text}++;
     return !saynl "unable to find translation for: '$text' in: '$file->{file}'" unless      #
       my $tr = $tr{$text};
-    return $untranslated->{$text}++ ? 1 : !saynl "not yet translated: '$text' in: '$file->{file}'"
+    return $untranslated->{$text}++ ? 1 : !saynl "not yet translated in: '$file->{file}': '$text'"
       if not $tr->{tr} and not $do_blank;
 
     my $new_text = encode "UTF-8", $tr->{tr};
-    my $extra    = length($new_text) % 4;
-    my $pad      = $extra ? 4 - $extra : 0;
-    $obj->Setlength( length $new_text );
     $obj->Settext($new_text);
-    $obj->Setpad( "\0" x $pad );
+    saynl sprintf "binary parse result %-26s %10s : %-60s -> %-60s", "'$file->{filename}'", "", "'$text'", "'$tr->{tr}'" if $report_matches;
 
     store_file_as_modded $file, 1, $obj->dump;
-    saynl sprintf "binary parse result %-26s %10s : %-60s -> %-60s", "'$file->{filename}'", "", "'$text'", "'$tr->{tr}'" if $report_matches;
     return 1;
+}
+
+sub handle_file_as_presetship {
+    my ( $pack, $file, $found, $untranslated, $do_blank, $report_matches, %tr ) = @_;
+    my $obj = presetship->new( $file->{file} );
+
+    my @meths = ( map "ship_${_}_name", 1 .. $obj->obj_count );
+    for my $meth (@meths) {
+        handle_presetship( $pack, $obj, $meth, $file, $found, $untranslated, $do_blank, $report_matches, %tr );
+    }
+
+    $obj->refresh;
+    store_file_as_modded $file, 1, $obj->dump;
+    return 1;
+}
+
+sub handle_presetship {
+    my ( $pack, $obj, $meth, $file, $found, $untranslated, $do_blank, $report_matches, %tr ) = @_;
+    return if !length $obj->$meth;
+    my $text = decode "UTF-8", $obj->$meth;
+    return !saynl "unable to find text in: '$file->{file}'" if !length $text;
+    $found->{$text}++;
+    return !saynl "unable to find translation for: '$text' in: '$file->{file}'" unless    #
+      my $tr = $tr{$text};
+    return $untranslated->{$text}++ ? 1 : !saynl "not yet translated in: '$file->{file}': '$text'"
+      if not $tr->{tr} and not $do_blank;
+
+    my $new_text = encode "UTF-8", $tr->{tr};
+    my $set = "Set$meth";
+    $obj->$set($new_text);
+    saynl sprintf "binary parse result %-26s %10s : %-60s -> %-60s", "'$file->{filename}'", "", "'$text'", "'$tr->{tr}'" if $report_matches;
+}
+
+sub handle_file_as_presetdeck {
+    my ( $pack, $file, $found, $untranslated, $do_blank, $report_matches, %tr ) = @_;
+    my $obj = presetdeck->new( $file->{file} );
+
+    for my $i ( 1 .. $obj->obj_count ) {
+        my $objmeth = "deck_${i}_ship_count";
+        my @meths = ( "deck_${i}_name", map "deck_${i}_ship_${_}_name", 1 .. $obj->$objmeth );
+        for my $meth (@meths) {
+            handle_deck_meth( $pack, $obj, $meth, $file, $found, $untranslated, $do_blank, $report_matches, %tr );
+        }
+    }
+
+    $obj->refresh;
+    store_file_as_modded $file, 1, $obj->dump;
+    return 1;
+}
+
+sub handle_deck_meth {
+    my ( $pack, $obj, $meth, $file, $found, $untranslated, $do_blank, $report_matches, %tr ) = @_;
+    return if !length $obj->$meth;
+    my $text = decode "UTF-8", $obj->$meth;
+    return !saynl "unable to find text in: '$file->{file}'" if !length $text;
+    $found->{$text}++;
+    return !saynl "unable to find translation for: '$text' in: '$file->{file}'" unless    #
+      my $tr = $tr{$text};
+    return $untranslated->{$text}++ ? 1 : !saynl "not yet translated in: '$file->{file}': '$text'"
+      if not $tr->{tr} and not $do_blank;
+
+    my $new_text = encode "UTF-8", $tr->{tr};
+    my $set = "Set$meth";
+    $obj->$set($new_text);
+    saynl sprintf "binary parse result %-26s %10s : %-60s -> %-60s", "'$file->{filename}'", "", "'$text'", "'$tr->{tr}'" if $report_matches;
+}
+
+sub handle_file_as_presetdata {
+    my ( $pack, $file, $found, $untranslated, $do_blank, $report_matches, %tr ) = @_;
+    my $obj = presetdata->new( $file->{file} );
+
+    for my $i ( 1 .. $obj->obj_count ) {
+        handle_preset( $pack, $i, $obj, $file, $found, $untranslated, $do_blank, $report_matches, %tr );
+    }
+
+    $obj->refresh;
+    store_file_as_modded $file, 1, $obj->dump;
+    return 1;
+}
+
+sub handle_preset {
+    my ( $pack, $i, $obj, $file, $found, $untranslated, $do_blank, $report_matches, %tr ) = @_;
+
+    my $meth = "preset_${i}_name";
+    return if !length $obj->$meth;    # saynl "zero length indicated in: '$file->{file}'"
+    my $text = decode "UTF-8", $obj->$meth;
+    return !saynl "unable to find text in: '$file->{file}'" if !length $text;
+    $found->{$text}++;
+    return !saynl "unable to find translation for: '$text' in: '$file->{file}'" unless    #
+      my $tr = $tr{$text};
+    return $untranslated->{$text}++ ? 1 : !saynl "not yet translated in: '$file->{file}': '$text'"
+      if not $tr->{tr} and not $do_blank;
+
+    my $new_text = encode "UTF-8", $tr->{tr};
+    my $set = "Set$meth";
+    $obj->$set($new_text);
+    saynl sprintf "binary parse result %-26s %10s : %-60s -> %-60s", "'$file->{filename}'", "", "'$text'", "'$tr->{tr}'" if $report_matches;
+}
+
+sub handle_file_as_motionlist {
+    my ( $pack, $file, $found, $untranslated, $do_blank, $report_matches, %tr ) = @_;
+    my $obj = motionlist->new( $file->{file} );
+
+    for my $ms ( $obj->field_children("motionship") ) {
+        handle_motionship( $ms, $file, $found, $untranslated, $do_blank, $report_matches, %tr );
+    }
+
+    $obj->refresh;
+    store_file_as_modded $file, 1, $obj->dump;
+    return 1;
+}
+
+sub handle_motionship {
+    my ( $ms, $file, $found, $untranslated, $do_blank, $report_matches, %tr ) = @_;
+
+    return if !length $ms->name;    # saynl "zero length indicated in: '$file->{file}'"
+    my $text = decode "UTF-8", $ms->name;
+    return !saynl "unable to find text in: '$file->{file}'" if !length $text;
+    $found->{$text}++;
+    return !saynl "unable to find translation for: '$text' in: '$file->{file}'" unless    #
+      my $tr = $tr{$text};
+    return $untranslated->{$text}++ ? 1 : !saynl "not yet translated in: '$file->{file}': '$text'"
+      if not $tr->{tr} and not $do_blank;
+
+    my $new_text = encode "UTF-8", $tr->{tr};
+    $ms->Setname($new_text);
+    saynl sprintf "binary parse result %-26s %10s : %-60s -> %-60s", "'$file->{filename}'", "", "'$text'", "'$tr->{tr}'" if $report_matches;
 }
 
 sub parse_csharp {
@@ -439,7 +582,7 @@ sub try_replace_csharp {
     $found->{$text}++;
     return $text !~ $jp_qr ? 1 : !saynl "unable to find translation for: '$text' in: '$file->{file}'" unless    #
       my $tr = $tr{$text};
-    return $untranslated->{$text}++ ? 1 : !saynl "not yet translated: '$text' in: '$file->{file}'"
+    return $untranslated->{$text}++ ? 1 : !saynl "not yet translated in: '$file->{file}': '$text'"
       if not $tr->{tr} and not $do_blank;
     my $new_text = $do_blank ? ( "\0" x $length ) : $tr->{tr_mapped}{$enc};
     my $new_length = length $new_text;
@@ -564,12 +707,12 @@ sub run {
     my @task_list = reverse sort { $a->[0] <=> $b->[0] }    #
       map +( [ length $_, $_, "UTF-16LE" ], [ length $_, $_, "UTF-8" ] ), @tr_keys;
     for my $file (@list) {
-        next if handle_file_as_label $do_blank, $report_matches, \%found, \%untranslated, $file, \@tr_keys, %tr;
+        next if handle_file_as_asset $do_blank, $report_matches, \%found, \%untranslated, $file, \@tr_keys, %tr;
         my $content = $file->{filename} ne "Assembly-CSharp.dll"    #
           ? $file->{file}->all
           : parse_csharp \( $file->{file}->all ), $do_blank, $report_matches, \%found, \%untranslated, $file, \@tr_keys, %tr;
-        my $found = $file->{filename} ne "Assembly-CSharp.dll" ? 0 : search_and_replace( $file, \$content, \%tr, $do_blank, $report_matches, \%hit, \%unmatched, \%found, @task_list );
-        store_file_as_modded $file, $found, $content;
+        next if $file->{filename} eq "Assembly-CSharp.dll";         # leaving this in in case we want to reenable s&r for csharp
+        search_and_replace( $file, \$content, \%tr, $do_blank, $report_matches, \%hit, \%unmatched, \%found, @task_list );
     }
 
     my @maybe = map sprintf( "  %-" . ( 30 - length $_ ) . "s %-30s hit x %3s, nomatch x %3s, match x %3s", $_, $tr{$_}{tr}, $hit{$_}, $unmatched{$_}, $hit{$_} - $unmatched{$_} ),
@@ -613,5 +756,6 @@ sub search_and_replace {
             $found++;
         }
     }
-    return $found;
+    store_file_as_modded $file, $found, $content;
+    return;
 }
