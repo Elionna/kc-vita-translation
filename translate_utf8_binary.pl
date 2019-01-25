@@ -78,8 +78,10 @@ sub tasks_for_matches {
 }
 
 sub map_str_to_multi_chars {
-    my ( $tr, $enc, $length_target, $used, $glyphmap_cache, $prepared ) = @_;
-    printnl "mapping: ($length_target) '$tr' ";
+    my ( $tr, $enc, $length_target, $used, $glyphmap_cache, $prepared, $verbose ) = @_;
+    my $intro = "mapping: ($length_target) '$tr' ";
+    my $delayed_intro = $verbose ? "" : $intro;
+    printnl $intro if $verbose;
     my %rev_prep = reverse $prepared->%*;
     my @glyphs = sort { length $a <=> length $b } sort keys $prepared->%*;
 
@@ -92,7 +94,7 @@ sub map_str_to_multi_chars {
     }
     my @parts = split /(?<=\])|(?=\[)|(?<=\})|(?=\{)/, $tr;
     if ( $l->(@parts) == $length_target ) {
-        say "using translation";
+        saynl $delayed_intro. "using translation";
         return $e->(@parts);
     }
 
@@ -103,7 +105,7 @@ sub map_str_to_multi_chars {
             my @filtered_map_parts = map +( $_ !~ /^\$(.*$)/ ? $_ : $prepared->{$1} ? $prepared->{$1} : $_ ), @map_parts;
             next if grep /^\$/, @filtered_map_parts;
             next if $l->(@filtered_map_parts) != $length_target;
-            say "using cached mapping";
+            say "using cached mapping" if $verbose;
             $used->{ $rev_prep{$_} }++ for grep defined $rev_prep{$_}, @filtered_map_parts;
             return $e->(@filtered_map_parts);
         }
@@ -164,9 +166,9 @@ sub map_str_to_multi_chars {
 }
 
 sub map_tr_to_multi_chars {
-    my ( $jp, $enc, $obj, $used, $glyphmap_cache, %prepared ) = @_;
+    my ( $jp, $enc, $obj, $used, $glyphmap_cache, $verbose, %prepared ) = @_;
     my $target_length = length encode $enc, $jp;
-    my ( $tr, $raw, @failed ) = map_str_to_multi_chars( $obj->{tr}, $enc, $target_length, $used, $glyphmap_cache, \%prepared );
+    my ( $tr, $raw, @failed ) = map_str_to_multi_chars( $obj->{tr}, $enc, $target_length, $used, $glyphmap_cache, \%prepared, $verbose );
     my $l_tr = length $tr;
     if ( $target_length != $l_tr ) {
         my @msg = ( "length wanted: $target_length", @failed, "translation '$jp' ($target_length) => '$obj->{tr}' ($l_tr) doesn't match in length" );
@@ -188,8 +190,8 @@ sub trim_nl {
 }
 
 sub add_mapped {
-    my ( $dictionary, $enc, $used, $glyphmap_cache, %mapping ) = @_;
-    return map map_tr_to_multi_chars( $_, $enc, $dictionary->{$_}, $used, $glyphmap_cache, %mapping ),    #
+    my ( $dictionary, $enc, $used, $glyphmap_cache, $verbose, %mapping ) = @_;
+    return map map_tr_to_multi_chars( $_, $enc, $dictionary->{$_}, $used, $glyphmap_cache, $verbose, %mapping ),    #
       reverse sort { length $dictionary->{$a}{tr} <=> length $dictionary->{$b}{tr} }
       grep length $dictionary->{$_}{tr},
       sort keys $dictionary->%*;
@@ -612,10 +614,11 @@ sub run {
               . "of the list is to be left over after the halving step. examples: 0, 111101, 000101110",
             { default => "" }
         ],
+        [ 'verbose|v', "be a bit more chatty" ],
         [],
         [ 'help', "print usage message and exit", { shortcircuit => 1 } ],
     );
-    my ( $do_blank, $filter_pairs, $bisect, $report_matches ) = @{$opt}{qw( do_blank filter_pairs bisect report_matches )};
+    my ( $do_blank, $filter_pairs, $bisect, $report_matches, $verbose ) = @{$opt}{qw( do_blank filter_pairs bisect report_matches verbose )};
 
     say $usage->text;
     exit if $opt->help;
@@ -664,7 +667,7 @@ sub run {
     my %glyphmap_cache = -e $g ? JSON::MaybeXS->new( pretty => 1 )->decode( io($g)->utf8->all )->%* : ();
 
     my %used;
-    my @too_long = map add_mapped( \%tr, $_, \%used, \%glyphmap_cache, %mapping ), "UTF-16LE", "UTF-8";
+    my @too_long = map add_mapped( \%tr, $_, \%used, \%glyphmap_cache, $verbose, %mapping ), "UTF-16LE", "UTF-8";
     my @unused = grep !$used{$_}, keys %mapping;
     say "following tuples unused: @unused\nfollowing tuples used: '" . ( join "|", sort keys %used ) . "'\n" if @unused;
     die "\n" if @too_long;
