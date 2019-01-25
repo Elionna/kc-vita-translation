@@ -703,6 +703,7 @@ sub run {
         fileid    => "a-csharp",
     };
     @list = sort { lc $a->{fileid} cmp lc $b->{fileid} } @list;
+    io($_)->unlink for grep !/\.(tex|ttf)$/, io("../kc_original_unpack_modded/Media")->All_Files;
     say "prepped";
     my %found;
     my %unmatched;
