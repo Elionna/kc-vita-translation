@@ -690,6 +690,8 @@ sub run {
         "",
         @tr_keys < 120 ? map sprintf( "% 3s: '$tr_keys[$_]' : '$tr{$tr_keys[$_]}{tr}'", $_ ), 0 .. $#tr_keys : ""
     );
+    my %allowed_tr_keys = map +( $_ => 1 ), @tr_keys;
+    delete $tr{$_} for grep !$allowed_tr_keys{$_}, keys %tr;
 
     say "grabbing file list";
     my @list = utf8_asset_files;
