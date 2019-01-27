@@ -7,6 +7,8 @@ use utf8;
 
 sub data {
     return (
+        'Version 1.02' => { tr => "V1.02 + TR v0.4.305" . ( $ENV{DEV_VERSION} ? "_$ENV{DEV_VERSION}" : "" ) },
+
         # strings that show up in textures
         "制空権喪失" => { tr_tex => "Air Disadvantage", desc => 'Air Incapability or Air Superiority Lost' },
         "制空権確保" => { tr_tex => "Air Secured", desc => 'Air Supremacy or Air Superiority Ensured' },
