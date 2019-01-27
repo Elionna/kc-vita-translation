@@ -309,7 +309,7 @@ sub store_file_as_modded {
 }
 
 sub handle_file_as_asset {
-    my ( $do_blank, $report_matches, $found, $untranslated, $file, $tr_keys, %tr ) = @_;
+    my ( $do_blank, $report_matches, $found, $untranslated, $ignored, $file, $tr_keys, %tr ) = @_;
     my ($extension) = ( $file->{filename} =~ /\.(-[0-9]+)$/ );
     my $pack        = $file->{fileparts}[-2];
     my %known       = (
@@ -356,7 +356,7 @@ sub handle_file_as_asset {
     return 1 if $type eq "skip";                                                            # we might wanna process these later
     my %known_types = map +( $_ => 1 ), qw( label motionlist presetdata presetdeck presetship );
     return $known_types{$type}
-      ? handle_file_as_type( $type, $file, $found, $untranslated, $do_blank, $report_matches, %tr )
+      ? handle_file_as_type( $type, $file, $found, $untranslated, $ignored, $do_blank, $report_matches, %tr )
       : die "unknown type $type";
 }
 
@@ -387,12 +387,12 @@ sub handle_file_as_type {
 }
 
 sub try_and_translate_binparse_value {
-    my ( $meth, $obj, $file, $found, $untranslated, $report_matches, $do_blank, %trs ) = @_;
+    my ( $meth, $obj, $file, $found, $untranslated, $ignored, $report_matches, $do_blank, %trs ) = @_;
 
     my $text = decode "UTF-8", $obj->$meth;
     return if !length $text;
     $found->{$text}++;
-    return saynl "unable to find translation for: '$text' in: '$file->{file}'" unless    #
+    return $text !~ $jp_qr ? !++$ignored->{$text} : saynl "unable to find translation for: '$text' in: '$file->{file}'" unless    #
       my $tr = $trs{$text};
     return if $tr->{no_tr};
     return $untranslated->{$text}++ ? () : saynl "not yet translated in: '$file->{file}': '$text'"
@@ -418,7 +418,7 @@ sub maybe_dual_length {
 }
 
 sub parse_csharp {
-    my ( $content_ref, $do_blank, $report_matches, $found, $untranslated, $file, %tr ) = @_;
+    my ( $content_ref, $do_blank, $report_matches, $found, $untranslated, $ignored, $file, %tr ) = @_;
 
     my $offset = 4095716;
     for ( 1 .. 4 ) {
@@ -471,9 +471,9 @@ sub parse_csharp {
 }
 
 sub try_replace_csharp {
-    my ( $enc, $offset, $length, $text, $content_ref, $do_blank, $report_matches, $found, $untranslated, $file, %trs ) = @_;
+    my ( $enc, $offset, $length, $text, $content_ref, $do_blank, $report_matches, $found, $untranslated, $ignored, $file, %trs ) = @_;
     $found->{$text}++;
-    return $text !~ $jp_qr ? 1 : !saynl "unable to find translation for: '$text' in: '$file->{file}'" unless    #
+    return $text !~ $jp_qr ? ++$ignored->{$text} : !saynl "unable to find translation for: '$text' in: '$file->{file}'" unless    #
       my $tr = $trs{$text};
     return if $tr->{no_tr};
     return $untranslated->{$text}++ ? 1 : !saynl "not yet translated in: '$file->{file}': '$text'"
@@ -499,6 +499,7 @@ sub run {
         [ 'do_blank|d',       "process all strings with blanked-out translations to find untranslated strings" ],
         [ 'filter_pairs|f',   "generate additional glyph pairs to find better matches (only for testing)" ],
         [ 'report_matches|m', "report all matches" ],
+        [ 'report_ignored|i', "report ignored strings" ],
         [
             'bisect|b=s',
             "help drill down to problem translations by repeatedly halving the list of translations to apply. "
@@ -510,7 +511,8 @@ sub run {
         [],
         [ 'help', "print usage message and exit", { shortcircuit => 1 } ],
     );
-    my ( $do_blank, $filter_pairs, $bisect, $report_matches, $verbose ) = @{$opt}{qw( do_blank filter_pairs bisect report_matches verbose )};
+    my ( $do_blank, $filter_pairs, $bisect, $report_matches, $verbose, $report_ignored ) =
+      @{$opt}{qw( do_blank filter_pairs bisect report_matches verbose report_ignored )};
 
     say $usage->text;
     exit if $opt->help;
@@ -598,15 +600,15 @@ sub run {
     @list = sort { lc $a->{fileid} cmp lc $b->{fileid} } @list;
     io($_)->unlink for grep !/\.(tex|ttf)$/, io("../kc_original_unpack_modded/Media")->All_Files;
     say "prepped";
-    my ( %found, %unmatched, %hit, %untranslated );
+    my ( %found, %unmatched, %hit, %untranslated, %ignored );
 
     my @task_list = reverse sort { $a->[0] <=> $b->[0] }    #
       map +( [ length $_, $_, "UTF-16LE" ], [ length $_, $_, "UTF-8" ] ), @tr_keys;
     for my $file (@list) {
-        next if handle_file_as_asset $do_blank, $report_matches, \%found, \%untranslated, $file, \@tr_keys, %tr;
+        next if handle_file_as_asset $do_blank, $report_matches, \%found, \%untranslated, \%ignored, $file, \@tr_keys, %tr;
         my $content = $file->{filename} ne "Assembly-CSharp.dll"    #
           ? $file->{file}->all
-          : parse_csharp \( $file->{file}->all ), $do_blank, $report_matches, \%found, \%untranslated, $file, %tr;
+          : parse_csharp \( $file->{file}->all ), $do_blank, $report_matches, \%found, \%untranslated, \%ignored, $file, %tr;
         next if $file->{filename} eq "Assembly-CSharp.dll";         # leaving this in in case we want to reenable s&r for csharp
         search_and_replace( $file, \$content, \%tr, $do_blank, $report_matches, \%hit, \%unmatched, \%found, @task_list );
     }
@@ -615,6 +617,7 @@ sub run {
       reverse sort { length $a <=> length $b } sort keys %unmatched;
     my @nowhere = map sprintf( "  %-" . ( 30 - length $_ ) . "s $tr{$_}{tr}", "'$_'" ), grep +( !$found{$_} and !$unmatched{$_} ), @tr_keys;
     saynl " ", "strings not always identified confidently:", @maybe, " ", "strings found nowhere:", @nowhere;
+    saynl " ", "strings found during parse, but ignored:", map "  '$_'", sort keys %ignored if $report_ignored;
 
     say "\ndone";
     return;
