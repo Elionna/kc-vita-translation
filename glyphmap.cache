@@ -2638,6 +2638,9 @@
       "Uzuki Kai" : {
          "$Uz|$uki|$ Kai" : 1
       },
+      "V1.02 + TR v0.4.305_007" : {
+         "V1.02|$ + TR v0.4.3|05_007" : 1
+      },
       "Vanguard Fleet" : {
          "$Vang|$uard| |$Fleet" : 1
       },
@@ -5443,6 +5446,9 @@
       },
       "Using instant repair" : {
          "$Using|$ |$ins|t|$an|t|$ |r|$e|$p|$a|$i|$r" : 1
+      },
+      "V1.02 + TR v0.4.305_007" : {
+         "$V1.02|$ + TR v0.4.3|05_007" : 1
       },
       "Vanguard Fleet" : {
          "$Va|n|$guar|d |$Fleet" : 1
