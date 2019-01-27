@@ -53,6 +53,8 @@ def glyph_nach_datei(glyph):
 		return "exclam.glyph"
 	elif glyph == "\"":
 		return "quotedbl.glyph"
+	elif glyph == "+":
+		return "plus.glyph"
 	else:
 		chars = list(glyph)
 		i = 0
