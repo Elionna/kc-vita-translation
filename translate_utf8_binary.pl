@@ -198,6 +198,13 @@ sub add_mapped {
       sort keys $dictionary->%*;
 }
 
+sub tr_in_enc {
+    my ( $tr, $enc, $used, $glyphmap_cache, $verbose, %mapping ) = @_;
+    map_tr_to_multi_chars( $tr->{orig}, $enc, $tr, $used, $glyphmap_cache, $verbose, %mapping ) if !defined $tr->{tr_mapped}{$enc};
+    die "check log above, there was a translation that couldn't be matched\n" if !defined $tr->{tr_mapped}{$enc};
+    return $tr->{tr_mapped}{$enc};
+}
+
 sub get_hits {
     my ( $content, $jp, $enc ) = @_;
     my @hits;
@@ -419,7 +426,7 @@ sub maybe_dual_length {
 }
 
 sub parse_csharp {
-    my ( $content_ref, $do_blank, $report_matches, $found, $untranslated, $ignored, $file, %tr ) = @_;
+    my ( $content_ref, $tr_in_enc, $do_blank, $report_matches, $found, $untranslated, $ignored, $file, %tr ) = @_;
 
     my $offset = 4095716;
     for ( 1 .. 4 ) {
@@ -472,14 +479,14 @@ sub parse_csharp {
 }
 
 sub try_replace_csharp {
-    my ( $enc, $offset, $length, $text, $content_ref, $do_blank, $report_matches, $found, $untranslated, $ignored, $file, %trs ) = @_;
+    my ( $enc, $offset, $length, $text, $content_ref, $tr_in_enc, $do_blank, $report_matches, $found, $untranslated, $ignored, $file, %trs ) = @_;
     $found->{$text}++;
     return $text !~ $jp_qr ? ++$ignored->{$text} : !saynl "unable to find translation for: '$text' in: '$file->{file}'" unless    #
       my $tr = $trs{$text};
     return if $tr->{no_tr};
     return $untranslated->{$text}++ ? 1 : !saynl "not yet translated in: '$file->{file}': '$text'"
       if not $tr->{tr} and not $do_blank;
-    my $new_text = $do_blank ? ( "\0" x $length ) : $tr->{tr_mapped}{$enc};
+    my $new_text = $do_blank ? ( "\0" x $length ) : $tr_in_enc->( $tr, $enc );
     my $new_length = length $new_text;
     $new_text .= "\0" if $enc eq "UTF-16LE" and $new_length + 1 eq $length;
     $new_length = length $new_text;
@@ -497,6 +504,7 @@ sub run {
 
     my ( $opt, $usage ) = describe_options(
         'perl %c %o',
+        [ 'prepare_maps|p',   "prepare mappings in both encodings for all translations before starting" ],
         [ 'do_blank|d',       "process all strings with blanked-out translations to find untranslated strings" ],
         [ 'filter_pairs|f',   "generate additional glyph pairs to find better matches (only for testing)" ],
         [ 'report_matches|m', "report all matches" ],
@@ -512,8 +520,8 @@ sub run {
         [],
         [ 'help', "print usage message and exit", { shortcircuit => 1 } ],
     );
-    my ( $do_blank, $filter_pairs, $bisect, $report_matches, $verbose, $report_ignored ) =
-      @{$opt}{qw( do_blank filter_pairs bisect report_matches verbose report_ignored )};
+    my ( $do_blank, $filter_pairs, $bisect, $report_matches, $verbose, $report_ignored, $prepare_maps ) =
+      @{$opt}{qw( do_blank filter_pairs bisect report_matches verbose report_ignored prepare_maps )};
 
     say $usage->text;
     exit if $opt->help;
@@ -523,6 +531,7 @@ sub run {
 
     duplicate_check;
     my %tr = binary_translations->data;
+    $tr{$_}{orig} = $_ for keys %tr;
     delete $tr{$_} for grep +( $tr{$_}{tr_tex} and !$tr{$_}{tr} ), keys %tr;
     $tr{$_}{tr} //= "" for grep !defined $tr{$_}{tr}, sort keys %tr;
     my @tr_keys = reverse sort { length $a <=> length $b } sort keys %tr;
@@ -562,10 +571,13 @@ sub run {
     my %glyphmap_cache = -e $g ? JSON::MaybeXS->new( pretty => 1 )->decode( io($g)->utf8->all )->%* : ();
 
     my %used;
-    my @too_long = map add_mapped( \%tr, $_, \%used, \%glyphmap_cache, $verbose, %mapping ), "UTF-16LE", "UTF-8";
-    my @unused = grep !$used{$_}, keys %mapping;
-    say "following tuples unused: @unused\nfollowing tuples used: '" . ( join "|", sort keys %used ) . "'\n" if @unused;
-    die "check log above, there was a translation that couldn't be matched\n" if @too_long;
+    my $tr_in_enc = sub { tr_in_enc( @_, \%used, \%glyphmap_cache, $verbose, %mapping ) };
+    if ($prepare_maps) {
+        my @too_long = map add_mapped( \%tr, $_, \%used, \%glyphmap_cache, $verbose, %mapping ), "UTF-16LE", "UTF-8";
+        my @unused = grep !$used{$_}, keys %mapping;
+        say "following tuples unused: @unused\nfollowing tuples used: '" . ( join "|", sort keys %used ) . "'\n" if @unused;
+        die "check log above, there was a translation that couldn't be matched\n" if @too_long;
+    }
 
     if ($do_blank) {
         for my $enc ( "UTF-16LE", "UTF-8" ) {
@@ -609,9 +621,9 @@ sub run {
         next if handle_file_as_asset $do_blank, $report_matches, \%found, \%untranslated, \%ignored, $file, %tr;
         my $content = $file->{filename} ne "Assembly-CSharp.dll"    #
           ? $file->{file}->all
-          : parse_csharp \( $file->{file}->all ), $do_blank, $report_matches, \%found, \%untranslated, \%ignored, $file, %tr;
+          : parse_csharp \( $file->{file}->all ), $tr_in_enc, $do_blank, $report_matches, \%found, \%untranslated, \%ignored, $file, %tr;
         next if $file->{filename} eq "Assembly-CSharp.dll";         # leaving this in in case we want to reenable s&r for csharp
-        search_and_replace( $file, \$content, \%tr, $do_blank, $report_matches, \%hit, \%unmatched, \%found, @task_list );
+        search_and_replace( $file, \$content, \%tr, $tr_in_enc, $do_blank, $report_matches, \%hit, \%unmatched, \%found, @task_list );
     }
 
     my @maybe = map sprintf( "  %-" . ( 30 - length $_ ) . "s %-30s hit x %3s, nomatch x %3s, match x %3s", $_, $tr{$_}{tr}, $hit{$_}, $unmatched{$_}, $hit{$_} - $unmatched{$_} ),
@@ -625,7 +637,7 @@ sub run {
 }
 
 sub search_and_replace {
-    my ( $file, $content, $tr, $do_blank, $report_matches, $hits, $unmatched, $founds, @task_list ) = @_;
+    my ( $file, $content, $tr, $tr_in_enc, $do_blank, $report_matches, $hits, $unmatched, $founds, @task_list ) = @_;
 
     my $f_enc = $file->{enc};
     my $found;
@@ -652,7 +664,7 @@ sub search_and_replace {
             $founds->{$jp}++;
             next if !$do_blank and !length $obj{tr};
             report_near_miss $file_hit, $hit, $enc, $jp, $content, "is_a_hit" if $report_matches;
-            substr( $content, $hit, length $_ ) = $_ for $obj{tr_mapped}{$enc};
+            substr( $content, $hit, length $_ ) = $_ for $tr_in_enc->( \%obj, $enc );
             $found++;
         }
     }
