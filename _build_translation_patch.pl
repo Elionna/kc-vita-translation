@@ -19,7 +19,7 @@ sub run {
     call "translate_utf8_binary.pl @opt";
     call "modify_fonts_and_inject.pl";
     call "mod_textures.pl";
-    call "copy_xml_to_modded.pl";
+    call "copy_unmodded_files.pl";
     call "import_files_to_assets.pl";
     try_copy();
 

@@ -62,7 +62,7 @@ sub run {
     my $sub_path = "repatch/PCSG00684/";
     say "moving to $sub_path";
     io("$target_dir/$sub_path/")->mkpath;
-    io($media_dir)->rename("$target_dir/$sub_path/Media");
+    $_->rename( "$target_dir/$sub_path/" . $_->filename ) for io($target_dir)->all_dirs;
 
     say "done";
     return;
