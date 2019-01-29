@@ -309,7 +309,7 @@ sub store_file_as_modded {
 }
 
 sub handle_file_as_asset {
-    my ( $do_blank, $report_matches, $found, $untranslated, $ignored, $file, $tr_keys, %tr ) = @_;
+    my ( $do_blank, $report_matches, $found, $untranslated, $ignored, $file, %tr ) = @_;
     my ($extension) = ( $file->{filename} =~ /\.(-[0-9]+)$/ );
     my $pack        = $file->{fileparts}[-2];
     my %known       = (
@@ -605,7 +605,7 @@ sub run {
     my @task_list = reverse sort { $a->[0] <=> $b->[0] }    #
       map +( [ length $_, $_, "UTF-16LE" ], [ length $_, $_, "UTF-8" ] ), @tr_keys;
     for my $file (@list) {
-        next if handle_file_as_asset $do_blank, $report_matches, \%found, \%untranslated, \%ignored, $file, \@tr_keys, %tr;
+        next if handle_file_as_asset $do_blank, $report_matches, \%found, \%untranslated, \%ignored, $file, %tr;
         my $content = $file->{filename} ne "Assembly-CSharp.dll"    #
           ? $file->{file}->all
           : parse_csharp \( $file->{file}->all ), $do_blank, $report_matches, \%found, \%untranslated, \%ignored, $file, %tr;
