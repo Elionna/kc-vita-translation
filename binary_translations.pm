@@ -191,7 +191,7 @@ sub data {
           { tr => "Ship Girl storage full, can not construct any more.", desc => 'warning message when constructing ships' },
 
         "[E2E2E2][12c112]旗艦提督室[-]への移動[-]" => { desc => 'flagship admirals |map screen tutorial' },
-        "      ボタンで\n旗艦提督室へ移動せよ！" => { tr => "Press button to move to the Admiral's Room!", desc => "map screen tutorial | I prefer Admiral's Office, but Admiral's Room is already established in 0.4 and previous." },
+        "      ボタンで\n旗艦提督室へ移動せよ！" => { tr => "      Press button to move\nto the Admiral's Room!", desc => "map screen tutorial | I prefer Admiral's Office, but Admiral's Room is already established in 0.4 and previous." },
         "戦略コマンド"         => { tr => "Strategy Command",      desc => 'Command|map screen circle' },
         "艦隊情報"               => { tr => "Fleet Information",      desc => 'Information|map screen triangle' },
         "艦隊選択"               => { tr => "Fleet Selection",      desc => 'Selection|map screen left right d-pad' },
