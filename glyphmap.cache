@@ -1,7 +1,13 @@
 {
    "UTF-16LE" : {
+      "\tEscort Fleet (MemId:{0}) deals {1} damage({2})" : {
+         "\t|$Escort| |$Flee|t (|$Me|mId:|{0}|) |$de|$als| |{1}| d|$am|$age|(|{2}|)" : 1
+      },
       "\n[666666](※Repair consumed)[-]" : {
          "\n|[666666]|(※|$Re|p|$ai|r |$co|$nsum|$ed|)|[-]" : 1
+      },
+      "      Press button to move\nto the Admiral's Room!" : {
+         "$     | |$Pr|$es|s |$button| |$to| |$mo|ve\n|$to the| |$Admira|l|$'s| |$Room|!" : 1
       },
       " characters can be entered.)" : {
          " |$char|$acte|$rs| |$can |$be| |$entered|.)" : 1
@@ -99,6 +105,14 @@
       "Abandon Voice" : {
          "$Ab|$an|don |$Vo|ice" : 1,
          "$Ab|andon |$Vo|ice" : 1
+      },
+      "About [000000][0055aa]Maritime Escort Fleet[-] deployment" : {
+         "$About| |[000000]|[0055aa]|$Ma|r|$iti|$me| |$Escort| |$Fle|$et|[-]| |$deployment" : 1,
+         "$Ab|$out| |[000000]|[0055aa]|$Ma|r|$iti|$me| |$Escort| |$Fleet|[-]| |$deployment" : 1
+      },
+      "About [000000][0055aa]Transport Ship[-] Deployment" : {
+         "$About| |[000000]|[0055aa]|$Transport| |$Ship|[-]| |$De|p|$loy|$ment" : 1,
+         "$Ab|$ou|t |[000000]|[0055aa]|$Transport| |$Sh|$ip|[-]| |$Deployment" : 1
       },
       "Abukuma" : {
          "$Ab|$uku|$ma" : 1
@@ -360,6 +374,9 @@
       "Atago1" : {
          "$At|$ago|1" : 1
       },
+      "Attack Hit% adjustment" : {
+         "$Attack| |$Hit|% |$adjust|$ment" : 1
+      },
       "Attack hit compensation" : {
          "$Attack| |$hit| |$compensa|$tion" : 1
       },
@@ -440,6 +457,9 @@
       },
       "Charge" : {
          "$Ch|$arge" : 1
+      },
+      "Check your Quests in the Admiral's Room!" : {
+         "$Check| y|$our| Q|$uest|s |$in |t|$he| |$Admira|l|$'s| |$Room|!" : 1
       },
       "Chikuma" : {
          "$Chi|$kuma" : 1
@@ -610,6 +630,9 @@
       },
       "Coordinated Shelling" : {
          "$Coordinated |$Shelling" : 1
+      },
+      "Corresponding equipment has been locked." : {
+         "$Corres|$ponding| |$equi|p|$ment| |$has| |$been| |$lo|$cked|." : 1
       },
       "Costal Defense" : {
          "$Costal| |$Def|$ense" : 1,
@@ -807,6 +830,9 @@
       },
       "Evade Correction" : {
          "$Ev|$ade| |$Cor|$re|$ct|$ion" : 1
+      },
+      "Evasion adjustment" : {
+         "$Ev|$as|$ion| |$adjust|$me|$nt" : 1
       },
       "Execute Middle Strategy" : {
          "$Execute| |$Middle| |$Strategy" : 1
@@ -1312,6 +1338,9 @@
       "Instant Repair x" : {
          "$Ins|$tant| |$Repair| x" : 1
       },
+      "Insufficient Strategy Points." : {
+         "$Ins|u|$ff|i|$ci|$en|t |$Strategy| |$Po|$in|$ts|." : 1
+      },
       "Intelligence Exchange" : {
          "$Intelli|$gence| |$Exchange" : 1
       },
@@ -1622,6 +1651,12 @@
       "Mar" : {
          "$Ma|r" : 1
       },
+      "Maritime Escort Fleet ASW/AA skill: {0}\n" : {
+         "$Maritime| |$Escort| |$Fleet |$ASW|/|$AA| sk|$il|l: |{0}|\n" : 1
+      },
+      "Maritime Escort Fleet Name Escort Fleet Name" : {
+         "$Ma|r|$iti|$me| |$Escort| |$Fleet |$Name| |$Escort| |$Fleet |$Name" : 1
+      },
       "Maruyu" : {
          "$Ma|$ru|$yu" : 1
       },
@@ -1875,6 +1910,9 @@
       "Number of Sorties\n\r\nNumber of Wins\n\r\nInterception of Success\n\nWin Rate\n\n\nExercise Number\n\nNumber of Counter Exercises\r\n" : {
          "$Number| |$of |$Sorties|\n\r\n|$Number| |$of |$Wins|\n\r\n|$Intercept|$ion| |$of |$Success|\n\n|$Win |$Rate|\n\n\n|$Exercise|$ Number|\n\n|$Number of| |$Counter |$Exercises|\r\n" : 1
       },
+      "Number of Transports:{0} (moving to this area: {1})  - Total number: {2}" : {
+         "$Number of| |$Transport|s:|{0}| (|$mo|v|$ing| |$to |$this |$are|a: |{1}|)|$  |- |$Tota|$l |$nu|$mber|: |{2}" : 1
+      },
       "Number of owned fleets" : {
          "$Number |$of |$owned| |$fleets" : 1
       },
@@ -1975,14 +2013,32 @@
       "Preset Data\n(Please select using touch)" : {
          "$Pr|eset |$Data|\n(|$Plea|$se| s|$el|$ect| |$us|$ing| t|$ou|$ch|)" : 1
       },
+      "Press button to move\nto the Admiral's Room!" : {
+         "$Pr|$es|s |$button| |$to| |$mo|ve\n|$to the| |$Admira|l|$'s| |$Ro|om!" : 1
+      },
+      "Press button to move to the Admiral's Room!" : {
+         "$Pr|$es|s |$button| |$to| |$mo|ve |$to the| |$Admira|l|$'s| |$Ro|om!" : 1
+      },
       "Press button to open Strategy Command and Sortie the Fleet!" : {
          "$Pre|$ss| |$but|t|$on| |$to |$op|$en| |$Strategy| |$Comm|$and |$and |$Sort|$ie| |$the| |$Fleet|!" : 1
+      },
+      "Press button to open Strategy map, and End the Turn!" : {
+         "$Pr|$ess| |$button| |$to| o|$pen| |$Strategy| m|$ap|, |$and |$En|d t|$he| |$Turn|!" : 1
+      },
+      "Press button to open Strategy map, and Sortie the Fleet!" : {
+         "$Pr|$ess| |$button| |$to |o|$pen| |$Strategy| m|$ap|, |$and |$Sortie| t|$he| |$Fleet|!" : 1
       },
       "Press □ for Disposal" : {
          "$Pr|$es|s □ |$fo|r |$Di|$sp|$os|$al" : 1
       },
       "Press □ to Dismantle" : {
          "$Pr|$es|s □ |$to| |$Di|$sm|$an|t|$le" : 1
+      },
+      "Press □ to demolish" : {
+         "$Pr|$es|s □ |$to| |$de|$mo|l|$is|h" : 1
+      },
+      "Press □ to discard" : {
+         "$Pr|$es|s □ |$to| d|$is|c|$ar|d" : 1
       },
       "Prinz Eugen Kai" : {
          "Prinz |$Eu|g|$en| |$Ka|i" : 1
@@ -2206,6 +2262,9 @@
       },
       "Ship Girl Selection" : {
          "$Ship|$ Girl| |$Selection" : 1
+      },
+      "Ship Girl is locked" : {
+         "$Ship|$ Girl| |$is| |$lo|$cked" : 1
       },
       "Ship Girl storage full, can not construct any more." : {
          "$Ship|$ Girl| |$storage| |$full|, |$can |$not| |$construct| |$any |$more|." : 1
@@ -2524,6 +2583,9 @@
          "$Torpedo| |$Ex|$er|$ci|s|$es| |$no|w |$op|$en|!" : 1,
          "$To|r|$pe|$do| |$Exe|r|$cis|$es| |$now| |$op|$en|!" : 1
       },
+      "Torpedo Hit% adjustment" : {
+         "$Torpedo| |$Hit|% |$adjust|$ment" : 1
+      },
       "Transition Menu" : {
          "$Tr|$an|$siti|$on |$Men|u" : 1
       },
@@ -2643,6 +2705,12 @@
       },
       "V1.02 + TR v0.4.305_007" : {
          "V1.02|$ + TR v0.4.3|05_007" : 1
+      },
+      "V1.02 + TR v0.4.305_009r" : {
+         "V1.|$02|$ + TR v0.4.3|05_009r" : 1
+      },
+      "V1.02 + TR v0.4.305_010" : {
+         "V1.02|$ + TR v0.4.3|05_010" : 1
       },
       "Vanguard Fleet" : {
          "$Vang|$uard| |$Fleet" : 1
@@ -2845,6 +2913,15 @@
       "[12c112]End of Turn[-]" : {
          "[12c112]|$En|d |$of |$Turn|[-]" : 1
       },
+      "[66ccff]All classes of ships may sortie.[-]" : {
+         "[66ccff]|$All |$classes| |$of |$ships |m|$ay| |$sortie|.|[-]" : 1
+      },
+      "[66ccff]Only listed ship classes can sortie[-]." : {
+         "[66ccff]|$Only| |$listed |$ship |$classes| |$can |$sortie|[-]|." : 1
+      },
+      "[FF0000]These ship classes unable to sortie[-]." : {
+         "[FF0000]|$These |$ship |$classes| |$unable |$to |$sortie|[-]|." : 1
+      },
       "after" : {
          "$af|$ter" : 1
       },
@@ -2934,11 +3011,17 @@
       }
    },
    "UTF-8" : {
+      "\tEscort Fleet (MemId:{0}) deals {1} damage({2})" : {
+         "\t|$Esc|ort|$ |$Flee|t|$ |(MemId:|{0}|)|$ |de|$als| |{1}|$ |d|$a|m|$age|(|{2}|)" : 1
+      },
       "\tEscort Fleet Damage" : {
          "\t|$E|$s|$c|$o|$r|$t|$ |$F|l|$e|$e|$t|$ |$D|$a|$m|$a|$g|$e" : 1
       },
       "\n[666666](※Repair consumed)[-]" : {
          "\n|[666666]|(※|$R|epair|$ |$c|o|$nsum|$e|$d|)|[-]" : 1
+      },
+      "      Press button to move\nto the Admiral's Room!" : {
+         "$ |$ |$   | |$Pre|ss |$but|t|$on |$to |move\nto |$the| |$Adm|$ira|l's |$Room|!" : 1
       },
       " characters can be entered.)" : {
          "$ |$characters|$ |c|$an| |$be| |$en|$ter|$ed|$.|)" : 1
@@ -3088,6 +3171,12 @@
       },
       "About Escort Fleet Deployment" : {
          "$Abou|t|$ |$Esco|rt|$ |$Fl|$e|$e|$t|$ |$D|$e|$p|l|$o|$y|$m|$e|$n|$t" : 1
+      },
+      "About [000000][0055aa]Maritime Escort Fleet[-] deployment" : {
+         "$Abou|t |[000000]|[0055aa]|Mar|$iti|me|$ |$Esc|ort |$Fle|et|[-]| |$dep|loym|$ent" : 1
+      },
+      "About [000000][0055aa]Transport Ship[-] Deployment" : {
+         "Ab|$out| |[000000]|[0055aa]|Tr|$ans|$port| |$Shi|p|[-]| Dep|$loy|m|$ent" : 1
       },
       "Abukuma" : {
          "$A|bukuma" : 1
@@ -3326,6 +3415,9 @@
       "Atago1" : {
          "$Atag|o|$1" : 1
       },
+      "Attack Hit% adjustment" : {
+         "Attack |$Hit|% ad|$just|m|$ent" : 1
+      },
       "Attack hit compensation" : {
          "$Attack| hit |$comp|ens|$atio|n" : 1
       },
@@ -3397,6 +3489,9 @@
       },
       "Change Screen" : {
          "$Ch|$an|ge |$Screen" : 1
+      },
+      "Check your Quests in the Admiral's Room!" : {
+         "Check|$ |your|$ |$Que|sts|$ |in|$ |the|$ |$Adm|$ira|l's|$ |$Room|!" : 1
       },
       "Chikuma" : {
          "$Chi|$kuma" : 1
@@ -3556,6 +3651,9 @@
       },
       "Coordinated Shelling" : {
          "$Coordinated |$Shelling" : 1
+      },
+      "Corresponding equipment has been locked." : {
+         "Corresponding|$ |equipment has been locked." : 1
       },
       "Costal Defense" : {
          "$Co|$stal| |$Def|$ense" : 1,
@@ -3755,6 +3853,9 @@
       },
       "Evade Correction" : {
          "$Evad|e|$ |$C|$orre|$c|t|$io|n" : 1
+      },
+      "Evasion adjustment" : {
+         "Evas|$ion|$ |$a|d|$just|m|$ent" : 1
       },
       "Execute Middle Strategy" : {
          "$Execute| |$Middle| |$Stra|tegy" : 1
@@ -4239,6 +4340,9 @@
       "Instant Repair x" : {
          "$Instant|$ |$Re|$pa|$ir| x" : 1
       },
+      "Insufficient Strategy Points." : {
+         "$I|nsuffi|$c|ient|$ |$S|tr|$a|$tegy|$ |$Poi|nts|$." : 1
+      },
       "Intelligence Exchange" : {
          "$Intelli|$gence|$ |$Exchange" : 1
       },
@@ -4540,6 +4644,12 @@
       "Mar" : {
          "$M|$ar" : 1
       },
+      "Maritime Escort Fleet ASW/AA skill: {0}\n" : {
+         "$M|ar|$iti|me|$ |$Esc|ort|$ |$Flee|t|$ |$ASW|/AA |$skill|: |{0}|\n" : 1
+      },
+      "Maritime Escort Fleet Name Escort Fleet Name" : {
+         "Mar|$iti|me |$Esc|ort |$Fle|et |$Name| |$Esc|ort |$Fle|et |$Name" : 1
+      },
       "Maruyu" : {
          "$M|$a|$ruyu" : 1
       },
@@ -4754,6 +4864,9 @@
       "Number of Sorties\n\r\nNumber of Wins\n\r\nInterception of Success\n\nWin Rate\n\n\nExercise Number\n\nNumber of Counter Exercises\r\n" : {
          "$Number| of |$Sort|ies\n\r\n|$Number| of |$Wins|\n\r\n|$Interception| of |$Success|\n\n|$Win |$Rate|\n\n\n|$Exercise|$ Number|\n\nNu|$mber| of |$Counter| |$Exercises|\r\n" : 1
       },
+      "Number of Transports:{0} (moving to this area: {1})  - Total number: {2}" : {
+         "Number of Transports:|{0}|$ |(moving to this area: |{1}|)  - Total number: |{2}" : 1
+      },
       "Number of owned fleets" : {
          "$Number| of |$owned| |$fleet|s" : 1
       },
@@ -4845,14 +4958,32 @@
       "Preset Data\n(Please select using touch)" : {
          "Preset|$ |Data\n(Please|$ |select|$ |$u|$s|$i|$n|$g|$ |$t|$o|$u|$c|$h|)" : 1
       },
+      "Press button to move\nto the Admiral's Room!" : {
+         "Press|$ |button|$ |to|$ |move\nto|$ |the|$ |$Adm|$ira|l's |$Room|!" : 1
+      },
+      "Press button to move to the Admiral's Room!" : {
+         "Press|$ |button|$ |to|$ |move|$ |to|$ |the |$Adm|$ira|l's |$Room|!" : 1
+      },
       "Press button to open Strategy Command and Sortie the Fleet!" : {
          "Press|$ |button|$ |to|$ |open|$ |Strategy Command and Sortie the Fleet!" : 1
+      },
+      "Press button to open Strategy map, and End the Turn!" : {
+         "$Pre|ss|$ |$but|ton|$ |to|$ |open|$ |$S|tr|$a|$tegy|$ |map,|$ |and|$ |End|$ |the|$ |T|$urn|!" : 1
+      },
+      "Press button to open Strategy map, and Sortie the Fleet!" : {
+         "$Pre|ss|$ |$but|ton|$ |to|$ |open|$ |$Str|$ate|gy|$ |map,|$ |$and |$Sor|$tie| |$the| |$Fle|et!" : 1
       },
       "Press □ for Disposal" : {
          "$Pres|s|$ |□|$ |$for|$ |$D|$i|sp|$o|$s|$a|l" : 1
       },
       "Press □ to Dismantle" : {
          "$Pres|s|$ |□|$ |to|$ |$D|$ism|$a|$n|$t|l|$e" : 1
+      },
+      "Press □ to demolish" : {
+         "$P|ress|$ |□|$ |to|$ |$d|$e|mol|$i|s|$h" : 1
+      },
+      "Press □ to discard" : {
+         "$P|r|$e|ss|$ |□|$ |to|$ |$d|$is|$c|$a|rd" : 1
       },
       "Prinz Eugen Kai" : {
          "$Prin|z |$Eu|$gen|$ Kai" : 1
@@ -5054,6 +5185,9 @@
       },
       "Ship Girl Selection" : {
          "Ship |$Girl| |$Selection" : 1
+      },
+      "Ship Girl is locked" : {
+         "Ship|$ |Girl is locked" : 1
       },
       "Ship Girl storage full, can not construct any more." : {
          "Ship |$Girl| storage full, |$can |not construct |$any |more." : 1
@@ -5345,6 +5479,9 @@
          "$T|$o|r|$pedo|$ |$E|xer|$c|ises|$ |now|$ |o|$pen|!" : 1,
          "Torpedo|$ |Exercises|$ |now|$ |$o|p|$e|$n|$!" : 1
       },
+      "Torpedo Hit% adjustment" : {
+         "$Tor|$pedo| |$Hit|% ad|$just|m|$ent" : 1
+      },
       "Transition Menu" : {
          "$Trans|it|$ion|$ |$M|$en|u" : 1
       },
@@ -5458,6 +5595,9 @@
       },
       "V1.02 + TR v0.4.305_007" : {
          "$V1.02|$ + TR v0.4.3|05_007" : 1
+      },
+      "V1.02 + TR v0.4.305_010" : {
+         "$V1.02|$ + TR v0.4.3|05_010" : 1
       },
       "Vanguard Fleet" : {
          "$Va|n|$guar|d |$Fleet" : 1
@@ -5638,6 +5778,15 @@
       },
       "[12c112]End of Turn[-]" : {
          "[12c112]|End|$ |of|$ |Turn|[-]" : 1
+      },
+      "[66ccff]All classes of ships may sortie.[-]" : {
+         "[66ccff]|$All| cl|$ass|$es| of s|$hip|s |$may| |$sortie|.|[-]" : 1
+      },
+      "[66ccff]Only listed ship classes can sortie[-]." : {
+         "[66ccff]|$Onl|y |$listed |$ship |cl|$ass|es c|$an |$sortie|[-]|." : 1
+      },
+      "[FF0000]These ship classes unable to sortie[-]." : {
+         "[FF0000]|$The|se |$ship| |$classes| |$unable |$to |$sortie|[-]|." : 1
       },
       "after" : {
          "$a|$fter" : 1
