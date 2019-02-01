@@ -9,6 +9,7 @@ use Tk::Font;
 use utf8;
 use Array::Split 'split_into';
 use Getopt::Long::Descriptive;
+use XML::LibXML;
 use lib '.';
 use binary_translations;
 use label;
@@ -266,14 +267,14 @@ sub check_for_null_bracketing {
 }
 
 sub utf8_asset_files {
+    my ($src_dir) = @_;
     my $has_find = -e "c:/cygwin/bin/find.exe";
     say "has find: $has_find";
-    my $src_dir = "../kc_original_unpack/Media/Unity_Assets_Files/";
     my @list = $has_find ? split /\n/, `c:/cygwin/bin/find "$src_dir" -type f`    #
-      : io($src_dir)->All_Files;
-    @list = grep !/\.(tex|dds(_\d)*|mat|gobj|shader|txt|xml|ttf|amtc|ani|avatar|cbm|flr|fsb|mesh|obj|physmat2D|rtex|script|snd|[0-9]+)$/, @list;
+      :                    io($src_dir)->All_Files;
+    @list = grep !/\.(tex|dds(_\d)*|mat|gobj|shader|txt|ttf|amtc|ani|avatar|cbm|flr|fsb|mesh|obj|physmat2D|rtex|script|snd|[0-9]+)$/, @list;
     @list = map +( ref $_ ? $_ : io($_) ), @list;
-    @list = map +{ file => $_, filename => $_->filename, fileparts => [ split /\/|\\/, $_ ], enc => "UTF-8" }, @list;
+    @list = map +{ file => $_, filename => $_->filename, fileparts => [ split /\/|\\/, $_ ], enc => "UTF-8", ext => $_->ext }, @list;
     $_->{fileid} = join "/", @{ $_->{fileparts} }[ 4 .. $#{ $_->{fileparts} } ] for @list;
     return @list;
 }
@@ -496,6 +497,98 @@ sub try_replace_csharp {
     return;
 }
 
+sub translate_xml_string {
+    my ( $text, @args ) = @_;
+    return _translate_xml_string( $text, @args ) // $text;
+}
+
+sub _translate_xml_string {
+    my ( $text, $file, $node, $do_blank, $report_matches, $found, $untranslated, %trs ) = @_;
+    $found->{$text}++;
+
+    my $tr = $trs{$text};
+    if ( !$tr ) {
+        saynl "unable to find translation for: '$text' in: '$file->{file}'";
+        return;
+    }
+
+    return if $tr->{no_tr};
+
+    if ( not $tr->{tr} and not $do_blank ) {
+        saynl "not yet translated in: '$file->{file}': '$text'" if !$untranslated->{$text}++;
+        return;
+    }
+
+    saynl sprintf "binary parse result %-26s %10s : %-60s -> %-60s", "'$file->{filename}'", $node, "'$text'", "'$tr->{tr}'" if $report_matches;
+    return $tr->{tr};
+}
+
+sub handle_file_as_xml {
+    my ( $do_blank, $report_matches, $found, $untranslated, $ignored, $file, %trs ) = @_;
+    return if $file->{ext} ne "xml";
+    return if $file->{file} !~ /StreamingAssets/;
+
+    my %known = map +( "mst_$_.xml" => 1 ), qw( bgm bgm_jukebox furniture
+      maparea mapinfo mission2 payitem payitemtext quest ship shiptext
+      ship_class slotitem slotitem_equiptype stype useitem );
+    return if !$known{ $file->{filename} };
+
+    if ( $file->{filename} eq "mst_bgm.xml" ) {
+        my $xml = XML::LibXML->load_xml( string => io( $file->{file} )->all );
+        my @todo = $xml->findnodes("//bgm_record/text()");
+        for my $i ( 0 .. $#todo ) {
+            my $todo = $todo[$i];
+            my ( $head, $text ) = split /,/, $todo->data;
+            $text = translate_xml_string( $text, $file, $i, $do_blank, $report_matches, $found, $untranslated, %trs );
+            $todo->setData( join ",", $head, $text );
+        }
+        store_file_as_modded( $file, 1, $xml->toString );
+        return 1;
+    }
+
+    if ( $file->{filename} eq "mst_bgm_jukebox.xml" ) {
+        my $xml = XML::LibXML->load_xml( string => io( $file->{file} )->all );
+        my @todo = $xml->findnodes("//Jukebox_record/text()");
+        for my $i ( 0 .. $#todo ) {
+            my $todo = $todo[$i];
+            my ( $head, @text ) = split /,/, $todo->data;
+            $text[$_] = translate_xml_string( $text[$_], $file, $i, $do_blank, $report_matches, $found, $untranslated, %trs ) for 0, 1;
+            $todo->setData( join ",", $head, @text );
+        }
+        store_file_as_modded( $file, 1, $xml->toString );
+        return 1;
+    }
+
+    my %tags = map ref($_) ? $_ : "mst_$_.xml",    #
+      furniture          => ["Title"],
+      maparea            => ["Name"],
+      mapinfo            => [qw( Infotext Name Opetext )],
+      mission2           => [qw( Details Name )],
+      payitem            => ["Name"],
+      payitemtext        => ["Description"],
+      quest              => [qw( Details Name )],
+      ship               => [qw( Yomi Name )],
+      ship_class         => ["Name"],
+      shiptext           => [qw( Getmes Sinfo )],
+      slotitem           => ["Name"],
+      slotitem_equiptype => ["Name"],
+      stype              => ["Name"],
+      useitem            => ["Name"];
+
+    if ( my $tags = $tags{ $file->{filename} } ) {
+        my $xml = XML::LibXML->load_xml( string => io( $file->{file} )->all );
+        my @todo = map $xml->findnodes("//$_/text()"), $tags->@*;
+        $todo[$_]->setData( translate_xml_string( $todo[$_]->data, $file, $_, $do_blank, $report_matches, $found, $untranslated, %trs ) )    #
+          for 0 .. $#todo;
+        store_file_as_modded( $file, 1, $xml->toString );
+        return 1;
+    }
+
+    die "how did we get here with $file->{file} ?";
+
+    return;
+}
+
 sub run {
     `chcp 65001`;
     $|++;
@@ -602,14 +695,18 @@ sub run {
     delete $tr{$_} for grep !$allowed_tr_keys{$_}, keys %tr;
 
     say "grabbing file list";
-    my @list = utf8_asset_files;
-    push @list, {                  #
-        file      => io("../kc_original/Media/Managed/Assembly-CSharp.dll"),
-        filename  => "Assembly-CSharp.dll",
-        fileparts => [ split /\/|\\/, "../kc_original/Media/Managed/Assembly-CSharp.dll" ],
-        enc       => [ "UTF-16LE", "UTF-8" ],
-        fileid    => "a-csharp",
-    };
+    my @list = (
+        utf8_asset_files("../kc_original_unpack/Media/Unity_Assets_Files/"),
+        utf8_asset_files("../kc_original/Media/StreamingAssets/Xml/tables/master/"),
+        {                          #
+            file      => io("../kc_original/Media/Managed/Assembly-CSharp.dll"),
+            filename  => "Assembly-CSharp.dll",
+            fileparts => [ split /\/|\\/, "../kc_original/Media/Managed/Assembly-CSharp.dll" ],
+            enc       => [ "UTF-16LE", "UTF-8" ],
+            fileid    => "a-csharp",
+            ext       => "dll",
+        },
+    );
     @list = sort { lc $a->{fileid} cmp lc $b->{fileid} } @list;
     io($_)->unlink for grep !/\.(tex|ttf)$/, io("../kc_original_unpack_modded/Media")->All_Files;
     say "prepped";
@@ -618,6 +715,7 @@ sub run {
     my @task_list = reverse sort { $a->[0] <=> $b->[0] }    #
       map +( [ length $_, $_, "UTF-16LE" ], [ length $_, $_, "UTF-8" ] ), @tr_keys;
     for my $file (@list) {
+        next if handle_file_as_xml $do_blank,   $report_matches, \%found, \%untranslated, \%ignored, $file, %tr;
         next if handle_file_as_asset $do_blank, $report_matches, \%found, \%untranslated, \%ignored, $file, %tr;
         my $content = $file->{filename} ne "Assembly-CSharp.dll"    #
           ? $file->{file}->all

@@ -9,7 +9,6 @@ run();
 sub run {
     say "copying translated unmodded files";
     for my $set (    #
-        [ "xml", "en/Xml/tables/master",         "Media/StreamingAssets/Xml/tables/master/" ],
         [ "png", "en/sce_sys",                   "sce_sys/" ],
         [ "png", "en/sce_sys/livearea/contents", "sce_sys/livearea/contents/" ],
       )
