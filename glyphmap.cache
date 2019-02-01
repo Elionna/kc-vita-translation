@@ -1306,6 +1306,7 @@
          "$Ika|$zuchi1" : 1
       },
       "Improvement Material" : {
+         "$Improvement| |$Mate|$rial" : 1,
          "$Impr|$ov|$eme|$nt| |$Material" : 1
       },
       "Inazuma Kai" : {
@@ -2187,6 +2188,9 @@
       },
       "SeaAreaNameSeaAreaNameSeaAreaNameSeaAreaNameSeaAreaName" : {
          "$Sea|$Area|$Name|$Sea|$Area|$Name|$Sea|$Area|$Name|$Sea|$Area|$Name|$Sea|$Area|$Name" : 1
+      },
+      "Secondary Armament" : {
+         "$Secondary |$Armament" : 1
       },
       "Select" : {
          "$Se|$lect" : 1
