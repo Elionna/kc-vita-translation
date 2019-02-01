@@ -114,7 +114,7 @@ sub map_str_to_multi_chars {
     my @tasks = ( \@parts );
     my @result;
 
-    my ( %seen, @failed, %closest );
+    my ( %seen, @failed, %closest, %panic_reported );
     eval {
         # the lists made before each loop aren't faster, but easier to debug
         while (@tasks) {
@@ -133,12 +133,12 @@ sub map_str_to_multi_chars {
             push $closest{ abs $diff }->@*, $fail;
             unshift @failed, $fail;
 
-            #if ( @failed > 100 ) {
-            #    my $closest_diff = min keys %closest;
-            #    my @closest = map "closest: $_", $closest{$closest_diff}->@* if $closest_diff;
-            #    saynl for @failed, @closest;
-            #    @failed = ();
-            #}
+            if ( @failed > 200 ) {
+                my $closest_diff = min keys %closest;
+                my @closest = map "closest: $_", $closest{$closest_diff}->@* if $closest_diff;
+                @closest = grep !$panic_reported{$_}++, @closest;
+                saynl for @closest;
+            }
 
             my $length_current = $l->(@parts);
             my $need_to_shrink = $length_current - $length_target;
@@ -158,7 +158,8 @@ sub map_str_to_multi_chars {
 
     my @mapped       = @result;
     my $closest_diff = min keys %closest;
-    unshift @failed, map "closest: $_", $closest{$closest_diff}->@* if $closest_diff;
+    my @closest      = $closest_diff ? map "closest: $_", $closest{$closest_diff}->@* : ();
+    @failed = @closest ? ( @closest, ( $verbose ? @failed : () ) ) : @failed;
     @mapped = @parts if not @mapped;
     $used->{ $rev_prep{$_} }++ for grep defined $rev_prep{$_}, @mapped;
     my $raw = join "|", map +( $rev_prep{$_} ? "\$$rev_prep{$_}" : $_ ), @mapped;
