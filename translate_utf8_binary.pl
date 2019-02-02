@@ -400,7 +400,8 @@ sub try_and_translate_binparse_value {
 
     my $text = decode "UTF-8", $obj->$meth;
     return if !length $text;
-    $found->{$text}++;
+    my $id = max - 1, keys %{ $found->{$text}{ $file->{file} } ||= {} };
+    $found->{$text}{ $file->{file} }{ $id + 1 } = ( $trs{$text} || {} )->{tr};
     return $text !~ $jp_qr ? !++$ignored->{$text} : saynl "unable to find translation for: '$text' in: '$file->{file}'" unless    #
       my $tr = $trs{$text};
     return if $tr->{no_tr};
@@ -441,8 +442,7 @@ sub parse_csharp {
     while (1) {
         ( $offset, my $length ) = maybe_dual_length $content_ref, $offset;
         last if !$length;
-        my $bytes = substr $content_ref->$*, $offset, $length;
-        my $text = decode "UTF-16LE", $bytes;
+        my $text = decode "UTF-16LE", substr $content_ref->$*, $offset, $length;
         try_replace_csharp( "UTF-16LE", $offset, $length, $text, @_ );
         $offset += $length;
     }
@@ -481,7 +481,7 @@ sub parse_csharp {
 
 sub try_replace_csharp {
     my ( $enc, $offset, $length, $text, $content_ref, $tr_in_enc, $do_blank, $report_matches, $found, $untranslated, $ignored, $file, %trs ) = @_;
-    $found->{$text}++;
+    $found->{$text}{ $file->{file} }{$offset} = ( $trs{$text} || {} )->{tr};
     return $text !~ $jp_qr ? ++$ignored->{$text} : !saynl "unable to find translation for: '$text' in: '$file->{file}'" unless    #
       my $tr = $trs{$text};
     return if $tr->{no_tr};
@@ -504,9 +504,9 @@ sub translate_xml_string {
 
 sub _translate_xml_string {
     my ( $text, $file, $node, $do_blank, $report_matches, $found, $untranslated, %trs ) = @_;
-    $found->{$text}++;
 
     my $tr = $trs{$text};
+    $found->{$text}{ $file->{file} }{$node} = ( $tr || {} )->{tr};
     if ( !$tr ) {
         saynl "unable to find translation for: '$text' in: '$file->{file}'";
         return;
@@ -730,6 +730,18 @@ sub run {
     saynl " ", "strings not always identified confidently:", @maybe, " ", "strings found nowhere:", @nowhere;
     saynl " ", "strings found during parse, but ignored:", map "  '$_'", sort keys %ignored if $report_ignored;
 
+    my @report;
+    for my $jp ( sort keys %found ) {
+        my $obj = $found{$jp};
+        next if $obj->{no_tr};
+        push @report, ("=" x 110) ." [$jp] " . ( "=" x max 0, 300 - length $jp );
+        for my $file ( sort keys $obj->%* ) {
+            my $f = $obj->{$file};
+            push @report, sprintf "|    %-90s - %10s - '%s'", "'$file'", $_, $f->{$_} // "" for sort keys $f->%*;
+        }
+    }
+    io("report.txt")->print( join "\n", filter_nl @report );
+
     say "\ndone";
     return;
 }
@@ -759,7 +771,7 @@ sub search_and_replace {
                 report_near_miss $file_hit, $hit, $enc, $jp, $content;
                 next;
             }
-            $founds->{$jp}++;
+            $founds->{$jp}{ $file->{file} }{$hit} = $obj{tr};
             next if !$do_blank and !length $obj{tr};
             report_near_miss $file_hit, $hit, $enc, $jp, $content, "is_a_hit" if $report_matches;
             substr( $content, $hit, length $_ ) = $_ for $tr_in_enc->( \%obj, $enc );
