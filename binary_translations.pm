@@ -173,14 +173,14 @@ sub data {
         # I want to point out, the symbol ※ is used as a Bullet Point Mark.
         # Example: https://i.imgur.com/Z6yQfbF.png
 
-        "接近"                    => { tr => "Approach" },
-        "離脱"                    => { tr => "Escape", desc => 'Withdraw, Escape or Retreat' },
-        "砲撃"                    => { tr => "Shelling", desc => 'Bombard could work as well. ' },
-        "雷撃"                    => { tr => "Torpedo", desc => 'can be opener and closer if ships have right equipment or are high-level subs' },
-        "回避"                    => { tr => "Evade", desc => 'no attack, Evasion' },
+        "接近"                    => { tr => "Approach", desc => "BattleCommand.Hougeki" },
+        "離脱"                    => { tr => "Escape", desc => 'BattleCommand.Taisen | Withdraw, Escape or Retreat' },
+        "砲撃"                    => { tr => "Shelling", desc => 'BattleCommand.Raigeki | Bombard could work as well. ' },
+        "雷撃"                    => { tr => "Torpedo", desc => 'BattleCommand.Ridatu | can be opener and closer if ships have right equipment or are high-level subs' },
+        "回避"                    => { tr => "Evade", desc => 'BattleCommand.Kouku | no attack, Evasion' },
         "統射" => {
             tr   => "CShelling",
-            desc => 'Tough one. It literally breaks down into Unified Archery. For now, I am going to go with Coordinated Shelling to see how it fits - Radar-coordinated Shelling'
+            desc => 'BattleCommand.Hougeki (logical-or) BattleCommand.Tousha | Tough one. It literally breaks down into Unified Archery. For now, I am going to go with Coordinated Shelling to see how it fits - Radar-coordinated Shelling'
         },
         #           ** I have updated these to reflect \resources\Textures\info6_set.tex.png ** these are final translations between 接近 and 統射
 
@@ -465,7 +465,7 @@ sub data {
         "しばらくお待ち下さい。。" => { tr => "Please wait a moment..",      desc => '' },
         "その他" => { tr => "Other",      desc => 'Otherwise, in addition to, so forth, the rest' },
         "だみはらだみこだみはらだ" => {},
-        "なし" => { tr_disabled => "unacceptable", desc => 'none, unsatisfactory | TODO: letting this be inserted into all fitting spaces causes savegame list loading to never finish' },
+        "なし" => { tr_disabled => "unacceptable", desc => 'BattleCommandExtensions > print なし if BattleCommand.Sekkin | TaskStratgyDebug > ShipMode > ShipName[0].text != なし | MissionWithTankerDescriptionPopUp > print なし or 少量 or 普通 | Api_get_Member > furniture[x.Rid].Title.Equals("なし") | Mst_ship > set_property > Name.Equals("なし") | none, unsatisfactory | TODO: letting this be inserted into all fitting spaces causes savegame list loading to never finish, referenced *once* in CSharp (i.e. same memory address for all occurrences in script code), and in ship/furniture name lists in XML and asset object lists. could maaaaaybe be replaced with "NO", using custom glyphs for each?' },
         "のみ[66ccff]出撃可能[-]です。" => { tr => "[66ccff]Only listed ship classes can sortie[-].", desc => "literal 'Only sortie possible is.'" },
         "は[FF0000]出撃不可[-]です。" => { tr => "[FF0000]These ship classes unable to sortie[-].", desc => "literal 'No Sortie Is.'"  },
         "はい" => { tr => "Yes",      desc => '' },
@@ -666,7 +666,7 @@ sub data {
         "家具詳細家具詳細家具詳細家具詳細家具詳細\n家具詳細家具詳細家具詳細家具詳細家具詳細" => { tr => "FurnitureDetailsFurnitureDetailsFurnitureDetailsFurnitureDetailsFurnitureDetails\nFurnitureDetailsFurnitureDetailsFurnitureDetailsFurnitureDetailsFurnitureDetails ",      desc => 'i used copy/paste on this one' },
         "対抗演習できません" => { tr => "Unable to do Rival Exercise",      desc => 'out of context, this one may be off' },
         "対抗演習を行いますか？" => { tr => "Would you like to do Rival Exercise?",      desc => 'also out of context. reserve right to revise.' },
-        "対潜" => { tr => "Anti-Sub",      desc => '' },
+        "対潜" => { tr => "Anti-Sub",      desc => 'BattleCommand.Kaihi' },
         "対潜\n999" => { tr => "Anti-Sub\n999",      desc => '' },
         "対空\n999" => { tr => "Anti-Air\n999",      desc => '' },
         "対空+2" => { tr => "Anti-Air+2",      desc => '' },
@@ -883,7 +883,7 @@ sub data {
         "秋津洲改" => { tr => "Akitsushima Kai",      desc => '' },
         "秋雲" => { tr => "Akigumo",      desc => 'destroyer' },
         "秋雲改" => { tr => "Akigumo Kai",      desc => '' },
-        "突撃" => { tr => "Assault",      desc => '' },
+        "突撃" => { tr => "Assault",      desc => 'BattleCommand.Tousha' },
         "第一艦隊" => { tr => "First Fleet",      desc => '' },
         "第一艦隊所属" => { tr => "First Fleet",      desc => 'technically [First Fleet][Belonging (to)] as in under control of' },
         "第一艦隊第一艦隊第一艦隊" => { tr => "FirstFleetFirstFleetFirstFleet",      desc => 'we get it, you vape' },
@@ -914,7 +914,7 @@ sub data {
         "能代改" => { tr => "Noshiro Kai",      desc => '' },
         "舞風" => { tr => "Maikaze",      desc => 'destroyer' },
         "舞風改" => { tr => "Maikaze Kai",      desc => '' },
-        "航空" => { tr => "Anti-Air",      desc => '' },
+        "航空" => { tr => "Anti-Air",      desc => 'BattleCommand.Totugeki' },
         "■艦娘" => { tr => "■Ship Girl",      desc => '' },
         "艦娘からチョコが贈られました！" => { tr => "A Ship Girl gave you chocolate as a gift!",      desc => 'Chocolate given by Ship Girl as gift!' },
         "艦娘を　　　隻引き継ぎ可能です。" => { tr => "Control of Ship Girl now possible.",      desc => 'rough' },
@@ -3814,6 +3814,7 @@ sub data {
         "FS海域方面の戦略拠点攻略を実施する。「FS作戦」を発動、これを完遂せよ！" => { tr => "Sortie to V14-4 in the FS Sea \\nand defeat the Boss with atleast \\na B rank victory.", desc => "mst_quest.xml" },
         "MI海域において「MI作戦」を実施、同作戦を完遂せよ！" => { tr => "Sortie to all four stages of World V12 \\nin the MI Sea and clear them \\nwith atleast an A rank Victory on \\neach Boss.", desc => "mst_quest.xml" },
 
+        # YOMI here are occasionally used to decide code branches, might require care
         "Верный" => { tr => "Verniy", desc => "mst_ship.xml" },
         "あがの" => { tr => "", desc => "mst_ship.xml" },
         "あやなみ" => { tr => "", desc => "mst_ship.xml" },
