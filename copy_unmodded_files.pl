@@ -20,8 +20,8 @@ sub run {
         }
         my @files = grep /\.$ext$/, io($src)->all_files;
         for my $file (@files) {
-            die "didn't find file '$file' in original game" if !-e "../kc_original/$tgt" . $file->filename;
-            my $target_file = "../kc_original_unpack_modded/$tgt" . $file->filename;
+            die "didn't find file '$file' in original game" if !-e "../kc_original/repatch/PCSG00684/$tgt" . $file->filename;
+            my $target_file = "../kc_original_unpack_modded/repatch/PCSG00684/$tgt" . $file->filename;
             io( io->file($target_file)->filepath )->mkpath;
             $file->copy($target_file);
         }

@@ -85,8 +85,8 @@ sub mod_font {
 sub run {
     my $ff        = "C:/Program Files (x86)/FontForgeBuilds/bin/fontforge.exe";
     my $t_body    = "Media/Unity_Assets_Files";
-    my $t_root    = "../kc_original_unpack_modded/$t_body";
-    my $font_root = "../kc_original_unpack/$t_body";
+    my $t_root    = "../kc_original_unpack_modded/repatch/PCSG00684/$t_body";
+    my $font_root = "../kc_original_unpack/repatch/PCSG00684/$t_body";
 
     # ume is used to make texts ingame more narrow
     my @fonts = (

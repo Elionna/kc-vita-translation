@@ -696,19 +696,19 @@ sub run {
 
     say "grabbing file list";
     my @list = (
-        utf8_asset_files("../kc_original_unpack/Media/Unity_Assets_Files/"),
-        utf8_asset_files("../kc_original/Media/StreamingAssets/Xml/tables/master/"),
+        utf8_asset_files("../kc_original_unpack/repatch/PCSG00684/Media/Unity_Assets_Files/"),
+        utf8_asset_files("../kc_original/repatch/PCSG00684/Media/StreamingAssets/Xml/tables/master/"),
         {                          #
-            file      => io("../kc_original/Media/Managed/Assembly-CSharp.dll"),
+            file      => io("../kc_original/repatch/PCSG00684/Media/Managed/Assembly-CSharp.dll"),
             filename  => "Assembly-CSharp.dll",
-            fileparts => [ split /\/|\\/, "../kc_original/Media/Managed/Assembly-CSharp.dll" ],
+            fileparts => [ split /\/|\\/, "../kc_original/repatch/PCSG00684/Media/Managed/Assembly-CSharp.dll" ],
             enc       => [ "UTF-16LE", "UTF-8" ],
             fileid    => "a-csharp",
             ext       => "dll",
         },
     );
     @list = sort { lc $a->{fileid} cmp lc $b->{fileid} } @list;
-    io($_)->unlink for grep !/\.(tex|ttf)$/, io("../kc_original_unpack_modded/Media")->All_Files;
+    io($_)->unlink for grep !/\.(tex|ttf)$/, io("../kc_original_unpack_modded/repatch/PCSG00684/Media")->All_Files;
     say "prepped";
     my ( %found, %unmatched, %hit, %untranslated, %ignored );
 

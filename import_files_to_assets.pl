@@ -20,10 +20,10 @@ sub plain_or_asset {
 
 sub run {
     my $cwd        = io(".")->absolute->pathname;
-    my $patch_dir  = "../kc_original_unpack_modded";
-    my $src_dir    = "../kc_original";
+    my $patch_dir  = "../kc_original_unpack_modded/repatch/PCSG00684";
+    my $src_dir    = "../kc_original/repatch/PCSG00684";
     my $target_dir = "../kc_translation_mod_candidate";
-    my $media_dir  = "$target_dir/Media";
+    my $media_dir  = "$target_dir/repatch/PCSG00684/Media";
     my $asset_dir  = "$media_dir/Unity_Assets_Files";
     my $unity_ex   = io("../unity_tools/UnityEX.exe")->absolute->pathname;
     my $verbose    = grep /^-v$/, @ARGV;
@@ -58,11 +58,6 @@ sub run {
 
     say "\ndeleting patches";
     io($asset_dir)->rmtree;
-
-    my $sub_path = "repatch/PCSG00684/";
-    say "moving to $sub_path";
-    io("$target_dir/$sub_path/")->mkpath;
-    $_->rename( "$target_dir/$sub_path/" . $_->filename ) for io($target_dir)->all_dirs;
 
     say "done";
     return;

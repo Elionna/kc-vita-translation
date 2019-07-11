@@ -12,12 +12,12 @@ sub _age($) {
 
 sub run {
     say "copying and converting images";
-    my $target_path = "../kc_original_unpack_modded/Media/Unity_Assets_Files";
+    my $target_path = "../kc_original_unpack_modded/repatch/PCSG00684/Media/Unity_Assets_Files";
     my @images = grep /\.png$/, io("en/Unity_Assets_Files")->All_Files;
     my ( $processed, %known ) = (0);
     for my $image (@images) {
         my @file_parts = split /\/|\\/, $image;
-        my $source_tex = "../kc_original_unpack/Media/Unity_Assets_Files/$file_parts[2]/$file_parts[4]";
+        my $source_tex = "../kc_original_unpack/repatch/PCSG00684/Media/Unity_Assets_Files/$file_parts[2]/$file_parts[4]";
         my $target_tex = "$target_path/$file_parts[2]/$file_parts[4]";
         $_ =~ s/\.png$// for $source_tex, $target_tex;
         die "source texture missing: '$source_tex'" if not -e $source_tex;

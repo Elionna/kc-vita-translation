@@ -15,7 +15,7 @@ run();
 sub utf8_asset_files {
     my $has_find = -e "c:/cygwin/bin/find.exe";
     say "has find: $has_find";
-    my $src_dir = "../kc_original_unpack/Media/Unity_Assets_Files/";
+    my $src_dir = "../kc_original_unpack/repatch/PCSG00684/Media/Unity_Assets_Files/";
     my @list = $has_find ? split /\n/, `c:/cygwin/bin/find "$src_dir" -type f`    #
       : io($src_dir)->All_Files;
     @list = grep !/\.(tex|dds(_\d)*|mat|gobj|shader|txt|xml|ttf|amtc|ani|avatar|cbm|flr|fsb|mesh|obj|physmat2D|rtex|script|snd|[0-9]+)$/, @list;

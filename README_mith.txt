@@ -80,7 +80,7 @@ in the taskbar but not actually visible, click on that and hit esc once.
 The following stuff doesn't need to be done everytime, it's just preparation.
 
 - put unityex in ../unity_tools
-- put the decrypted game in ../kc_original
+- put the decrypted game in ../kc_original/repatch/PCSG00684
   - decrypt on console: https://github.com/TheRadziu/NoNpDRM-modding/wiki#obtaining-decrypted-game-assets-from-nonpdrm-rips-through-vitashell-decryption-on-console
   - decrypt on pc: https://github.com/TheRadziu/NoNpDRM-modding/wiki#obtaining-decrypted-game-assets-from-nonpdrm-rips-through-psvpfstools-decryption-on-pc
 - # perl unpack_original_files.pl
