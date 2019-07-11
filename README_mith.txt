@@ -84,19 +84,11 @@ The following stuff doesn't need to be done everytime, it's just preparation.
   - decrypt on console: https://github.com/TheRadziu/NoNpDRM-modding/wiki#obtaining-decrypted-game-assets-from-nonpdrm-rips-through-vitashell-decryption-on-console
   - decrypt on pc: https://github.com/TheRadziu/NoNpDRM-modding/wiki#obtaining-decrypted-game-assets-from-nonpdrm-rips-through-psvpfstools-decryption-on-pc
 - # perl unpack_original_files.pl
-- after that, delete all *.gobj and *.dds files in kc_original_unpack.
-  they slow things down and aren't needed
-- open ../kc_original\Media\Managed\Assembly-CSharp.dll in JetBrains dotPeek
-  - right-click Assembly-CSharp, export to project (might need two clicks (???))
-  - ..\kc_original_unpack\Media\Managed\
-  - progress bar in bottom right
-
-<dll dictionary updater here (not even sure if we'll need this or just build the
-dictionary manually)>
+- note that this deletes many files in kc_original_unpack that aren't needed now
+  and slow things down
 
 - edit any of the following files to add new japanese strings or translations
   - binary_translations.pm for translations in utf8 strings in asset files
-  - csharp_translations.pm for translations in utf16 strings in CSharp.dll
   - en/Xml/* for bulk texts in raw xml
   - en/Unity_Assets_Files for images
 - to add translated images the *.tex files in kc_original_unpack will need to be

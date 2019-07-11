@@ -2,6 +2,7 @@ use 5.010;
 use strictures 2;
 use IO::All -binary;
 use Capture::Tiny 'capture';
+use Time::HiRes 'time';
 
 run();
 
@@ -23,5 +24,24 @@ sub run {
         warn "\n$err" if $err;
     }
     io($_)->unlink for @files;
+    my $has_find = -e "c:/cygwin/bin/find.exe";
+    say "has find: $has_find";
+    my @list = $has_find ? split /\n/, `c:/cygwin/bin/find "." -type f`    #
+      :                    io(".")->All_Files;
+    @list = grep /\.(gobj|4|dds|fsb|snd|[\d]+|script|txt|shader|ani|obj|cbm|mesh)$/, @list;
+    say "deleting";
+    my $start = time;
+    my $total = @list;
+    $|++;
+    while (@list) {
+        my @sublist = splice @list, 0, ( @list >= 100 ) ? 100 : @list;
+        unlink $_ for @sublist;
+        last if !@list;
+        my $elapsed    = time - $start;
+        my $diff       = $total - @list;
+        my $total_time = $total * $elapsed / $diff;
+        my $left       = $total_time - $elapsed;
+        print "\r$left s                ";
+    }
     return;
 }
