@@ -14,6 +14,10 @@ sub run {
       )
     {
         my ( $ext, $src, $tgt ) = $set->@*;
+        if(!-d $src) {
+            warn "$src doesn't exist\n";
+            next;
+        }
         my @files = grep /\.$ext$/, io($src)->all_files;
         for my $file (@files) {
             die "didn't find file '$file' in original game" if !-e "../kc_original/$tgt" . $file->filename;
