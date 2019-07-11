@@ -10,6 +10,7 @@ Participants of this project are required to abide by the
 Installing The Translation
 --------------------------
 
+### Prerequisites
 This assumes you have:
 * a PS Vita
 * VitaShell installed
@@ -18,6 +19,7 @@ This assumes you have:
 * about 3gb free on the Vita
 * a downloaded patcher executable from our [releases section](https://github.com/wchristian/kc-vita-translation/releases)
 
+### Preparation
 If you have the prerequisites, follow these steps to prepare:
 * on your PC, create a path somewhere like this: d:\kancolle_kai_original\repatch\PCSG00684\
 * in Vitashell, navigate to ux0:data/, triangle > new > new folder, name it kcv
@@ -31,6 +33,7 @@ If you have the prerequisites, follow these steps to prepare:
 * this folder will act as a backup in the future, keep it as is. maybe zip if it you're tight on space
 * delete ux0:data/kcv/
 
+### Installation
 With preparations done, time to create the actual translation patch
 * create a copy of the folder d:\kancolle_kai_original\ as d:\kancolle_kai_translation\
 * run the patcher executable, and select d:\kancolle_kai_translation\ as the folder for it to work in and click start
