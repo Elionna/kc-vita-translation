@@ -740,7 +740,7 @@ sub run {
             push @report, sprintf "|    %-90s - %10s - '%s'", "'$file'", $_, $f->{$_} // "" for sort keys $f->%*;
         }
     }
-    io("report.txt")->print( join "\n", filter_nl @report );
+    io("report.txt")->utf8->print( join "\n", filter_nl @report );
 
     say "\ndone";
     return;
