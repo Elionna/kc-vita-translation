@@ -734,7 +734,7 @@ sub run {
     for my $jp ( sort keys %found ) {
         my $obj = $found{$jp};
         next if $obj->{no_tr};
-        push @report, ("=" x 110) ." [$jp] " . ( "=" x max 0, 300 - length $jp );
+        push @report, ( "=" x 110 ) . " [$jp] " . ( "=" x max 0, 300 - length $jp );
         for my $file ( sort keys $obj->%* ) {
             my $f = $obj->{$file};
             push @report, sprintf "|    %-90s - %10s - '%s'", "'$file'", $_, $f->{$_} // "" for sort keys $f->%*;
