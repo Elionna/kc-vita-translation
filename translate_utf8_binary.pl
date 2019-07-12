@@ -274,6 +274,16 @@ sub utf8_asset_files {
     my @list = $has_find ? split /\n/, `c:/cygwin/bin/find "$src_dir" -type f`    #
       :                    io($src_dir)->All_Files;
     @list = grep !/\.(tex|dds(_\d)*|mat|gobj|shader|txt|ttf|amtc|ani|avatar|cbm|flr|fsb|mesh|obj|physmat2D|rtex|script|snd|[0-9]+)$/, @list;
+    @list = grep !/ mst_(
+      shipget2_\d+|maproute_\d+|mapincentive_\d+|mapenemylevel_\d+
+      |mapcellincentive_\d+|mapcell2_\d+|mapbgm_\d+|item_shop|item_package
+      |item_limit|files|bgm_season|const|createship|createship_change
+      |createship_large|createship_large_change|equip|equip_category
+      |equip_ship|quest_slotitemchange|questcount|questcount_reset|radingrate
+      |radingtype|rebellionpoint|ship_resources|shipgraph|shipgraphbattle
+      |shipupgrade|slotitem_convert|slotitem_remodel|slotitem_remodel_detail
+      |slotitemget2|stype_group
+      )\.xml$/x, @list;
     my $ctd = countdown->new( total => scalar @list );
     @list = map $ctd->update_and_return( ref $_ ? $_ : io($_) ), @list;
     @list = map +{ file => $_, filename => $_->filename, fileparts => [ split /\/|\\/, $_ ], enc => "UTF-8", ext => $_->ext }, @list;
