@@ -28,7 +28,7 @@ sub run {
     say "has find: $has_find";
     my @list = $has_find ? split /\n/, `c:/cygwin/bin/find "." -type f`    #
       :                    io(".")->All_Files;
-    @list = grep /\.(gobj|4|dds|fsb|snd|[\d]+|script|txt|shader|ani|obj|cbm|mesh)$/, @list;
+    @list = grep /\.(gobj|4|dds|fsb|snd|[\d]+|script|txt|shader|ani|obj|cbm|mesh|xml)$/, @list;
     say "deleting";
 
     my $ctd = countdown->new( total => scalar @list );
