@@ -531,9 +531,48 @@ sub handle_file_as_xml {
     return if $file->{file} !~ /StreamingAssets/;
 
     my %known = map +( "mst_$_.xml" => 1 ), qw( bgm bgm_jukebox furniture
-      maparea mapinfo mission2 payitem payitemtext quest ship shiptext
-      ship_class slotitem slotitem_equiptype stype useitem );
+      furnituretext maparea mapinfo mission2 payitem payitemtext quest ship
+      shiptext ship_class slotitem slotitem_equiptype stype useitem slotitemtext
+      useitemtext
+      ),    #
+      map "mapenemy2_$_", 11 .. 207;
     return if !$known{ $file->{filename} };
+
+    if ( $file->{filename} eq "mst_useitemtext.xml" ) {
+        my $xml = XML::LibXML->load_xml( string => io( $file->{file} )->all );
+        my @todo = $xml->findnodes("//Description/text()");
+        $todo[$_]->setData( translate_xml_string( $todo[$_]->data, $file, $_, $do_blank, $report_matches, $found, $untranslated, %trs ) )    #
+          for 0 .. $#todo;
+        store_file_as_modded( $file, 1, $xml->toString );
+        return 1;
+    }
+
+    if ( $file->{filename} eq "mst_slotitemtext.xml" ) {
+        my $xml = XML::LibXML->load_xml( string => io( $file->{file} )->all );
+        my @todo = $xml->findnodes("//Info/text()");
+        $todo[$_]->setData( translate_xml_string( $todo[$_]->data, $file, $_, $do_blank, $report_matches, $found, $untranslated, %trs ) )    #
+          for 0 .. $#todo;
+        store_file_as_modded( $file, 1, $xml->toString );
+        return 1;
+    }
+
+    if ( $file->{filename} =~ /mapenemy2_/ ) {
+        my $xml = XML::LibXML->load_xml( string => io( $file->{file} )->all );
+        my @todo = $xml->findnodes("//Deck_name/text()");
+        $todo[$_]->setData( translate_xml_string( $todo[$_]->data, $file, $_, $do_blank, $report_matches, $found, $untranslated, %trs ) )    #
+          for 0 .. $#todo;
+        store_file_as_modded( $file, 1, $xml->toString );
+        return 1;
+    }
+
+    if ( $file->{filename} eq "mst_furnituretext.xml" ) {
+        my $xml = XML::LibXML->load_xml( string => io( $file->{file} )->all );
+        my @todo = $xml->findnodes("//Description/text()");
+        $todo[$_]->setData( translate_xml_string( $todo[$_]->data, $file, $_, $do_blank, $report_matches, $found, $untranslated, %trs ) )    #
+          for 0 .. $#todo;
+        store_file_as_modded( $file, 1, $xml->toString );
+        return 1;
+    }
 
     if ( $file->{filename} eq "mst_bgm.xml" ) {
         my $xml = XML::LibXML->load_xml( string => io( $file->{file} )->all );
