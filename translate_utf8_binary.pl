@@ -17,6 +17,7 @@ use presetdata;
 use motionlist;
 use presetdeck;
 use presetship;
+use countdown;
 
 =head1 DESCRIPTION
 
@@ -273,7 +274,8 @@ sub utf8_asset_files {
     my @list = $has_find ? split /\n/, `c:/cygwin/bin/find "$src_dir" -type f`    #
       :                    io($src_dir)->All_Files;
     @list = grep !/\.(tex|dds(_\d)*|mat|gobj|shader|txt|ttf|amtc|ani|avatar|cbm|flr|fsb|mesh|obj|physmat2D|rtex|script|snd|[0-9]+)$/, @list;
-    @list = map +( ref $_ ? $_ : io($_) ), @list;
+    my $ctd = countdown->new( total => scalar @list );
+    @list = map $ctd->update_and_return( ref $_ ? $_ : io($_) ), @list;
     @list = map +{ file => $_, filename => $_->filename, fileparts => [ split /\/|\\/, $_ ], enc => "UTF-8", ext => $_->ext }, @list;
     $_->{fileid} = join "/", @{ $_->{fileparts} }[ 4 .. $#{ $_->{fileparts} } ] for @list;
     return @list;
@@ -647,10 +649,12 @@ sub run {
     my $font = $mw->fontCreate( "test", -family => $font_name, -size => 18 );
     my %what = $font->actual;
     die "didn't create right font, but: $what{-family}" if $what{-family} ne $font_name;
+    my $ctd = countdown->new( total => scalar @tr_keys );
     for my $jp (@tr_keys) {
         $tr{$jp}{width}       = $font->measure($jp);
         $tr{$jp}{width_tr}    = $font->measure( $tr{$jp}{tr} );
         $tr{$jp}{width_ratio} = sprintf "%.2f", $tr{$jp}{width_tr} / $tr{$jp}{width};
+        $ctd->update;
     }
     for my $jp ( reverse sort { $tr{$a}{width_ratio} <=> $tr{$b}{width_ratio} } sort keys %tr ) {
         next if $tr{$jp}{width_ratio} <= 1;

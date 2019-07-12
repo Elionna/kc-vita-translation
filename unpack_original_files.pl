@@ -15,7 +15,7 @@ sub run {
     io($target)->mkpath;
     chdir "../kc_original_unpack/repatch/PCSG00684/Media";
     my @files = io("../../../../kc_original/repatch/PCSG00684/Media/")->all_files;
-    $_->copy("./" . $_->filename) for @files;
+    $_->copy( "./" . $_->filename ) for @files;
     my $unity_ex = io("../../../../unity_tools/UnityEX.exe")->absolute->pathname;
     for my $file ( grep !/resources\.resource/, io(".")->all_files ) {
         say "unpacking file $file'";
@@ -30,18 +30,13 @@ sub run {
       :                    io(".")->All_Files;
     @list = grep /\.(gobj|4|dds|fsb|snd|[\d]+|script|txt|shader|ani|obj|cbm|mesh)$/, @list;
     say "deleting";
-    my $start = time;
-    my $total = @list;
+
+    my $ctd = countdown->new( total => scalar @list );
     $|++;
     while (@list) {
         my @sublist = splice @list, 0, ( @list >= 100 ) ? 100 : @list;
         unlink $_ for @sublist;
-        last if !@list;
-        my $elapsed    = time - $start;
-        my $diff       = $total - @list;
-        my $total_time = $total * $elapsed / $diff;
-        my $left       = $total_time - $elapsed;
-        print "\r$left s                ";
+        $ctd->update( scalar @sublist );
     }
     return;
 }
