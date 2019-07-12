@@ -787,6 +787,7 @@ sub run {
           ? $file->{file}->all
           : parse_csharp \( $file->{file}->all ), $tr_in_enc, $do_blank, $report_matches, \%found, \%untranslated, \%ignored, $file, %tr;
         next if $file->{filename} eq "Assembly-CSharp.dll";         # leaving this in in case we want to reenable s&r for csharp
+        next if $file->{filename} =~ /\.-\d+$/;                     # leaving this in in case we want to reenable s&r for csharp
         say "performing search and replace on: $file->{fileid}";
         search_and_replace( $file, \$content, \%tr, $tr_in_enc, $do_blank, $report_matches, \%hit, \%unmatched, \%found, @task_list );
     }
