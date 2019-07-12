@@ -273,6 +273,7 @@ sub utf8_asset_files {
     say "has find: $has_find";
     my @list = $has_find ? split /\n/, `c:/cygwin/bin/find "$src_dir" -type f`    #
       :                    io($src_dir)->All_Files;
+    say "found " . @list . " files";
     @list = grep !/\.(tex|dds(_\d)*|mat|gobj|shader|txt|ttf|amtc|ani|avatar|cbm|flr|fsb|mesh|obj|physmat2D|rtex|script|snd|[0-9]+)$/, @list;
     @list = grep !/ mst_(
       shipget2_\d+|maproute_\d+|mapincentive_\d+|mapenemylevel_\d+
@@ -284,8 +285,10 @@ sub utf8_asset_files {
       |shipupgrade|slotitem_convert|slotitem_remodel|slotitem_remodel_detail
       |slotitemget2|stype_group
       )\.xml$/x, @list;
+    say "promoting to objects";
     my $ctd = countdown->new( total => scalar @list );
     @list = map $ctd->update_and_return( ref $_ ? $_ : io($_) ), @list;
+    say "\nconverting to structures";
     @list = map +{ file => $_, filename => $_->filename, fileparts => [ split /\/|\\/, $_ ], enc => "UTF-8", ext => $_->ext }, @list;
     $_->{fileid} = join "/", @{ $_->{fileparts} }[ 4 .. $#{ $_->{fileparts} } ] for @list;
     return @list;
@@ -669,10 +672,8 @@ sub run {
 
     say $usage->text;
     exit if $opt->help;
-    sleep 1;
 
-    say "prepping dictionary";
-
+    say "loading raw dictionary";
     duplicate_check;
     my %tr = binary_translations->data;
     $tr{$_}{orig} = $_ for keys %tr;
@@ -680,6 +681,7 @@ sub run {
     $tr{$_}{tr} //= "" for grep !defined $tr{$_}{tr}, sort keys %tr;
     my @tr_keys = reverse sort { length $a <=> length $b } sort keys %tr;
 
+    say "loading font mod pairs";
     my @pairs = grep length $_, map split( /\|/, $_ ), map trim_nl($_), io("font_mod_character_pairs")->getlines;
     if ($filter_pairs) {
         @pairs = ( @pairs, map ucfirst, @pairs );
@@ -694,10 +696,13 @@ sub run {
         map +( $pairs[$_] => chr( $unicode + $_ ) ), 0 .. $#pairs;
     };
 
+    say "prepping translation size measurement";
     my ( $mw, $font_name ) = ( MainWindow->new, "Ume P Gothic S4" );
     my $font = $mw->fontCreate( "test", -family => $font_name, -size => 18 );
     my %what = $font->actual;
     die "didn't create right font, but: $what{-family}" if $what{-family} ne $font_name;
+
+    say "measuring translation sizes";
     my $ctd = countdown->new( total => scalar @tr_keys );
     for my $jp (@tr_keys) {
         $tr{$jp}{width}       = $font->measure($jp);
@@ -705,6 +710,8 @@ sub run {
         $tr{$jp}{width_ratio} = sprintf "%.2f", $tr{$jp}{width_tr} / $tr{$jp}{width};
         $ctd->update;
     }
+
+    say "\nreporting on translation sizes";
     for my $jp ( reverse sort { $tr{$a}{width_ratio} <=> $tr{$b}{width_ratio} } sort keys %tr ) {
         next if $tr{$jp}{width_ratio} <= 1;
         my $msg = " $tr{$jp}{width_ratio} = $tr{$jp}{width} : $tr{$jp}{width_tr} -- $jp #-# $tr{$jp}{width_ratio} = $tr{$jp}{width} : $tr{$jp}{width_tr} -- $tr{$jp}{tr}";
@@ -713,6 +720,7 @@ sub run {
     }
     print "\n";
 
+    say "loading glyphmap cache";
     my $g = "glyphmap.cache";
     my %glyphmap_cache = -e $g ? JSON::MaybeXS->new( pretty => 1 )->decode( io($g)->utf8->all )->%* : ();
 
@@ -737,6 +745,7 @@ sub run {
         $entry->{$_} = !defined $entry->{$_} ? [] : !ref $entry->{$_} ? [ $entry->{$_} ] : $entry->{$_} for qw( ok skip );
     }
 
+    say "handle bisections glyphmap cache";
     my @bisections = split //, $bisect;
     @tr_keys = half $_, @tr_keys for @bisections;
     saynl !@bisections ? () : (    #
@@ -760,6 +769,8 @@ sub run {
             ext       => "dll",
         },
     );
+
+    say "sorting file list and deleting unnecessary files";
     @list = sort { lc $a->{fileid} cmp lc $b->{fileid} } @list;
     io($_)->unlink for grep !/\.(tex|ttf)$/, io("../kc_original_unpack_modded/repatch/PCSG00684/Media")->All_Files;
     say "prepped";
@@ -767,13 +778,16 @@ sub run {
 
     my @task_list = reverse sort { $a->[0] <=> $b->[0] }    #
       map +( [ length $_, $_, "UTF-16LE" ], [ length $_, $_, "UTF-8" ] ), @tr_keys;
+    my $ctd2 = countdown->new( total => scalar @list );
     for my $file (@list) {
+        $ctd2->update;
         next if handle_file_as_xml $do_blank,   $report_matches, \%found, \%untranslated, \%ignored, $file, %tr;
         next if handle_file_as_asset $do_blank, $report_matches, \%found, \%untranslated, \%ignored, $file, %tr;
         my $content = $file->{filename} ne "Assembly-CSharp.dll"    #
           ? $file->{file}->all
           : parse_csharp \( $file->{file}->all ), $tr_in_enc, $do_blank, $report_matches, \%found, \%untranslated, \%ignored, $file, %tr;
         next if $file->{filename} eq "Assembly-CSharp.dll";         # leaving this in in case we want to reenable s&r for csharp
+        say "performing search and replace on: $file->{fileid}";
         search_and_replace( $file, \$content, \%tr, $tr_in_enc, $do_blank, $report_matches, \%hit, \%unmatched, \%found, @task_list );
     }
 
