@@ -267,6 +267,47 @@ sub check_for_null_bracketing {
     return ( $pre == 0 and $acceptable{$post} );
 }
 
+sub known_asset_extensions {
+    return (
+        level2         => { -7  => "label" },
+        level3         => { -5  => "label" },
+        level4         => { -15 => "label" },
+        level5         => { -6  => "label" },
+        level6         => { -3  => "label" },
+        level7         => { -5  => "label" },
+        level8         => { -7  => "label" },
+        level9         => { -5  => "label" },
+        level11        => { -5  => "label" },
+        level12        => { -6  => "label" },
+        level13        => { -6  => "label" },
+        level16        => { -7  => "label" },
+        level17        => { -6  => "label" },
+        level18        => { -6  => "label" },
+        level19        => { -4  => "label" },
+        level20        => { -8  => "label" },
+        level21        => { -6  => "label" },
+        level22        => { -4  => "label" },
+        level23        => { -6  => "label" },
+        level24        => { -6  => "label" },
+        level25        => { -6  => "label" },
+        sharedassets3  => { -2  => "label" },
+        sharedassets5  => { -4  => "label" },
+        sharedassets6  => { -5  => "label" },
+        sharedassets7  => { -3  => "label" },
+        sharedassets8  => { -8  => "label" },
+        sharedassets10 => { -4  => "label" },
+        sharedassets11 => { -18 => "label" },
+        sharedassets17 => { -5  => "label" },
+        resources      => {
+            -10 => "label",
+            -2  => "motionlist",    # Entity_MotionList 00001.-2 48605
+            -3  => "presetdata",    # Entity_PresetData 00001.-3 48606
+            -4  => "presetdeck",    # Entity_PresetDeck 00001.-4 48607
+            -5  => "presetship",    # Entity_PresetShip 00001.-5 48608
+        },
+    );
+}
+
 sub utf8_asset_files {
     my ($src_dir) = @_;
     my $has_find = -e "c:/cygwin/bin/find.exe";
@@ -275,6 +316,7 @@ sub utf8_asset_files {
       :                    io($src_dir)->All_Files;
     say "found " . @list . " files";
     @list = grep !/\.(tex|dds(_\d)*|mat|gobj|shader|txt|ttf|amtc|ani|avatar|cbm|flr|fsb|mesh|obj|physmat2D|rtex|script|snd|[0-9]+)$/, @list;
+    say "filtered: " . @list;
     @list = grep !/ mst_(
       shipget2_\d+|maproute_\d+|mapincentive_\d+|mapenemylevel_\d+
       |mapcellincentive_\d+|mapcell2_\d+|mapbgm_\d+|item_shop|item_package
@@ -285,6 +327,15 @@ sub utf8_asset_files {
       |shipupgrade|slotitem_convert|slotitem_remodel|slotitem_remodel_detail
       |slotitemget2|stype_group
       )\.xml$/x, @list;
+    say "filtered: " . @list;
+
+    my %known = known_asset_extensions;
+    for my $dir ( keys %known ) {
+        my $exts = join "|", keys $known{$dir}->%*;
+        $exts =~ s/-//g;
+        @list = grep !/\b$dir\b.*\.-(?!$exts).*$/, @list;
+        say "filtered: " . @list;
+    }
     say "promoting to objects";
     my $ctd = countdown->new( total => scalar @list );
     @list = map $ctd->update_and_return( ref $_ ? $_ : io($_) ), @list;
@@ -336,44 +387,7 @@ sub handle_file_as_asset {
     my ( $do_blank, $report_matches, $found, $untranslated, $ignored, $file, %tr ) = @_;
     my ($extension) = ( $file->{filename} =~ /\.(-[0-9]+)$/ );
     my $pack        = $file->{fileparts}[-2];
-    my %known       = (
-        level2         => { -7  => "label" },
-        level3         => { -5  => "label" },
-        level4         => { -15 => "label" },
-        level5         => { -6  => "label" },
-        level6         => { -3  => "label" },
-        level7         => { -5  => "label" },
-        level8         => { -7  => "label" },
-        level9         => { -5  => "label" },
-        level11        => { -5  => "label" },
-        level12        => { -6  => "label" },
-        level13        => { -6  => "label" },
-        level16        => { -7  => "label" },
-        level17        => { -6  => "label" },
-        level18        => { -6  => "label" },
-        level19        => { -4  => "label" },
-        level20        => { -8  => "label" },
-        level21        => { -6  => "label" },
-        level22        => { -4  => "label" },
-        level23        => { -6  => "label" },
-        level24        => { -6  => "label" },
-        level25        => { -6  => "label" },
-        sharedassets3  => { -2  => "label" },
-        sharedassets5  => { -4  => "label" },
-        sharedassets6  => { -5  => "label" },
-        sharedassets7  => { -3  => "label" },
-        sharedassets8  => { -8  => "label" },
-        sharedassets10 => { -4  => "label" },
-        sharedassets11 => { -18 => "label" },
-        sharedassets17 => { -5  => "label" },
-        resources      => {
-            -10 => "label",
-            -2  => "motionlist",    # Entity_MotionList 00001.-2 48605
-            -3  => "presetdata",    # Entity_PresetData 00001.-3 48606
-            -4  => "presetdeck",    # Entity_PresetDeck 00001.-4 48607
-            -5  => "presetship",    # Entity_PresetShip 00001.-5 48608
-        },
-    );
+    my %known       = known_asset_extensions;
     return 1 if $extension and $extension =~ /^-[0-9]+$/ and !$known{$pack}{$extension};    # unknown asset monobehaviors very unlikely to contain text
     return if !$extension or !$known{$pack}{$extension};                                    # other unknown stuff might contain something?
     my $type = $known{$pack}{$extension};
