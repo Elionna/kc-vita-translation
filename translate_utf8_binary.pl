@@ -787,9 +787,8 @@ sub run {
     say "sorting file list and deleting unnecessary files";
     @list = sort { lc $a->{fileid} cmp lc $b->{fileid} } @list;
     io($_)->unlink for grep !/\.(tex|ttf)$/, io("../kc_original_unpack_modded/repatch/PCSG00684/Media")->All_Files;
-    say "prepped";
+    say "processing files";
     my ( %found, %unmatched, %hit, %untranslated, %ignored );
-
     my @task_list = reverse sort { $a->[0] <=> $b->[0] }    #
       map +( [ length $_, $_, "UTF-16LE" ], [ length $_, $_, "UTF-8" ] ), @tr_keys;
     my $ctd2 = countdown->new( total => scalar @list );
@@ -801,7 +800,7 @@ sub run {
           ? $file->{file}->all
           : parse_csharp \( $file->{file}->all ), $tr_in_enc, $do_blank, $report_matches, \%found, \%untranslated, \%ignored, $file, %tr;
         next if $file->{filename} eq "Assembly-CSharp.dll";         # leaving this in in case we want to reenable s&r for csharp
-        next if $file->{filename} =~ /\.-\d+$/;                     # leaving this in in case we want to reenable s&r for csharp
+        next if $file->{filename} =~ /\.-\d+$/;                     # leaving this in in case we want to reenable s&r for monobehavior files
         say "performing search and replace on: $file->{fileid}";
         search_and_replace( $file, \$content, \%tr, $tr_in_enc, $do_blank, $report_matches, \%hit, \%unmatched, \%found, @task_list );
     }
