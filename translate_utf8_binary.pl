@@ -386,7 +386,7 @@ sub store_file_as_modded {
 }
 
 sub handle_file_as_asset {
-    my ( $file, undef, $do_blank, $report_matches, $found, $untranslated, $ignored, $pof_hash, %tr ) = @_;
+    my ( $file, undef, $do_blank, $report_matches, $found, $untranslated, $ignored, $pof_hash, $tr ) = @_;
     my ($extension) = ( $file->{filename} =~ /\.(-[0-9]+)$/ );
     my $pack        = $file->{fileparts}[-2];
     my %known       = known_asset_extensions;
@@ -396,7 +396,7 @@ sub handle_file_as_asset {
     return 1 if $type eq "skip";                                                            # we might wanna process these later
     my %known_types = map +( $_ => 1 ), qw( label motionlist presetdata presetdeck presetship );
     return $known_types{$type}
-      ? handle_file_as_type( $type, $file, $found, $untranslated, $ignored, $do_blank, $report_matches, $pof_hash, %tr )
+      ? handle_file_as_type( $type, $file, $found, $untranslated, $ignored, $do_blank, $report_matches, $pof_hash, $tr )
       : die "unknown type $type";
 }
 
@@ -427,16 +427,16 @@ sub handle_file_as_type {
 }
 
 sub try_and_translate_binparse_value {
-    my ( $meth, $obj, $file, $found, $untranslated, $ignored, $report_matches, $do_blank, $pof_hash, %trs ) = @_;
+    my ( $meth, $obj, $file, $found, $untranslated, $ignored, $report_matches, $do_blank, $pof_hash, $trs ) = @_;
 
     my $text = decode "UTF-8", $obj->$meth;
     return if !length $text;
     my $id = max - 1, keys %{ $found->{$text}{ $file->{file} } ||= {} };
-    $found->{$text}{ $file->{file} }{ $id + 1 } = ( $trs{$text} || {} )->{tr};
+    $found->{$text}{ $file->{file} }{ $id + 1 } = ( $trs->{$text} || {} )->{tr};
 
     return !++$ignored->{$text} if non_content($text);
     my $store = po_store( $id, $text, $file, $pof_hash );
-    my $tr = $trs{$text};
+    my $tr = $trs->{$text};
     return if $tr->{no_tr};
     set_msgstr( $store, $tr );
     return $untranslated->{$text}++ ? () : saynl "not yet translated in: '$file->{file}': '$text'"
@@ -462,7 +462,7 @@ sub maybe_dual_length {
 }
 
 sub parse_csharp {
-    my ( $content_ref, $file, $tr_in_enc, $do_blank, $report_matches, $found, $untranslated, $ignored, $pof_hash, %tr ) = @_;
+    my ( $content_ref, $file, $tr_in_enc, $do_blank, $report_matches, $found, $untranslated, $ignored, $pof_hash, $tr ) = @_;
 
     my $offset = 4095716;
     for ( 1 .. 4 ) {
@@ -567,12 +567,12 @@ sub is_content {
 }
 
 sub try_replace_csharp {
-    my ( $enc, $offset, $length, $text, $content_ref, $file, $tr_in_enc, $do_blank, $report_matches, $found, $untranslated, $ignored, $pof_hash, %trs ) = @_;
-    $found->{$text}{ $file->{file} }{$offset} = ( $trs{$text} || {} )->{tr};
+    my ( $enc, $offset, $length, $text, $content_ref, $file, $tr_in_enc, $do_blank, $report_matches, $found, $untranslated, $ignored, $pof_hash, $trs ) = @_;
+    $found->{$text}{ $file->{file} }{$offset} = ( $trs->{$text} || {} )->{tr};
 
     return ++$ignored->{$text} if non_content($text);
     my $store = po_store( $offset, $text, $file, $pof_hash );
-    my $tr = $trs{$text};
+    my $tr = $trs->{$text};
     return if $tr->{no_tr};
     set_msgstr( $store, $tr );
     return $untranslated->{$text}++ ? 1 : !saynl "not yet translated in: '$file->{file}': '$text'"
@@ -594,11 +594,11 @@ sub translate_xml_string {
 }
 
 sub _translate_xml_string {
-    my ( $text, $file, $node, $do_blank, $report_matches, $found, $untranslated, $pof_hash, %trs ) = @_;
+    my ( $text, $file, $node, $do_blank, $report_matches, $found, $untranslated, $pof_hash, $trs ) = @_;
 
     my $store = po_store( $node, $text, $file, $pof_hash );
 
-    my $tr = $trs{$text};
+    my $tr = $trs->{$text};
     $found->{$text}{ $file->{file} }{$node} = ( $tr || {} )->{tr};
     if ( !$tr ) {
         saynl "unable to find translation for: '$text' in: '$file->{file}'";
@@ -619,7 +619,7 @@ sub _translate_xml_string {
 }
 
 sub handle_file_as_xml {
-    my ( $file, undef, $do_blank, $report_matches, $found, $untranslated, $ignored, $pof_hash, %trs ) = @_;
+    my ( $file, undef, $do_blank, $report_matches, $found, $untranslated, $ignored, $pof_hash, $trs ) = @_;
     return if $file->{ext} ne "xml";
     return if $file->{file} !~ /StreamingAssets/;
 
@@ -634,7 +634,7 @@ sub handle_file_as_xml {
     if ( $file->{filename} eq "mst_useitemtext.xml" ) {
         my $xml = XML::LibXML->load_xml( string => io( $file->{file} )->all );
         my @todo = $xml->findnodes("//Description/text()");
-        $todo[$_]->setData( translate_xml_string( $todo[$_]->data, $file, $_, $do_blank, $report_matches, $found, $untranslated, $pof_hash, %trs ) )    #
+        $todo[$_]->setData( translate_xml_string( $todo[$_]->data, $file, $_, $do_blank, $report_matches, $found, $untranslated, $pof_hash, $trs ) )    #
           for 0 .. $#todo;
         store_file_as_modded( $file, 1, $xml->toString );
         return 1;
@@ -643,7 +643,7 @@ sub handle_file_as_xml {
     if ( $file->{filename} eq "mst_slotitemtext.xml" ) {
         my $xml = XML::LibXML->load_xml( string => io( $file->{file} )->all );
         my @todo = $xml->findnodes("//Info/text()");
-        $todo[$_]->setData( translate_xml_string( $todo[$_]->data, $file, $_, $do_blank, $report_matches, $found, $untranslated, $pof_hash, %trs ) )    #
+        $todo[$_]->setData( translate_xml_string( $todo[$_]->data, $file, $_, $do_blank, $report_matches, $found, $untranslated, $pof_hash, $trs ) )    #
           for 0 .. $#todo;
         store_file_as_modded( $file, 1, $xml->toString );
         return 1;
@@ -652,7 +652,7 @@ sub handle_file_as_xml {
     if ( $file->{filename} =~ /mapenemy2_/ ) {
         my $xml = XML::LibXML->load_xml( string => io( $file->{file} )->all );
         my @todo = $xml->findnodes("//Deck_name/text()");
-        $todo[$_]->setData( translate_xml_string( $todo[$_]->data, $file, $_, $do_blank, $report_matches, $found, $untranslated, $pof_hash, %trs ) )    #
+        $todo[$_]->setData( translate_xml_string( $todo[$_]->data, $file, $_, $do_blank, $report_matches, $found, $untranslated, $pof_hash, $trs ) )    #
           for 0 .. $#todo;
         store_file_as_modded( $file, 1, $xml->toString );
         return 1;
@@ -661,7 +661,7 @@ sub handle_file_as_xml {
     if ( $file->{filename} eq "mst_furnituretext.xml" ) {
         my $xml = XML::LibXML->load_xml( string => io( $file->{file} )->all );
         my @todo = $xml->findnodes("//Description/text()");
-        $todo[$_]->setData( translate_xml_string( $todo[$_]->data, $file, $_, $do_blank, $report_matches, $found, $untranslated, $pof_hash, %trs ) )    #
+        $todo[$_]->setData( translate_xml_string( $todo[$_]->data, $file, $_, $do_blank, $report_matches, $found, $untranslated, $pof_hash, $trs ) )    #
           for 0 .. $#todo;
         store_file_as_modded( $file, 1, $xml->toString );
         return 1;
@@ -673,7 +673,7 @@ sub handle_file_as_xml {
         for my $i ( 0 .. $#todo ) {
             my $todo = $todo[$i];
             my ( $head, $text ) = split /,/, $todo->data;
-            $text = translate_xml_string( $text, $file, $i, $do_blank, $report_matches, $found, $untranslated, $pof_hash, %trs );
+            $text = translate_xml_string( $text, $file, $i, $do_blank, $report_matches, $found, $untranslated, $pof_hash, $trs );
             $todo->setData( join ",", $head, $text );
         }
         store_file_as_modded( $file, 1, $xml->toString );
@@ -686,7 +686,7 @@ sub handle_file_as_xml {
         for my $i ( 0 .. $#todo ) {
             my $todo = $todo[$i];
             my ( $head, @text ) = split /,/, $todo->data;
-            $text[$_] = translate_xml_string( $text[$_], $file, $i, $do_blank, $report_matches, $found, $untranslated, $pof_hash, %trs ) for 0, 1;
+            $text[$_] = translate_xml_string( $text[$_], $file, $i, $do_blank, $report_matches, $found, $untranslated, $pof_hash, $trs ) for 0, 1;
             $todo->setData( join ",", $head, @text );
         }
         store_file_as_modded( $file, 1, $xml->toString );
@@ -712,7 +712,7 @@ sub handle_file_as_xml {
     if ( my $tags = $tags{ $file->{filename} } ) {
         my $xml = XML::LibXML->load_xml( string => io( $file->{file} )->all );
         my @todo = map $xml->findnodes("//$_/text()"), $tags->@*;
-        $todo[$_]->setData( translate_xml_string( $todo[$_]->data, $file, $_, $do_blank, $report_matches, $found, $untranslated, $pof_hash, %trs ) )    #
+        $todo[$_]->setData( translate_xml_string( $todo[$_]->data, $file, $_, $do_blank, $report_matches, $found, $untranslated, $pof_hash, $trs ) )    #
           for 0 .. $#todo;
         store_file_as_modded( $file, 1, $xml->toString );
         return 1;
@@ -880,7 +880,7 @@ sub run {
     my ( %found, %unmatched, %hit, %untranslated, %ignored );
     my @task_list = reverse sort { $a->[0] <=> $b->[0] }    #
       map +( [ length $_, $_, "UTF-16LE" ], [ length $_, $_, "UTF-8" ] ), @tr_keys;
-    my @cfg = ( $tr_in_enc, $do_blank, $report_matches, \%found, \%untranslated, \%ignored, \%pof_hash, %tr );
+    my @cfg = ( $tr_in_enc, $do_blank, $report_matches, \%found, \%untranslated, \%ignored, \%pof_hash, \%tr );
     my $ctd2 = countdown->new( total => scalar @list );
     for my $file (@list) {
         $ctd2->update;
@@ -930,7 +930,7 @@ sub run {
 }
 
 sub search_and_replace {
-    my ( $content, $hits, $unmatched, $task_list, $file, $tr_in_enc, $do_blank, $report_matches, $founds, undef, undef, $pof_hash, %tr ) = @_;
+    my ( $content, $hits, $unmatched, $task_list, $file, $tr_in_enc, $do_blank, $report_matches, $founds, undef, undef, $pof_hash, $tr ) = @_;
 
     my $f_enc = $file->{enc};
     my $found;
@@ -939,7 +939,7 @@ sub search_and_replace {
 
     for my $task (@tasks) {
         my ( undef, $jp, $enc ) = $task->@*;
-        my %obj = $tr{$jp}->%*;
+        my %obj = $tr->{$jp}->%*;
         next if $obj{no_tr};
         last if $enc eq "UTF-8" and $file->{filename} ne "Assembly-CSharp.dll" and non_content( decode( $enc, $content ) );
         next unless    #
