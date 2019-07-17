@@ -171,20 +171,24 @@ sub map_str_to_multi_chars {
 }
 
 sub map_tr_to_multi_chars {
-    my ( $jp, $enc, $obj, $used, $glyphmap_cache, $verbose, %prepared ) = @_;
+    my ( $jp, $enc, $obj, $used, $glyphmap_cache, $verbose, $prepared ) = @_;
     my $target_length = length encode $enc, $jp;
-    my ( $tr, $raw, @failed ) = map_str_to_multi_chars( $obj->{tr}, $enc, $target_length, $used, $glyphmap_cache, \%prepared, $verbose );
-    my $l_tr = length $tr;
-    if ( $target_length != $l_tr ) {
-        my @msg = ( "length wanted: $target_length", @failed, "translation '$jp' ($target_length) => '$obj->{tr}' ($l_tr) doesn't match in length" );
-        saynl @msg;
-        return @msg;
+    for my $ctxt ( keys $obj->{ctxt_tr}->%* ) {
+        my $orig_tr = $obj->{ctxt_tr}{$ctxt};
+        next if not length $orig_tr;
+        my ( $tr, $raw, @failed ) = map_str_to_multi_chars( $orig_tr, $enc, $target_length, $used, $glyphmap_cache, $prepared, $verbose );
+        my $l_tr = length $tr;
+        if ( $target_length != $l_tr ) {
+            my @msg = ( "length wanted: $target_length", @failed, "translation '$jp' ($target_length) => '$orig_tr' ($l_tr) doesn't match in length" );
+            saynl @msg;
+            return @msg;
+        }
+        if ($raw) {
+            $glyphmap_cache->{$enc}{$orig_tr}{$raw} = 1;
+            io("glyphmap.cache")->utf8->print( JSON::MaybeXS->new( pretty => 1, canonical => 1 )->encode($glyphmap_cache) );
+        }
+        $obj->{ctxt_tr_mapped}{$enc}{$ctxt} = $tr;
     }
-    if ($raw) {
-        $glyphmap_cache->{$enc}{ $obj->{tr} }{$raw} = 1;
-        io("glyphmap.cache")->utf8->print( JSON::MaybeXS->new( pretty => 1, canonical => 1 )->encode($glyphmap_cache) );
-    }
-    $obj->{tr_mapped}{$enc} = $tr;
     return;
 }
 
@@ -195,18 +199,18 @@ sub trim_nl {
 }
 
 sub add_mapped {
-    my ( $dictionary, $enc, $used, $glyphmap_cache, $verbose, %mapping ) = @_;
-    return map map_tr_to_multi_chars( $_, $enc, $dictionary->{$_}, $used, $glyphmap_cache, $verbose, %mapping ),    #
-      reverse sort { length $dictionary->{$a}{tr} <=> length $dictionary->{$b}{tr} }
-      grep length $dictionary->{$_}{tr},
-      sort keys $dictionary->%*;
+    my ( $tr, $enc, $used, $glyphmap_cache, $verbose, $mapping ) = @_;
+    return map map_tr_to_multi_chars( $_, $enc, $tr->{$_}, $used, $glyphmap_cache, $verbose, $mapping ),    #
+      reverse sort { length $tr->{$a}{ctxt_tr}{""} <=> length $tr->{$b}{ctxt_tr}{""} }
+      grep length $tr->{$_}{ctxt_tr}{""},
+      sort keys $tr->%*;
 }
 
 sub tr_in_enc {
-    my ( $tr, $enc, $used, $glyphmap_cache, $verbose, %mapping ) = @_;
-    map_tr_to_multi_chars( $tr->{orig}, $enc, $tr, $used, $glyphmap_cache, $verbose, %mapping ) if !defined $tr->{tr_mapped}{$enc};
-    die "check log above, there was a translation that couldn't be matched\n" if !defined $tr->{tr_mapped}{$enc};
-    return $tr->{tr_mapped}{$enc};
+    my ( $tr, $enc, $used, $glyphmap_cache, $verbose, $mapping ) = @_;
+    map_tr_to_multi_chars( $tr->{orig}, $enc, $tr, $used, $glyphmap_cache, $verbose, $mapping ) if !defined $tr->{ctxt_tr_mapped}{$enc};
+    die "check log above, there was a translation that couldn't be matched\n" if !defined $tr->{ctxt_tr_mapped}{$enc};
+    return $tr->{ctxt_tr_mapped}{$enc};
 }
 
 sub get_hits {
@@ -432,19 +436,19 @@ sub try_and_translate_binparse_value {
     my $text = decode "UTF-8", $obj->$meth;
     return if !length $text;
     my $id = max - 1, keys %{ $found->{$text}{ $file->{file} } ||= {} };
-    $found->{$text}{ $file->{file} }{ $id + 1 } = ( $trs->{$text} || {} )->{tr};
+    $found->{$text}{ $file->{file} }{ $id + 1 } = ( $trs->{$text} || {} )->{ctxt_tr}{""};
 
     return !++$ignored->{$text} if non_content($text);
     my $store = po_store( $id, $text, $file, $pof_hash );
     my $tr = $trs->{$text};
     return if $tr->{no_tr};
     return $untranslated->{$text}++ ? () : saynl "not yet translated in: '$file->{file}': '$text'"
-      if not $tr->{tr} and not $do_blank;
+      if not $tr->{ctxt_tr}{""} and not $do_blank;
 
-    my $new_text = encode "UTF-8", $tr->{tr};
+    my $new_text = $tr->{ctxt_tr}{ po_ctxt( $file, $id ) } || $tr->{ctxt_tr}{""};
     my $set = "Set$meth";
-    $obj->$set($new_text);
-    saynl sprintf "binary parse result %-26s %10s : %-60s -> %-60s", "'$file->{filename}'", "", "'$text'", "'$tr->{tr}'" if $report_matches;
+    $obj->$set( encode "UTF-8", $new_text );
+    saynl sprintf "binary parse result '%-26s' %10s : '%-60s' -> '%-60s'", $file->{filename}, $id, $text, $new_text if $report_matches;
     return 1;
 }
 
@@ -532,13 +536,19 @@ sub escape_for_po {
     return $text;
 }
 
+sub po_ctxt {
+    my ( $file, $offset ) = @_;
+    my @parts = split m@/@, $file->{file};
+    my $file_ctxt = join "/", splice @parts, 6;
+    my $po_ctxt = "$file_ctxt|$offset";
+    return $po_ctxt;
+}
+
 sub po_store {
     my ( $offset, $text, $file, $pof_hash ) = @_;
 
-    my @parts = split m@/@, $file->{file};
-    my $file_ctxt = join "/", splice @parts, 6;
-    my $po_ctxt   = "$file_ctxt|$offset";
-    my $store     = $pof_hash->{$text} ||= {};
+    my $po_ctxt = po_ctxt( $file, $offset );
+    my $store = $pof_hash->{$text} ||= {};
     $store->{$_} ||= Locale::PO->new( -msgctxt => $_, -msgid => escape_for_po($text), -msgstr => "" )    #
       for "", $po_ctxt;
     $store->{""}->msgstr("") if !$store->{""}->msgstr;
@@ -557,22 +567,23 @@ sub is_content {
 
 sub try_replace_csharp {
     my ( $enc, $offset, $length, $text, $content_ref, $file, $tr_in_enc, $do_blank, $report_matches, $found, $untranslated, $ignored, $pof_hash, $trs ) = @_;
-    $found->{$text}{ $file->{file} }{$offset} = ( $trs->{$text} || {} )->{tr};
+    $found->{$text}{ $file->{file} }{$offset} = ( $trs->{$text} || {} )->{ctxt_tr}{""};
 
     return ++$ignored->{$text} if non_content($text);
     my $store = po_store( $offset, $text, $file, $pof_hash );
     my $tr = $trs->{$text};
     return if $tr->{no_tr};
     return $untranslated->{$text}++ ? 1 : !saynl "not yet translated in: '$file->{file}': '$text'"
-      if not $tr->{tr} and not $do_blank;
+      if not $tr->{ctxt_tr}{""} and not $do_blank;
 
-    my $new_text = $do_blank ? ( "\0" x $length ) : $tr_in_enc->( $tr, $enc );
+    my $enced_trs = $tr_in_enc->( $tr, $enc );
+    my $new_text = $do_blank ? ( "\0" x $length ) : $enced_trs->{ po_ctxt( $file, $offset ) } || $enced_trs->{""};
     my $new_length = length $new_text;
     $new_text .= "\0" if $enc eq "UTF-16LE" and $new_length + 1 eq $length;
     $new_length = length $new_text;
     die "new text doesn't match $new_length != $length" if $new_length != $length;
     substr( $content_ref->$*, $offset, $length ) = $new_text;
-    saynl sprintf "binary parse result %-26s %10s : %-60s -> %-60s", "'$file->{filename}'", $offset, "'$text'", "'$tr->{tr}'" if $report_matches;
+    saynl sprintf "binary parse result '%-26s' %10s : '%-60s' -> '%-60s'", $file->{filename}, $offset, $text, $tr->{ctxt_tr}{""} if $report_matches;
     return;
 }
 
@@ -587,7 +598,7 @@ sub _translate_xml_string {
     my $store = po_store( $node, $text, $file, $pof_hash );
 
     my $tr = $trs->{$text};
-    $found->{$text}{ $file->{file} }{$node} = ( $tr || {} )->{tr};
+    $found->{$text}{ $file->{file} }{$node} = ( $tr || {} )->{ctxt_tr}{""};
     if ( !$tr ) {
         saynl "unable to find translation for: '$text' in: '$file->{file}'";
         return;
@@ -595,13 +606,13 @@ sub _translate_xml_string {
 
     return if $tr->{no_tr};
 
-    if ( not $tr->{tr} and not $do_blank ) {
+    if ( not $tr->{ctxt_tr}{""} and not $do_blank ) {
         saynl "not yet translated in: '$file->{file}': '$text'" if !$untranslated->{$text}++;
         return;
     }
 
-    saynl sprintf "binary parse result %-26s %10s : %-60s -> %-60s", "'$file->{filename}'", $node, "'$text'", "'$tr->{tr}'" if $report_matches;
-    return $tr->{tr};
+    saynl sprintf "binary parse result '%-26s' %10s : '%-60s' -> '%-60s'", $file->{filename}, $node, $text, $tr->{ctxt_tr}{""} if $report_matches;
+    return $tr->{ctxt_tr}{ po_ctxt( $file, $node ) } || $tr->{ctxt_tr}{""};
 }
 
 sub handle_file_as_xml {
@@ -747,26 +758,31 @@ sub run {
     say "loading po file";
     my $pofile = "kc.po";
     my $pof = -f $pofile ? Locale::PO->load_file_asarray( $pofile, "UTF-8" ) : [];
+    say "hashifying po file";
+    my $poedit_po;
     my %pof_hash;
     for my $po ( $pof->@* ) {
         my $id = unescape_from_po( $po->dequote( $po->msgid ) );
+        if ( !length $id ) {
+            $poedit_po = $po;
+            next;
+        }
         $pof_hash{$id}{ $po->dequote( $po->msgctxt ) } = $po;
     }
 
     say "adding po data to translation data";
     for my $po ( $pof->@* ) {
-        my $id     = unescape_from_po( $po->dequote( $po->msgid ) );
-        my $ctxt   = $po->dequote( $po->msgctxt );
+        my $id = unescape_from_po( $po->dequote( $po->msgid ) );
+        next if !length $id;
+        my $ctxt = $po->dequote( $po->msgctxt );
         my $target = $tr{$id} ||= {};
-        my $tr     = unescape_from_po( $po->dequote( $po->msgstr ) );
-        $target->{tr} = $tr if !$ctxt;
-        $target->{ctxt_tr}{$ctxt} = $tr if $ctxt;
+        $target->{ctxt_tr}{$ctxt} = unescape_from_po( $po->dequote( $po->msgstr ) );
     }
 
     say "enriching translation data objects";
     $tr{$_}{orig} = $_ for keys %tr;
-    delete $tr{$_} for grep +( $tr{$_}{tr_tex} and !$tr{$_}{tr} ), keys %tr;
-    $tr{$_}{tr} //= "" for grep !defined $tr{$_}{tr}, sort keys %tr;
+    delete $tr{$_} for grep +( $tr{$_}{tr_tex} and !$tr{$_}{ctxt_tr}{""} ), keys %tr;
+    $tr{$_}{ctxt_tr}{""} //= "" for keys %tr;
     my @tr_keys = reverse sort { length $a <=> length $b } sort keys %tr;
 
     say "loading font mod pairs";
@@ -774,7 +790,7 @@ sub run {
     if ($filter_pairs) {
         @pairs = ( @pairs, map ucfirst, @pairs );
         say "" . @pairs;
-        my $tr_body = join "#", map $tr{$_}{tr}, keys %tr;
+        my $tr_body = join "#", map values( $tr{$_}{ctxt_tr}->%* ), keys %tr;
         @pairs = grep $tr_body =~ /\Q$_\E/, @pairs;
         say "" . @pairs;
     }
@@ -791,20 +807,27 @@ sub run {
     die "didn't create right font, but: $what{-family}" if $what{-family} ne $font_name;
 
     say "measuring translation sizes";
+    my %measure_cache;
+    my $measure = sub { $measure_cache{ $_[0] } //= $font->measure( $_[0] ) };
     my $ctd = countdown->new( total => scalar @tr_keys );
     for my $jp (@tr_keys) {
-        $tr{$jp}{width}       = $font->measure($jp);
-        $tr{$jp}{width_tr}    = $font->measure( $tr{$jp}{tr} );
-        $tr{$jp}{width_ratio} = sprintf "%.2f", $tr{$jp}{width_tr} / $tr{$jp}{width};
+        for my $ctxt ( keys $tr{$jp}{ctxt_tr}->%* ) {
+            $tr{$jp}{width}       = $measure->($jp);
+            $tr{$jp}{width_tr}    = $measure->( $tr{$jp}{ctxt_tr}{$ctxt} );
+            $tr{$jp}{width_ratio} = sprintf "%.2f", $tr{$jp}{width_tr} / $tr{$jp}{width};
+        }
         $ctd->update;
     }
 
     say "\nreporting on translation sizes";
     for my $jp ( reverse sort { $tr{$a}{width_ratio} <=> $tr{$b}{width_ratio} } sort keys %tr ) {
-        next if $tr{$jp}{width_ratio} <= 1;
-        my $msg = " $tr{$jp}{width_ratio} = $tr{$jp}{width} : $tr{$jp}{width_tr} -- $jp #-# $tr{$jp}{width_ratio} = $tr{$jp}{width} : $tr{$jp}{width_tr} -- $tr{$jp}{tr}";
-        $msg =~ s/#-#/\n/g;
-        saynl $msg;
+        my %t = $tr{$jp}->%*;
+        for my $ctxt ( keys $t{ctxt_tr}->%* ) {
+            next if $t{width_ratio} <= 1;
+            my $msg = " $t{width_ratio} = $t{width} : $t{width_tr} -- $jp #-# $t{width_ratio} = $t{width} : $t{width_tr} -- $t{ctxt_tr}{$ctxt}";
+            $msg =~ s/#-#/\n/g;
+            saynl $msg;
+        }
     }
     print "\n";
 
@@ -813,9 +836,9 @@ sub run {
     my %glyphmap_cache = -e $g ? JSON::MaybeXS->new( pretty => 1 )->decode( io($g)->utf8->all )->%* : ();
 
     my %used;
-    my $tr_in_enc = sub { tr_in_enc( @_, \%used, \%glyphmap_cache, $verbose, %mapping ) };
+    my $tr_in_enc = sub { tr_in_enc( @_, \%used, \%glyphmap_cache, $verbose, \%mapping ) };
     if ($prepare_maps) {
-        my @too_long = map add_mapped( \%tr, $_, \%used, \%glyphmap_cache, $verbose, %mapping ), "UTF-16LE", "UTF-8";
+        my @too_long = map add_mapped( \%tr, $_, \%used, \%glyphmap_cache, $verbose, \%mapping ), "UTF-16LE", "UTF-8";
         my @unused = grep !$used{$_}, keys %mapping;
         say "following tuples unused: @unused\nfollowing tuples used: '" . ( join "|", sort keys %used ) . "'\n" if @unused;
         die "check log above, there was a translation that couldn't be matched\n" if @too_long;
@@ -823,7 +846,11 @@ sub run {
 
     if ($do_blank) {
         for my $enc ( "UTF-16LE", "UTF-8" ) {
-            $tr{$_}{tr_mapped}{$enc} = "\0" x length encode $enc, $_ for keys %tr;
+            for my $jp ( keys %tr ) {
+                my $group = $tr{$jp}{ctxt_tr_mapped}{$enc};
+                $group->{$_} = "\0" x length encode $enc, $jp    #
+                  for keys $group->%*;
+            }
         }
         delete $tr{$_}{no_tr} for keys %tr;
     }
@@ -839,7 +866,7 @@ sub run {
     saynl !@bisections ? () : (    #
         "bisected with path ' @bisections ' to " . @tr_keys . " translations",
         "",
-        @tr_keys < 120 ? map sprintf( "% 3s: '$tr_keys[$_]' : '$tr{$tr_keys[$_]}{tr}'", $_ ), 0 .. $#tr_keys : ""
+        @tr_keys < 120 ? map sprintf( "% 3s: '$tr_keys[$_]' : '" . $tr{ $tr_keys[$_] }{ctxt_tr}{""} . "'", $_ ), 0 .. $#tr_keys : ""
     );
     my %allowed_tr_keys = map +( $_ => 1 ), @tr_keys;
     delete $tr{$_} for grep !$allowed_tr_keys{$_}, keys %tr;
@@ -882,7 +909,7 @@ sub run {
     }
 
     delete $pof_hash{$_} for grep +( $tr{$_}{no_tr} or non_content($_) ), keys %pof_hash;
-    my @po_write;
+    my @po_write = ( $poedit_po || () );
     for my $id ( sort keys %pof_hash ) {
         my %entries = $pof_hash{$id}->%*;
         my @ctxts = ( keys %entries > 2 ) ? sort keys %entries : ("");
@@ -893,9 +920,9 @@ sub run {
     $po_contents =~ s/\r?\n$//;
     io($pofile)->print($po_contents);
 
-    my @maybe = map sprintf( "  %-" . ( 30 - length $_ ) . "s %-30s hit x %3s, nomatch x %3s, match x %3s", $_, $tr{$_}{tr}, $hit{$_}, $unmatched{$_}, $hit{$_} - $unmatched{$_} ),
+    my @maybe = map sprintf( "  %-" . ( 30 - length $_ ) . "s %-30s hit x %3s, nomatch x %3s, match x %3s", $_, $tr{$_}{ctxt_tr}{""}, $hit{$_}, $unmatched{$_}, $hit{$_} - $unmatched{$_} ),
       reverse sort { length $a <=> length $b } sort keys %unmatched;
-    my @nowhere = map sprintf( "  %-" . ( 30 - length $_ ) . "s $tr{$_}{tr}", "'$_'" ), grep +( !$found{$_} and !$unmatched{$_} ), @tr_keys;
+    my @nowhere = map sprintf( "  %-" . ( 30 - length $_ ) . "s " . $tr{$_}{ctxt_tr}{""}, "'$_'" ), grep +( !$found{$_} and !$unmatched{$_} ), @tr_keys;
     saynl " ", "strings not always identified confidently:", @maybe, " ", "strings found nowhere:", @nowhere;
     saynl " ", "strings found during parse, but ignored:", map "  '$_'", sort keys %ignored if $report_ignored;
 
@@ -940,8 +967,8 @@ sub search_and_replace {
                 report_near_miss $file_hit, $hit, $enc, $jp, $content;
                 next;
             }
-            $founds->{$jp}{ $file->{file} }{$hit} = $obj{tr};
-            next if !$do_blank and !length $obj{tr};
+            $founds->{$jp}{ $file->{file} }{$hit} = $obj{ctxt_tr}{""};
+            next if !$do_blank and !length $obj{ctxt_tr}{""};
             report_near_miss $file_hit, $hit, $enc, $jp, $content, "is_a_hit" if $report_matches;
             substr( $content, $hit, length $_ ) = $_ for $tr_in_enc->( \%obj, $enc );
             $found++;
