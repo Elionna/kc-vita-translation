@@ -43372,7 +43372,7 @@ msgctxt "resources/resources_00001.-2|-1"
 msgid "朧"
 msgstr ""
 
-#     - *where is 朧?*
+# - *where is 朧?*
 #, fuzzy
 msgctxt ""
 msgid "朧改"
@@ -47514,7 +47514,7 @@ msgid "海上護衛艦隊"
 msgstr ""
 
 # Anti-Sub/Anti-Air Escort Fleet Capacity: {0}
-#  | for raiding defense I think | not in the source code?
+# | for raiding defense I think | not in the source code?
 #, fuzzy
 msgctxt ""
 msgid "海上護衛艦隊の対潜/対空能力:{0}\\n"

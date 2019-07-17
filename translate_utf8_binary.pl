@@ -438,7 +438,6 @@ sub try_and_translate_binparse_value {
     my $store = po_store( $id, $text, $file, $pof_hash );
     my $tr = $trs->{$text};
     return if $tr->{no_tr};
-    set_msgstr( $store, $tr );
     return $untranslated->{$text}++ ? () : saynl "not yet translated in: '$file->{file}': '$text'"
       if not $tr->{tr} and not $do_blank;
 
@@ -548,16 +547,6 @@ sub po_store {
     return $store;
 }
 
-sub set_msgstr {
-    my ( $store, $tr ) = @_;
-    $tr->{desc} =~ s/\s+$// if $tr->{desc};
-    my $po = $store->{""};
-    $po->comment( $tr->{desc} );
-    $po->fuzzy(1) if $tr->{tr} and $po->msgstr ne $tr->{tr};
-    $po->msgstr( escape_for_po( $tr->{tr} ) );
-    return;
-}
-
 sub non_content { !is_content(@_) }
 
 sub is_content {
@@ -574,7 +563,6 @@ sub try_replace_csharp {
     my $store = po_store( $offset, $text, $file, $pof_hash );
     my $tr = $trs->{$text};
     return if $tr->{no_tr};
-    set_msgstr( $store, $tr );
     return $untranslated->{$text}++ ? 1 : !saynl "not yet translated in: '$file->{file}': '$text'"
       if not $tr->{tr} and not $do_blank;
 
@@ -606,8 +594,6 @@ sub _translate_xml_string {
     }
 
     return if $tr->{no_tr};
-
-    set_msgstr( $store, $tr );
 
     if ( not $tr->{tr} and not $do_blank ) {
         saynl "not yet translated in: '$file->{file}': '$text'" if !$untranslated->{$text}++;
