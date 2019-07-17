@@ -771,12 +771,14 @@ sub run {
     }
 
     say "adding po data to translation data";
+    my $unused_ctxt_marker = "----------";
     for my $po ( $pof->@* ) {
         my $id = unescape_from_po( $po->dequote( $po->msgid ) );
         next if !length $id;
-        my $ctxt = $po->dequote( $po->msgctxt );
+        my $ctxt   = $po->dequote( $po->msgctxt );
         my $target = $tr{$id} ||= {};
-        $target->{ctxt_tr}{$ctxt} = unescape_from_po( $po->dequote( $po->msgstr ) );
+        my $tr     = unescape_from_po( $po->dequote( $po->msgstr ) );
+        $target->{ctxt_tr}{$ctxt} = ( $ctxt and $tr eq $unused_ctxt_marker ) ? "" : $tr;
     }
 
     say "enriching translation data objects";
@@ -915,6 +917,7 @@ sub run {
         my @ctxts = ( keys %entries > 2 ) ? sort keys %entries : ("");
         push @po_write, $entries{$_} for @ctxts;
     }
+    $_->msgstr($unused_ctxt_marker) for grep +( $_->dequote( $_->msgctxt ) and not unescape_from_po( $_->dequote( $_->msgstr ) ) ), @po_write;
     Locale::PO->save_file_fromarray( $pofile, \@po_write, "UTF-8" );
     my $po_contents = io($pofile)->all;
     $po_contents =~ s/\r?\n$//;
