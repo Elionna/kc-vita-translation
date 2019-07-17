@@ -434,9 +434,9 @@ sub try_and_translate_binparse_value {
     my $id = max - 1, keys %{ $found->{$text}{ $file->{file} } ||= {} };
     $found->{$text}{ $file->{file} }{ $id + 1 } = ( $trs{$text} || {} )->{tr};
 
+    return !++$ignored->{$text} if non_content($text);
     my $store = po_store( $id, $text, $file, $pof_hash );
-    return $text !~ $jp_qr ? !++$ignored->{$text} : saynl "unable to find translation for: '$text' in: '$file->{file}'" unless    #
-      my $tr = $trs{$text};
+    my $tr = $trs{$text};
     return if $tr->{no_tr};
     set_msgstr( $store, $tr );
     return $untranslated->{$text}++ ? () : saynl "not yet translated in: '$file->{file}': '$text'"
@@ -513,6 +513,16 @@ sub parse_csharp {
     return $content_ref->$*;
 }
 
+sub unescape_from_po {
+    my ($text) = @_;
+    $text =~ s/\\n/\n/g;      # for double-escaped newlines, this eats a slash
+    $text =~ s/\\\n/\\n/g;    # this is a bit wonky, can't do it first because then the upper one would nuke the escaped newlines
+    $text =~ s/\\r/\r/g;
+    $text =~ s/\\t/\t/g;
+    $text =~ s/\\x\{200B\}/\x{200B}/g;
+    return $text;
+}
+
 sub escape_for_po {
     my ($text) = @_;
     $text =~ s/\\n/\\\\n/g;
@@ -548,14 +558,21 @@ sub set_msgstr {
     return;
 }
 
+sub non_content { !is_content(@_) }
+
+sub is_content {
+    my ($text) = @_;
+    my %blessed = map +( $_ => 1 ), "Верный", "Version 1.02";
+    return ( $text =~ $jp_qr or $blessed{$text} );
+}
+
 sub try_replace_csharp {
     my ( $enc, $offset, $length, $text, $content_ref, $file, $tr_in_enc, $do_blank, $report_matches, $found, $untranslated, $ignored, $pof_hash, %trs ) = @_;
     $found->{$text}{ $file->{file} }{$offset} = ( $trs{$text} || {} )->{tr};
 
+    return ++$ignored->{$text} if non_content($text);
     my $store = po_store( $offset, $text, $file, $pof_hash );
-
-    return $text !~ $jp_qr ? ++$ignored->{$text} : !saynl "unable to find translation for: '$text' in: '$file->{file}'" unless    #
-      my $tr = $trs{$text};
+    my $tr = $trs{$text};
     return if $tr->{no_tr};
     set_msgstr( $store, $tr );
     return $untranslated->{$text}++ ? 1 : !saynl "not yet translated in: '$file->{file}': '$text'"
@@ -739,6 +756,28 @@ sub run {
     say "loading raw dictionary";
     duplicate_check;
     my %tr = binary_translations->data;
+    delete $_->{tr} for values %tr;
+
+    say "loading po file";
+    my $pofile = "kc.po";
+    my $pof = -f $pofile ? Locale::PO->load_file_asarray( $pofile, "UTF-8" ) : [];
+    my %pof_hash;
+    for my $po ( $pof->@* ) {
+        my $id = unescape_from_po( $po->dequote( $po->msgid ) );
+        $pof_hash{$id}{ $po->dequote( $po->msgctxt ) } = $po;
+    }
+
+    say "adding po data to translation data";
+    for my $po ( $pof->@* ) {
+        my $id     = unescape_from_po( $po->dequote( $po->msgid ) );
+        my $ctxt   = $po->dequote( $po->msgctxt );
+        my $target = $tr{$id} ||= {};
+        my $tr     = unescape_from_po( $po->dequote( $po->msgstr ) );
+        $target->{tr} = $tr if !$ctxt;
+        $target->{ctxt_tr}{$ctxt} = $tr if $ctxt;
+    }
+
+    say "enriching translation data objects";
     $tr{$_}{orig} = $_ for keys %tr;
     delete $tr{$_} for grep +( $tr{$_}{tr_tex} and !$tr{$_}{tr} ), keys %tr;
     $tr{$_}{tr} //= "" for grep !defined $tr{$_}{tr}, sort keys %tr;
@@ -837,13 +876,6 @@ sub run {
     @list = sort { lc $a->{fileid} cmp lc $b->{fileid} } @list;
     io($_)->unlink for grep !/\.(tex|ttf)$/, io("../kc_original_unpack_modded/repatch/PCSG00684/Media")->All_Files;
 
-    say "loading po file";
-    my $pofile = "kc.po";
-    my $pof = -f $pofile ? Locale::PO->load_file_asarray( $pofile, "UTF-8" ) : [];
-    sub po_id { $_[0]->msgctxt . "|" . $_[0]->msgid }
-    my %pof_hash;
-    $pof_hash{ $_->dequote( $_->msgid ) }{ $_->dequote( $_->msgctxt ) } = $_ for $pof->@*;
-
     say "processing files";
     my ( %found, %unmatched, %hit, %untranslated, %ignored );
     my @task_list = reverse sort { $a->[0] <=> $b->[0] }    #
@@ -863,7 +895,7 @@ sub run {
         search_and_replace( \$content, \%hit, \%unmatched, \@task_list, $file, @cfg );
     }
 
-    delete $pof_hash{$_} for grep +( $tr{$_}{no_tr} or $_ !~ $jp_qr ), keys %pof_hash;
+    delete $pof_hash{$_} for grep +( $tr{$_}{no_tr} or non_content($_) ), keys %pof_hash;
     my @po_write;
     for my $id ( sort keys %pof_hash ) {
         my %entries = $pof_hash{$id}->%*;
@@ -871,6 +903,9 @@ sub run {
         push @po_write, $entries{$_} for @ctxts;
     }
     Locale::PO->save_file_fromarray( $pofile, \@po_write, "UTF-8" );
+    my $po_contents = io($pofile)->all;
+    $po_contents =~ s/\r?\n$//;
+    io($pofile)->print($po_contents);
 
     my @maybe = map sprintf( "  %-" . ( 30 - length $_ ) . "s %-30s hit x %3s, nomatch x %3s, match x %3s", $_, $tr{$_}{tr}, $hit{$_}, $unmatched{$_}, $hit{$_} - $unmatched{$_} ),
       reverse sort { length $a <=> length $b } sort keys %unmatched;
@@ -906,7 +941,7 @@ sub search_and_replace {
         my ( undef, $jp, $enc ) = $task->@*;
         my %obj = $tr{$jp}->%*;
         next if $obj{no_tr};
-        last if $enc eq "UTF-8" and $file->{filename} ne "Assembly-CSharp.dll" and decode( $enc, $content ) !~ $jp_qr;
+        last if $enc eq "UTF-8" and $file->{filename} ne "Assembly-CSharp.dll" and non_content( decode( $enc, $content ) );
         next unless    #
           my @hits = get_hits $content, $jp, $enc;
         for my $hit (@hits) {

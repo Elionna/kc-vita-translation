@@ -1,3 +1,16 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"X-Generator: Poedit 2.2.3\n"
+
 msgctxt ""
 msgid "\tガイド表示:"
 msgstr ""
@@ -5066,6 +5079,19 @@ msgctxt ""
 msgid "Valentine睦月"
 msgstr "Valentine Mutsuki"
 
+#, fuzzy
+msgctxt ""
+msgid "Version 1.02"
+msgstr "V1.02 + TR v0.4.306"
+
+msgctxt "Assembly-CSharp.dll|4536228"
+msgid "Version 1.02"
+msgstr ""
+
+msgctxt "Assembly-CSharp.dll|4682208"
+msgid "Version 1.02"
+msgstr ""
+
 msgctxt ""
 msgid "W島攻略作戦"
 msgstr ""
@@ -6025,6 +6051,20 @@ msgstr ""
 
 msgctxt ""
 msgid "{0}演習\\nが開放されました！"
+msgstr ""
+
+# mst_ship.xml
+#, fuzzy
+msgctxt ""
+msgid "Верный"
+msgstr "Verniy"
+
+msgctxt "Xml/tables/master/mst_ship.xml|652"
+msgid "Верный"
+msgstr ""
+
+msgctxt "resources/resources_00001.-2|-1"
+msgid "Верный"
 msgstr ""
 
 # Literally "...ai" - Or, maybe she is just making a sound. I am going to play with this some.
@@ -69173,4 +69213,3 @@ msgstr ""
 msgctxt ""
 msgid "ﾟ"
 msgstr ""
-

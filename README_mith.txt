@@ -88,8 +88,7 @@ The following stuff doesn't need to be done everytime, it's just preparation.
   and slow things down
 
 - edit any of the following files to add new japanese strings or translations
-  - binary_translations.pm for translations in utf8 strings in asset files
-  - en/Xml/* for bulk texts in raw xml
+  - kc.po either with PoEdit or a simple text editor
   - en/Unity_Assets_Files for images
 - to add translated images the *.tex files in kc_original_unpack will need to be
   converted to PNG with UnityTexTool. when put in the right directory the patch
