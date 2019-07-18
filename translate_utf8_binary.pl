@@ -97,10 +97,7 @@ sub map_str_to_multi_chars {
         }
     }
     my @parts = split /(?<=\])|(?=\[)|(?<=\})|(?=\{)/, $tr;
-    if ( $l->(@parts) == $length_target ) {
-        saynl $delayed_intro. "using translation";
-        return $e->(@parts);
-    }
+    return $e->(@parts) if $l->(@parts) == $length_target;
 
     my $try = $glyphmap_cache->{$enc}{$tr};
     if ( $try and my @maps = keys $try->%* ) {
@@ -170,9 +167,14 @@ sub map_str_to_multi_chars {
     return ( $e->(@mapped), $raw, uniq reverse @failed );
 }
 
+sub load_cache { -e $_[0] ? JSON::MaybeXS->new( pretty => 1 )->decode( io( $_[0] )->utf8->all )->%* : () }
+
+sub store_cache { io(shift)->utf8->print( JSON::MaybeXS->new( pretty => 1, canonical => 1 )->encode(shift) ) }
+
 sub map_tr_to_multi_chars {
     my ( $jp, $enc, $obj, $used, $glyphmap_cache, $verbose, $prepared ) = @_;
     my $target_length = length encode $enc, $jp;
+    my %mapped;
     for my $ctxt ( keys $obj->{ctxt_tr}->%* ) {
         my $orig_tr = $obj->{ctxt_tr}{$ctxt};
         next if not length $orig_tr;
@@ -185,10 +187,11 @@ sub map_tr_to_multi_chars {
         }
         if ($raw) {
             $glyphmap_cache->{$enc}{$orig_tr}{$raw} = 1;
-            io("glyphmap.cache")->utf8->print( JSON::MaybeXS->new( pretty => 1, canonical => 1 )->encode($glyphmap_cache) );
+            store_cache "glyphmap.cache", $glyphmap_cache;
         }
-        $obj->{ctxt_tr_mapped}{$enc}{$ctxt} = $tr;
+        $mapped{$ctxt} = $tr;
     }
+    $obj->{ctxt_tr_mapped}{$enc}{$_} = $mapped{$_} for keys %mapped;
     return;
 }
 
@@ -322,7 +325,7 @@ sub utf8_asset_files {
       :                    io($src_dir)->All_Files;
     say "found " . @list . " files";
     @list = grep !/\.(tex|dds(_\d)*|mat|gobj|shader|txt|ttf|amtc|ani|avatar|cbm|flr|fsb|mesh|obj|physmat2D|rtex|script|snd|[0-9]+)$/, @list;
-    say "filtered: " . @list;
+    print "filtered: " . @list;
     @list = grep !/ mst_(
       shipget2_\d+|maproute_\d+|mapincentive_\d+|mapenemylevel_\d+
       |mapcellincentive_\d+|mapcell2_\d+|mapbgm_\d+|item_shop|item_package
@@ -333,15 +336,16 @@ sub utf8_asset_files {
       |shipupgrade|slotitem_convert|slotitem_remodel|slotitem_remodel_detail
       |slotitemget2|stype_group
       )\.xml$/x, @list;
-    say "filtered: " . @list;
+    print " " . @list;
 
     my %known = known_asset_extensions;
-    for my $dir ( keys %known ) {
+    for my $dir ( sort keys %known ) {
         my $exts = join "|", keys $known{$dir}->%*;
         $exts =~ s/-//g;
         @list = grep !/\b$dir\b.*\.-(?!$exts).*$/, @list;
-        say "filtered: " . @list;
+        print " " . @list;
     }
+    say "";
     say "promoting to objects";
     my $ctd = countdown->new( total => scalar @list );
     @list = map $ctd->update_and_return( ref $_ ? $_ : io($_) ), @list;
@@ -442,8 +446,7 @@ sub try_and_translate_binparse_value {
     my $store = po_store( $id, $text, $file, $pof_hash );
     my $tr = $trs->{$text};
     return if $tr->{no_tr};
-    return $untranslated->{$text}++ ? () : saynl "not yet translated in: '$file->{file}': '$text'"
-      if not $tr->{ctxt_tr}{""} and not $do_blank;
+    return $untranslated->{$text}++ ? () : () if not $tr->{ctxt_tr}{""} and not $do_blank;
 
     my $new_text = $tr->{ctxt_tr}{ po_ctxt( $file, $id ) } || $tr->{ctxt_tr}{""};
     my $set = "Set$meth";
@@ -467,8 +470,14 @@ sub maybe_dual_length {
 sub parse_csharp {
     my ( $content_ref, $file, $tr_in_enc, $do_blank, $report_matches, $found, $untranslated, $ignored, $pof_hash, $tr ) = @_;
 
+    my $count;
+    my $target = 19579;
+    my $ctd = countdown->new( total => $target );
+
     my $offset = 4095716;
     for ( 1 .. 4 ) {
+        $count++;
+        $ctd->update;
         my $length = index substr( $content_ref->$*, $offset ), "\0";
         my $text = decode "UTF-8", substr $content_ref->$*, $offset, $length;
         try_replace_csharp( "UTF-8", $offset, $length, $text, @_ );
@@ -477,6 +486,8 @@ sub parse_csharp {
 
     $offset = 4472589;
     while (1) {
+        $count++;
+        $ctd->update;
         ( $offset, my $length ) = maybe_dual_length $content_ref, $offset;
         last if !$length;
         my $text = decode "UTF-16LE", substr $content_ref->$*, $offset, $length;
@@ -495,6 +506,8 @@ sub parse_csharp {
         elsif ( $bytes =~ /^\x01\x00/ ) {
             $offset += 2;
             while ( $offset < $next ) {
+                $count++;
+                $ctd->update;
                 ( $offset, my $slength ) = maybe_dual_length $content_ref, $offset;
                 next if !$slength or $slength > ( $next - $offset );
                 my $text = decode "UTF-8", substr $content_ref->$*, $offset, $slength;
@@ -504,12 +517,16 @@ sub parse_csharp {
             }
         }
         else {
+            $count++;
+            $ctd->update;
             my $text = decode "UTF-16LE", $bytes;
             try_replace_csharp( "UTF-16LE", $offset, $length, $text, @_ )
               if $offset < 4699960 and $text !~ /[\x00\x02\x03\x08\x13\x1E\x81]/;
         }
         $offset = $next;
     }
+
+    say "actions in csharp: $count" if $count != $target;
 
     store_file_as_modded $file, 1, $content_ref->$*;
 
@@ -565,7 +582,7 @@ sub is_content {
     return ( $text =~ $jp_qr or $blessed{$text} );
 }
 
-sub try_replace_csharp {
+sub try_replace_csharp {    # return values of this function aren't used
     my ( $enc, $offset, $length, $text, $content_ref, $file, $tr_in_enc, $do_blank, $report_matches, $found, $untranslated, $ignored, $pof_hash, $trs ) = @_;
     $found->{$text}{ $file->{file} }{$offset} = ( $trs->{$text} || {} )->{ctxt_tr}{""};
 
@@ -573,8 +590,7 @@ sub try_replace_csharp {
     my $store = po_store( $offset, $text, $file, $pof_hash );
     my $tr = $trs->{$text};
     return if $tr->{no_tr};
-    return $untranslated->{$text}++ ? 1 : !saynl "not yet translated in: '$file->{file}': '$text'"
-      if not $tr->{ctxt_tr}{""} and not $do_blank;
+    return $untranslated->{$text}++ if not $tr->{ctxt_tr}{""} and not $do_blank;
 
     my $enced_trs = $tr_in_enc->( $tr, $enc );
     my $new_text = $do_blank ? ( "\0" x $length ) : $enced_trs->{ po_ctxt( $file, $offset ) } || $enced_trs->{""};
@@ -606,10 +622,7 @@ sub _translate_xml_string {
 
     return if $tr->{no_tr};
 
-    if ( not $tr->{ctxt_tr}{""} and not $do_blank ) {
-        saynl "not yet translated in: '$file->{file}': '$text'" if !$untranslated->{$text}++;
-        return;
-    }
+    return $untranslated->{$text}++ ? () : () if not $tr->{ctxt_tr}{""} and not $do_blank;
 
     saynl sprintf "binary parse result '%-26s' %10s : '%-60s' -> '%-60s'", $file->{filename}, $node, $text, $tr->{ctxt_tr}{""} if $report_matches;
     return $tr->{ctxt_tr}{ po_ctxt( $file, $node ) } || $tr->{ctxt_tr}{""};
@@ -809,34 +822,34 @@ sub run {
     die "didn't create right font, but: $what{-family}" if $what{-family} ne $font_name;
 
     say "measuring translation sizes";
-    my %measure_cache;
-    my $measure = sub { $measure_cache{ $_[0] } //= $font->measure( $_[0] ) };
-    my $ctd = countdown->new( total => scalar @tr_keys );
+    my $measure_cache_file = "measures.cache";
+    my %measure_cache      = load_cache $measure_cache_file;
+    my $measure            = sub { $measure_cache{ $_[0] } //= $font->measure( $_[0] ) };
+    my $ctd                = countdown->new( total => scalar @tr_keys );
     for my $jp (@tr_keys) {
         for my $ctxt ( keys $tr{$jp}{ctxt_tr}->%* ) {
-            $tr{$jp}{width}       = $measure->($jp);
-            $tr{$jp}{width_tr}    = $measure->( $tr{$jp}{ctxt_tr}{$ctxt} );
-            $tr{$jp}{width_ratio} = sprintf "%.2f", $tr{$jp}{width_tr} / $tr{$jp}{width};
+            $tr{$jp}{width}{$ctxt}       = $measure->($jp);
+            $tr{$jp}{width_tr}{$ctxt}    = $measure->( $tr{$jp}{ctxt_tr}{$ctxt} );
+            $tr{$jp}{width_ratio}{$ctxt} = sprintf "%.2f", $tr{$jp}{width_tr}{$ctxt} / $tr{$jp}{width}{$ctxt};
         }
         $ctd->update;
     }
+    store_cache $measure_cache_file, \%measure_cache;
 
-    say "\nreporting on translation sizes";
+    say "\nreporting on translation string dimensions";
+    my @bigger_translations;
     for my $jp ( reverse sort { $tr{$a}{width_ratio} <=> $tr{$b}{width_ratio} } sort keys %tr ) {
         my %t = $tr{$jp}->%*;
-        for my $ctxt ( keys $t{ctxt_tr}->%* ) {
-            next if $t{width_ratio} <= 1;
-            my $msg = " $t{width_ratio} = $t{width} : $t{width_tr} -- $jp #-# $t{width_ratio} = $t{width} : $t{width_tr} -- $t{ctxt_tr}{$ctxt}";
-            $msg =~ s/#-#/\n/g;
-            saynl $msg;
-        }
+        push @bigger_translations,    #
+          split /#-#/,                #
+          " $t{width_ratio}{$_} = $t{width}{$_} : $t{width_tr}{$_} -- $jp #-# $t{width_ratio}{$_} = $t{width}{$_} : $t{width_tr}{$_} -- $t{ctxt_tr}{$_}"
+          for grep $t{width_ratio}{$_} > 1, keys $t{ctxt_tr}->%*;
     }
-    print "\n";
+    io("report_string_dimensions")->utf8->print( join "\n", map filter_nl($_), @bigger_translations );
 
     say "loading glyphmap cache";
-    my $g = "glyphmap.cache";
-    my %glyphmap_cache = -e $g ? JSON::MaybeXS->new( pretty => 1 )->decode( io($g)->utf8->all )->%* : ();
-
+    my $g              = "glyphmap.cache";
+    my %glyphmap_cache = load_cache $g;
     my %used;
     my $tr_in_enc = sub { tr_in_enc( @_, \%used, \%glyphmap_cache, $verbose, \%mapping ) };
     if ($prepare_maps) {
@@ -891,24 +904,28 @@ sub run {
     @list = sort { lc $a->{fileid} cmp lc $b->{fileid} } @list;
     io($_)->unlink for grep !/\.(tex|ttf)$/, io("../kc_original_unpack_modded/repatch/PCSG00684/Media")->All_Files;
 
-    say "processing files";
+    say "preparing processing";
     my ( %found, %unmatched, %hit, %untranslated, %ignored );
     my @task_list = reverse sort { $a->[0] <=> $b->[0] }    #
       map +( [ length $_, $_, "UTF-16LE" ], [ length $_, $_, "UTF-8" ] ), @tr_keys;
     my @cfg = ( $tr_in_enc, $do_blank, $report_matches, \%found, \%untranslated, \%ignored, \%pof_hash, \%tr );
-    my $ctd2 = countdown->new( total => scalar @list );
-    for my $file (@list) {
-        $ctd2->update;
-        next if handle_file_as_xml( $file, @cfg );
-        next if handle_file_as_asset( $file, @cfg );
+    my $handle_file = sub {
+        my ($file) = @_;
+        return if handle_file_as_xml( $file, @cfg );
+        return if handle_file_as_asset( $file, @cfg );
         my $content = $file->{filename} ne "Assembly-CSharp.dll"    #
           ? $file->{file}->all
           : parse_csharp \( $file->{file}->all ), $file, @cfg;
-        next if $file->{filename} eq "Assembly-CSharp.dll";         # leaving this in in case we want to reenable s&r for csharp
-        next if $file->{filename} =~ /\.-\d+$/;                     # leaving this in in case we want to reenable s&r for monobehavior files
+        return if $file->{filename} eq "Assembly-CSharp.dll";       # leaving this in in case we want to reenable s&r for csharp
+        return if $file->{filename} =~ /\.-\d+$/;                   # leaving this in in case we want to reenable s&r for monobehavior files
         say "performing search and replace on: $file->{fileid}";
         search_and_replace( \$content, \%hit, \%unmatched, \@task_list, $file, @cfg );
-    }
+    };
+    say "processing csharp";
+    $handle_file->( shift @list );
+    say "\nprocessing other files";
+    my $ctd2 = countdown->new( total => scalar @list );
+    for (@list) { $handle_file->($_); $ctd2->update; }
 
     delete $pof_hash{$_} for grep +( $tr{$_}{no_tr} or non_content($_) ), keys %pof_hash;
     my @po_write = ( $poedit_po || () );
@@ -926,7 +943,7 @@ sub run {
     my @maybe = map sprintf( "  %-" . ( 30 - length $_ ) . "s %-30s hit x %3s, nomatch x %3s, match x %3s", $_, $tr{$_}{ctxt_tr}{""}, $hit{$_}, $unmatched{$_}, $hit{$_} - $unmatched{$_} ),
       reverse sort { length $a <=> length $b } sort keys %unmatched;
     my @nowhere = map sprintf( "  %-" . ( 30 - length $_ ) . "s " . $tr{$_}{ctxt_tr}{""}, "'$_'" ), grep +( !$found{$_} and !$unmatched{$_} ), @tr_keys;
-    saynl " ", "strings not always identified confidently:", @maybe, " ", "strings found nowhere:", @nowhere;
+    saynl " ", " ", "strings not always identified confidently:", @maybe, " ", "strings found nowhere:", @nowhere;
     saynl " ", "strings found during parse, but ignored:", map "  '$_'", sort keys %ignored if $report_ignored;
 
     my @report;
