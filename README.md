@@ -41,14 +41,20 @@ With preparations done, time to create the actual translation patch
 
 Now you can run the game with the translation patch.
 
+Contributing Translations
+-------------------------
+
+Edit any of the following files to add new japanese strings or translations:
+  - kc.po either with PoEdit or a simple text editor
+  - en/Unity_Assets_Files for images
+
+Then create issues with links and explanation of your edited files.
+
+If you want to make it a little nicer for us, make a fork of the repo and create pull requests.
+
+Further information is here: [README_mith.txt](README_mith.txt), and [the wiki](../../wiki) for some supplementary information.
+
 Building The Patch
 ------------------
 
 See [README_mith.txt](README_mith.txt).
-
-Contributing Translations
--------------------------
-
-Basically, make a fork of the repo and create pull requests. As for what files to edit:
-
-See [README_mith.txt](README_mith.txt), and [the wiki](../../wiki) for some supplementary information.

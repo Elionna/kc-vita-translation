@@ -22,6 +22,8 @@
   decompiler, like compass fairy strings: "ばんをまわしてね"
 - on the "repair costs" screen the number of days it takes to repair overlaps
   the "days" character
+- weigh anchor in the ring menu needs to be changed to Sortie!
+- turn end button in ring menu needs to be End Turn
 
 wtf is a monobehavior, is the file format described? found mention that it's a
 base class of unity objects and the exact type is clarified by the ids. needs
