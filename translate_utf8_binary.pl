@@ -27,7 +27,8 @@ This is a mess. I'm sorry. I was in a hurry. Still a mess. :(
 
 =cut
 
-my $jp_qr = qr/[\p{Hiragana}\p{Katakana}\p{Han}]/;
+my $jp_qr        = qr/[\p{Hiragana}\p{Katakana}\p{Han}]/;
+my $generic_ctxt = "███ generic translation ███";
 
 run();
 
@@ -440,15 +441,15 @@ sub try_and_translate_binparse_value {
     my $text = decode "UTF-8", $obj->$meth;
     return if !length $text;
     my $id = max - 1, keys %{ $found->{$text}{ $file->{file} } ||= {} };
-    $found->{$text}{ $file->{file} }{ $id + 1 } = ( $trs->{$text} || {} )->{ctxt_tr}{""};
+    my $tr = $trs->{$text};
+    $found->{$text}{ $file->{file} }{ $id + 1 } = ctxt_tr( $tr, $file, $id );
 
     return !++$ignored->{$text} if non_content($text);
     my $store = po_store( $id, $text, $file, $pof_hash );
-    my $tr = $trs->{$text};
     return if $tr->{no_tr};
-    return $untranslated->{$text}++ ? () : () if not length $tr->{ctxt_tr}{""} and not $do_blank;
+    return 0 * $untranslated->{$text}++ if not length ctxt_tr( $tr, $file, $id ) and not $do_blank;
 
-    my $new_text = $tr->{ctxt_tr}{ po_ctxt( $file, $id ) } || $tr->{ctxt_tr}{""};
+    my $new_text = ctxt_tr( $tr, $file, $id );
     my $set = "Set$meth";
     $obj->$set( encode "UTF-8", $new_text );
     saynl sprintf "binary parse result '%-26s' %10s : '%-60s' -> '%-60s'", $file->{filename}, $id, $text, $new_text if $report_matches;
@@ -557,6 +558,8 @@ sub po_ctxt {
     my ( $file, $offset ) = @_;
     my @parts = split m@/@, $file->{file};
     my $file_ctxt = join "/", splice @parts, 6;
+    $file_ctxt =~ s@^Xml/tables/master/@@;
+    $file_ctxt =~ s@^(mst_mapenemy|level|resources|sharedassets)\d*\/@@;
     my $po_ctxt = "$file_ctxt|$offset";
     return $po_ctxt;
 }
@@ -566,7 +569,7 @@ sub po_store {
 
     my $po_ctxt = po_ctxt( $file, $offset );
     my $store = $pof_hash->{$text} ||= {};
-    $store->{$_} ||= Locale::PO->new( -msgctxt => $_, -msgid => escape_for_po($text), -msgstr => "" )    #
+    $store->{$_} ||= Locale::PO->new( $_ ? ( -msgctxt => $_ ) : (), -msgid => escape_for_po($text), -msgstr => "" )    #
       for "", $po_ctxt;
     $store->{""}->msgstr("") if !$store->{""}->msgstr;
     $store->{$po_ctxt}->msgstr("") if !$store->{$po_ctxt}->msgstr;
@@ -584,28 +587,33 @@ sub is_content {
 
 sub try_replace_csharp {    # return values of this function aren't used
     my ( $enc, $offset, $length, $text, $content_ref, $file, $tr_in_enc, $do_blank, $report_matches, $found, $untranslated, $ignored, $pof_hash, $trs ) = @_;
-    $found->{$text}{ $file->{file} }{$offset} = ( $trs->{$text} || {} )->{ctxt_tr}{""};
+    my $tr = $trs->{$text};
+    $found->{$text}{ $file->{file} }{$offset} = ctxt_tr( $tr, $file, $offset );
 
     return ++$ignored->{$text} if non_content($text);
     my $store = po_store( $offset, $text, $file, $pof_hash );
-    my $tr = $trs->{$text};
     return if $tr->{no_tr};
-    return $untranslated->{$text}++ if not length $tr->{ctxt_tr}{""} and not $do_blank;
+    return $untranslated->{$text}++ if not length ctxt_tr( $tr, $file, $offset ) and not $do_blank;
 
-    my $enced_trs = $tr_in_enc->( $tr, $enc );
-    my $new_text = $do_blank ? ( "\0" x $length ) : $enced_trs->{ po_ctxt( $file, $offset ) } || $enced_trs->{""};
+    my $enced_trs = { ctxt_tr => $tr_in_enc->( $tr, $enc ) };
+    my $new_text = $do_blank ? ( "\0" x $length ) : ctxt_tr( $enced_trs, $file, $offset );
     my $new_length = length $new_text;
     $new_text .= "\0" if $enc eq "UTF-16LE" and $new_length + 1 eq $length;
     $new_length = length $new_text;
     die "new text doesn't match $new_length != $length" if $new_length != $length;
     substr( $content_ref->$*, $offset, $length ) = $new_text;
-    saynl sprintf "binary parse result '%-26s' %10s : '%-60s' -> '%-60s'", $file->{filename}, $offset, $text, $tr->{ctxt_tr}{""} if $report_matches;
+    saynl sprintf "binary parse result '%-26s' %10s : '%-60s' -> '%-60s'", $file->{filename}, $offset, $text, ctxt_tr( $tr, $file, $offset ) if $report_matches;
     return;
 }
 
-sub translate_xml_string {
-    my ( $text, @args ) = @_;
-    return _translate_xml_string( $text, @args ) // $text;
+sub translate_xml_string { _translate_xml_string(@_) // $_[0] }
+
+sub ctxt_tr {
+    my ( $tr, $file, $node ) = @_;
+    $tr ||= {};
+    my $text = $tr->{ctxt_tr}{ po_ctxt( $file, $node ) };
+    $text = $tr->{ctxt_tr}{""} if !length $text;
+    return $text;
 }
 
 sub _translate_xml_string {
@@ -614,7 +622,7 @@ sub _translate_xml_string {
     my $store = po_store( $node, $text, $file, $pof_hash );
 
     my $tr = $trs->{$text};
-    $found->{$text}{ $file->{file} }{$node} = ( $tr || {} )->{ctxt_tr}{""};
+    $found->{$text}{ $file->{file} }{$node} = ctxt_tr( $tr, $file, $node );
     if ( !$tr ) {
         saynl "unable to find translation for: '$text' in: '$file->{file}'";
         return;
@@ -622,10 +630,10 @@ sub _translate_xml_string {
 
     return if $tr->{no_tr};
 
-    return $untranslated->{$text}++ ? () : () if not length $tr->{ctxt_tr}{""} and not $do_blank;
+    return $untranslated->{$text}++ ? () : () if not length ctxt_tr( $tr, $file, $node ) and not $do_blank;
 
-    saynl sprintf "binary parse result '%-26s' %10s : '%-60s' -> '%-60s'", $file->{filename}, $node, $text, $tr->{ctxt_tr}{""} if $report_matches;
-    return $tr->{ctxt_tr}{ po_ctxt( $file, $node ) } || $tr->{ctxt_tr}{""};
+    saynl sprintf "binary parse result '%-26s' %10s : '%-60s' -> '%-60s'", $file->{filename}, $node, $text, ctxt_tr( $tr, $file, $node ) if $report_matches;
+    return ctxt_tr( $tr, $file, $node );
 }
 
 sub handle_file_as_xml {
@@ -769,29 +777,38 @@ sub run {
     delete $_->{tr} for values %tr;
 
     say "loading po file";
-    my $pofile = "kc.po";
-    my $pof = -f $pofile ? Locale::PO->load_file_asarray( $pofile, "UTF-8" ) : [];
+    my ( $pofile, $unused_ctxt_marker ) = qw( kc.po ---------- );
+    my @pof = ( -f $pofile ? Locale::PO->load_file_asarray( $pofile, "UTF-8" ) : [] )->@*;
+    for my $po ( @pof[ 1 .. $#pof ] ) {
+        my $c = $po->dequote( $po->msgctxt ) || "";
+        $c = "" if $c eq $generic_ctxt;
+        $c =~ s@^Xml/tables/master/@@;
+        $c =~ s@^(mst_mapenemy|level|resources|sharedassets)\d*\/@@;
+        $po->msgctxt($c);
+        $po->msgstr("") if ( $po->dequote( $po->msgstr ) || "" ) eq $unused_ctxt_marker;
+    }
+
     say "hashifying po file";
     my $poedit_po;
     my %pof_hash;
-    for my $po ( $pof->@* ) {
+    for my $po (@pof) {
         my $id = unescape_from_po( $po->dequote( $po->msgid ) );
         if ( !length $id ) {
             $poedit_po = $po;
             next;
         }
-        $pof_hash{$id}{ $po->dequote( $po->msgctxt ) } = $po;
+        my $ctxt = $po->dequote( $po->msgctxt ) || "";
+        $ctxt = "" if $ctxt eq $generic_ctxt;
+        $po->msgctxt($ctxt);
+        $pof_hash{$id}{$ctxt} = $po;
     }
 
     say "adding po data to translation data";
-    my $unused_ctxt_marker = "----------";
-    for my $po ( $pof->@* ) {
+    for my $po (@pof) {
         my $id = unescape_from_po( $po->dequote( $po->msgid ) );
         next if !length $id;
-        my $ctxt   = $po->dequote( $po->msgctxt );
-        my $target = $tr{$id} ||= {};
-        my $tr     = unescape_from_po( $po->dequote( $po->msgstr ) );
-        $target->{ctxt_tr}{$ctxt} = ( $ctxt and $tr eq $unused_ctxt_marker ) ? "" : $tr;
+        ( $tr{$id} ||= {} )->{ctxt_tr}{ $po->dequote( $po->msgctxt ) || "" }    #
+          = unescape_from_po( $po->dequote( $po->msgstr ) );
     }
 
     say "enriching translation data objects";
@@ -931,10 +948,28 @@ sub run {
     my @po_write = ( $poedit_po || () );
     for my $id ( sort keys %pof_hash ) {
         my %entries = $pof_hash{$id}->%*;
-        my @ctxts = ( keys %entries > 2 ) ? sort keys %entries : ("");
-        push @po_write, $entries{$_} for @ctxts;
+        my @entries = map $entries{$_}, sort keys %entries;
+        die "how did this happen" if @entries == 1;
+        if ( @entries == 2 ) {    # merge generic and specific entries into one
+            my $significants = sub { grep length $_[0]->dequote( $_[0]->$_ ), qw( msgstr comment ) };
+            die $entries[0]->msgid . " needs manual treatment, both generic and specific entry contain information"
+              if grep( $significants->($_), @entries ) > 1;
+            my ($sig)    = grep $significants->($_),  @entries;
+            my ($nonsig) = grep !$significants->($_), @entries;
+            if ( !$sig ) {
+                ($sig)    = grep $_->dequote( $_->msgctxt ),  @entries;
+                ($nonsig) = grep !$_->dequote( $_->msgctxt ), @entries;
+            }
+            $sig->msgctxt( $nonsig->dequote( $nonsig->msgctxt ) ) if !length $sig->dequote( $sig->msgctxt );
+            @entries = ($sig);
+        }
+        else {    # add skip markers on specific entries if many
+            $_->msgstr($unused_ctxt_marker) for grep +( $_->dequote( $_->msgctxt ) and not unescape_from_po( $_->dequote( $_->msgstr ) ) ), @entries;
+        }
+        push @po_write, @entries;
     }
-    $_->msgstr($unused_ctxt_marker) for grep +( $_->dequote( $_->msgctxt ) and not unescape_from_po( $_->dequote( $_->msgstr ) ) ), @po_write;
+    $_->fuzzy(0) for @po_write;
+    $_->msgctxt($generic_ctxt) for grep !$_->dequote( $_->msgctxt ), @po_write[ 1 .. $#po_write ];
     Locale::PO->save_file_fromarray( $pofile, \@po_write, "UTF-8" );
     my $po_contents = io($pofile)->all;
     $po_contents =~ s/\r?\n$//;
