@@ -446,7 +446,7 @@ sub try_and_translate_binparse_value {
     my $store = po_store( $id, $text, $file, $pof_hash );
     my $tr = $trs->{$text};
     return if $tr->{no_tr};
-    return $untranslated->{$text}++ ? () : () if not $tr->{ctxt_tr}{""} and not $do_blank;
+    return $untranslated->{$text}++ ? () : () if not length $tr->{ctxt_tr}{""} and not $do_blank;
 
     my $new_text = $tr->{ctxt_tr}{ po_ctxt( $file, $id ) } || $tr->{ctxt_tr}{""};
     my $set = "Set$meth";
@@ -590,7 +590,7 @@ sub try_replace_csharp {    # return values of this function aren't used
     my $store = po_store( $offset, $text, $file, $pof_hash );
     my $tr = $trs->{$text};
     return if $tr->{no_tr};
-    return $untranslated->{$text}++ if not $tr->{ctxt_tr}{""} and not $do_blank;
+    return $untranslated->{$text}++ if not length $tr->{ctxt_tr}{""} and not $do_blank;
 
     my $enced_trs = $tr_in_enc->( $tr, $enc );
     my $new_text = $do_blank ? ( "\0" x $length ) : $enced_trs->{ po_ctxt( $file, $offset ) } || $enced_trs->{""};
@@ -622,7 +622,7 @@ sub _translate_xml_string {
 
     return if $tr->{no_tr};
 
-    return $untranslated->{$text}++ ? () : () if not $tr->{ctxt_tr}{""} and not $do_blank;
+    return $untranslated->{$text}++ ? () : () if not length $tr->{ctxt_tr}{""} and not $do_blank;
 
     saynl sprintf "binary parse result '%-26s' %10s : '%-60s' -> '%-60s'", $file->{filename}, $node, $text, $tr->{ctxt_tr}{""} if $report_matches;
     return $tr->{ctxt_tr}{ po_ctxt( $file, $node ) } || $tr->{ctxt_tr}{""};
@@ -796,7 +796,7 @@ sub run {
 
     say "enriching translation data objects";
     $tr{$_}{orig} = $_ for keys %tr;
-    delete $tr{$_} for grep +( $tr{$_}{tr_tex} and !$tr{$_}{ctxt_tr}{""} ), keys %tr;
+    delete $tr{$_} for grep +( $tr{$_}{tr_tex} and !length $tr{$_}{ctxt_tr}{""} ), keys %tr;
     $tr{$_}{ctxt_tr}{""} //= "" for keys %tr;
     my @tr_keys = reverse sort { length $a <=> length $b } sort keys %tr;
 
