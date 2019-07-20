@@ -949,7 +949,7 @@ sub run {
     for my $id ( sort keys %pof_hash ) {
         my %entries = $pof_hash{$id}->%*;
         my @entries = map $entries{$_}, sort keys %entries;
-        die "how did this happen" if @entries == 1;
+        die "\nhow did this happen" if @entries == 1;
         if ( @entries == 2 ) {    # merge generic and specific entries into one
             my $significants = sub { grep length $_[0]->dequote( $_[0]->$_ ), qw( msgstr comment ) };
             die $entries[0]->msgid . " needs manual treatment, both generic and specific entry contain information"
@@ -968,6 +968,8 @@ sub run {
         }
         push @po_write, @entries;
     }
+
+    say "\nsaving po file";
     $_->fuzzy(0) for @po_write;
     $_->msgctxt($generic_ctxt) for grep !$_->dequote( $_->msgctxt ), @po_write[ 1 .. $#po_write ];
     Locale::PO->save_file_fromarray( $pofile, \@po_write, "UTF-8" );
@@ -975,6 +977,7 @@ sub run {
     $po_contents =~ s/\r?\n$//;
     io($pofile)->print($po_contents);
 
+    say "preparing reports";
     my @maybe = map sprintf( "  %-" . ( 30 - length $_ ) . "s %-30s hit x %3s, nomatch x %3s, match x %3s", $_, $tr{$_}{ctxt_tr}{""}, $hit{$_}, $unmatched{$_}, $hit{$_} - $unmatched{$_} ),
       reverse sort { length $a <=> length $b } sort keys %unmatched;
     my @nowhere = map sprintf( "  %-" . ( 30 - length $_ ) . "s " . $tr{$_}{ctxt_tr}{""}, "'$_'" ), grep +( !$found{$_} and !$unmatched{$_} ), @tr_keys;
