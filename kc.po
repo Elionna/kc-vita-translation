@@ -5076,6 +5076,7 @@ msgctxt "mst_slotitem.xml|122"
 msgid "SKC34 20.3cm連装砲"
 msgstr "SKC34 20.3cm Twin Gun Mount"
 
+# item grade
 msgctxt "Assembly-CSharp.dll|4499906"
 msgid "SSホロ"
 msgstr ""
@@ -5092,6 +5093,7 @@ msgctxt "Assembly-CSharp.dll|4851250"
 msgid "Sprite設定"
 msgstr ""
 
+# item grade
 msgctxt "Assembly-CSharp.dll|4499898"
 msgid "Sホロ"
 msgstr ""
@@ -5477,6 +5479,7 @@ msgid ""
 "\n"
 msgstr ""
 
+# item store
 msgctxt "level7_00048.-5|-1"
 msgid ""
 "[000000]このアイテムを開けると、資源や資材が[FF0000]蓄積上限[-]を超えるため\n"
@@ -5507,6 +5510,7 @@ msgid ""
 "との交戦は、戦闘ショートカットできません。[-]"
 msgstr "When you are used to how a map works, you may use Battle Shortcut. By pressing the L-Shoulder button during the Sortie Map, you can shorten battle times. However, in fleet battles with new areas, Battle Shortcut may not be used."
 
+# tutorial body
 msgctxt "resources_01399.-10|-1"
 msgid ""
 "[000000]各海域に[0055aa]輸送船[-]を配備しておくことで、\n"
@@ -5519,6 +5523,8 @@ msgid ""
 "獲得、艦隊の兵站を拡充しましょう。"
 msgstr ""
 
+# text body for tutorial explainer that firs pops up when opening construction screen
+# TODO: fix up google translate, convoy is probably wrong
 msgctxt "resources_01022.-10|-1"
 msgid ""
 "[000000]工廠では、艦娘の[006400]建造[-]が可能です。\n"
@@ -5607,6 +5613,7 @@ msgctxt "resources_00708.-10|-1"
 msgid "[000000]艦娘の[006400]補給[-]について"
 msgstr ""
 
+# TODO: this seems SUPER WONKY
 msgctxt "resources_01143.-10|-1"
 msgid ""
 "[000000]鎮守府海域から離れた海域であるほど、\n"
@@ -5625,6 +5632,7 @@ msgid ""
 "回航中の艦娘は、戦闘等に参加はできません。"
 msgstr ""
 
+# title for tutorial explainer that firs pops up when opening construction screen
 msgctxt "resources_01289.-10|-1"
 msgid "[006400]建造[-][000000]について[-]"
 msgstr ""
@@ -5717,6 +5725,7 @@ msgctxt "resources_01446.-10|-1"
 msgid "[E2E2E2]はじめての[12c112]建造[-]！[-]"
 msgstr "First Construction"
 
+# title of a tutorial task
 msgctxt "███ generic translation ███"
 msgid "[E2E2E2]作戦海域への[12c112]出撃[-]！[-]"
 msgstr ""
@@ -6361,11 +6370,13 @@ msgid "Верный"
 msgstr "----------"
 
 # Literally "...ai" - Or, maybe she is just making a sound. I am going to play with this some.
+# sound of excertion in when the lazy fairy starts spinning the compass
 msgctxt "Assembly-CSharp.dll|4564875"
 msgid "……あい"
 msgstr "...huhn"
 
 # grunt like sound - [Previous is Depriciated - and context matters : "Huh?" -  Literally "....n." - Maybe use "Wha?" [t intentioanlly omitted]]
+# acknowledgement from the lazy fairy that you want her to spin the compass
 msgctxt "Assembly-CSharp.dll|4564867"
 msgid "……ん"
 msgstr "...un!"
@@ -6594,6 +6605,7 @@ msgctxt "Assembly-CSharp.dll|4530284"
 msgid "★ IME から得た名前： result.text: "
 msgstr ""
 
+# wrapper opener for the music name in the fleet hq intel screen
 msgctxt "Assembly-CSharp.dll|4538084"
 msgid "♪「"
 msgstr "♪\""
@@ -6620,6 +6632,7 @@ msgctxt "Assembly-CSharp.dll|4524846"
 msgid "　　　　　　 敗戦"
 msgstr ""
 
+# records screen table headers
 msgctxt "███ generic translation ███"
 msgid ""
 "　　艦隊最大\\r数\n"
@@ -7956,6 +7969,7 @@ msgctxt "mst_furniture.xml|113"
 msgid "「謹賀新年」掛け軸"
 msgstr "\"Happy New Year\" Scroll"
 
+# item store message, unsure of exact context TODO: must be checked
 msgctxt "level7_00041.-5|-1"
 msgid ""
 "「資源」や「改修資材」に交換出来ます。\n"
@@ -10177,6 +10191,7 @@ msgctxt "Assembly-CSharp.dll|4564761"
 msgid "ここっ"
 msgstr "Here!"
 
+# todo: needs localizing
 msgctxt "mst_furnituretext.xml|31"
 msgid "こっそり夜まで布団の上でお菓子の交換こ！食べたい…けどねむい…だべたい…ねむ…zzz"
 msgstr ""
@@ -10244,6 +10259,7 @@ msgctxt "level12_00015.-6|-1"
 msgid "これまでのデータを保存しますか？"
 msgstr "Would you like to save your current data?"
 
+# TODO: this needs localizing
 msgctxt "mst_furnituretext.xml|220"
 msgid "これまで応援して下さった提督の皆さんのおかげで、望外の賞を頂いた。それを記念した、感謝の掛け軸！※特殊BGM家具です。"
 msgstr ""
@@ -12663,6 +12679,7 @@ msgctxt "level7_00024.-5|-1"
 msgid "まとめて選択"
 msgstr "----------"
 
+# furniture screen
 msgctxt "level9_00002.-5|-1"
 msgid "まとめて選択"
 msgstr "----------"
@@ -14450,6 +14467,7 @@ msgctxt "███ generic translation ███"
 msgid "コモン"
 msgstr "Common"
 
+# item grade
 msgctxt "Assembly-CSharp.dll|4499878"
 msgid "コモン"
 msgstr "----------"
@@ -16505,6 +16523,7 @@ msgctxt "Assembly-CSharp.dll|4531864"
 msgid "ホ"
 msgstr ""
 
+# item grade
 msgctxt "Assembly-CSharp.dll|4499892"
 msgid "ホロ"
 msgstr ""
@@ -16860,6 +16879,7 @@ msgctxt "sharedassets5_01310.-4|-1"
 msgid "メッセージ"
 msgstr "----------"
 
+# title of second step of refit menu
 msgctxt "Assembly-CSharp.dll|4539898"
 msgid "メニュー選択"
 msgstr ""
@@ -17072,6 +17092,7 @@ msgctxt "Assembly-CSharp.dll|4531960"
 msgid "レ"
 msgstr ""
 
+# item grade
 msgctxt "Assembly-CSharp.dll|4499886"
 msgid "レア"
 msgstr ""
@@ -17799,6 +17820,7 @@ msgctxt "Assembly-CSharp.dll|4499920"
 msgid "丙"
 msgstr ""
 
+# weapon range descriptor
 msgctxt "Assembly-CSharp.dll|4488696"
 msgid "中"
 msgstr ""
@@ -19612,6 +19634,7 @@ msgctxt "Assembly-CSharp.dll|4598747"
 msgid "他艦選択中\n"
 msgstr ""
 
+# item store purchase confirmation question
 msgctxt "level7_00029.-5|-1"
 msgid "以下のアイテムを購入しますか？"
 msgstr "Would you like to purchase the following items?"
@@ -21565,6 +21588,7 @@ msgctxt "level2_00002.-7|-1"
 msgid "低"
 msgstr "----------"
 
+# difficulty selection screen
 msgctxt "sharedassets3_00003.-2|-1"
 msgid "低"
 msgstr "----------"
@@ -22200,6 +22224,7 @@ msgstr ""
 "\\rFuel Required\\r\n"
 "\\r高速修復材\\r"
 
+# TODO: maybe refitted?
 msgctxt "Assembly-CSharp.dll|4570137"
 msgid "修復中の艦娘がいます"
 msgstr ""
@@ -22426,7 +22451,7 @@ msgctxt "Assembly-CSharp.dll|4492312"
 msgid "入手しました。"
 msgstr "Acquired"
 
-# i do not know the tense of this entry, subject to change by tense
+# equipment disposal result screen title
 msgctxt "███ generic translation ███"
 msgid "入手する資材"
 msgstr "Acquired resources"
@@ -23172,6 +23197,7 @@ msgctxt "mst_furnituretext.xml|153"
 msgid "冬を迎える提督の執務室の必需品といえる煖房器具。その中でも最高級クラスに位置するのが、この暖炉。最高の温もりを貴方に。"
 msgstr ""
 
+# records screen table texts - TODO: just trying to see if i can make this fit better
 msgctxt "███ generic translation ███"
 msgid ""
 "出撃\\r\n"
@@ -25160,6 +25186,7 @@ msgctxt "███ generic translation ███"
 msgid "副砲"
 msgstr "Secondary Armament"
 
+# probably equipment factory completion message
 msgctxt "Assembly-CSharp.dll|4633196"
 msgid "副砲"
 msgstr "----------"
@@ -30359,6 +30386,7 @@ msgctxt "resources_00812.-10|-1"
 msgid "増設改修しました！"
 msgstr "Expanded and repaired!"
 
+# furniture screen text for "no decoration" TODO: double check
 msgctxt "mst_furnituretext.xml|101"
 msgid "壁に何か飾れそうですね！"
 msgstr ""
@@ -33038,6 +33066,7 @@ msgctxt "███ generic translation ███"
 msgid "建造"
 msgstr "Construction"
 
+# factory ship construction subscreen
 msgctxt "Assembly-CSharp.dll|4517710"
 msgid "建造"
 msgstr "----------"
@@ -33356,6 +33385,7 @@ msgctxt "███ generic translation ███"
 msgid "弾薬"
 msgstr "Ammunition"
 
+# quest reward screen
 msgctxt "Assembly-CSharp.dll|4521510"
 msgid "弾薬"
 msgstr "----------"
@@ -33372,10 +33402,12 @@ msgctxt "mst_useitem.xml|8"
 msgid "弾薬"
 msgstr "----------"
 
+# factory screen construction subscreens
 msgctxt "sharedassets5_00339.-4|-1"
 msgid "弾薬"
 msgstr "----------"
 
+# equipment disposal result screen
 msgctxt "sharedassets5_01135.-4|-1"
 msgid "弾薬"
 msgstr "----------"
@@ -33628,7 +33660,7 @@ msgctxt "sharedassets5_00952.-4|-1"
 msgid "必要燃料数\\r"
 msgstr "Fuel Required"
 
-# [OC]
+# transport ships deployment screen
 msgctxt "███ generic translation ███"
 msgid "必要輸送船数"
 msgstr "Required Number of Ships"
@@ -33649,6 +33681,7 @@ msgctxt "sharedassets5_01011.-4|-1"
 msgid "必要輸送船数"
 msgstr "----------"
 
+# dock repair screen
 msgctxt "███ generic translation ███"
 msgid ""
 "必要鋼材数\\r\n"
@@ -34057,6 +34090,7 @@ msgctxt "level7_00045.-5|-1"
 msgid "戦略へ"
 msgstr "----------"
 
+# furniture screen
 msgctxt "level9_00006.-5|-1"
 msgid "戦略へ"
 msgstr "----------"
@@ -34085,7 +34119,7 @@ msgctxt "sharedassets5_01124.-4|-1"
 msgid "戦略へ"
 msgstr "----------"
 
-# no idea if the tab here is real or code
+# button explainer popup, no idea if the tab here is real or code
 msgctxt "███ generic translation ███"
 msgid "戦略へ\t"
 msgstr "To Strategy\t"
@@ -34103,10 +34137,12 @@ msgctxt "███ generic translation ███"
 msgid "戦略コマンド"
 msgstr "Strategy Command"
 
+# button explainer popup main screen
 msgctxt "level4_00119.-15|-1"
 msgid "戦略コマンド"
 msgstr "----------"
 
+# button explainer popup main screen from office
 msgctxt "sharedassets5_01368.-4|-1"
 msgid "戦略コマンド"
 msgstr "----------"
@@ -34510,6 +34546,7 @@ msgctxt "level7_00037.-5|-1"
 msgid "戻る"
 msgstr "----------"
 
+# furniture screen
 msgctxt "level9_00003.-5|-1"
 msgid "戻る"
 msgstr "----------"
@@ -35073,6 +35110,7 @@ msgctxt "███ generic translation ███"
 msgid "提督コマンド"
 msgstr "Admiral Command"
 
+# button explainer popup factory screen
 msgctxt "Assembly-CSharp.dll|4518854"
 msgid "提督コマンド"
 msgstr "----------"
@@ -35085,6 +35123,7 @@ msgctxt "level17_00008.-6|-1"
 msgid "提督コマンド"
 msgstr "----------"
 
+# button explainer popup records screen
 msgctxt "level18_00016.-6|-1"
 msgid "提督コマンド"
 msgstr "----------"
@@ -35113,14 +35152,17 @@ msgctxt "level24_00031.-6|-1"
 msgid "提督コマンド"
 msgstr "----------"
 
+# button explainer popup gallery screen
 msgctxt "level3_00029.-5|-1"
 msgid "提督コマンド"
 msgstr "----------"
 
+# button explainer popup main screen
 msgctxt "level4_00110.-15|-1"
 msgid "提督コマンド"
 msgstr "----------"
 
+# left hand admiral commands popup menu title
 msgctxt "level4_00210.-15|-1"
 msgid "提督コマンド"
 msgstr "----------"
@@ -35129,10 +35171,12 @@ msgctxt "level6_00042.-3|-1"
 msgid "提督コマンド"
 msgstr "----------"
 
+# button explainer popup items screen
 msgctxt "level7_00042.-5|-1"
 msgid "提督コマンド"
 msgstr "----------"
 
+# furniture screen
 msgctxt "level9_00004.-5|-1"
 msgid "提督コマンド"
 msgstr "----------"
@@ -35145,6 +35189,7 @@ msgctxt "resources_01345.-10|-1"
 msgid "提督コマンド"
 msgstr "----------"
 
+# button explainer popup quest screen
 msgctxt "sharedassets5_00163.-4|-1"
 msgid "提督コマンド"
 msgstr "----------"
@@ -35157,10 +35202,12 @@ msgctxt "sharedassets5_00566.-4|-1"
 msgid "提督コマンド"
 msgstr "----------"
 
+# button explainer popup fleet organization screen
 msgctxt "sharedassets5_01112.-4|-1"
 msgid "提督コマンド"
 msgstr "----------"
 
+# button explainer popup refit screen
 msgctxt "sharedassets5_01131.-4|-1"
 msgid "提督コマンド"
 msgstr "----------"
@@ -35169,6 +35216,7 @@ msgctxt "sharedassets5_01169.-4|-1"
 msgid "提督コマンド"
 msgstr "----------"
 
+# button explainer popup main screen from office
 msgctxt "sharedassets5_01354.-4|-1"
 msgid "提督コマンド"
 msgstr "----------"
@@ -43503,10 +43551,12 @@ msgctxt "mst_furniture.xml|162"
 msgid "新生だるま"
 msgstr "Newborn daruma"
 
+# hq intel screen admiral rank
 msgctxt "Assembly-CSharp.dll|4500224"
 msgid "新米中佐"
 msgstr ""
 
+# hq intel screen admiral rank
 msgctxt "Assembly-CSharp.dll|4500198"
 msgid "新米少佐"
 msgstr ""
@@ -47299,7 +47349,7 @@ msgctxt "sharedassets5_00474.-4|-1"
 msgid "残り継戦時間[F9C66CFF]100[-]日"
 msgstr "----------"
 
-# [OC]
+# transport ship deployment screen
 msgctxt "███ generic translation ███"
 msgid "残り輸送船数"
 msgstr "Ships Remaining"
@@ -48495,6 +48545,7 @@ msgctxt "level7_00016.-5|-1"
 msgid "決定"
 msgstr "----------"
 
+# furniture screen
 msgctxt "level9_00001.-5|-1"
 msgid "決定"
 msgstr "----------"
@@ -49433,6 +49484,7 @@ msgctxt "level20_00097.-8|-1"
 msgid "海域選択"
 msgstr "----------"
 
+# button explainer popup main screen
 msgctxt "level4_00303.-15|-1"
 msgid "海域選択"
 msgstr "----------"
@@ -49441,6 +49493,7 @@ msgctxt "resources_00570.-10|-1"
 msgid "海域選択"
 msgstr "----------"
 
+# button explainer popup main screen from office
 msgctxt "sharedassets5_00951.-4|-1"
 msgid "海域選択"
 msgstr "----------"
@@ -55039,11 +55092,13 @@ msgctxt "Assembly-CSharp.dll|4601141"
 msgid "獲得アイテム:{0}"
 msgstr "Earned items:{0}"
 
+# transport ship deployment screen and probably a bunch of others
 # [OC] that means out of context and i reserve the right to edit later.
 msgctxt "███ generic translation ███"
 msgid "獲得可能資材"
 msgstr "Materials Available"
 
+# transport ships deployment screen
 msgctxt "level4_00039.-15|-1"
 msgid "獲得可能資材"
 msgstr "----------"
@@ -55072,10 +55127,12 @@ msgctxt "resources_01348.-10|-1"
 msgid "獲得可能資材"
 msgstr "----------"
 
+# transport ships deployment screen
 msgctxt "sharedassets5_00250.-4|-1"
 msgid "獲得可能資材"
 msgstr "----------"
 
+# sea area info screen
 msgctxt "sharedassets5_00496.-4|-1"
 msgid "獲得可能資材"
 msgstr "----------"
@@ -55562,10 +55619,12 @@ msgctxt "level6_00034.-3|-1"
 msgid "画面切替"
 msgstr "----------"
 
+# button explainer popup items screen
 msgctxt "level7_00001.-5|-1"
 msgid "画面切替"
 msgstr "----------"
 
+# furniture screen
 msgctxt "level9_00005.-5|-1"
 msgid "画面切替"
 msgstr "----------"
@@ -55634,6 +55693,7 @@ msgctxt "resources_01139.-10|-1"
 msgid "疲労しています"
 msgstr "----------"
 
+# TODO: extremely unsure about this
 msgctxt "Assembly-CSharp.dll|4609773"
 msgid "疲労度-赤の艦を含んでいます"
 msgstr ""
@@ -55663,6 +55723,7 @@ msgid ""
 "この機体を用いて対潜哨戒・対潜制圧・対艦攻撃を担う九三一航空隊所属の「天山」装備飛行隊です。"
 msgstr ""
 
+# TODO: ???
 msgctxt "Assembly-CSharp.dll|4602506"
 msgid "白"
 msgstr ""
@@ -56551,6 +56612,7 @@ msgctxt "mst_furnituretext.xml|72"
 msgid "知的な貴方にぴったりのグリーンのカーテン。落ち着いて戦略を練る提督にぴったりです。"
 msgstr ""
 
+# weapon range descriptor
 msgctxt "Assembly-CSharp.dll|4488692"
 msgid "短"
 msgstr ""
@@ -56589,6 +56651,7 @@ msgctxt "sharedassets5_00983.-4|-1"
 msgid "砲撃"
 msgstr "----------"
 
+# TODO: ?=???
 msgctxt "Assembly-CSharp.dll|4849438"
 msgid "破片回転速度"
 msgstr ""
@@ -61520,6 +61583,7 @@ msgctxt "resources_00001.-4|-1"
 msgid "艦隊9"
 msgstr "Fleet9"
 
+# decription text for "sortie to operation area" tutorial task, taking a bit of liberty
 msgctxt "resources_01428.-10|-1"
 msgid "艦隊、出撃せよ！"
 msgstr "Sortie Fleet!"
@@ -61528,6 +61592,7 @@ msgctxt "Assembly-CSharp.dll|4500532"
 msgid "艦隊が編成されていません"
 msgstr ""
 
+# pops up when trying to sortie while a ship is in the repair dock, taking some liberty
 msgctxt "Assembly-CSharp.dll|4500506"
 msgid "艦隊に入渠中の艦がいます"
 msgstr ""
@@ -61963,6 +62028,7 @@ msgctxt "███ generic translation ███"
 msgid "艦隊情報"
 msgstr "Fleet Information"
 
+# button explainer popup main screen
 msgctxt "level4_00169.-15|-1"
 msgid "艦隊情報"
 msgstr "----------"
@@ -61971,6 +62037,7 @@ msgctxt "resources_01347.-10|-1"
 msgid "艦隊情報"
 msgstr "----------"
 
+# button explainer popup main screen from office
 msgctxt "sharedassets5_01309.-4|-1"
 msgid "艦隊情報"
 msgstr "----------"
@@ -62160,7 +62227,7 @@ msgctxt "mst_mission2.xml|219"
 msgid "艦隊決戦支援任務"
 msgstr "----------"
 
-# okay?
+# fleet organization tutorial task text, taking a bit of liberty here
 msgctxt "resources_00693.-10|-1"
 msgid "艦隊編成を実施せよ！"
 msgstr "Carry out Fleet composition!"
@@ -62186,6 +62253,7 @@ msgctxt "level22_00075.-4|-1"
 msgid "艦隊選択"
 msgstr "----------"
 
+# button explainer popup main screen
 msgctxt "level4_00141.-15|-1"
 msgid "艦隊選択"
 msgstr "----------"
@@ -62194,14 +62262,17 @@ msgctxt "resources_00381.-10|-1"
 msgid "艦隊選択"
 msgstr "----------"
 
+# button explainer popup main screen from office
 msgctxt "sharedassets5_00338.-4|-1"
 msgid "艦隊選択"
 msgstr "----------"
 
+# button explainer popup refit screen
 msgctxt "sharedassets5_00544.-4|-1"
 msgid "艦隊選択"
 msgstr "----------"
 
+# button explainer popup fleet organization screen
 msgctxt "sharedassets5_00913.-4|-1"
 msgid "艦隊選択"
 msgstr "----------"
@@ -62856,6 +62927,7 @@ msgctxt "sharedassets5_01265.-4|-1"
 msgid "補給してよろしいですか？"
 msgstr "Resupply with the following?"
 
+# resupply screen
 msgctxt "███ generic translation ███"
 msgid "補給する資源"
 msgstr "Resources to be supplied"
@@ -65130,6 +65202,7 @@ msgctxt "███ generic translation ███"
 msgid "輸送船"
 msgstr "Transport"
 
+# transport ship deployment screen title
 msgctxt "level4_00155.-15|-1"
 msgid "輸送船"
 msgstr "----------"
@@ -65138,6 +65211,7 @@ msgctxt "resources_01463.-10|-1"
 msgid "輸送船"
 msgstr "----------"
 
+# transport ship deployment screen title
 msgctxt "sharedassets5_00198.-4|-1"
 msgid "輸送船"
 msgstr "----------"
@@ -65496,7 +65570,7 @@ msgstr ""
 "resource production areas and \\\n"
 "transport the resources!"
 
-# .Arsenal.TaskConstructManager
+# title transport ship factory screen, has issues with spaces between chars
 msgctxt "Assembly-CSharp.dll|4517774"
 msgid "輸送船建造"
 msgstr "Transport Construction"
@@ -67398,6 +67472,7 @@ msgctxt "level7_00044.-5|-1"
 msgid "選択"
 msgstr "----------"
 
+# furniture screen
 msgctxt "level9_00007.-5|-1"
 msgid "選択"
 msgstr "----------"
@@ -68769,7 +68844,7 @@ msgctxt "sharedassets5_00829.-4|-1"
 msgid "開放キーを持っていません"
 msgstr "----------"
 
-# .Arsenal.TaskConstructManager
+# factory equipment development subscreen
 msgctxt "Assembly-CSharp.dll|4517736"
 msgid "開発"
 msgstr "Development"
@@ -69530,14 +69605,17 @@ msgctxt "███ generic translation ███"
 msgid "隻"
 msgstr ""
 
+# main screen transport ship count
 msgctxt "level4_00076.-15|-1"
 msgid "隻"
 msgstr "----------"
 
+# transport ship deployment screen
 msgctxt "level4_00160.-15|-1"
 msgid "隻"
 msgstr "----------"
 
+# main screen combat ship at sea count
 msgctxt "level4_00319.-15|-1"
 msgid "隻"
 msgstr "----------"
@@ -69546,14 +69624,17 @@ msgctxt "resources_00361.-10|-1"
 msgid "隻"
 msgstr "----------"
 
+# alternate (?) main screen combat ship count
 msgctxt "sharedassets5_00295.-4|-1"
 msgid "隻"
 msgstr "----------"
 
+# transport ship deployment screen
 msgctxt "sharedassets5_00306.-4|-1"
 msgid "隻"
 msgstr "----------"
 
+# alternate (?) main screen transport ship count
 msgctxt "sharedassets5_00561.-4|-1"
 msgid "隻"
 msgstr "----------"
@@ -71204,6 +71285,7 @@ msgctxt "level2_00004.-7|-1"
 msgid "高"
 msgstr "----------"
 
+# difficulty selection screen
 msgctxt "sharedassets3_00002.-2|-1"
 msgid "高"
 msgstr "----------"
@@ -71611,6 +71693,7 @@ msgctxt "███ generic translation ███"
 msgid "高速建造"
 msgstr "Instant Build"
 
+# quest reward screen
 msgctxt "Assembly-CSharp.dll|4609015"
 msgid "高速建造"
 msgstr "----------"
@@ -71619,6 +71702,7 @@ msgctxt "level20_00116.-8|-1"
 msgid "高速建造"
 msgstr "----------"
 
+# factory ship construction subscreens
 msgctxt "sharedassets5_01342.-4|-1"
 msgid "高速建造"
 msgstr "----------"
