@@ -92,6 +92,8 @@ msgid ""
 "\n"
 "旗艦提督室ＢＧＭ"
 msgstr ""
+"\n"
+"Admiral Room BGM"
 
 msgctxt "level18_00040.-6|-1"
 msgid ""
@@ -213,6 +215,8 @@ msgid ""
 "   戦略画面に移動し、\n"
 "ターンを終了せよ"
 msgstr ""
+"Move to the Strategy\n"
+"map, and End the Turn."
 
 msgctxt "Assembly-CSharp.dll|4601340"
 msgid "   火力上昇:{0} 雷装上昇:{1} 対空上昇:{2} 対潜上昇:{3} 装甲上昇:{4} 回避上昇:{5} 運上昇:{6}"
@@ -421,7 +425,7 @@ msgstr ""
 
 msgctxt "Assembly-CSharp.dll|4524978"
 msgid " 旗艦 "
-msgstr ""
+msgstr " Flagship "
 
 msgctxt "Assembly-CSharp.dll|4609045"
 msgid " 日"
@@ -477,6 +481,13 @@ msgid ""
 " 海域内ドック数\n"
 " 総工廠ドック数"
 msgstr ""
+" Fleets\n"
+" Ship Girls\n"
+" Equipment Items\n"
+" Equipment Limit\n"
+" Docks Total\n"
+" Repair Docks\n"
+" Factory Docks"
 
 msgctxt "level4_00136.-15|-1"
 msgid ""
@@ -576,7 +587,7 @@ msgstr ""
 
 msgctxt "Assembly-CSharp.dll|4609051"
 msgid " 隻"
-msgstr ""
+msgstr "   Shp"
 
 msgctxt "Assembly-CSharp.dll|4606299"
 msgid " 雷命中バフ:{0}%"
@@ -624,7 +635,7 @@ msgstr ""
 
 msgctxt "Assembly-CSharp.dll|4496448"
 msgid "(土)"
-msgstr ""
+msgstr "(Sat)"
 
 msgctxt "Assembly-CSharp.dll|4600341"
 msgid "(建造艦:{0})"
@@ -632,7 +643,7 @@ msgstr ""
 
 msgctxt "Assembly-CSharp.dll|4496400"
 msgid "(日)"
-msgstr ""
+msgstr "(Sun)"
 
 # as in maximum
 msgctxt "███ generic translation ███"
@@ -649,11 +660,11 @@ msgstr "----------"
 
 msgctxt "Assembly-CSharp.dll|4496408"
 msgid "(月)"
-msgstr ""
+msgstr "(Mon)"
 
 msgctxt "Assembly-CSharp.dll|4496432"
 msgid "(木)"
-msgstr ""
+msgstr "(Thu)"
 
 msgctxt "Assembly-CSharp.dll|4599043"
 msgid "(未)"
@@ -661,7 +672,7 @@ msgstr ""
 
 msgctxt "Assembly-CSharp.dll|4496424"
 msgid "(水)"
-msgstr ""
+msgstr "(Wed)"
 
 msgctxt "Assembly-CSharp.dll|4599035"
 msgid "(済)"
@@ -669,7 +680,7 @@ msgstr ""
 
 msgctxt "Assembly-CSharp.dll|4496416"
 msgid "(火)"
-msgstr ""
+msgstr "(Tue)"
 
 msgctxt "Assembly-CSharp.dll|4499408"
 msgid "(結婚済)"
@@ -681,7 +692,7 @@ msgstr ""
 
 msgctxt "Assembly-CSharp.dll|4496440"
 msgid "(金)"
-msgstr ""
+msgstr "(Fri)"
 
 msgctxt "Assembly-CSharp.dll|4596057"
 msgid "-- アイテム屋商品 --\n"
@@ -5083,7 +5094,7 @@ msgstr "SKC34 20.3cm Twin Gun Mount"
 # item grade
 msgctxt "Assembly-CSharp.dll|4499906"
 msgid "SSホロ"
-msgstr ""
+msgstr "SS-Holograph"
 
 msgctxt "Assembly-CSharp.dll|4855622"
 msgid "SerializeField上で使用"
@@ -5100,7 +5111,7 @@ msgstr ""
 # item grade
 msgctxt "Assembly-CSharp.dll|4499898"
 msgid "Sホロ"
-msgstr ""
+msgstr "S-Holograph"
 
 msgctxt "Assembly-CSharp.dll|4550000"
 msgid "TODO:選択不可時のHover表示"
@@ -5287,7 +5298,7 @@ msgstr ""
 
 msgctxt "Assembly-CSharp.dll|4572013"
 msgid "[-]日"
-msgstr ""
+msgstr "[-]d"
 
 msgctxt "resources_01508.-10|-1"
 msgid ""
@@ -5309,7 +5320,7 @@ msgstr ""
 
 msgctxt "resources_01104.-10|-1"
 msgid "[000000][0055aa]戦略ポイント[-]について"
-msgstr ""
+msgstr "[000000]Regarding [0055aa]Strategy Points[-]"
 
 msgctxt "resources_01221.-10|-1"
 msgid ""
@@ -5334,7 +5345,7 @@ msgstr "[000000]Regarding [0055aa]Maritime Escort Fleet[-] deployment"
 
 msgctxt "resources_00890.-10|-1"
 msgid "[000000][0055aa]資源獲得[-]について"
-msgstr ""
+msgstr "[000000]Regarding [0055aa]Resource Acquisition[-]"
 
 # may also be Per or About | My context may be off, but OC this is how I am reading it. Depriciated 'About deployment of Transports' alternate 'About Transport deployment'
 msgctxt "resources_01203.-10|-1"
@@ -5350,6 +5361,13 @@ msgid ""
 "各[0055aa]資源[-]は備蓄の上限に達すると、数字が[FFCC00]黄色[-]\n"
 "で表示されます。[-]"
 msgstr ""
+"[000000]There is an upper limit to the [0055aa]Resource\n"
+"Acquisition[-] by [0055aa]Transport Ships[-]. The reserve\n"
+"cap will gradually increase with the rise\n"
+"of the admiral level.\n"
+"\n"
+"When each [0055aa]resource[-] reaches the storage limit,\n"
+"the number is displayed in [FFCC00]yellow[-].[-]"
 
 msgctxt "resources_01514.-10|-1"
 msgid ""
@@ -5359,14 +5377,21 @@ msgid ""
 "前衛の被害状況や総合的な戦況判断で\\r\n"
 "いつ主力を出すか決断をお願いします！"
 msgstr ""
+"[000000]In the [0055aa]Combined Fleet[-] interception, it is\n"
+"possible to switch between the vanguard\n"
+"and the main fleet during battle preparations.\n"
+"\n"
+"Please decide when to use the main fleet by\n"
+"based on the damage situation of the vanguard\n"
+"and the overall battle situation!"
 
 msgctxt "resources_00350.-10|-1"
 msgid "[000000][0055aa]連合艦隊[-]の編成"
-msgstr ""
+msgstr "[000000]Formation of the [0055aa]Combined Fleet[-]"
 
 msgctxt "resources_00326.-10|-1"
 msgid "[000000][006400]戦闘ショートカット[-]について[-]"
-msgstr ""
+msgstr "[000000]Regarding [006400]Battle Shortcuts[-][-]"
 
 msgctxt "resources_00948.-10|-1"
 msgid ""
@@ -5375,10 +5400,14 @@ msgid ""
 "\n"
 "艦娘にとって、[006400]補給[-]はとても大事です！"
 msgstr ""
+"[000000]There is a Ship Girl who needs to be [006400]resupplied[-].\n"
+"Let's [006400]supply[-] fuel and ammunition.\n"
+"\n"
+"[006400]Supplies[-] are very important for Ship Girls!"
 
 msgctxt "resources_00680.-10|-1"
 msgid "[000000][006400]高速建造[-]について[-]"
-msgstr ""
+msgstr "[000000]Regarding [006400]Instant Build[-][-]"
 
 msgctxt "resources_01201.-10|-1"
 msgid ""
@@ -5391,10 +5420,17 @@ msgid ""
 "\n"
 "[666666]（＊改修で消費します)"
 msgstr ""
+"[000000][329ad6]装備名装備名装備名装備名[-]\n"
+"will be repaired!\n"
+"\n"
+"[329ad6]装備名装備名装備名装備名ｘ１[-]\n"
+"is required for this repair.\n"
+"\n"
+"[666666](* It will be consumed by the repair.)"
 
 msgctxt "███ generic translation ███"
 msgid "[000000][aa0000]反攻迎撃戦[-]について\\r"
-msgstr ""
+msgstr "[000000]Regarding [aa0000]Anti-Attack Intercept[-]"
 
 msgctxt "resources_00476.-10|-1"
 msgid "[000000][aa0000]反攻迎撃戦[-]について\\r"
@@ -5414,14 +5450,21 @@ msgid ""
 "海域を再度制圧し、同海域の再攻略に\n"
 "臨みましょう！\n"
 msgstr ""
+"[000000]The [aa0000]enemy counterattack operation[-] interception failed.\n"
+"The sea area was controlled by a deep-sea ship.\n"
+"\n"
+"Our fleet will withdraw. Take control\n"
+"of the surrounding waters again\n"
+"and try to recapture them!\n"
 
 msgctxt "resources_01530.-10|-1"
 msgid "[000000][aa0000]敵反攻作戦[-]迎撃戦敗北しました……。"
-msgstr ""
+msgstr "[000000][aa0000]Enemy Counterattack Operation[-] Interception defeated ..."
 
+# ??? context ???
 msgctxt "resources_00364.-10|-1"
 msgid "[000000][aa0000]通商破壊戦[-] 発生！\n"
-msgstr ""
+msgstr "[000000][aa0000]Commerce Battle[-] occurred!\n"
 
 msgctxt "███ generic translation ███"
 msgid ""
@@ -5431,6 +5474,11 @@ msgid ""
 "迎撃戦に出撃しない場合、当海域は\n"
 "[FF0000]敵勢力により占領[-]されてしまいます。\n"
 msgstr ""
+"[000000]　  　Do you want to cancel the order?\n"
+"\n"
+"\n"
+"If you do not enter the Interception War,\n"
+"the area [FF0000]will be occupied[-] by enemy forces.\n"
 
 msgctxt "level4_00310.-15|-1"
 msgid ""
@@ -5464,36 +5512,42 @@ msgctxt "Assembly-CSharp.dll|4548996"
 msgid "[000000]　(※改修で消費します)[-]"
 msgstr "[000000] (※Repair consumed)[-]"
 
+# ????
 msgctxt "Assembly-CSharp.dll|4548896"
 msgid ""
 "[000000]　この改修には、無改修の\n"
 "[1DBDC0]{0}×{1}[-]\n"
 "が必要です。[-]"
 msgstr ""
+"[000000]　For this repair, no\n"
+"[1DBDC0]{0}×{1}[-]\n"
+"is required.[-]"
 
 msgctxt "Assembly-CSharp.dll|4548216"
 msgid "[000000]　一覧から選択してください。\n"
-msgstr ""
+msgstr "[000000]　Please select from the list.\n"
 
 msgctxt "Assembly-CSharp.dll|4547984"
 msgid ""
 "[000000]　提督、明石の工廠へようこそ！\n"
 "　どの装備の改修を試みますか？[-]"
 msgstr ""
+"[000000]　Admiral, welcome to Akashi's factory!\n"
+"　Which equipment would you like to upgrade?[-]"
 
 msgctxt "Assembly-CSharp.dll|4548174"
 msgid "[000000]　改修に失敗しました。\n"
-msgstr ""
+msgstr "[000000]　Repair failed.\n"
 
 msgctxt "Assembly-CSharp.dll|4548132"
 msgid "[000000]　改修に成功しました。\n"
-msgstr ""
+msgstr "[000000]　Repair succeeded.\n"
 
 msgctxt "level7_00054.-5|-1"
 msgid ""
 "[000000]このアイテムを使用しますか？[-]\n"
 "\n"
-msgstr ""
+msgstr "[000000]Do you want to use this item?[-]\n"
 
 # item store
 msgctxt "level7_00048.-5|-1"
@@ -5505,14 +5559,17 @@ msgid ""
 "[-]\n"
 "\n"
 msgstr ""
+"[000000]Opening this item may cause some or all of the resources\n"
+"and materials to exceed the [FF0000]Storage Limit[-].\n"
+"　　　　　　　Do you want to use this item?[-]\n"
 
 msgctxt "Assembly-CSharp.dll|4550874"
 msgid "[000000]この改修には、無改修の\n"
-msgstr ""
+msgstr "[000000]この改修には、無改修の\n"
 
 msgctxt "Assembly-CSharp.dll|4550280"
 msgid "[000000]どの装備の改修を試みますか？"
-msgstr ""
+msgstr "[000000]Which equipment would you like to upgrade?"
 
 msgctxt "resources_01570.-10|-1"
 msgid ""
@@ -5546,6 +5603,15 @@ msgid ""
 "多くの海域に輸送船団を配備して[0055aa]資源[-]を\n"
 "獲得、艦隊の兵站を拡充しましょう。"
 msgstr ""
+"[000000][0055aa]Transport Ships[-] acquire [0055aa]resources[-]\n"
+"       (                 ) when deployed in\n"
+"each sea area.\n"
+"\n"
+"The amount of [0055aa]resources[-] that can be acquired\n"
+"varies depending on the sea area.\n"
+"\n"
+"Deploy transport ships in many areas\n"
+"to gain [0055aa]resources[-] and expand fleet logistics."
 
 # text body for tutorial explainer that firs pops up when opening construction screen
 # TODO: fix up google translate, convoy is probably wrong
@@ -5560,6 +5626,13 @@ msgid ""
 "[0055AA]輸送船[-]の建造もここで可能です。\\r\n"
 "\n"
 msgstr ""
+"[000000]At the factory, it is possible to [006400]construct[-] a\n"
+"Ship Girl. Building large ships such as\n"
+"battleships and heavy cruisers requires more\n"
+"resources such as [0055AA]Steel[-]. In addition, aircraft\n"
+"carriers and convoys(?) can be built by using\n"
+"a lot of [0055AA]Bauxite[-]. The construction of\n"
+"[0055AA]Transport Ships[-] is also possible here.\n"
 
 msgctxt "resources_00356.-10|-1"
 msgid ""
@@ -5568,22 +5641,26 @@ msgid ""
 "\n"
 "損傷状態で出撃することは危険です。"
 msgstr ""
+"[000000]A ship has been damaged.\n"
+"Let's start [006400]Repair[-] on her in the dock.\n"
+"Deploying in a damaged condition\n"
+"is dangerous."
 
 msgctxt "Assembly-CSharp.dll|4550326"
 msgid "[000000]改修中・・・[-]"
-msgstr ""
+msgstr "[000000]Repair underway ...[-]"
 
 msgctxt "Assembly-CSharp.dll|4550428"
 msgid "[000000]改修失敗しました。"
-msgstr ""
+msgstr "[000000]Repair failed."
 
 msgctxt "Assembly-CSharp.dll|4550362"
 msgid "[000000]改修成功しました。"
-msgstr ""
+msgstr "[000000]Repair was successful."
 
 msgctxt "resources_00554.-10|-1"
 msgid "[000000]敵の[aa0000]反攻作戦[-]について\\r"
-msgstr ""
+msgstr "[000000]Regarding Enemy [aa0000]Counterattack Strategy[-]"
 
 # This is very rough, and may change | TODO: remind me to look at this one in game.
 msgctxt "resources_00723.-10|-1"
@@ -5608,6 +5685,14 @@ msgid ""
 "\\r敵反攻作戦戦力の漸減を図りましょう。\n"
 "\n"
 msgstr ""
+"[000000]It seems that enemy deep sea vessels have gathered\n"
+"in the counter-attack operation area and are preparing\n"
+"for a [aa0000]counter-attack[-] operation.\n"
+"\n"
+"In order to intercept and deter this, gather fleet strength,\n"
+"carry out an expedition to suppress assaults and enemies in\n"
+"that sea area, and plan a gradual reduction of\n"
+"enemy counter-attack operation strength.\n"
 
 msgctxt "resources_01322.-10|-1"
 msgid ""
@@ -5618,6 +5703,13 @@ msgid ""
 "\\r\n"
 "同海域は、再び敵制圧下となります……。"
 msgstr ""
+"[000000]An enemy deep sea warship has launched\n"
+"an anti-attack operation.\n"
+"\n"
+"However, friendly fleet forces that can\n"
+"intercept it were not in the same area.\n"
+"\n"
+"That sea area is again under enemy control ..."
 
 msgctxt "resources_00561.-10|-1"
 msgid ""
@@ -5628,14 +5720,22 @@ msgid ""
 "海域に配備された[0055aa]輸送船団[-]の規模により\\r\n"
 "変化します。"
 msgstr ""
+"[000000]By deploying [0055aa]Transport Ships[-] in the sea areas,\n"
+"you can acquire resources at the start of the\n"
+"turn.\n"
+"\n"
+"The amount of resources that can be acquired\n"
+"varies depending on the characteristics of the\n"
+"sea area and the size of the [0055aa]Transport Fleet[-]\n"
+"deployed in the sea area."
 
 msgctxt "resources_01183.-10|-1"
 msgid "[000000]艦娘の[006400]修理[-]について"
-msgstr ""
+msgstr "[000000]Regarding Ship Girl [006400]Repair[-]"
 
 msgctxt "resources_00708.-10|-1"
 msgid "[000000]艦娘の[006400]補給[-]について"
-msgstr ""
+msgstr "[000000]Regarding Ship Girl [006400]Resupply[-]"
 
 # TODO: this seems SUPER WONKY
 msgctxt "resources_01143.-10|-1"
@@ -5659,15 +5759,19 @@ msgid ""
 "\\r\n"
 "回航中の艦娘は、戦闘等に参加はできません。"
 msgstr ""
+"[000000]If you remove a Ship Girl from a fleet outside of the\n"
+"Battle Area, she will automatically [0055aa]travel[-] to the Battle Area.\n"
+"\n"
+"A Ship Girl who is travelling cannot participate in a battle."
 
 # title for tutorial explainer that firs pops up when opening construction screen
 msgctxt "resources_01289.-10|-1"
 msgid "[006400]建造[-][000000]について[-]"
-msgstr ""
+msgstr "[000000]Regarding[-] [006400]Construction[-]"
 
 msgctxt "resources_00523.-10|-1"
 msgid "[12C112]艦隊[-]を編成！"
-msgstr ""
+msgstr "Organize the [12C112]Fleet[-]!"
 
 # Quick Turn End, hit Square to confirm
 msgctxt "███ generic translation ███"
@@ -5688,6 +5792,9 @@ msgid ""
 "を改修しますね！\n"
 "\n"
 msgstr ""
+"[1DBDC0]　{0}[-]\n"
+"will be fixed!\n"
+"\n"
 
 msgctxt "Assembly-CSharp.dll|4548836"
 msgid ""
@@ -5695,10 +5802,13 @@ msgid ""
 "を改修しますね！[-]\n"
 "\n"
 msgstr ""
+"[1DBDC0]　{0}[-]\n"
+"will be fixed![-]\n"
+"\n"
 
 msgctxt "Assembly-CSharp.dll|4499036"
 msgid "[323232]{0}の年 {1}[b]{2}[/b]日 {3}[-]"
-msgstr ""
+msgstr "[323232]Year {0} {1} [b]{2}[/b] {3}[-]"
 
 # Context? All Ships That Can Sortie? | Depriciated 'All ship types can sortie.' alternate with color codes '[66ccff]All ship types[-] can sortie.'
 msgctxt "███ generic translation ███"
@@ -5723,12 +5833,12 @@ msgstr ""
 
 msgctxt "resources_00623.-10|-1"
 msgid "[E2E2E2][12c112]任務[-]完了！[-]"
-msgstr ""
+msgstr "[E2E2E2][12c112]Mission[-] Completed![-]"
 
 # flagship admirals |map screen tutorial
 msgctxt "resources_01130.-10|-1"
 msgid "[E2E2E2][12c112]旗艦提督室[-]への移動[-]"
-msgstr ""
+msgstr "[E2E2E2]Moving to the [12c112]office[-][-]"
 
 # High speed construction | factory tutorial
 msgctxt "███ generic translation ███"
@@ -5756,7 +5866,7 @@ msgstr "[E2E2E2]First [12c112]Construction[-]![-]"
 # title of a tutorial task
 msgctxt "███ generic translation ███"
 msgid "[E2E2E2]作戦海域への[12c112]出撃[-]！[-]"
-msgstr ""
+msgstr "[E2E2E2][12c112]Sortie[-] to the OA![-]"
 
 msgctxt "resources_00517.-10|-1"
 msgid "[E2E2E2]作戦海域への[12c112]出撃[-]！[-]"
@@ -5766,38 +5876,45 @@ msgctxt "resources_00902.-10|-1"
 msgid "[E2E2E2]作戦海域への[12c112]出撃[-]！[-]"
 msgstr "----------"
 
+# really hope this is close
 msgctxt "Assembly-CSharp.dll|4548756"
 msgid "[FF0000]　が足りません。[-]"
-msgstr ""
+msgstr "[FF0000]　is missing。[-]"
 
+# i guess it's an error message
 msgctxt "Assembly-CSharp.dll|4548656"
 msgid ""
 "[FF0000]　この改修に必要となる\n"
 "(無改修)\n"
 "[-]"
 msgstr ""
+"[FF0000]　is required for the repair\n"
+"(No Repair)\n"
+"[-]"
 
 msgctxt "Assembly-CSharp.dll|4548574"
 msgid ""
 "[FF0000]　この装備を改修するには\n"
 "　同装備のロック解除が必要です。[-]"
 msgstr ""
+"[FF0000]　can only by upgraded\n"
+"　after you have unlocked it.[-]"
 
 msgctxt "Assembly-CSharp.dll|4548462"
 msgid "[FF0000]　は、これ以上の改修ができません。[-]"
-msgstr ""
+msgstr "[FF0000]　can not be upgraded further.[-]"
 
 msgctxt "Assembly-CSharp.dll|4548380"
 msgid "[FF0000]　現在、選択された装備[-]\n"
-msgstr ""
+msgstr "[FF0000]　is currently selected.[-]\n"
 
 msgctxt "Assembly-CSharp.dll|4549044"
 msgid "[FF0000]　資材が足りません。"
-msgstr ""
+msgstr "[FF0000]　There are not enough materials."
 
 msgctxt "Assembly-CSharp.dll|4550774"
 msgid "[FF0000]が足りません。[-]"
-msgstr ""
+msgstr "[FF0000]is missing.[-]"
 
 msgctxt "Assembly-CSharp.dll|4550678"
 msgid ""
@@ -5805,20 +5922,25 @@ msgid ""
 "(無改修)\n"
 "[-]"
 msgstr ""
+"[FF0000]is required for the repair\n"
+"(No Repair)\n"
+"[-]"
 
 msgctxt "Assembly-CSharp.dll|4550598"
 msgid ""
 "[FF0000]この装備を改修するには\n"
 "　同装備のロック解除が必要です。[-]"
 msgstr ""
+"[FF0000]To upgrade this equipment,\n"
+"　you need to unlock it.[-]"
 
 msgctxt "Assembly-CSharp.dll|4550542"
 msgid "[FF0000]は、これ以上の改修ができません。[-]"
-msgstr ""
+msgstr "[FF0000]can not be upgraded further.[-]"
 
 msgctxt "Assembly-CSharp.dll|4550464"
 msgid "[FF0000]現在、選択された装備[-]\n"
-msgstr ""
+msgstr "[FF0000]is currently selected.[-]\n"
 
 msgctxt "Assembly-CSharp.dll|4602998"
 msgid "[MapHP{0}]イベント系ボスHP: {1}/{2}"
@@ -6144,6 +6266,8 @@ msgid ""
 "]　{0}[-]\n"
 "　[000000]を、改修しますね！[-]"
 msgstr ""
+"]　{0}[-]\n"
+"　[000000]will be fixed![-]"
 
 msgctxt "Assembly-CSharp.dll|4633252"
 msgid "]【"
@@ -6201,7 +6325,7 @@ msgstr ""
 
 msgctxt "Assembly-CSharp.dll|4488604"
 msgid "{0} {1}番艦"
-msgstr ""
+msgstr "{0} {1}Battleship"
 
 msgctxt "Assembly-CSharp.dll|4597984"
 msgid "{0} 餌艦効果(火:{1} 雷:{2} 空:{3} 装:{4})\n"
@@ -6332,7 +6456,7 @@ msgstr "----------"
 
 msgctxt "Assembly-CSharp.dll|4594965"
 msgid "{0}{1}の年 {2} {3}日"
-msgstr ""
+msgstr "Year {0}{1} {2} {3}"
 
 # Production.ProdRevampReceiveItem
 msgctxt "Assembly-CSharp.dll|4493138"
@@ -6349,12 +6473,16 @@ msgid ""
 "{0}を\n"
 "{1}個 入手しました"
 msgstr ""
+"{0}x\n"
+"{1}Gained!"
 
 msgctxt "Assembly-CSharp.dll|4523096"
 msgid ""
 "{0}を\n"
 "入手しました"
 msgstr ""
+"{0}\n"
+"Gained"
 
 msgctxt "Assembly-CSharp.dll|4522834"
 msgid ""
@@ -6411,11 +6539,11 @@ msgstr "... 'k."
 
 msgctxt "Assembly-CSharp.dll|4567695"
 msgid "※十分な補給を受けていない艦娘がいます。（本来の戦闘力を発揮できません）"
-msgstr ""
+msgstr "※ A Ship Girl has not been sufficiently resupplied. (Her combat power will be reduced.)"
 
 msgctxt "Assembly-CSharp.dll|4567343"
 msgid "※大破している艦娘がいます。（被弾により喪失の危険があります）"
-msgstr ""
+msgstr "※ A Ship Girl has been wrecked. (She might be lost on further damage.)"
 
 # Edited for consistency.
 msgctxt "Assembly-CSharp.dll|4567477"
@@ -6429,11 +6557,11 @@ msgstr "※ You have reached your limit of Ship Girls and can not accept your re
 
 msgctxt "Assembly-CSharp.dll|4567621"
 msgid "※装備保有数が上限に近いため、新しい艦娘と邂逅できない可能性があります。"
-msgstr ""
+msgstr "※ Because the number of equipment items you own is near the limit, there is a chance of not getting a Ship Girl reward."
 
 msgctxt "███ generic translation ███"
 msgid "※装備保有数が上限に近いため、新規獲得できない可能性があります。"
-msgstr ""
+msgstr "※ Because the number of equipment items you own is near the limit, there is a possibility that new equipment can not be acquired."
 
 msgctxt "level4_00178.-15|-1"
 msgid "※装備保有数が上限に近いため、新規獲得できない可能性があります。"
@@ -6445,7 +6573,7 @@ msgstr "----------"
 
 msgctxt "Assembly-CSharp.dll|4567551"
 msgid "※装備保有数が上限に達しているため、新しい艦娘との邂逅はできません。"
-msgstr ""
+msgstr "※ You have reached your limit of equipment items and can not accept your Ship Girl reward."
 
 # no idea if the black blocks are really part of the string, but it makes scanning easier
 msgctxt "███ generic translation ███"
@@ -6669,6 +6797,11 @@ msgid ""
 "　　備蓄可能　各資材量\\r\n"
 "選択難易度"
 msgstr ""
+"　　Fleet Limit\n"
+"　　Ship Girl Limit\n"
+"　　Equipment Limit\n"
+"　　Materials Limit\n"
+"Selected Difficulty"
 
 msgctxt "level18_00004.-6|-1"
 msgid ""
@@ -6797,6 +6930,8 @@ msgid ""
 "「だみはらだみこ」\n"
 "を入手しました"
 msgstr ""
+"\"Damiharada Miko\"\n"
+"obtained"
 
 # mst_furniture.xml
 msgctxt "mst_furniture.xml|116"
@@ -8009,6 +8144,8 @@ msgid ""
 "「資源」や「改修資材」に交換出来ます。\n"
 "また、勲章4個を「改修設計図」1枚に交換可能です。"
 msgstr ""
+"\"Resources\" or \"Renovation Materials\" can be bought.\n"
+"In addition, four medals can be exchanged for one \"Renovation Blueprint\"."
 
 msgctxt "Assembly-CSharp.dll|4526064"
 msgid ""
@@ -10228,7 +10365,7 @@ msgstr "Here!"
 # todo: needs localizing
 msgctxt "mst_furnituretext.xml|31"
 msgid "こっそり夜まで布団の上でお菓子の交換こ！食べたい…けどねむい…だべたい…ねむ…zzz"
-msgstr ""
+msgstr "Secretly exchange sweets on the duvet until night! I want to eat ... but sleepy ... eat ... sleep ... zzz"
 
 msgctxt "Assembly-CSharp.dll|4539940"
 msgid "この改装には「改装設計図」が"
@@ -10241,7 +10378,7 @@ msgstr "There is no dock in this region"
 
 msgctxt "███ generic translation ███"
 msgid "この海域には入渠ドックがありません。"
-msgstr ""
+msgstr "There is no dock in this region."
 
 msgctxt "resources_00062.-10|-1"
 msgid "この海域には入渠ドックがありません。"
@@ -10253,11 +10390,11 @@ msgstr "----------"
 
 msgctxt "Assembly-CSharp.dll|4501056"
 msgid "この海域には配備出来ません"
-msgstr ""
+msgstr "Can not deploy to this sea area"
 
 msgctxt "Assembly-CSharp.dll|4574295"
 msgid "この海域の遠征任務は解放されていません"
-msgstr ""
+msgstr "Expeditionary missions in this area have not been unlocked"
 
 # could also be Would you like to sortie this fleet? if you wish to save characters
 msgctxt "███ generic translation ███"
@@ -10296,11 +10433,11 @@ msgstr "Would you like to save your current data?"
 # TODO: this needs localizing
 msgctxt "mst_furnituretext.xml|220"
 msgid "これまで応援して下さった提督の皆さんのおかげで、望外の賞を頂いた。それを記念した、感謝の掛け軸！※特殊BGM家具です。"
-msgstr ""
+msgstr "Thanks to the admiral members who have supported me so far, I received an unexpected award. Thanking you for commemorating it! ※ It is special BGM furniture."
 
 msgctxt "Assembly-CSharp.dll|4526156"
 msgid "これ以上拡張できません"
-msgstr ""
+msgstr "Can not extend any further"
 
 msgctxt "███ generic translation ███"
 msgid "こんごう"
@@ -11397,11 +11534,11 @@ msgstr "----------"
 
 msgctxt "Assembly-CSharp.dll|4569899"
 msgid "どの演習を行いますか？"
-msgstr ""
+msgstr "Which exercises do you want to do?"
 
 msgctxt "Assembly-CSharp.dll|4550250"
 msgid "どの装備の改修を試みますか？"
-msgstr ""
+msgstr "Which equipment would you like to upgrade?"
 
 # mst_shiptext.xml
 msgctxt "███ generic translation ███"
@@ -11914,15 +12051,15 @@ msgstr "----------"
 
 msgctxt "Assembly-CSharp.dll|4571813"
 msgid "の年"
-msgstr ""
+msgstr "Year"
 
 msgctxt "Assembly-CSharp.dll|4571819"
 msgid "の年 "
-msgstr ""
+msgstr "Year "
 
 msgctxt "Assembly-CSharp.dll|4609037"
 msgid "の年　"
-msgstr ""
+msgstr "Year　"
 
 # literal 'No Sortie Is.'
 msgctxt "███ generic translation ███"
@@ -15764,7 +15901,7 @@ msgstr "Dock Release Key"
 
 msgctxt "Assembly-CSharp.dll|4500996"
 msgid "ドック開放キーがありません"
-msgstr ""
+msgstr "No Dock Release Key available."
 
 # mst_slotitem.xml
 msgctxt "mst_slotitem.xml|74"
@@ -16560,7 +16697,7 @@ msgstr ""
 # item grade
 msgctxt "Assembly-CSharp.dll|4499892"
 msgid "ホロ"
-msgstr ""
+msgstr "Holograph"
 
 msgctxt "Assembly-CSharp.dll|4531452"
 msgid "ボ"
@@ -16916,7 +17053,7 @@ msgstr "----------"
 # title of second step of refit menu
 msgctxt "Assembly-CSharp.dll|4539898"
 msgid "メニュー選択"
-msgstr ""
+msgstr "Menu Selection"
 
 # mst_furniture.xml
 msgctxt "mst_furniture.xml|142"
@@ -17129,7 +17266,7 @@ msgstr ""
 # item grade
 msgctxt "Assembly-CSharp.dll|4499886"
 msgid "レア"
-msgstr ""
+msgstr "Rare"
 
 msgctxt "sharedassets10_00022.-4|-1"
 msgid "レア度"
@@ -17295,7 +17432,7 @@ msgstr ""
 
 msgctxt "Assembly-CSharp.dll|4551744"
 msgid "ロードデータがありません。"
-msgstr ""
+msgstr "There is no load data."
 
 msgctxt "Assembly-CSharp.dll|4551626"
 msgid "ロード時に内部エラーが発生しました。"
@@ -17488,7 +17625,7 @@ msgstr "Type 1 Armor Piercing Shell"
 
 msgctxt "Assembly-CSharp.dll|4532078"
 msgid "一括解除"
-msgstr ""
+msgstr "Remove All"
 
 msgctxt "mst_furnituretext.xml|38"
 msgid "一番安い壁紙です。いいのです。執務室で戦闘するわけではないですし！"
@@ -17857,7 +17994,7 @@ msgstr ""
 # weapon range descriptor
 msgctxt "Assembly-CSharp.dll|4488696"
 msgid "中"
-msgstr ""
+msgstr "Medium"
 
 msgctxt "Assembly-CSharp.dll|4500234"
 msgid "中佐"
@@ -18962,7 +19099,7 @@ msgstr ""
 
 msgctxt "Assembly-CSharp.dll|4633190"
 msgid "主砲"
-msgstr ""
+msgstr "Main Gun"
 
 msgctxt "mst_slotitemtext.xml|100"
 msgid ""
@@ -21616,7 +21753,7 @@ msgstr "5"
 
 msgctxt "███ generic translation ███"
 msgid "低"
-msgstr ""
+msgstr "Low"
 
 msgctxt "level2_00002.-7|-1"
 msgid "低"
@@ -22192,6 +22329,9 @@ msgid ""
 "\\r\n"
 "高速修復材\\r              ▶"
 msgstr ""
+"Days To Repair          d  ▶ 　   d\n"
+"\n"
+"Instant Repair Material              ▶"
 
 msgctxt "resources_00695.-10|-1"
 msgid ""
@@ -22199,6 +22339,9 @@ msgid ""
 "\\r \n"
 "高速修復材\\r              ▶"
 msgstr ""
+"Days To Repair　　　 d  ▶　　 d\n"
+" \n"
+"Instant Repair Material              ▶"
 
 msgctxt "███ generic translation ███"
 msgid ""
@@ -22206,6 +22349,9 @@ msgid ""
 "\\r \n"
 "高速修復材\\r"
 msgstr ""
+"Days To Repair　　　d　　　　d\n"
+" \n"
+"Instant Repair Material"
 
 msgctxt "level23_00095.-6|-1"
 msgid ""
@@ -22240,11 +22386,11 @@ msgid ""
 msgstr ""
 "Days To Repair                   d\\r\n"
 "\\r\n"
-"必要鋼材数\\r\n"
+"Steel required\\r\n"
 "\\r\n"
 "Fuel Required\\r\n"
 "\\r\n"
-"高速修復材\\r"
+"Instant Repair Material\\r"
 
 msgctxt "resources_00156.-10|-1"
 msgid ""
@@ -22254,14 +22400,14 @@ msgid ""
 "\\r高速修復材\\r"
 msgstr ""
 "Days To Repair                  d\\r\n"
-"\\r必要鋼材数\\r\n"
+"\\rSteel required\\r\n"
 "\\rFuel Required\\r\n"
-"\\r高速修復材\\r"
+"\\rInstant Repair Material\\r"
 
 # TODO: maybe refitted?
 msgctxt "Assembly-CSharp.dll|4570137"
 msgid "修復中の艦娘がいます"
-msgstr ""
+msgstr "There is a Ship Girl being repaired."
 
 msgctxt "███ generic translation ███"
 msgid "修復中深海運河閘門"
@@ -29255,11 +29401,11 @@ msgstr ""
 
 msgctxt "Assembly-CSharp.dll|4562603"
 msgid "味方艦隊"
-msgstr ""
+msgstr "Friendly Fleet"
 
 msgctxt "Assembly-CSharp.dll|4539176"
 msgid "命中"
-msgstr ""
+msgstr "Hit"
 
 # mst_furniture.xml
 msgctxt "mst_furniture.xml|39"
@@ -30424,7 +30570,7 @@ msgstr "Expanded and repaired!"
 # furniture screen text for "no decoration" TODO: double check
 msgctxt "mst_furnituretext.xml|101"
 msgid "壁に何か飾れそうですね！"
-msgstr ""
+msgstr "It looks like you can decorate the wall with something!"
 
 msgctxt "mst_furnituretext.xml|70"
 msgid "壁一面に紅葉した紅葉をあしらった手間暇のかかった家具コイン長者提督に贈る逸品。秋の夜長の艦隊指揮にぴったりの最高級壁紙。"
@@ -30540,7 +30686,7 @@ msgstr "----------"
 
 msgctxt "Assembly-CSharp.dll|4567797"
 msgid "変更がありません"
-msgstr ""
+msgstr "There is no change"
 
 # mst_ship.xml
 msgctxt "mst_ship.xml|1110"
@@ -30949,7 +31095,7 @@ msgstr "----------"
 
 msgctxt "Assembly-CSharp.dll|4562101"
 msgid "外す"
-msgstr ""
+msgstr "Remove"
 
 msgctxt "Assembly-CSharp.dll|4851873"
 msgid "外部UI[バックボタン（背景）]から参照して使用します"
@@ -33729,6 +33875,13 @@ msgid ""
 "\\r\n"
 "高速修復材\\r"
 msgstr ""
+"Steel required\n"
+"\n"
+"Fuel Required\n"
+"\n"
+"Days To Repair                   d\n"
+"\n"
+"Instant Repair Material"
 
 msgctxt "level23_00054.-6|-1"
 msgid ""
@@ -33770,10 +33923,10 @@ msgid ""
 "修 復 日 数                    日\\r\n"
 "\\r\\r高速修復材\\r"
 msgstr ""
-"必要鋼材数\\r\n"
+"Steel required\\r\n"
 "\\rFuel Required\\r\n"
-"Days To Repair                  d\\r\n"
-"\\r\\r高速修復材\\r"
+"Days To Repair                   d\\r\n"
+"\\r\\rInstant Repair Material\\r"
 
 msgctxt "level23_00025.-6|-1"
 msgid ""
@@ -34190,6 +34343,10 @@ msgid ""
 "選択し、輸送船や海上護衛\n"
 "艦隊を配備せよ！"
 msgstr ""
+"Select Logistics from the\n"
+"strategy commands, deploy\n"
+"a transport ship and a\n"
+"maritime escort fleet!"
 
 msgctxt "███ generic translation ███"
 msgid "戦略ポイント"
@@ -34861,11 +35018,11 @@ msgstr "10"
 
 msgctxt "Assembly-CSharp.dll|4562107"
 msgid "指揮コマンド選択"
-msgstr ""
+msgstr "Choose Command"
 
 msgctxt "Assembly-CSharp.dll|4562083"
 msgid "指揮ボックス選択"
-msgstr ""
+msgstr "Command Slot"
 
 msgctxt "Assembly-CSharp.dll|4606123"
 msgid "指揮済"
@@ -43319,7 +43476,7 @@ msgstr ""
 
 msgctxt "Assembly-CSharp.dll|4562613"
 msgid "敵艦隊"
-msgstr ""
+msgstr "Enemy Fleet"
 
 # mst_quest.xml
 msgctxt "mst_quest.xml|327"
@@ -43591,12 +43748,12 @@ msgstr "Newborn daruma"
 # hq intel screen admiral rank
 msgctxt "Assembly-CSharp.dll|4500224"
 msgid "新米中佐"
-msgstr ""
+msgstr "Novice Commander"
 
 # hq intel screen admiral rank
 msgctxt "Assembly-CSharp.dll|4500198"
 msgid "新米少佐"
-msgstr ""
+msgstr "Novice Major"
 
 # mst_furniture.xml
 msgctxt "mst_furniture.xml|3"
@@ -43919,15 +44076,15 @@ msgstr "----------"
 
 msgctxt "Assembly-CSharp.dll|4512780"
 msgid "旗艦"
-msgstr ""
+msgstr "Flagship"
 
 msgctxt "Assembly-CSharp.dll|4571525"
 msgid "旗艦\n"
-msgstr ""
+msgstr "Flagship\n"
 
 msgctxt "Assembly-CSharp.dll|4571517"
 msgid "旗艦 "
-msgstr ""
+msgstr "Flagship "
 
 # mst_quest.xml
 msgctxt "mst_quest.xml|168"
@@ -47220,7 +47377,7 @@ msgstr "Engine Upgrades"
 
 msgctxt "Assembly-CSharp.dll|4562141"
 msgid "次へ"
-msgstr ""
+msgstr "Next"
 
 # mst_shiptext.xml
 msgctxt "███ generic translation ███"
@@ -49472,6 +49629,14 @@ msgid ""
 "配備することで、より安定した船団護衛が可能\n"
 "です。"
 msgstr ""
+"By deploying a naval escort fleet to a Transport Fleet\n"
+"at sea, it is possible to protect the Transport\n"
+"Ships from enemy commerce and\n"
+"destruction forces.\n"
+"\n"
+"In addition, a more stable fleet escort is possible by\n"
+"deploying sufficient escort vessels for the size of\n"
+"the Transport Fleet."
 
 msgctxt "Assembly-CSharp.dll|4851040"
 msgid "海域オブジェクト破棄"
@@ -52518,7 +52683,7 @@ msgstr ""
 
 msgctxt "Assembly-CSharp.dll|4569971"
 msgid "演習可能な艦隊がありません"
-msgstr ""
+msgstr "There is no fleet available."
 
 msgctxt "Assembly-CSharp.dll|4095742"
 msgid "演習注視点"
@@ -55735,11 +55900,11 @@ msgstr "----------"
 # TODO: extremely unsure about this
 msgctxt "Assembly-CSharp.dll|4609773"
 msgid "疲労度-赤の艦を含んでいます"
-msgstr ""
+msgstr "Fatigue level - Includes red ships."
 
 msgctxt "Assembly-CSharp.dll|4500740"
 msgid "疲労度の高い艦がいます"
-msgstr ""
+msgstr "There is a ship with a high degree of fatigue."
 
 # mst_mapinfo.xml
 msgctxt "mst_mapinfo.xml|372"
@@ -55765,7 +55930,7 @@ msgstr ""
 # TODO: ???
 msgctxt "Assembly-CSharp.dll|4602506"
 msgid "白"
-msgstr ""
+msgstr "White"
 
 # mst_furniture.xml
 msgctxt "mst_furniture.xml|80"
@@ -56197,7 +56362,7 @@ msgstr "----------"
 
 msgctxt "Assembly-CSharp.dll|4607407"
 msgid "相手"
-msgstr ""
+msgstr "Opponent"
 
 msgctxt "Assembly-CSharp.dll|4608301"
 msgid "相手側 "
@@ -56654,7 +56819,7 @@ msgstr ""
 # weapon range descriptor
 msgctxt "Assembly-CSharp.dll|4488692"
 msgid "短"
-msgstr ""
+msgstr "Short"
 
 msgctxt "mst_furnituretext.xml|254"
 msgid "砂浜とフィットした鎮守府浜茶屋の仮設床です。これさえあれば、夏の提督執務室もナチュラルな浜茶屋に大変貌！よし、これだ！"
@@ -56667,11 +56832,11 @@ msgstr "Sandy Beach Floor"
 
 msgctxt "Assembly-CSharp.dll|4523436"
 msgid "砲戦"
-msgstr ""
+msgstr "Artillery"
 
 msgctxt "Assembly-CSharp.dll|4596875"
 msgid "砲戦演習"
-msgstr ""
+msgstr "Artillery Exercise"
 
 # BattleCommand.Raigeki | Bombard could work as well.
 msgctxt "███ generic translation ███"
@@ -56693,7 +56858,7 @@ msgstr "----------"
 # TODO: ?=???
 msgctxt "Assembly-CSharp.dll|4849438"
 msgid "破片回転速度"
-msgstr ""
+msgstr "Fragment rotation speed"
 
 # mst_furniture.xml
 msgctxt "mst_furniture.xml|75"
@@ -58221,7 +58386,7 @@ msgstr "----------"
 
 msgctxt "Assembly-CSharp.dll|4588261"
 msgid "第{0}艦隊"
-msgstr ""
+msgstr "Fleet {0}"
 
 msgctxt "Assembly-CSharp.dll|4523742"
 msgid ""
@@ -61262,15 +61427,15 @@ msgstr "----------"
 
 msgctxt "Assembly-CSharp.dll|4539858"
 msgid "艦娘選択 -"
-msgstr ""
+msgstr "Ship Girl Selection -"
 
 msgctxt "Assembly-CSharp.dll|4539872"
 msgid "艦娘選択 - その他 -"
-msgstr ""
+msgstr "Ship Girl Selection - Other -"
 
 msgctxt "Assembly-CSharp.dll|4539830"
 msgid "艦娘選択 - 第"
-msgstr ""
+msgstr "Ship Girl Selection - First"
 
 # Relevance
 msgctxt "███ generic translation ███"
@@ -61631,12 +61796,12 @@ msgstr ""
 
 msgctxt "Assembly-CSharp.dll|4500532"
 msgid "艦隊が編成されていません"
-msgstr ""
+msgstr "A fleet has not been formed."
 
 # pops up when trying to sortie while a ship is in the repair dock, taking some liberty
 msgctxt "Assembly-CSharp.dll|4500506"
 msgid "艦隊に入渠中の艦がいます"
-msgstr ""
+msgstr "A ship is currently unable to join the fleet action."
 
 # SortieMap.Defines
 msgctxt "███ generic translation ███"
@@ -62782,11 +62947,11 @@ msgstr ""
 
 msgctxt "Assembly-CSharp.dll|4500970"
 msgid "装備スロットがありません"
-msgstr ""
+msgstr "There is no equipment slot."
 
 msgctxt "Assembly-CSharp.dll|4539242"
 msgid "装備ロック"
-msgstr ""
+msgstr "Lock Equipment"
 
 msgctxt "Assembly-CSharp.dll|4499684"
 msgid "装備可能なカテゴリ:"
@@ -62830,7 +62995,7 @@ msgstr "----------"
 
 msgctxt "Assembly-CSharp.dll|4539912"
 msgid "装備変更"
-msgstr ""
+msgstr "Equipment Change"
 
 msgctxt "███ generic translation ███"
 msgid "装備変更 確認"
@@ -62866,7 +63031,7 @@ msgstr "Dev Materials"
 
 msgctxt "Assembly-CSharp.dll|4633236"
 msgid "装備選択　- "
-msgstr ""
+msgstr "Equipment Selection - "
 
 msgctxt "███ generic translation ███"
 msgid "装甲"
@@ -62933,7 +63098,7 @@ msgstr "Armored Carrier Demon"
 
 msgctxt "Assembly-CSharp.dll|4526024"
 msgid "装飾"
-msgstr ""
+msgstr "Decoration"
 
 msgctxt "mst_furnituretext.xml|18"
 msgid "装飾的なアイテムは落ち着いたピンク系統でまとめると落ち着いたフェミニンな印象に。"
@@ -62959,11 +63124,11 @@ msgstr "Unsupplied\\x{200B}"
 
 msgctxt "Assembly-CSharp.dll|4500558"
 msgid "補給が必要な艦がいます"
-msgstr ""
+msgstr "There is a ship that needs resupply."
 
 msgctxt "Assembly-CSharp.dll|4570091"
 msgid "補給が必要な艦娘がいます"
-msgstr ""
+msgstr "There is a Ship Girl who needs resupply."
 
 # this is more localized.
 msgctxt "sharedassets5_01265.-4|-1"
@@ -65774,7 +65939,7 @@ msgstr "----------"
 
 msgctxt "Assembly-CSharp.dll|4539922"
 msgid "近代化改修"
-msgstr ""
+msgstr "Modernization and Renovation"
 
 # mst_quest.xml
 msgctxt "mst_quest.xml|244"
@@ -65815,6 +65980,8 @@ msgid ""
 "近海諸島防衛線に我が艦隊を投入、\\\n"
 "同防衛線を支援、敵侵攻艦隊を迎撃せよ！"
 msgstr ""
+"Insert our fleet into the Inland Islands Defense Line,\\\n"
+"support it and intercept the enemy invasion fleet!"
 
 # mst_quest.xml
 msgctxt "mst_quest.xml|354"
@@ -65876,7 +66043,7 @@ msgstr "Do Not Evacuate"
 
 msgctxt "███ generic translation ███"
 msgid "通商破壊主力潜水艦隊"
-msgstr ""
+msgstr "Transport Hunter Submarine Fleet"
 
 msgctxt "mst_mapenemy2_92.xml|54"
 msgid "通商破壊主力潜水艦隊"
@@ -67578,7 +67745,7 @@ msgstr ""
 
 msgctxt "Assembly-CSharp.dll|4495298"
 msgid "選択可能な項目がありません。"
-msgstr ""
+msgstr "There is no selectable item."
 
 # heavy cruiser
 msgctxt "███ generic translation ███"
@@ -69646,22 +69813,22 @@ msgstr "Deluxe Shoji"
 
 msgctxt "███ generic translation ███"
 msgid "隻"
-msgstr ""
+msgstr "Ships"
 
 # main screen transport ship count
 msgctxt "level4_00076.-15|-1"
 msgid "隻"
-msgstr "----------"
+msgstr " Ships"
 
 # transport ship deployment screen
 msgctxt "level4_00160.-15|-1"
 msgid "隻"
-msgstr "----------"
+msgstr "   Ships "
 
 # main screen combat ship at sea count
 msgctxt "level4_00319.-15|-1"
 msgid "隻"
-msgstr "----------"
+msgstr " Ships"
 
 msgctxt "resources_00361.-10|-1"
 msgid "隻"
@@ -69670,17 +69837,17 @@ msgstr "----------"
 # alternate (?) main screen combat ship count
 msgctxt "sharedassets5_00295.-4|-1"
 msgid "隻"
-msgstr "----------"
+msgstr " Ships"
 
 # transport ship deployment screen
 msgctxt "sharedassets5_00306.-4|-1"
 msgid "隻"
-msgstr "----------"
+msgstr "   Ships "
 
 # alternate (?) main screen transport ship count
 msgctxt "sharedassets5_00561.-4|-1"
 msgid "隻"
-msgstr "----------"
+msgstr " Ships"
 
 # 隻 is a counter for ships. this could be very different, | Arsenal.ArsenalTankerDialog
 msgctxt "Assembly-CSharp.dll|4516794"
@@ -70039,7 +70206,7 @@ msgstr "----------"
 
 msgctxt "Assembly-CSharp.dll|4493544"
 msgid "零の年 睦月17日"
-msgstr ""
+msgstr "Year Zero January 17"
 
 # 'Zero of the year'- editing out word day
 msgctxt "███ generic translation ███"
@@ -71322,7 +71489,7 @@ msgstr ""
 
 msgctxt "███ generic translation ███"
 msgid "高"
-msgstr ""
+msgstr "High"
 
 msgctxt "level2_00004.-7|-1"
 msgid "高"
@@ -71830,7 +71997,7 @@ msgstr "----------"
 
 msgctxt "███ generic translation ███"
 msgid "高速建造材を使用しますか？"
-msgstr ""
+msgstr "Do you want to use Instant Build materials?"
 
 msgctxt "level20_00041.-8|-1"
 msgid "高速建造材を使用しますか？"
