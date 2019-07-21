@@ -1561,7 +1561,11 @@ msgid ""
 "9999\n"
 "99　\n"
 "使用しない"
-msgstr "Do not use\\x{200B}"
+msgstr ""
+"9999\n"
+"9999\n"
+"99　\n"
+"Not Used"
 
 msgctxt "level23_00049.-6|-1"
 msgid ""
@@ -5326,7 +5330,7 @@ msgstr ""
 # ??? TODO concerned about the missing closing tag
 msgctxt "resources_00970.-10|-1"
 msgid "[000000][0055aa]海上護衛艦隊[-]の配備について"
-msgstr "About [000000][0055aa]Maritime Escort Fleet[-] deployment"
+msgstr "[000000]Regarding [0055aa]Maritime Escort Fleet[-] deployment"
 
 msgctxt "resources_00890.-10|-1"
 msgid "[000000][0055aa]資源獲得[-]について"
@@ -5335,7 +5339,7 @@ msgstr ""
 # may also be Per or About | My context may be off, but OC this is how I am reading it. Depriciated 'About deployment of Transports' alternate 'About Transport deployment'
 msgctxt "resources_01203.-10|-1"
 msgid "[000000][0055aa]輸送船[-]の配備について"
-msgstr "About [000000][0055aa]Transport Ship[-] Deployment"
+msgstr "[000000]Regarding [0055aa]Transport Ship[-] Deployment"
 
 msgctxt "resources_00949.-10|-1"
 msgid ""
@@ -6397,13 +6401,13 @@ msgstr "----------"
 # sound of excertion in when the lazy fairy starts spinning the compass
 msgctxt "Assembly-CSharp.dll|4564875"
 msgid "……あい"
-msgstr "...huhn"
+msgstr "... Huhn!"
 
 # grunt like sound - [Previous is Depriciated - and context matters : "Huh?" -  Literally "....n." - Maybe use "Wha?" [t intentioanlly omitted]]
 # acknowledgement from the lazy fairy that you want her to spin the compass
 msgctxt "Assembly-CSharp.dll|4564867"
 msgid "……ん"
-msgstr "...un!"
+msgstr "... 'k."
 
 msgctxt "Assembly-CSharp.dll|4567695"
 msgid "※十分な補給を受けていない艦娘がいます。（本来の戦闘力を発揮できません）"
@@ -6801,15 +6805,15 @@ msgstr "\"Nanodesu\" Scroll"
 
 msgctxt "Assembly-CSharp.dll|4524440"
 msgid "「はじめての任務！」 達成"
-msgstr "First Mission Get!"
+msgstr "\"First Mission\" Get!"
 
 msgctxt "Assembly-CSharp.dll|4518268"
 msgid "「はじめての建造！」 達成"
-msgstr "First Construction Get!"
+msgstr "\"First Construction\" Get!"
 
 msgctxt "Assembly-CSharp.dll|4567769"
 msgid "「はじめての配備！」 達成"
-msgstr "First Deployment Get!"
+msgstr "\"First Deployment\" Get!"
 
 msgctxt "mst_slotitemtext.xml|19"
 msgid ""
@@ -6822,7 +6826,7 @@ msgstr ""
 # End of Turn
 msgctxt "Assembly-CSharp.dll|4573255"
 msgid "「ターン終了」 達成"
-msgstr "Turn End Get!"
+msgstr "\"Turn End\" Get!"
 
 # mst_furniture.xml
 msgctxt "mst_furniture.xml|259"
@@ -6925,7 +6929,7 @@ msgstr ""
 # Mission is Over
 msgctxt "Assembly-CSharp.dll|4524330"
 msgid "「任務完了！」 達成"
-msgstr "Mission End Get!"
+msgstr "\"Mission Completed\" Get!"
 
 # mst_quest.xml
 msgctxt "mst_quest.xml|258"
@@ -6946,7 +6950,7 @@ msgstr "Preparation for Irako"
 
 msgctxt "Assembly-CSharp.dll|4573639"
 msgid "「作戦海域への出撃！」 達成"
-msgstr "Region Sortie Get!"
+msgstr "\"Sortie to the OA!\" Get!"
 
 # mst_quest.xml
 msgctxt "mst_quest.xml|48"
@@ -7154,7 +7158,9 @@ msgstr "Scrap equipment 7 times"
 # mst_quest.xml
 msgctxt "mst_quest.xml|215"
 msgid "「工廠」で鋼材などの資材を使って、新しい艦を「建造」せよ！"
-msgstr "Construct one Ship"
+msgstr ""
+"\"Construct\" a new ship using materials such as\\\n"
+"steel at the \"Factory\"!"
 
 # mst_quest.xml
 msgctxt "mst_quest.xml|20"
@@ -7256,7 +7262,7 @@ msgstr "Organize the New Carrier Division!"
 
 msgctxt "Assembly-CSharp.dll|4533878"
 msgid "「旗艦提督室への移動」 達成"
-msgstr "Go to the Flagship Office Get!"
+msgstr "\"Go to the Flagship Office\" Get!"
 
 # mst_quest.xml
 msgctxt "mst_quest.xml|19"
@@ -7923,7 +7929,7 @@ msgstr "\"First Sortie!\""
 
 msgctxt "Assembly-CSharp.dll|4529846"
 msgid "「艦隊を編成！」 達成"
-msgstr "Fleet Organization Get!"
+msgstr "\"Fleet Organization\" Get!"
 
 # mst_quest.xml
 msgctxt "mst_quest.xml|173"
@@ -8228,7 +8234,7 @@ msgstr "Form a Destroyer Squadron!"
 # High speed construction |
 msgctxt "Assembly-CSharp.dll|4518296"
 msgid "「高速建造！」 達成"
-msgstr "Instant Build Get!"
+msgstr "\"Instant Build\" Get!"
 
 msgctxt "mst_furnituretext.xml|136"
 msgid "「鬼は外、福は内！」艦娘たちと節分の豆まきを行うための準備一式です。歳の分だけ豆を食べると厄除けにもなるみたいです！"
@@ -12004,7 +12010,7 @@ msgstr "----------"
 # mst_quest.xml
 msgctxt "mst_quest.xml|465"
 msgid "はじめての「廃棄」！"
-msgstr "The First Scrapping"
+msgstr "Your First \"Scrapping\"!"
 
 # mst_quest.xml
 msgctxt "mst_quest.xml|462"
@@ -12019,14 +12025,14 @@ msgstr "Your First \"Exercise\"!"
 # mst_quest.xml
 msgctxt "mst_quest.xml|247"
 msgid "はじめての「編成」！"
-msgstr "First Formation!"
+msgstr "Your First \"Formation\"!"
 
 # mst_quest.xml
 msgctxt "mst_quest.xml|479"
 msgid "はじめての「装備改修」！"
 msgstr ""
-"The First Equipment \\\n"
-"Improvement"
+"Your First \"Equipment\\\n"
+"Improvement\"!"
 
 # mst_quest.xml
 msgctxt "mst_quest.xml|458"
@@ -12041,7 +12047,7 @@ msgstr "Your First \"Dismantling\"!"
 # mst_quest.xml
 msgctxt "mst_quest.xml|490"
 msgid "はじめての「近代化改修」！"
-msgstr "The First Modernization"
+msgstr "Your First \"Modernization\"!"
 
 # mst_quest.xml
 msgctxt "mst_quest.xml|435"
@@ -15754,7 +15760,7 @@ msgstr "----------"
 # mst_useitem.xml
 msgctxt "mst_useitem.xml|12"
 msgid "ドック開放キー"
-msgstr "Dock Key"
+msgstr "Dock Release Key"
 
 msgctxt "Assembly-CSharp.dll|4500996"
 msgid "ドック開放キーがありません"
@@ -16533,7 +16539,7 @@ msgstr ""
 
 msgctxt "███ generic translation ███"
 msgid "ページ"
-msgstr "page"
+msgstr "Page"
 
 msgctxt "level18_00007.-6|-1"
 msgid "ページ"
@@ -17860,7 +17866,7 @@ msgstr ""
 # mst_slotitem_equiptype.xml
 msgctxt "mst_slotitem_equiptype.xml|1"
 msgid "中口径主砲"
-msgstr "Primary Armament"
+msgstr "Medium Primary Armament"
 
 msgctxt "Assembly-CSharp.dll|4500208"
 msgid "中堅少佐"
@@ -22482,7 +22488,7 @@ msgstr "Acquired"
 # equipment disposal result screen title
 msgctxt "███ generic translation ███"
 msgid "入手する資材"
-msgstr "Acquired resources"
+msgstr "Resources to be Acquired"
 
 msgctxt "level20_00003.-8|-1"
 msgid "入手する資材"
@@ -31111,7 +31117,7 @@ msgstr ""
 # mst_slotitem_equiptype.xml
 msgctxt "mst_slotitem_equiptype.xml|2"
 msgid "大口径主砲"
-msgstr "Primary Armament"
+msgstr "Large Primary Armament"
 
 # mst_slotitem_equiptype.xml
 msgctxt "mst_slotitem_equiptype.xml|37"
@@ -32540,7 +32546,7 @@ msgstr ""
 # mst_slotitem_equiptype.xml
 msgctxt "mst_slotitem_equiptype.xml|0"
 msgid "小口径主砲"
-msgstr "Primary Armament"
+msgstr "Small Primary Armament"
 
 msgctxt "mst_slotitemtext.xml|148"
 msgid ""
@@ -34042,7 +34048,7 @@ msgstr "----------"
 # Confirm War?
 msgctxt "███ generic translation ███"
 msgid "戦況確認"
-msgstr "Confirm battle"
+msgstr "Battle Status"
 
 msgctxt "Assembly-CSharp.dll|4562131"
 msgid "戦況確認"
@@ -34153,7 +34159,7 @@ msgstr "----------"
 # button explainer popup, no idea if the tab here is real or code
 msgctxt "███ generic translation ███"
 msgid "戦略へ\t"
-msgstr "To Strategy\t"
+msgstr "Map"
 
 msgctxt "level22_00034.-4|-1"
 msgid "戦略へ\t"
@@ -34166,7 +34172,7 @@ msgstr "----------"
 # Command|map screen circle
 msgctxt "███ generic translation ███"
 msgid "戦略コマンド"
-msgstr "Strategy Command"
+msgstr "Strategy Cmds"
 
 # button explainer popup main screen
 msgctxt "level4_00119.-15|-1"
@@ -35139,7 +35145,7 @@ msgstr ""
 # usually opens quick menu or changes the buttons to an alternate set, Arsenal.UIHowToArsenal
 msgctxt "███ generic translation ███"
 msgid "提督コマンド"
-msgstr "Admiral Command"
+msgstr "Admiral Commands"
 
 # button explainer popup factory screen
 msgctxt "Assembly-CSharp.dll|4518854"
@@ -58704,7 +58710,7 @@ msgstr ""
 # CONTEXT!?!?
 msgctxt "███ generic translation ███"
 msgid "素材となる艦娘"
-msgstr "Resources to become Ship Girl"
+msgstr "Ship Girls to use as material"
 
 msgctxt "level22_00105.-4|-1"
 msgid "素材となる艦娘"
@@ -61619,7 +61625,9 @@ msgstr "Fleet9"
 # decription text for "sortie to operation area" tutorial task, taking a bit of liberty
 msgctxt "resources_01428.-10|-1"
 msgid "艦隊、出撃せよ！"
-msgstr "Sortie Fleet!"
+msgstr ""
+"Sortie your fleet\n"
+"to the operation area!"
 
 msgctxt "Assembly-CSharp.dll|4500532"
 msgid "艦隊が編成されていません"
@@ -62263,7 +62271,9 @@ msgstr "----------"
 # fleet organization tutorial task text, taking a bit of liberty here
 msgctxt "resources_00693.-10|-1"
 msgid "艦隊編成を実施せよ！"
-msgstr "Carry out Fleet composition!"
+msgstr ""
+"Add your new ship\n"
+"to the fleet!"
 
 msgctxt "Assembly-CSharp.dll|4570191"
 msgid "艦隊行動"
@@ -62963,7 +62973,7 @@ msgstr "Resupply with the following?"
 # resupply screen
 msgctxt "███ generic translation ███"
 msgid "補給する資源"
-msgstr "Resources to be supplied"
+msgstr "Resources to Resupply"
 
 msgctxt "level24_00044.-6|-1"
 msgid "補給する資源"
@@ -63961,7 +63971,7 @@ msgstr "Configuration"
 # settings
 msgctxt "resources_01568.-10|-1"
 msgid "設定"
-msgstr "Set"
+msgstr "Change"
 
 # mst_furniture.xml
 msgctxt "mst_furniture.xml|157"
@@ -65837,12 +65847,12 @@ msgstr "Supply"
 # mst_slotitem_equiptype.xml
 msgctxt "mst_slotitem_equiptype.xml|26"
 msgid "追加装甲(中型)"
-msgstr "Extension Armor"
+msgstr "Extension Armor (Medium)"
 
 # mst_slotitem_equiptype.xml
 msgctxt "mst_slotitem_equiptype.xml|27"
 msgid "追加装甲(大型)"
-msgstr "Extension Armor"
+msgstr "Extension Armor (Large)"
 
 msgctxt "███ generic translation ███"
 msgid "追撃せず"
@@ -71763,7 +71773,7 @@ msgstr "----------"
 # Arsenal.UIHowToArsenal
 msgctxt "███ generic translation ███"
 msgid "高速建造材"
-msgstr "Instant Construction Materials"
+msgstr "Instant Build Materials"
 
 msgctxt "Assembly-CSharp.dll|4518876"
 msgid "高速建造材"
@@ -71803,8 +71813,8 @@ msgid ""
 "高速建造材を使い、\n"
 "建造を完了せよ！"
 msgstr ""
-"Using an Instant Build Bucket, \n"
-"Complete Construction!"
+"Finish construction with\n"
+"an Instant Build Bucket!"
 
 msgctxt "resources_00988.-10|-1"
 msgid ""
