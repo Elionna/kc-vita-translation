@@ -27,6 +27,19 @@ This is a mess. I'm sorry. I was in a hurry. Still a mess. :(
 
 =cut
 
+my $old_norm = \&Locale::PO::_normalize_str;
+my $new_norm = sub {
+    my ( $self, $string ) = @_;
+    my $return = $old_norm->( $self, $string );
+    return $return if $string =~ /POT-Creation-Date/;
+    return qq|""\n$return| if $return !~ /^""/ and $string =~ /\\n(?!"$)/;
+    return $return;
+};
+{
+    no warnings;
+    *Locale::PO::_normalize_str = $new_norm;
+}
+
 my $jp_qr        = qr/[\p{Hiragana}\p{Katakana}\p{Han}]/;
 my $generic_ctxt = "███ generic translation ███";
 
@@ -785,7 +798,13 @@ sub run {
         $c =~ s@^Xml/tables/master/@@;
         $c =~ s@^(mst_mapenemy|level|resources|sharedassets)\d*\/@@;
         $po->msgctxt($c);
-        $po->msgstr("") if ( $po->dequote( $po->msgstr ) || "" ) eq $unused_ctxt_marker;
+        my $id = $po->dequote( $po->msgid );
+        $id =~ s/\n/\\n/g;
+        $po->msgid($id);
+        my $tr = $po->dequote( $po->msgstr );
+        $tr = "" if $tr =~ $unused_ctxt_marker;
+        $tr =~ s/\n/\\n/g;
+        $po->msgstr($tr);
     }
 
     say "hashifying po file";
@@ -946,6 +965,11 @@ sub run {
 
     delete $pof_hash{$_} for grep +( $tr{$_}{no_tr} or non_content($_) ), keys %pof_hash;
     my @po_write = ( $poedit_po || () );
+    my $mk_unused_ctxt_marker = sub {
+        my ($po) = @_;
+        my $src = $po->dequote( $po->msgid );
+        return ( ( $src =~ /^\\n/ ? "\n" : "" ) . $unused_ctxt_marker . ( $src =~ /\\n$/ ? "\n" : "" ) );
+    };
     for my $id ( sort keys %pof_hash ) {
         my %entries = $pof_hash{$id}->%*;
         my @entries = map $entries{$_}, sort keys %entries;
@@ -964,14 +988,22 @@ sub run {
             @entries = ($sig);
         }
         else {    # add skip markers on specific entries if many
-            $_->msgstr($unused_ctxt_marker) for grep +( $_->dequote( $_->msgctxt ) and not unescape_from_po( $_->dequote( $_->msgstr ) ) ), @entries;
+            $_->msgstr( $mk_unused_ctxt_marker->($_) ) for grep +( $_->dequote( $_->msgctxt ) and not length unescape_from_po( $_->dequote( $_->msgstr ) ) ), @entries;
         }
         push @po_write, @entries;
     }
 
     say "\nsaving po file";
     $_->fuzzy(0) for @po_write;
-    $_->msgctxt($generic_ctxt) for grep !$_->dequote( $_->msgctxt ), @po_write[ 1 .. $#po_write ];
+    for my $po ( @po_write[ 1 .. $#po_write ] ) {
+        $po->msgctxt($generic_ctxt) if !length $po->dequote( $po->msgctxt );
+        my $id = $po->dequote( $po->msgid );
+        $id =~ s/\\n/\n/g;
+        $po->msgid($id);
+        my $tr = $po->dequote( $po->msgstr );
+        $tr =~ s/\\n/\n/g;
+        $po->msgstr($tr);
+    }
     Locale::PO->save_file_fromarray( $pofile, \@po_write, "UTF-8" );
     my $po_contents = io($pofile)->all;
     $po_contents =~ s/\r?\n$//;
