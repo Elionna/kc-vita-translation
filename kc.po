@@ -44780,7 +44780,9 @@ msgstr "Sign the official papers?"
 # mst_payitem.xml
 msgctxt "███ generic translation ███"
 msgid "書類一式＆指輪"
-msgstr "Marriage Ring and Documents"
+msgstr ""
+"Marriage Ring\n"
+"and Documents"
 
 msgctxt "mst_payitem.xml|18"
 msgid "書類一式＆指輪"
@@ -65239,7 +65241,9 @@ msgstr "----------"
 # mst_stype.xml
 msgctxt "mst_stype.xml|6"
 msgid "軽空母"
-msgstr "Light Aircraft Carrier"
+msgstr ""
+"Light Aircraft\\\n"
+"Carrier"
 
 # mst_quest.xml
 msgctxt "mst_quest.xml|123"
@@ -69828,7 +69832,7 @@ msgstr " Ships"
 # transport ship deployment screen
 msgctxt "level4_00160.-15|-1"
 msgid "隻"
-msgstr "   Ships "
+msgstr "    Ships"
 
 # main screen combat ship at sea count
 msgctxt "level4_00319.-15|-1"
