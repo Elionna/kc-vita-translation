@@ -9724,7 +9724,9 @@ msgstr "Ey!"
 # or "Spin The Compass Please" - this is extremely localized. for a more literal use, "What? Spin the compass." or maybe, "What? Spin The Compass Already."
 msgctxt "Assembly-CSharp.dll|4564589"
 msgid "えー？らしんばん、まわすのー？"
-msgstr "Uh? You want me to spin the compass?"
+msgstr ""
+"Uh? You want me to\n"
+"spin the compass?"
 
 # mst_furniture.xml
 msgctxt "mst_furniture.xml|189"
@@ -33844,6 +33846,7 @@ msgid "必要燃料数\\r"
 msgstr "Fuel Required"
 
 # transport ships deployment screen
+# changed from required number of ships to max ships because it makes sense for the transport ships screen, hopefully it works elsewhere too
 msgctxt "███ generic translation ███"
 msgid "必要輸送船数"
 msgstr "Ships Needed"
@@ -47545,7 +47548,8 @@ msgctxt "sharedassets5_00474.-4|-1"
 msgid "残り継戦時間[F9C66CFF]100[-]日"
 msgstr "----------"
 
-# transport ship deployment screen
+# transport ships deployment screen
+# changed from ships remaining to on hand because it makes sense for the transport ships screen, hopefully it works elsewhere too
 msgctxt "███ generic translation ███"
 msgid "残り輸送船数"
 msgstr "Ships Left"
@@ -55298,6 +55302,7 @@ msgstr "Earned items:{0}"
 
 # transport ship deployment screen and probably a bunch of others
 # [OC] that means out of context and i reserve the right to edit later.
+# changed from materials available to available gain to be smaller and better match other mentions of Gain
 msgctxt "███ generic translation ███"
 msgid "獲得可能資材"
 msgstr "Materials Available"
