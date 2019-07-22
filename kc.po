@@ -33849,7 +33849,7 @@ msgstr "Fuel Required"
 # changed from required number of ships to max ships because it makes sense for the transport ships screen, hopefully it works elsewhere too
 msgctxt "███ generic translation ███"
 msgid "必要輸送船数"
-msgstr "Ships Needed"
+msgstr "Max Ships"
 
 msgctxt "level4_00200.-15|-1"
 msgid "必要輸送船数"
@@ -47554,7 +47554,7 @@ msgstr "----------"
 # changed from ships remaining to on hand because it makes sense for the transport ships screen, hopefully it works elsewhere too
 msgctxt "███ generic translation ███"
 msgid "残り輸送船数"
-msgstr "Ships Left"
+msgstr "On Hand"
 
 msgctxt "level4_00020.-15|-1"
 msgid "残り輸送船数"
@@ -55307,7 +55307,7 @@ msgstr "Earned items:{0}"
 # changed from materials available to available gain to be smaller and better match other mentions of Gain
 msgctxt "███ generic translation ███"
 msgid "獲得可能資材"
-msgstr "Materials Available"
+msgstr "Available Gain"
 
 # transport ships deployment screen
 msgctxt "level4_00039.-15|-1"
