@@ -88,6 +88,11 @@ The following stuff doesn't need to be done everytime, it's just preparation.
 - # perl unpack_original_files.pl
 - note that this deletes many files in kc_original_unpack that aren't needed now
   and slow things down
+- OPTIONAL (only necessary if you need or want to inspect the source code)
+  open ../kc_original\Media\Managed\Assembly-CSharp.dll in JetBrains dotPeek
+  - right-click Assembly-CSharp, export to project (might need two clicks (???))
+  - ..\kc_original_unpack\Media\Managed\
+  - progress bar in bottom right
 
 - edit any of the following files to add new japanese strings or translations
   - kc.po either with PoEdit or a simple text editor
