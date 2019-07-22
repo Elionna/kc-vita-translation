@@ -40,8 +40,9 @@ my $new_norm = sub {
     *Locale::PO::_normalize_str = $new_norm;
 }
 
-my $jp_qr        = qr/[\p{Hiragana}\p{Katakana}\p{Han}]/;
-my $generic_ctxt = "███ generic translation ███";
+my $carriagereturn_file = "carriagereturn.cache";
+my $jp_qr               = qr/[\p{Hiragana}\p{Katakana}\p{Han}]/;
+my $generic_ctxt        = "███ generic translation ███";
 
 run();
 
@@ -577,6 +578,27 @@ sub po_ctxt {
     return $po_ctxt;
 }
 
+sub _cache_and_load_carriage_returns {
+    my ( $load, @pos ) = @_ or return;
+    my %carriagereturn_cache = load_cache $carriagereturn_file;
+    for my $po (@pos) {
+        my $c = $po->dequote( $po->msgctxt ) || "";
+        my $id = $po->dequote( $po->msgid );
+        $id =~ s/\n/\\n/g;
+        if ( $id =~ /\\r/ ) {
+            ( my $cleaned_id = $id ) =~ s/\\r//g;
+            $carriagereturn_cache{$cleaned_id}{$c} = $id;
+        }
+        $po->msgid( $carriagereturn_cache{$id}{$c} || $id ) if $load;
+    }
+    delete $carriagereturn_cache{$_} for grep !keys $carriagereturn_cache{$_}->%*, keys %carriagereturn_cache;
+    store_cache $carriagereturn_file, \%carriagereturn_cache;
+    return;
+}
+
+sub cache_carriage_returns          { _cache_and_load_carriage_returns 0, @_ }
+sub cache_and_load_carriage_returns { _cache_and_load_carriage_returns 1, @_ }
+
 sub po_store {
     my ( $offset, $text, $file, $pof_hash ) = @_;
 
@@ -804,8 +826,10 @@ sub run {
         my $tr = $po->dequote( $po->msgstr );
         $tr = "" if $tr =~ $unused_ctxt_marker;
         $tr =~ s/\n/\\n/g;
+        $tr =~ s/\\r//g;
         $po->msgstr($tr);
     }
+    cache_and_load_carriage_returns @pof[ 1 .. $#pof ];
 
     say "hashifying po file";
     my $poedit_po;
@@ -992,6 +1016,7 @@ sub run {
         }
         push @po_write, @entries;
     }
+    cache_carriage_returns @po_write[ 1 .. $#po_write ];    # in case we ended up finding some new things
 
     say "\nsaving po file";
     $_->fuzzy(0) for @po_write;
@@ -999,6 +1024,7 @@ sub run {
         $po->msgctxt($generic_ctxt) if !length $po->dequote( $po->msgctxt );
         my $id = $po->dequote( $po->msgid );
         $id =~ s/\\n/\n/g;
+        $id =~ s/\\r//g;
         $po->msgid($id);
         my $tr = $po->dequote( $po->msgstr );
         $tr =~ s/\\n/\n/g;
