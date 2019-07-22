@@ -512,6 +512,9 @@
       "All Items +" : {
          "$Al|l |$It|$em|s +" : 1
       },
+      "Alright, I'll spin\nthe compass!" : {
+         "$Alri|$ght|, I'l|$l |$spin|\n|$the| |$comp|$ass|!" : 1
+      },
       "Alright, I'll spin the compass!" : {
          "$Alri|$ght|, I'l|$l |$sp|$in |$the| |$comp|$ass|!" : 1
       },
@@ -1589,6 +1592,9 @@
       },
       "Houshou Kai" : {
          "$Hou|$shou|$ Kai" : 1
+      },
+      "Hurry!\nHurry!" : {
+         "$Hu|$rr|y!\n|$Hu|$rry|!" : 1
       },
       "Hurry! Hurry!" : {
          "$Hu|$rry|! |$Hu|$rr|y!" : 1
@@ -2792,6 +2798,9 @@
       "Speed" : {
          "$Sp|$eed" : 1
       },
+      "Spin the\ncompass please!" : {
+         "$Sp|$in|$ the|\n|$comp|$as|s p|$le|$ase|!" : 1
+      },
       "Spin the compass please!" : {
          "$Spi|n |$the| |$comp|$ass| p|$le|$ase|!" : 1
       },
@@ -3085,6 +3094,9 @@
       },
       "U-511 Kai" : {
          "U-511|$ Kai" : 1
+      },
+      "Uh? You want me to\nspin the compass?" : {
+         "$Uh|? |$You |$want |$me| |$to|\n|$spin|$ the| |$comp|$ass|?" : 1
       },
       "Uh? You want me to spin the compass?" : {
          "$Uh|? |$You |$want |$me| |$to |$sp|$in |$the| |$comp|$ass|?" : 1
