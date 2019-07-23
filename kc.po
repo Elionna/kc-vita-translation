@@ -5199,7 +5199,7 @@ msgstr "Valentine Mutsuki"
 
 msgctxt "███ generic translation ███"
 msgid "Version 1.02"
-msgstr "V1.02 + TR v0.4.308"
+msgstr "V1.02 + TR v0.4.309"
 
 msgctxt "Assembly-CSharp.dll|4536228"
 msgid "Version 1.02"
