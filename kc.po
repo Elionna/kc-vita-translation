@@ -6490,10 +6490,12 @@ msgid ""
 "手に入れました"
 msgstr ""
 
+# pretty much guessing here
 msgctxt "Assembly-CSharp.dll|4595731"
 msgid "{0}作戦 勝利\n"
 msgstr ""
 
+# ???
 msgctxt "Assembly-CSharp.dll|4607413"
 msgid "{0}側触接:{1} "
 msgstr ""
@@ -6513,6 +6515,7 @@ msgid ""
 msgstr ""
 
 # mst_ship.xml
+# TODO: this might need to be reverted, i think there's some name-matching in code for this
 msgctxt "███ generic translation ███"
 msgid "Верный"
 msgstr "Verniy"
@@ -6778,12 +6781,14 @@ msgctxt "resources_00397.-10|-1"
 msgid "♪「第三十駆逐隊、抜錨準備！」"
 msgstr "----------"
 
+# ???
 msgctxt "Assembly-CSharp.dll|4545788"
 msgid ""
 "　\n"
 "使用"
 msgstr ""
 
+# ???
 msgctxt "Assembly-CSharp.dll|4524846"
 msgid "　　　　　　 敗戦"
 msgstr ""
@@ -31572,6 +31577,7 @@ msgid ""
 "輸送船からの揚陸作業や上陸戦に用いた、現代でいうところの「上陸用舟艇」です。海上のトラックのような「大発」は、大型輸送船や強襲揚陸艦などで運用可能です。"
 msgstr ""
 
+# no idea where this is used, sadly on inspection ingame it turns out the damage overlay texts in battle that blast into pieces are actual 3d models, thus much harder to edit
 msgctxt "Assembly-CSharp.dll|4487646"
 msgid "大破"
 msgstr ""
@@ -31845,6 +31851,7 @@ msgid "天龍改"
 msgstr "----------"
 
 # this is not a ship name
+# this popped up in the battle shortcut orders screen as "Search Results[Failure]"
 msgctxt "███ generic translation ███"
 msgid "失敗"
 msgstr "Failure"
@@ -34617,6 +34624,7 @@ msgctxt "sharedassets5_00935.-4|-1"
 msgid "戦闘ショートカット"
 msgstr "----------"
 
+# ???
 msgctxt "Assembly-CSharp.dll|4847961"
 msgid "戦闘スキップを使用するか否か"
 msgstr ""
@@ -36562,6 +36570,7 @@ msgid ""
 "ボイス"
 msgstr "----------"
 
+# rank D
 msgctxt "Assembly-CSharp.dll|4553919"
 msgid "敗北"
 msgstr ""
@@ -36626,6 +36635,7 @@ msgid ""
 "を撃破、同海域の制海権を確保せよ！"
 msgstr ""
 
+# hagure is loose? guessing weak might work
 msgctxt "███ generic translation ███"
 msgid "敵はぐれ艦隊"
 msgstr ""
@@ -58395,6 +58405,7 @@ msgctxt "Assembly-CSharp.dll|4588261"
 msgid "第{0}艦隊"
 msgstr "Fleet {0}"
 
+# very unsure about the additional
 msgctxt "Assembly-CSharp.dll|4523742"
 msgid ""
 "第{0}艦隊\n"
@@ -66421,6 +66432,7 @@ msgid ""
 "よろしくね。"
 msgstr "----------"
 
+# battle advance/retreat option for shortcut battles
 msgctxt "███ generic translation ███"
 msgid "進撃"
 msgstr "Charge"
