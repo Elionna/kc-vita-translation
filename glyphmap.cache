@@ -399,6 +399,9 @@
       "Acquired resources" : {
          "$Acq|$ui|$red| |$re|$sources" : 1
       },
+      "Additional Fleet {0}\nwas unlocked!" : {
+         "$Ad|$dition|$al| |$Fleet |{0}|\nw|$as| |$un|$lo|$cked|!" : 1
+      },
       "Admiral Cmd" : {
          "$Ad|$mira|$l |Cmd" : 1
       },
@@ -858,6 +861,9 @@
       "Combat Start" : {
          "$Com|$bat| |$Start" : 1
       },
+      "CombatBGM {0}-{1}" : {
+         "$Co|m|$bat|$BG|M |{0}|-|{1}" : 1
+      },
       "Command Box" : {
          "$Co|$mm|$an|d Box" : 1
       },
@@ -1000,6 +1006,9 @@
       },
       "Default Battle Mode" : {
          "$Def|$ault| |$Bat|$tle| |$Mode" : 1
+      },
+      "Defeat" : {
+         "$Def|$eat" : 1
       },
       "Defend Chinjufu Region's waters!" : {
          "$De|$fe|$nd| |$Chin|$ju|$fu| |$Regi|$on|$'s| w|$ate|$rs|!" : 1
@@ -1157,6 +1166,9 @@
       },
       "Evasion adjustment" : {
          "$Ev|$as|$ion| |$adjust|$me|$nt" : 1
+      },
+      "Execise {0}\nwas unlocked!" : {
+         "$Ex|$ec|$ise| |{0}|\nw|$as| |$un|$lo|$cked|!" : 1
       },
       "Execute Middle Strategy" : {
          "$Execute| |$Middle| |$Strategy" : 1
@@ -1753,6 +1765,12 @@
       "Isuzu1" : {
          "$Is|$uz|u1" : 1
       },
+      "It can not be performed in the first fleet" : {
+         "$It| |$can |$not |$be |$per|$formed| |$in |$the |$first| |$fleet" : 1
+      },
+      "It is the first fleet." : {
+         "$It|$ is|$ the| |$first fleet|." : 1
+      },
       "Item Details Item Details Item Details Item" : {
          "$It|em |$Detail|s |$It|$em| |$Deta|$il|s |$It|$em| |$Deta|$ils| |$Ite|m" : 1
       },
@@ -2095,6 +2113,9 @@
       },
       "Mission End Get!" : {
          "$Mi|$ssi|$on| |$En|d |$Ge|t!" : 1
+      },
+      "Mission {0} succeeded\n" : {
+         "$Mission| |{0}| |$succeed|$ed|\n" : 1
       },
       "Miyuki" : {
          "$Mi|$yuki" : 1
@@ -2595,6 +2616,9 @@
       "SeaAreaNameSeaAreaNameSeaAreaNameSeaAreaNameSeaAreaName" : {
          "$Sea|$Area|$Name|$Sea|$Area|$Name|$Sea|$Area|$Name|$Sea|$Area|$Name|$Sea|$Area|$Name" : 1
       },
+      "Search Results[{0}]" : {
+         "$Search| |$Resu|$lts|[|{0}|]" : 1
+      },
       "Secondary Armament" : {
          "$Secondary |$Armament" : 1
       },
@@ -2891,11 +2915,20 @@
       "Synthesize Ship Materials" : {
          "$Syn|$thes|$ize| |$Ship| |$Materials" : 1
       },
+      "Tactical Defeat!!" : {
+         "$Tac|$tical| |$Def|$eat|!!" : 1
+      },
+      "Tactical Victory!!" : {
+         "$Tac|$tical| |$Vic|$tory|!!" : 1
+      },
       "Taigei" : {
          "$Ta|$igei" : 1
       },
       "Taigei Kai" : {
          "$Ta|$igei|$ Kai" : 1
+      },
+      "Taiha" : {
+         "$Tai|$ha" : 1
       },
       "Taihou" : {
          "$Ta|$ihou" : 1
@@ -2966,6 +2999,9 @@
       },
       "The enemy deep sea ship launched a counteroffensive.\n\nOur fleet deployed to the same region\nand intercepted!\n\nLets develop an interception strategy!" : {
          "$Th|e enemy |$de|$ep| s|$ea| s|$hi|p l|$aunc|h|$ed| a |$cou|$nte|r|$offensive|.\n\n|$Our| |$fleet| |$deploy|$ed| |$to the| |$same| |$region|\n|$and |$intercept|$ed|!\n\n|$Lets| |$develop| |$an |$intercept|$ion| |$strategy|!" : 1
+      },
+      "The equipment {0} was updated!" : {
+         "$The| |$equipment| |{0}| w|$as| upd|$at|$ed|!" : 1
       },
       "The more Regions away from your base, the more days (turns) required. If you cancel a Transportation or Escort Fleet, it will also be in a round trip." : {
          "The more Regions away from your base, the more days (turns) required. |$If| you c|$an|$ce|l a |$Transport|$at|$io|n |$or| |$Esc|$ort| |$Fleet|, |$it| |$will |$also| |$be| |$in |a r|$ound| |$trip|." : 1
@@ -3040,6 +3076,12 @@
       },
       "Torpedo Hit% adjustment" : {
          "$Torpedo| |$Hit|% |$adjust|$ment" : 1
+      },
+      "Touching the {0} side: None" : {
+         "$Touching |$the |{0}| |$side|: |$None" : 1
+      },
+      "Touching the {0} side: {1}" : {
+         "$Touching |$the |{0}|$ side|: |{1}" : 1
       },
       "Transition Menu" : {
          "$Tr|$an|$siti|$on |$Men|u" : 1
@@ -3200,6 +3242,15 @@
       "Vanguard Fleet" : {
          "$Vang|$uard| |$Fleet" : 1
       },
+      "Victory" : {
+         "$Vic|$tory" : 1
+      },
+      "Victory Rank: {0}   Admiral Name: {1}   Admiral Level after Combat: {2}\n" : {
+         "$Vic|$tory| |$Ra|nk: |{0}|$   |$Admira|$l |$Name|: |{1}|$   |$Admira|$l |$Leve|l|$ a|$fter| |$Com|$bat|: |{2}|\n" : 1
+      },
+      "Victory!!" : {
+         "$Vic|$tory|!!" : 1
+      },
       "Viewing Shortcut Version" : {
          "$Vi|$ew|$in|g |$Sho|$rt|$cu|t |$Ver|s|$io|n" : 1
       },
@@ -3319,6 +3370,9 @@
       },
       "Year Zero January 17" : {
          "$Year| |$Zero| |$Janu|$ary| 17" : 1
+      },
+      "Year {0} {1} {2}" : {
+         "$Year |{0}| |{1}| |{2}" : 1
       },
       "Year {0}{1} {2} {3}" : {
          "$Ye|$ar| |{0}|{1}| |{2}| |{3}" : 1
@@ -3536,6 +3590,9 @@
       "z3 Kai" : {
          "z3|$ Kai" : 1
       },
+      "{0}\nwas obtained" : {
+         "{0}|\nw|$as| ob|$ta|$in|$ed" : 1
+      },
       "{0} Year {1} {2} {3}" : {
          "{0}| |$Year| |{1}| |{2}| |{3}" : 1
       },
@@ -3614,11 +3671,17 @@
       "○○○○Fleet Flagship" : {
          "○○○○|$Fleet |$Fla|$gs|$hi|p" : 1
       },
+      "　\nuse" : {
+         "　\nu|$se" : 1
+      },
       "　 Press button to open\nStrategy Command and\nSortie the Fleet!" : {
          "　 |$Pre|$ss| |$button| |$to |o|$pen|\n|$Strategy| |$Comm|$and |$and|\n|$Sortie| |$the| |$Fleet|!" : 1
       },
       "　Press button to open\nStrategy Command and Sortie the Fleet!" : {
          "　|$Pre|$ss| |$button| |$to| o|$pen|\n|$Strategy| |$Comm|$and |$and |$Sortie| t|$he| |$Fleet|!" : 1
+      },
+      "　　　　　　 defeat" : {
+         "　　　　　　 |$def|$eat" : 1
       },
       "必要鋼材数\r\n\rFuel Required\r\nDays To Repair                  d\r\n\r\r高速修復材\r" : {
          "必要鋼材数\r\n\r|$Fu|el |$Re|$qu|$ir|$ed|\r\n|$Days| |$To| |$Rep|$air|                  d\r\n\r\r高速修復材\r" : 1
@@ -4070,6 +4133,9 @@
       },
       "Battle Command Input" : {
          "Battle |$Comm|and |$Inpu|t" : 1
+      },
+      "Battle Route Type" : {
+         "Battle|$ |Route|$ |Type" : 1
       },
       "Battle Shortcut" : {
          "Battle|$ |$S|$h|ort|$c|$u|$t" : 1
@@ -6236,6 +6302,9 @@
       },
       "Where to now?" : {
          "$Where|$ |to|$ |$n|$ow|?" : 1
+      },
+      "Whether to use battle skip" : {
+         "$W|h|$e|ther|$ |to|$ |use|$ |b|$a|ttle|$ |sk|$i|p" : 1
       },
       "Window Frame" : {
          "$Window |$Frame" : 1
