@@ -6461,7 +6461,7 @@ msgstr "Year {0}{1} {2} {3}"
 # Production.ProdRevampReceiveItem
 msgctxt "Assembly-CSharp.dll|4493138"
 msgid "{0}に装備が改修更新されました！"
-msgstr "{0} was updated!\\x{200B}\\x{200B}"
+msgstr "The equipment {0} was updated!"
 
 # Production.ProdRevampReceiveItem
 msgctxt "Assembly-CSharp.dll|4493114"
