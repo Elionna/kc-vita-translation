@@ -6489,30 +6489,34 @@ msgid ""
 "{0}を\n"
 "手に入れました"
 msgstr ""
+"{0}\n"
+"was obtained"
 
 # pretty much guessing here
 msgctxt "Assembly-CSharp.dll|4595731"
 msgid "{0}作戦 勝利\n"
-msgstr ""
+msgstr "Mission {0} succeeded\n"
 
 # ???
 msgctxt "Assembly-CSharp.dll|4607413"
 msgid "{0}側触接:{1} "
-msgstr ""
+msgstr "Touching the {0} side: {1}"
 
 msgctxt "Assembly-CSharp.dll|4607379"
 msgid "{0}側触接:無し "
-msgstr ""
+msgstr "Touching the {0} side: None"
 
 msgctxt "Assembly-CSharp.dll|4601830"
 msgid "{0}年{1} {2}日"
-msgstr ""
+msgstr "Year {0} {1} {2}"
 
 msgctxt "Assembly-CSharp.dll|4523470"
 msgid ""
 "{0}演習\n"
 "が開放されました！"
 msgstr ""
+"Execise {0}\n"
+"was unlocked!"
 
 # mst_ship.xml
 # TODO: this might need to be reverted, i think there's some name-matching in code for this
@@ -6759,6 +6763,8 @@ msgid ""
 "○○艦隊が\n"
 "が開放されました！"
 msgstr ""
+"○○Fleet\n"
+"was unlocked！"
 
 msgctxt "Assembly-CSharp.dll|4530284"
 msgid "★ IME から得た名前： result.text: "
@@ -6771,7 +6777,7 @@ msgstr "♪\""
 
 msgctxt "███ generic translation ███"
 msgid "♪「第三十駆逐隊、抜錨準備！」"
-msgstr ""
+msgstr "♪ \"The 30th Destroyer, get ready!\""
 
 msgctxt "level18_00034.-6|-1"
 msgid "♪「第三十駆逐隊、抜錨準備！」"
@@ -6787,11 +6793,13 @@ msgid ""
 "　\n"
 "使用"
 msgstr ""
+"　\n"
+"use"
 
 # ???
 msgctxt "Assembly-CSharp.dll|4524846"
 msgid "　　　　　　 敗戦"
-msgstr ""
+msgstr "　　　　　　 defeat"
 
 # records screen table headers
 msgctxt "███ generic translation ███"
@@ -25118,7 +25126,7 @@ msgstr "----------"
 
 msgctxt "███ generic translation ███"
 msgid "前衛潜水艦隊"
-msgstr ""
+msgstr "Vanguard Submarine Fleet"
 
 msgctxt "mst_mapenemy2_97.xml|0"
 msgid "前衛潜水艦隊"
@@ -25171,7 +25179,7 @@ msgstr "----------"
 
 msgctxt "███ generic translation ███"
 msgid "前衛警戒艦隊 II群"
-msgstr ""
+msgstr "Vanguard Fleet II Group"
 
 msgctxt "mst_mapenemy2_53.xml|18"
 msgid "前衛警戒艦隊 II群"
@@ -25211,7 +25219,7 @@ msgstr "----------"
 
 msgctxt "███ generic translation ███"
 msgid "前衛警戒艦隊 I群"
-msgstr ""
+msgstr "Vanguard Fleet I Group"
 
 msgctxt "mst_mapenemy2_53.xml|0"
 msgid "前衛警戒艦隊 I群"
@@ -25251,7 +25259,7 @@ msgstr "----------"
 
 msgctxt "███ generic translation ███"
 msgid "前衛警戒部隊"
-msgstr ""
+msgstr "Vanguard Protection Unit"
 
 msgctxt "mst_mapenemy2_52.xml|0"
 msgid "前衛警戒部隊"
@@ -25291,7 +25299,7 @@ msgstr "----------"
 
 msgctxt "███ generic translation ███"
 msgid "前衛護衛空母群"
-msgstr ""
+msgstr "Vanguard Aircraft Carrier Group"
 
 msgctxt "mst_mapenemy2_72.xml|45"
 msgid "前衛護衛空母群"
@@ -25331,7 +25339,7 @@ msgstr "----------"
 
 msgctxt "███ generic translation ███"
 msgid "前衛部隊"
-msgstr ""
+msgstr "Vanguard Unit"
 
 msgctxt "mst_mapenemy2_22.xml|10"
 msgid "前衛部隊"
@@ -25523,15 +25531,15 @@ msgstr "Deterioration Armor Piercing Shell"
 
 msgctxt "Assembly-CSharp.dll|4524962"
 msgid "勝利"
-msgstr ""
+msgstr "Victory"
 
 msgctxt "Assembly-CSharp.dll|4553957"
 msgid "勝利!!"
-msgstr ""
+msgstr "Victory!!"
 
 msgctxt "Assembly-CSharp.dll|4605381"
 msgid "勝利ランク：{0}   提督名：{1}   戦闘後の提督レベル：{2}\n"
-msgstr ""
+msgstr "Victory Rank: {0}   Admiral Name: {1}   Admiral Level after Combat: {2}\n"
 
 # heavy cruiser
 msgctxt "███ generic translation ███"
@@ -31580,7 +31588,7 @@ msgstr ""
 # no idea where this is used, sadly on inspection ingame it turns out the damage overlay texts in battle that blast into pieces are actual 3d models, thus much harder to edit
 msgctxt "Assembly-CSharp.dll|4487646"
 msgid "大破"
-msgstr ""
+msgstr "Taiha"
 
 msgctxt "mst_furnituretext.xml|19"
 msgid "大胆な柄が部屋の印象を明るく演出してくれます。お馬さんのぬいぐるみもポイント高し。"
@@ -34584,15 +34592,15 @@ msgstr ""
 
 msgctxt "Assembly-CSharp.dll|4553941"
 msgid "戦術的勝利!!"
-msgstr ""
+msgstr "Tactical Victory!!"
 
 msgctxt "Assembly-CSharp.dll|4553925"
 msgid "戦術的敗北!!"
-msgstr ""
+msgstr "Tactical Defeat!!"
 
 msgctxt "Assembly-CSharp.dll|4605239"
 msgid "戦闘BGM {0}-{1}"
-msgstr ""
+msgstr "CombatBGM {0}-{1}"
 
 # mst_quest.xml
 msgctxt "mst_quest.xml|212"
@@ -34627,11 +34635,11 @@ msgstr "----------"
 # ???
 msgctxt "Assembly-CSharp.dll|4847961"
 msgid "戦闘スキップを使用するか否か"
-msgstr ""
+msgstr "Whether to use battle skip"
 
 msgctxt "Assembly-CSharp.dll|4847892"
 msgid "戦闘ルート種別"
-msgstr ""
+msgstr "Battle Route Type"
 
 # data entry
 msgctxt "███ generic translation ███"
@@ -36573,7 +36581,7 @@ msgstr "----------"
 # rank D
 msgctxt "Assembly-CSharp.dll|4553919"
 msgid "敗北"
-msgstr ""
+msgstr "Defeat"
 
 msgctxt "Assembly-CSharp.dll|4595451"
 msgid "敗戦"
@@ -36638,7 +36646,7 @@ msgstr ""
 # hagure is loose? guessing weak might work
 msgctxt "███ generic translation ███"
 msgid "敵はぐれ艦隊"
-msgstr ""
+msgstr "Weak Enemy Fleet"
 
 msgctxt "mst_mapenemy2_105.xml|10"
 msgid "敵はぐれ艦隊"
@@ -40830,7 +40838,7 @@ msgstr "----------"
 
 msgctxt "███ generic translation ███"
 msgid "敵偵察艦"
-msgstr ""
+msgstr "Enemy Recon Ship"
 
 msgctxt "mst_mapenemy2_105.xml|0"
 msgid "敵偵察艦"
@@ -58411,6 +58419,8 @@ msgid ""
 "第{0}艦隊\n"
 "が開放されました！"
 msgstr ""
+"Additional Fleet {0}\n"
+"was unlocked!"
 
 # mst_mapinfo.xml
 msgctxt "mst_mapinfo.xml|108"
@@ -58438,11 +58448,11 @@ msgstr "----------"
 
 msgctxt "Assembly-CSharp.dll|4609641"
 msgid "第一艦隊です"
-msgstr ""
+msgstr "It is the first fleet."
 
 msgctxt "Assembly-CSharp.dll|4500712"
 msgid "第一艦隊では実行できません"
-msgstr ""
+msgstr "It can not be performed in the first fleet"
 
 # mst_quest.xml
 msgctxt "mst_quest.xml|50"
@@ -58955,7 +58965,7 @@ msgstr "Spotter Planes, Begin Departure!"
 
 msgctxt "███ generic translation ███"
 msgid "索敵結果[{0}]"
-msgstr ""
+msgstr "Search Results[{0}]"
 
 msgctxt "Assembly-CSharp.dll|4563063"
 msgid "索敵結果[{0}]"
@@ -66435,7 +66445,7 @@ msgstr "----------"
 # battle advance/retreat option for shortcut battles
 msgctxt "███ generic translation ███"
 msgid "進撃"
-msgstr "Charge"
+msgstr "Advance"
 
 msgctxt "resources_01215.-10|-1"
 msgid "進撃"
