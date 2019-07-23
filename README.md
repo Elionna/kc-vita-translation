@@ -1,7 +1,7 @@
+![Preview Image](https://repository-images.githubusercontent.com/159063020/4063d800-ad68-11e9-8e84-8ce737590e00)
+
 Kantai Collection Vita Translation Kai
 ======================================
-
-![Preview Image](https://repository-images.githubusercontent.com/159063020/4063d800-ad68-11e9-8e84-8ce737590e00)
 
 This is a work in progress project to produce a Kantai Collection Vita
 multilingual translation.
