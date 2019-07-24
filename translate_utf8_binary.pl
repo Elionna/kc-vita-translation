@@ -20,6 +20,7 @@ use presetship;
 use countdown;
 use Locale::PO;
 use Devel::Confess;
+use Test::More;
 
 =head1 DESCRIPTION
 
@@ -781,6 +782,7 @@ sub run {
     $|++;
     binmode STDOUT, ":encoding(UTF-8)";
     binmode STDERR, ":encoding(UTF-8)";
+    Test::More->builder->output("/dev/null");    # allows using is_deeply without spam
 
     my ( $opt, $usage ) = describe_options(
         'perl %c %o',
@@ -828,6 +830,9 @@ sub run {
         $tr =~ s/\n/\\n/g;
         $tr =~ s/\\r//g;
         $po->msgstr($tr);
+        next if !$tr;
+        my ( $codes_src, $codes_tra ) = map [ map lc, sort ( $_ =~ /\[(-|b|\/b|[0-9a-fA-F]{6,8})\]/g ) ], $id, $tr;
+        die "color code mismatch" if not is_deeply $codes_tra, $codes_src, encode "UTF-8", "$id\n$tr\n@$codes_src\n@$codes_tra\n";
     }
     cache_and_load_carriage_returns @pof[ 1 .. $#pof ];
 
@@ -1055,6 +1060,7 @@ sub run {
     io("report.txt")->utf8->print( join "\n", filter_nl @report );
 
     say "\ndone";
+    done_testing;
     return;
 }
 
