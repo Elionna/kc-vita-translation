@@ -35382,7 +35382,7 @@ msgstr "Admiral Cmds"
 # button explainer popup main screen
 msgctxt "level4_00110.-15|-1"
 msgid "提督コマンド"
-msgstr "Admiral Cmds"
+msgstr "----------"
 
 # left hand admiral commands popup menu title
 msgctxt "level4_00210.-15|-1"
@@ -35441,7 +35441,7 @@ msgstr "----------"
 # button explainer popup main screen from office
 msgctxt "sharedassets5_01354.-4|-1"
 msgid "提督コマンド"
-msgstr "Admiral Cmds"
+msgstr "----------"
 
 msgctxt "Assembly-CSharp.dll|4595039"
 msgid "提督レベル:"

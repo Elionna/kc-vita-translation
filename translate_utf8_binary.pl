@@ -44,6 +44,10 @@ my $new_norm = sub {
 my $carriagereturn_file = "carriagereturn.cache";
 my $jp_qr               = qr/[\p{Hiragana}\p{Katakana}\p{Han}]/;
 my $generic_ctxt        = "███ generic translation ███";
+my $label_prop_file     = "labelprops.cache";
+my $label_properties;
+my $label_prop_mods;
+my $label_prop_mods_file = "labelprop_mods.cache";
 
 run();
 
@@ -433,6 +437,18 @@ sub presetdeck_meths {
 sub value_pairs_for_type {
     my ( $type, $file ) = @_;
     my $obj = $file->{obj} ||= $type->new( $file->{file} );
+    if ( $type eq "label" ) {
+        my @props = qw( width height font_size font_style text shrink_to_fit multi_line );
+        $label_properties->{ $file->{file} } ||= { map +( $_, $_ eq "text" ? decode "UTF-8", $obj->$_ : $obj->$_ ), @props };
+        if ( $label_prop_mods->{ $file->{file} } ) {
+            for my $prop (@props) {
+                next unless    #
+                  my $val = $label_prop_mods->{ $file->{file} }{$prop};
+                $obj->${ \"Set$prop" }($val);
+                store_file_as_modded $file, 1, $file->{obj}->dump;
+            }
+        }
+    }
     return
         $type eq "motionlist" ? map [ name => $_ ], $obj->field_children("motionship")
       : $type eq "presetdata" ? map [ "preset_${_}_name" => $obj ], 1 .. $obj->obj_count
@@ -812,6 +828,8 @@ sub run {
     duplicate_check;
     my %tr = binary_translations->data;
     delete $_->{tr} for values %tr;
+    $label_properties = { load_cache $label_prop_file};
+    $label_prop_mods  = { load_cache $label_prop_mods_file};
 
     say "loading po file";
     my ( $pofile, $unused_ctxt_marker ) = qw( kc.po ---------- );
@@ -1039,6 +1057,8 @@ sub run {
     my $po_contents = io($pofile)->all;
     $po_contents =~ s/\r?\n$//;
     io($pofile)->print($po_contents);
+
+    store_cache $label_prop_file, $label_properties;
 
     say "preparing reports";
     my @maybe = map sprintf( "  %-" . ( 30 - length $_ ) . "s %-30s hit x %3s, nomatch x %3s, match x %3s", $_, $tr{$_}{ctxt_tr}{""}, $hit{$_}, $unmatched{$_}, $hit{$_} - $unmatched{$_} ),
