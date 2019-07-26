@@ -3158,6 +3158,9 @@
       "Undeployed Vessels:{0}(Moving to this Region:{1}) - Total" : {
          "$Un|$de|ployed |$Ve|$ss|$el|s:{0}(|$Mov|$ing| |$to| |$this |$Regi|$on|:{1}) - |$Tota|l" : 1
       },
+      "Unified Shelling" : {
+         "$Unified |$Shelling" : 1
+      },
       "Unryuu" : {
          "$Un|$ryuu" : 1
       },
