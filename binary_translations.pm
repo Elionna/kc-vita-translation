@@ -188,6 +188,9 @@ sub data {
             tr   => "CShelling",
             desc => 'BattleCommand.Hougeki (logical-or) BattleCommand.Tousha | Tough one. It literally breaks down into Unified Archery. For now, I am going to go with Coordinated Shelling to see how it fits - Radar-coordinated Shelling'
         },
+        "対潜" => { tr => "Anti-Sub",      desc => 'BattleCommand.Kaihi' },
+        "突撃" => { tr => "Assault",      desc => 'BattleCommand.Tousha' },
+        "航空" => { tr => "Anti-Air",      desc => 'BattleCommand.Totugeki' },
         #           ** I have updated these to reflect \resources\Textures\info6_set.tex.png ** these are final translations between 接近 and 統射
 
         "装備数が保有上限に達し開発できません" =>
@@ -672,7 +675,6 @@ sub data {
         "家具詳細家具詳細家具詳細家具詳細家具詳細\n家具詳細家具詳細家具詳細家具詳細家具詳細" => { tr => "FurnitureDetailsFurnitureDetailsFurnitureDetailsFurnitureDetailsFurnitureDetails\nFurnitureDetailsFurnitureDetailsFurnitureDetailsFurnitureDetailsFurnitureDetails ",      desc => 'i used copy/paste on this one' },
         "対抗演習できません" => { tr => "Unable to do Rival Exercise",      desc => 'out of context, this one may be off' },
         "対抗演習を行いますか？" => { tr => "Would you like to do Rival Exercise?",      desc => 'also out of context. reserve right to revise.' },
-        "対潜" => { tr => "Anti-Sub",      desc => 'BattleCommand.Kaihi' },
         "対潜\n999" => { tr => "Anti-Sub\n999",      desc => '' },
         "対空\n999" => { tr => "Anti-Air\n999",      desc => '' },
         "対空+2" => { tr => "Anti-Air+2",      desc => '' },
@@ -889,7 +891,6 @@ sub data {
         "秋津洲改" => { tr => "Akitsushima Kai",      desc => '' },
         "秋雲" => { tr => "Akigumo",      desc => 'destroyer' },
         "秋雲改" => { tr => "Akigumo Kai",      desc => '' },
-        "突撃" => { tr => "Assault",      desc => 'BattleCommand.Tousha' },
         "第一艦隊" => { tr => "First Fleet",      desc => '' },
         "第一艦隊所属" => { tr => "First Fleet",      desc => 'technically [First Fleet][Belonging (to)] as in under control of' },
         "第一艦隊第一艦隊第一艦隊" => { tr => "FirstFleetFirstFleetFirstFleet",      desc => 'we get it, you vape' },
@@ -920,7 +921,6 @@ sub data {
         "能代改" => { tr => "Noshiro Kai",      desc => '' },
         "舞風" => { tr => "Maikaze",      desc => 'destroyer' },
         "舞風改" => { tr => "Maikaze Kai",      desc => '' },
-        "航空" => { tr => "Anti-Air",      desc => 'BattleCommand.Totugeki' },
         "■艦娘" => { tr => "■Ship Girl",      desc => '' },
         "艦娘からチョコが贈られました！" => { tr => "A Ship Girl gave you chocolate as a gift!",      desc => 'Chocolate given by Ship Girl as gift!' },
         "艦娘を　　　隻引き継ぎ可能です。" => { tr => "Control of Ship Girl now possible.",      desc => 'rough' },

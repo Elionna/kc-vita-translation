@@ -59127,7 +59127,7 @@ msgstr "----------"
 # BattleCommand.Hougeki (logical-or) BattleCommand.Tousha | Tough one. It literally breaks down into Unified Archery. For now, I am going to go with Coordinated Shelling to see how it fits - Radar-coordinated Shelling
 msgctxt "███ generic translation ███"
 msgid "統射"
-msgstr "CShelling"
+msgstr "Coordinated Shelling"
 
 msgctxt "Assembly-CSharp.dll|4556793"
 msgid "統射"

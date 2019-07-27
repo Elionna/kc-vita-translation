@@ -3,40 +3,41 @@
       { "font_size" : 15 },
    "../kc_original_unpack/repatch/PCSG00684/Media/Unity_Assets_Files/sharedassets5/sharedassets5_01354.-4" :
       { "font_size" : 15 },
+
    "../kc_original_unpack/repatch/PCSG00684/Media/Unity_Assets_Files/sharedassets5/sharedassets5_00900.-4" :
-      { "font_size" : 10 },
+      { "font_size" : 20, "width" : 150 },
    "../kc_original_unpack/repatch/PCSG00684/Media/Unity_Assets_Files/sharedassets5/sharedassets5_00948.-4" :
-      { "font_size" : 10 },
+      { "font_size" : 20, "width" : 150 },
    "../kc_original_unpack/repatch/PCSG00684/Media/Unity_Assets_Files/sharedassets5/sharedassets5_00762.-4" :
-      { "font_size" : 10 },
+      { "font_size" : 20, "width" : 150 },
    "../kc_original_unpack/repatch/PCSG00684/Media/Unity_Assets_Files/sharedassets5/sharedassets5_00672.-4" :
-      { "font_size" : 10 },
+      { "font_size" : 20, "width" : 150 },
    "../kc_original_unpack/repatch/PCSG00684/Media/Unity_Assets_Files/sharedassets5/sharedassets5_00886.-4" :
-      { "font_size" : 10 },
+      { "font_size" : 20, "width" : 150 },
    "../kc_original_unpack/repatch/PCSG00684/Media/Unity_Assets_Files/sharedassets5/sharedassets5_00725.-4" :
-      { "font_size" : 10 },
+      { "font_size" : 20, "width" : 150 },
    "../kc_original_unpack/repatch/PCSG00684/Media/Unity_Assets_Files/sharedassets5/sharedassets5_00835.-4" :
-      { "font_size" : 10 },
+      { "font_size" : 20, "width" : 150 },
    "../kc_original_unpack/repatch/PCSG00684/Media/Unity_Assets_Files/sharedassets5/sharedassets5_00061.-4" :
-      { "font_size" : 10 },
+      { "font_size" : 20, "width" : 150 },
    "../kc_original_unpack/repatch/PCSG00684/Media/Unity_Assets_Files/sharedassets5/sharedassets5_00636.-4" :
-      { "font_size" : 10 },
+      { "font_size" : 20, "width" : 150 },
    "../kc_original_unpack/repatch/PCSG00684/Media/Unity_Assets_Files/sharedassets5/sharedassets5_00171.-4" :
-      { "font_size" : 10 },
+      { "font_size" : 20, "width" : 150 },
    "../kc_original_unpack/repatch/PCSG00684/Media/Unity_Assets_Files/sharedassets5/sharedassets5_01051.-4" :
-      { "font_size" : 10 },
+      { "font_size" : 20, "width" : 150 },
    "../kc_original_unpack/repatch/PCSG00684/Media/Unity_Assets_Files/sharedassets5/sharedassets5_00802.-4" :
-      { "font_size" : 10 },
+      { "font_size" : 20, "width" : 150 },
    "../kc_original_unpack/repatch/PCSG00684/Media/Unity_Assets_Files/sharedassets5/sharedassets5_00178.-4" :
-      { "font_size" : 10 },
+      { "font_size" : 20, "width" : 150 },
    "../kc_original_unpack/repatch/PCSG00684/Media/Unity_Assets_Files/sharedassets5/sharedassets5_00264.-4" :
-      { "font_size" : 10 },
+      { "font_size" : 20, "width" : 150 },
    "../kc_original_unpack/repatch/PCSG00684/Media/Unity_Assets_Files/sharedassets5/sharedassets5_00688.-4" :
-      { "font_size" : 10 },
+      { "font_size" : 20, "width" : 150 },
    "../kc_original_unpack/repatch/PCSG00684/Media/Unity_Assets_Files/sharedassets5/sharedassets5_00987.-4" :
-      { "font_size" : 10 },
+      { "font_size" : 20, "width" : 150 },
    "../kc_original_unpack/repatch/PCSG00684/Media/Unity_Assets_Files/sharedassets5/sharedassets5_00983.-4" :
-      { "font_size" : 10 },
+      { "font_size" : 20, "width" : 150 },
    "../kc_original_unpack/repatch/PCSG00684/Media/Unity_Assets_Files/sharedassets5/sharedassets5_00533.-4" :
-      { "font_size" : 10 }
+      { "font_size" : 20, "width" : 150 }
 }
