@@ -3,6 +3,8 @@ use strictures 2;
 use IO::All -binary;
 use Capture::Tiny 'capture';
 use Time::HiRes 'time';
+use lib '.';
+use countdown;
 
 run();
 
